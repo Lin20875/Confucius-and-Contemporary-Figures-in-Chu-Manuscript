@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>新出土戰國楚簡“孔子與時人對答”讀本</title>
+	<style>
+		:root { --bg:#f7f7f7; --fg:#1a1a1a; --muted:#666; --accent:#8c1d40; --border:#ddd; }
+		html,body{height:100%}
+		body{margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; color:var(--fg); background:#fff;}
+		.header{padding:12px 16px; border-bottom:1px solid var(--border); background:linear-gradient(135deg, rgba(140,29,64,.06), transparent);}
+		.header__title{margin:0; font-size:18px; letter-spacing:.06em}
+		.layout{display:flex; height:calc(100vh - 54px);}
+		.sidebar{width:300px; min-width:260px; max-width:420px; border-right:1px solid var(--border); display:flex; flex-direction:column; background:var(--bg);}
+		.sidebar__section{padding:12px 12px 8px; border-bottom:1px solid var(--border);}
+		.section__title{margin:0; font-size:14px; color:var(--muted);}
+		.list{list-style:none; margin:0; padding:6px 6px 10px; overflow:auto; flex:1;}
+		.list__item{margin:4px 0;}
+		.link{display:block; padding:8px 10px; border-radius:6px; color:inherit; text-decoration:none;}
+		.link:hover{background:#fff; box-shadow:inset 0 0 0 1px var(--border)}
+		.link--active{background:#fff; box-shadow:inset 0 0 0 2px var(--accent);}
+		.sidebar__footer{padding:10px; border-top:1px solid var(--border);}
+		.search-row{display:flex; gap:6px; margin-top:6px;}
+		.input{flex:1; padding:8px 10px; border:1px solid var(--border); border-radius:6px; font-size:14px;}
+		.btn{padding:8px 10px; border:1px solid var(--border); background:#fff; border-radius:6px; cursor:pointer;}
+		.btn:active{transform:translateY(1px)}
+		.btn--primary{border-color:var(--accent); color:#fff; background:var(--accent);}
+		.mutedsm{font-size:12px; color:var(--muted);}
+		.select{width:100%; padding:8px 10px; border:1px solid var(--border); border-radius:6px; font-size:14px; background:#fff;}
+		.content{flex:1; position:relative; background:#fff;}
+		.viewer{position:absolute; inset:0; width:100%; height:100%; border:0; background:#fff;}
+	</style>
+</head>
+<body>
+	<header class="header">
+		<h1 class="header__title">新出土戰國楚簡“孔子與時人對答”讀本</h1>
+	</header>
+	<div class="layout">
+		<aside class="sidebar" aria-label="文章目录与检索">
+			<div class="sidebar__section">
+				<p class="section__title">讀本目錄</p>
+			</div>
+			<ul id="article-list" class="list" aria-label="文章列表"></ul>
+			<div class="sidebar__footer" aria-label="检索区">
+                <div class="mutedsm">检索当前文章</div>
+				<div class="search-row">
+					<input id="search-input" class="input" type="text" placeholder="输入要检索的文字…">
+					<button id="search-btn" class="btn btn--primary" type="button">搜索</button>
+				</div>
+				<div class="search-row">
+					<select id="scope-select" class="select" title="检索范围"></select>
+				</div>
+				<div class="search-row">
+					<button id="prev-btn" class="btn" type="button" title="上一个">上一个</button>
+					<button id="next-btn" class="btn" type="button" title="下一个">下一个</button>
+				</div>
+				<div class="mutedsm" id="search-hint">—</div>
+			</div>
+		</aside>
+		<main class="content" aria-label="文章正文">
+			<iframe id="viewer" class="viewer" src="" title="文章内容预览"></iframe>
+		</main>
+	</div>
+	<script>
+		(function(){
+			const articles = [
+				{ title: "君子為禮", path: "articles/君子為禮.html" }
+				// 未来可在此继续添加 { title, path }
+			];
+
+			const listEl = document.getElementById('article-list');
+			const iframe = document.getElementById('viewer');
+			const searchInput = document.getElementById('search-input');
+			const searchBtn = document.getElementById('search-btn');
+			const prevBtn = document.getElementById('prev-btn');
+			const nextBtn = document.getElementById('next-btn');
+			const scopeSelect = document.getElementById('scope-select');
+			const hintEl = document.getElementById('search-hint');
+
+			let currentIndex = 0;
+			let lastQuery = "";
+			let pendingSearch = null; // {query, direction}
+
+			function renderList() {
+				listEl.innerHTML = "";
+				articles.forEach((a, idx) => {
+					const li = document.createElement('li');
+					li.className = 'list__item';
+					const link = document.createElement('a');
+					link.href = '#';
+					link.textContent = a.title;
+					link.className = 'link' + (idx === currentIndex ? ' link--active' : '');
+					link.addEventListener('click', (e) => {
+						e.preventDefault();
+						if (currentIndex !== idx) {
+							currentIndex = idx;
+							loadArticle();
+							renderList();
+							clearHint();
+						}
+					});
+					li.appendChild(link);
+					listEl.appendChild(li);
+				});
+			}
+
+			function renderScope() {
+				scopeSelect.innerHTML = "";
+				const optCurrent = document.createElement('option');
+				optCurrent.value = "__CURRENT__";
+				optCurrent.textContent = "范围：当前文章";
+				scopeSelect.appendChild(optCurrent);
+				articles.forEach((a, idx) => {
+					const opt = document.createElement('option');
+					opt.value = String(idx);
+					opt.textContent = "指定文章：" + a.title;
+					scopeSelect.appendChild(opt);
+				});
+				scopeSelect.value = "__CURRENT__";
+			}
+
+			function loadArticle() {
+				const art = articles[currentIndex];
+				iframe.src = art.path;
+			}
+
+			iframe.addEventListener('load', () => {
+				// 在文章切换完成后，如果有待执行检索则立即执行
+				if (pendingSearch) {
+					const { query, direction } = pendingSearch;
+					pendingSearch = null;
+					internalFind(query, direction);
+				}
+			});
+
+			function withDoc(cb) {
+				try {
+					const win = iframe.contentWindow;
+					const doc = iframe.contentDocument || win.document;
+					if (!doc) return;
+					cb(win, doc);
+				} catch (e) {
+					setHint("无法访问文档内容，请使用本地服务器打开页面。");
+				}
+			}
+
+			function setHint(text){ hintEl.textContent = text; }
+			function clearHint(){ hintEl.textContent = "—"; }
+
+			function internalFind(query, direction) {
+				withDoc((win) => {
+					// 使用浏览器原生查找，避免跨文档复杂高亮
+					// 第一次查找从文档开始
+					if (lastQuery !== query) {
+						win.getSelection().removeAllRanges();
+					}
+					let found = false;
+					if (direction === "prev" && typeof win.find === "function") {
+						// 向上查找：部分浏览器支持 back 参数
+						found = win.find(query, false, true, true, false, false, false);
+					} else if (typeof win.find === "function") {
+						found = win.find(query, false, false, true, false, false, false);
+					}
+					lastQuery = query;
+					setHint(found ? "已定位：" + query : "未找到：" + query);
+				});
+			}
+
+			function doFind(direction = "next") {
+				const query = searchInput.value.trim();
+				if (!query) { setHint("请输入检索词"); return; }
+				const scopeVal = scopeSelect.value;
+				let targetIndex = currentIndex;
+				if (scopeVal !== "__CURRENT__") {
+					const idx = parseInt(scopeVal, 10);
+					if (!Number.isNaN(idx) && idx >= 0 && idx < articles.length) {
+						targetIndex = idx;
+					}
+				}
+				// 如果目标文章不是当前显示，则切换后执行检索
+				if (targetIndex !== currentIndex) {
+					currentIndex = targetIndex;
+					renderList();
+					pendingSearch = { query, direction };
+					loadArticle();
+					return;
+				}
+				internalFind(query, direction);
+			}
+
+			searchBtn.addEventListener('click', () => doFind("next"));
+			nextBtn.addEventListener('click', () => doFind("next"));
+			prevBtn.addEventListener('click', () => doFind("prev"));
+			searchInput.addEventListener('keydown', (e) => {
+				if (e.key === 'Enter') doFind("next");
+			});
+
+			// 初始化
+			renderList();
+			renderScope();
+			loadArticle();
+		})();
+	</script>
+</body>
+</html>
+
+
