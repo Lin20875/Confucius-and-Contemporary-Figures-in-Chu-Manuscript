@@ -1,85 +1,114 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>新出土戰國楚簡“孔子與時人對答”讀本</title>
+	<title>新出土戰國楚簡「孔子與時人對答」讀本</title>
 	<style>
 		:root { --bg:#f7f7f7; --fg:#1a1a1a; --muted:#666; --accent:#8c1d40; --border:#ddd; }
 		html,body{height:100%}
-		body{margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; color:var(--fg); background:#fff;}
+		body{margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei",sans-serif; color:var(--fg); background:#fff;}
 		.header{padding:12px 16px; border-bottom:1px solid var(--border); background:linear-gradient(135deg, rgba(140,29,64,.06), transparent);}
-		.header__title{margin:0; font-size:18px; letter-spacing:.06em}
-		.layout{display:flex; height:calc(100vh - 54px);}
+		.header__title{margin:0; font-size:26px; letter-spacing:.06em;}
+		.header__meta{margin:6px 0 0; font-size:13px; color:var(--muted);}
+		.layout{display:flex; height:calc(100vh - 78px);}
 		.sidebar{width:300px; min-width:260px; max-width:420px; border-right:1px solid var(--border); display:flex; flex-direction:column; background:var(--bg);}
 		.sidebar__section{padding:12px 12px 8px; border-bottom:1px solid var(--border);}
 		.section__title{margin:0; font-size:14px; color:var(--muted);}
 		.list{list-style:none; margin:0; padding:6px 6px 10px; overflow:auto; flex:1;}
 		.list__item{margin:4px 0;}
 		.link{display:block; padding:8px 10px; border-radius:6px; color:inherit; text-decoration:none;}
-		.link:hover{background:#fff; box-shadow:inset 0 0 0 1px var(--border)}
+		.link:hover{background:#fff; box-shadow:inset 0 0 0 1px var(--border);}
 		.link--active{background:#fff; box-shadow:inset 0 0 0 2px var(--accent);}
-		.sidebar__footer{padding:10px; border-top:1px solid var(--border);}
+		.sidebar__footer{padding:10px; border-top:1px solid var(--border); font-size:13px;}
 		.search-row{display:flex; gap:6px; margin-top:6px;}
 		.input{flex:1; padding:8px 10px; border:1px solid var(--border); border-radius:6px; font-size:14px;}
 		.btn{padding:8px 10px; border:1px solid var(--border); background:#fff; border-radius:6px; cursor:pointer;}
-		.btn:active{transform:translateY(1px)}
+		.btn:active{transform:translateY(1px);}
 		.btn--primary{border-color:var(--accent); color:#fff; background:var(--accent);}
 		.mutedsm{font-size:12px; color:var(--muted);}
-		.select{width:100%; padding:8px 10px; border:1px solid var(--border); border-radius:6px; font-size:14px; background:#fff;}
-		.content{flex:1; position:relative; background:#fff;}
+		.checkbox-group{margin-top:10px; padding:8px; background:#fff; border:1px solid var(--border); border-radius:8px; max-height:180px; overflow:auto; display:flex; flex-direction:column; gap:6px;}
+		.checkbox-group__item{display:flex; align-items:flex-start; gap:6px; font-size:13px; line-height:1.4;}
+		.checkbox-group__item input[type="checkbox"]{margin-top:2px; accent-color:var(--accent);}
+		.notice{margin-top:8px; font-size:12px; color:var(--muted);}
+		.content{flex:1; display:flex; flex-direction:column; background:#fff;}
+		.viewer-wrap{flex:1; position:relative; border-bottom:1px solid var(--border);}
 		.viewer{position:absolute; inset:0; width:100%; height:100%; border:0; background:#fff;}
+		.results{max-height:40%; min-height:160px; display:flex; flex-direction:column;}
+		.results__header{padding:10px 14px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;}
+		.results__title{margin:0; font-size:15px;}
+		.results__hint{margin:0; font-size:12px; color:var(--muted);}
+		.results__list{flex:1; overflow:auto; padding:12px 16px; margin:0;}
+		.result{margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid var(--border);}
+		.result:last-child{border-bottom:none; margin-bottom:0; padding-bottom:0;}
+		.result__article{font-size:13px; color:var(--muted); margin:0 0 6px;}
+		.result__excerpt{margin:0; line-height:1.6;}
+		.result__mark{background:rgba(140,29,64,.18); color:inherit; padding:0 2px; border-radius:2px;}
+		.results__empty{margin:0; font-size:13px; color:var(--muted);}
+		@media (max-width:768px){
+			.layout{flex-direction:column;}
+			.sidebar{width:100%; max-width:none; border-right:none; border-bottom:1px solid var(--border); height:auto;}
+			.content{height:calc(100vh - 260px);}
+			.viewer-wrap{flex:1;}
+			.results{max-height:none;}
+			.checkbox-group{max-height:140px;}
+		}
 	</style>
 </head>
 <body>
 	<header class="header">
-		<h1 class="header__title">新出土戰國楚簡“孔子與時人對答”讀本</h1>
+		<h1 class="header__title">新出土戰國楚簡「孔子與時人對答」讀本</h1>
+		<p class="header__meta">作者：陳曙光博士　｜　網頁開發者：樂林</p>
 	</header>
 	<div class="layout">
-		<aside class="sidebar" aria-label="文章目录与检索">
+		<aside class="sidebar" aria-label="文章目錄與全文檢索">
 			<div class="sidebar__section">
 				<p class="section__title">讀本目錄</p>
 			</div>
 			<ul id="article-list" class="list" aria-label="文章列表"></ul>
-			<div class="sidebar__footer" aria-label="检索区">
-                <div class="mutedsm">检索当前文章</div>
+			<div class="sidebar__footer" aria-label="全文檢索區">
+				<div class="mutedsm">檢索文字</div>
 				<div class="search-row">
-					<input id="search-input" class="input" type="text" placeholder="输入要检索的文字…">
-					<button id="search-btn" class="btn btn--primary" type="button">搜索</button>
+					<input id="search-input" class="input" type="text" placeholder="輸入欲檢索的文字…" aria-label="檢索文字輸入">
+					<button id="search-btn" class="btn btn--primary" type="button">搜尋</button>
 				</div>
-				<div class="search-row">
-					<select id="scope-select" class="select" title="检索范围"></select>
-				</div>
-				<div class="search-row">
-					<button id="prev-btn" class="btn" type="button" title="上一个">上一个</button>
-					<button id="next-btn" class="btn" type="button" title="下一个">下一个</button>
-				</div>
-				<div class="mutedsm" id="search-hint">—</div>
+				<div class="mutedsm" style="margin-top:12px;">勾選欲檢索的文章（可複選）</div>
+				<div id="scope-checkboxes" class="checkbox-group" role="group" aria-label="檢索文章範圍"></div>
+				<p class="notice">提示：若未勾選任何文章，將以目前閱讀的文章進行檢索。</p>
 			</div>
 		</aside>
-		<main class="content" aria-label="文章正文">
-			<iframe id="viewer" class="viewer" src="" title="文章内容预览"></iframe>
+		<main class="content" aria-label="文章檢視與檢索結果">
+			<div class="viewer-wrap">
+				<iframe id="viewer" class="viewer" src="" title="文章內容預覽"></iframe>
+			</div>
+			<section class="results" aria-live="polite">
+				<div class="results__header">
+					<h2 class="results__title">檢索結果</h2>
+					<p id="search-hint" class="results__hint">尚未進行檢索</p>
+				</div>
+				<div id="search-results" class="results__list">
+					<p class="results__empty">執行搜尋後，相關段落會顯示於此。</p>
+				</div>
+			</section>
 		</main>
 	</div>
 	<script>
 		(function(){
 			const articles = [
-				{ title: "君子為禮", path: "articles/君子為禮.html" }
-				// 未来可在此继续添加 { title, path }
+				{ title: "君子為禮", path: "articles/君子為禮.html" },
+				{ title: "示例文章二（sample-2）", path: "articles/sample-2.html" },
+				{ title: "示例文章乙（sample-b）", path: "articles/sample-b.html" }
 			];
 
 			const listEl = document.getElementById('article-list');
 			const iframe = document.getElementById('viewer');
 			const searchInput = document.getElementById('search-input');
 			const searchBtn = document.getElementById('search-btn');
-			const prevBtn = document.getElementById('prev-btn');
-			const nextBtn = document.getElementById('next-btn');
-			const scopeSelect = document.getElementById('scope-select');
+			const scopeGroup = document.getElementById('scope-checkboxes');
 			const hintEl = document.getElementById('search-hint');
+			const resultsEl = document.getElementById('search-results');
 
 			let currentIndex = 0;
-			let lastQuery = "";
-			let pendingSearch = null; // {query, direction}
 
 			function renderList() {
 				listEl.innerHTML = "";
@@ -96,7 +125,8 @@
 							currentIndex = idx;
 							loadArticle();
 							renderList();
-							clearHint();
+							renderScope();
+							setHint("已切換至《" + a.title + "》");
 						}
 					});
 					li.appendChild(link);
@@ -105,18 +135,23 @@
 			}
 
 			function renderScope() {
-				scopeSelect.innerHTML = "";
-				const optCurrent = document.createElement('option');
-				optCurrent.value = "__CURRENT__";
-				optCurrent.textContent = "范围：当前文章";
-				scopeSelect.appendChild(optCurrent);
+				scopeGroup.innerHTML = "";
 				articles.forEach((a, idx) => {
-					const opt = document.createElement('option');
-					opt.value = String(idx);
-					opt.textContent = "指定文章：" + a.title;
-					scopeSelect.appendChild(opt);
+					const wrapper = document.createElement('label');
+					wrapper.className = 'checkbox-group__item';
+					const checkbox = document.createElement('input');
+					checkbox.type = 'checkbox';
+					checkbox.value = String(idx);
+					checkbox.name = 'scope';
+					if (idx === currentIndex) {
+						checkbox.checked = true;
+					}
+					const text = document.createElement('span');
+					text.textContent = a.title;
+					wrapper.appendChild(checkbox);
+					wrapper.appendChild(text);
+					scopeGroup.appendChild(wrapper);
 				});
-				scopeSelect.value = "__CURRENT__";
 			}
 
 			function loadArticle() {
@@ -124,78 +159,97 @@
 				iframe.src = art.path;
 			}
 
-			iframe.addEventListener('load', () => {
-				// 在文章切换完成后，如果有待执行检索则立即执行
-				if (pendingSearch) {
-					const { query, direction } = pendingSearch;
-					pendingSearch = null;
-					internalFind(query, direction);
-				}
-			});
-
-			function withDoc(cb) {
-				try {
-					const win = iframe.contentWindow;
-					const doc = iframe.contentDocument || win.document;
-					if (!doc) return;
-					cb(win, doc);
-				} catch (e) {
-					setHint("无法访问文档内容，请使用本地服务器打开页面。");
-				}
-			}
-
 			function setHint(text){ hintEl.textContent = text; }
-			function clearHint(){ hintEl.textContent = "—"; }
 
-			function internalFind(query, direction) {
-				withDoc((win) => {
-					// 使用浏览器原生查找，避免跨文档复杂高亮
-					// 第一次查找从文档开始
-					if (lastQuery !== query) {
-						win.getSelection().removeAllRanges();
-					}
-					let found = false;
-					if (direction === "prev" && typeof win.find === "function") {
-						// 向上查找：部分浏览器支持 back 参数
-						found = win.find(query, false, true, true, false, false, false);
-					} else if (typeof win.find === "function") {
-						found = win.find(query, false, false, true, false, false, false);
-					}
-					lastQuery = query;
-					setHint(found ? "已定位：" + query : "未找到：" + query);
-				});
+			function escapeRegExp(str) {
+				return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 			}
 
-			function doFind(direction = "next") {
+			function getSelectedScopeIndices() {
+				return Array.from(scopeGroup.querySelectorAll('input[type="checkbox"]:checked'))
+					.map(input => parseInt(input.value, 10))
+					.filter(idx => Number.isInteger(idx) && idx >= 0 && idx < articles.length);
+			}
+
+			async function runSearch() {
 				const query = searchInput.value.trim();
-				if (!query) { setHint("请输入检索词"); return; }
-				const scopeVal = scopeSelect.value;
-				let targetIndex = currentIndex;
-				if (scopeVal !== "__CURRENT__") {
-					const idx = parseInt(scopeVal, 10);
-					if (!Number.isNaN(idx) && idx >= 0 && idx < articles.length) {
-						targetIndex = idx;
-					}
-				}
-				// 如果目标文章不是当前显示，则切换后执行检索
-				if (targetIndex !== currentIndex) {
-					currentIndex = targetIndex;
-					renderList();
-					pendingSearch = { query, direction };
-					loadArticle();
+				if (!query) {
+					setHint("請輸入檢索詞。");
+					resultsEl.innerHTML = '<p class="results__empty">尚未輸入檢索詞。</p>';
 					return;
 				}
-				internalFind(query, direction);
+
+				const selectedIndices = getSelectedScopeIndices();
+				const articleIndices = selectedIndices.length ? selectedIndices : [currentIndex];
+
+				resultsEl.innerHTML = '<p class="results__empty">檢索中，請稍候…</p>';
+				setHint("檢索中…");
+
+				const pattern = new RegExp(escapeRegExp(query), 'gi');
+				const results = [];
+
+				for (const idx of articleIndices) {
+					const art = articles[idx];
+					try {
+						const response = await fetch(art.path);
+						if (!response.ok) throw new Error("無法載入文章：《" + art.title + "》");
+						const htmlText = await response.text();
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(htmlText, "text/html");
+
+						const segments = Array.from(doc.querySelectorAll('p, li, blockquote, h1, h2, h3, h4'));
+						segments.forEach((node) => {
+							const text = node.textContent || "";
+							if (!text.trim()) return;
+							if (pattern.test(text)) {
+								const marked = text.replace(pattern, (match) => `<mark class="result__mark">${match}</mark>`);
+								results.push({
+									articleTitle: art.title,
+									excerpt: marked
+								});
+								pattern.lastIndex = 0;
+							} else {
+								pattern.lastIndex = 0;
+							}
+						});
+					} catch (err) {
+						results.push({
+							articleTitle: art.title,
+							excerpt: `<span style="color:#b00020;">${err.message}</span>`
+						});
+					}
+				}
+
+				if (!results.length) {
+					resultsEl.innerHTML = `<p class="results__empty">未找到包含「${query}」的段落。</p>`;
+					setHint("未找到相關內容。");
+					return;
+				}
+
+				const frag = document.createDocumentFragment();
+				results.forEach((item) => {
+					const wrapper = document.createElement('article');
+					wrapper.className = 'result';
+					const title = document.createElement('p');
+					title.className = 'result__article';
+					title.textContent = "文章：《" + item.articleTitle + "》";
+					const excerpt = document.createElement('p');
+					excerpt.className = 'result__excerpt';
+					excerpt.innerHTML = item.excerpt;
+					wrapper.appendChild(title);
+					wrapper.appendChild(excerpt);
+					frag.appendChild(wrapper);
+				});
+				resultsEl.innerHTML = "";
+				resultsEl.appendChild(frag);
+				setHint("找到 " + results.length + " 筆結果。");
 			}
 
-			searchBtn.addEventListener('click', () => doFind("next"));
-			nextBtn.addEventListener('click', () => doFind("next"));
-			prevBtn.addEventListener('click', () => doFind("prev"));
+			searchBtn.addEventListener('click', runSearch);
 			searchInput.addEventListener('keydown', (e) => {
-				if (e.key === 'Enter') doFind("next");
+				if (e.key === 'Enter') runSearch();
 			});
 
-			// 初始化
 			renderList();
 			renderScope();
 			loadArticle();
@@ -203,5 +257,3 @@
 	</script>
 </body>
 </html>
-
-
