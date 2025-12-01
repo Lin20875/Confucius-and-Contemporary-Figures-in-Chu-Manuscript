@@ -2,8 +2,8 @@ import os
 from zipfile import ZipFile
 import xml.etree.ElementTree as ET
 
-input_path = r"C:\Users\lyue\Desktop\网页\articles\君子為禮 廣義讀本 20240520.docx"
-output_dir = os.path.join(os.path.dirname(input_path), 'images_君子為禮_20240520')
+input_path = r"C:\Users\lyue\Desktop\网页\君子為禮 廣義讀本 20240520.docx"
+output_dir = os.path.join(os.path.dirname(input_path), 'images_君子為禮_20251201')
 os.makedirs(output_dir, exist_ok=True)
 
 with ZipFile(input_path, 'r') as zf:
@@ -28,9 +28,8 @@ with ZipFile(input_path, 'r') as zf:
     ns_v = {'v': 'urn:schemas-microsoft-com:vml'}
     ns_rels = {'r': 'http://schemas.openxmlformats.org/package/2006/relationships'}
 
-    # 全部目标文件（按出现顺序，但按目标路径去重）
+    # 全部目标文件（按出现顺序，不去重，相同图片也按顺序提取）
     ordered_targets = []
-    seen_targets = set()
 
     for part_xml_path in parts_in_order:
         try:
@@ -57,7 +56,7 @@ with ZipFile(input_path, 'r') as zf:
         # 解析该部件 XML，按出现顺序收集 r:embed 与 v:imagedata
         root = ET.fromstring(xml_bytes)
 
-        # a:blip r:embed
+        # a:blip r:embed - 按出现顺序添加，不去重
         for blip in root.findall('.//a:blip', ns):
             rId = blip.attrib.get('{%s}embed' % ns['r'])
             if not rId:
@@ -65,11 +64,11 @@ with ZipFile(input_path, 'r') as zf:
             target = rid_to_target.get(rId)
             if not target:
                 continue
-            if target in zf.namelist() and target not in seen_targets:
-                seen_targets.add(target)
+            # 不去重，每次出现都按顺序添加
+            if target in zf.namelist():
                 ordered_targets.append(target)
 
-        # v:imagedata r:id
+        # v:imagedata r:id - 按出现顺序添加，不去重
         for imd in root.findall('.//v:imagedata', ns_v):
             rId = imd.attrib.get('{%s}id' % ns['r'])
             if not rId:
@@ -77,8 +76,8 @@ with ZipFile(input_path, 'r') as zf:
             target = rid_to_target.get(rId)
             if not target:
                 continue
-            if target in zf.namelist() and target not in seen_targets:
-                seen_targets.add(target)
+            # 不去重，每次出现都按顺序添加
+            if target in zf.namelist():
                 ordered_targets.append(target)
 
     # 写出文件

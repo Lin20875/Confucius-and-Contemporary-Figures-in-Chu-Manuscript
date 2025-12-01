@@ -13,15 +13,30 @@
 		.header__title{margin:0; font-size:32px; letter-spacing:.05em; line-height:1.25;}
 		.header__meta{margin:8px 0 0; font-size:13px; color:var(--muted);}
 		.layout{display:flex; height:calc(100vh - 86px);}
-		.sidebar{width:300px; min-width:260px; max-width:420px; border-right:1px solid var(--border); display:flex; flex-direction:column; background:var(--bg);}
-		.sidebar__section{padding:12px 12px 8px; border-bottom:1px solid var(--border);}
-		.section__title{margin:0; font-size:14px; color:var(--muted);}
-		.list{list-style:none; margin:0; padding:6px 6px 10px; overflow:auto; flex:1;}
+		.sidebar{width:300px; min-width:260px; max-width:420px; border-right:1px solid var(--border); display:flex; flex-direction:column; background:var(--bg); position:relative; transition:transform .3s ease, margin .3s ease;}
+		.sidebar.hidden{transform:translateX(-100%); margin-left:-300px;}
+		.sidebar__section{padding:12px 12px 8px; border-bottom:1px solid var(--border); user-select:none;}
+		.sidebar__header{display:flex; align-items:center; justify-content:space-between; padding:12px 12px 8px; border-bottom:1px solid var(--border);}
+		.section__title{margin:0; font-size:14px; color:var(--muted); cursor:pointer; display:flex; align-items:center; justify-content:space-between; padding:4px 6px; border-radius:4px; transition:background .15s ease;}
+		.section__title:hover{background:rgba(0,0,0,.05);}
+		.section__title::after{content:'▼'; font-size:10px; color:var(--muted); transition:transform .2s ease;}
+		.section__title.collapsed::after{transform:rotate(-90deg);}
+		.sidebar-toggle{background:none; border:none; cursor:pointer; padding:4px 6px; border-radius:4px; color:var(--muted); font-size:14px; transition:all .15s ease; display:flex; align-items:center; justify-content:center; width:28px; height:28px;}
+		.sidebar-toggle:hover{background:rgba(0,0,0,.08); color:var(--fg);}
+		.sidebar-toggle:active{transform:scale(.9);}
+		.list{list-style:none; margin:0; padding:6px 6px 10px; overflow:auto; flex:1; transition:all .3s ease;}
+		.list.collapsed{max-height:0 !important; min-height:0 !important; opacity:0; overflow:hidden; padding:0; flex:0;}
 		.list__item{margin:4px 0;}
 		.link{display:block; padding:8px 10px; border-radius:6px; color:inherit; text-decoration:none;}
 		.link:hover{background:#fff; box-shadow:inset 0 0 0 1px var(--border);}
 		.link--active{background:#fff; box-shadow:inset 0 0 0 2px var(--accent);}
-		.sidebar__footer{padding:12px; border-top:1px solid var(--border); font-size:13px;}
+		.sidebar__footer{padding:12px; border-top:1px solid var(--border); font-size:13px; user-select:none;}
+		.footer__title{margin:0 0 8px; font-size:14px; color:var(--muted); cursor:pointer; display:flex; align-items:center; justify-content:space-between; padding:4px 6px; border-radius:4px; transition:background .15s ease;}
+		.footer__title:hover{background:rgba(0,0,0,.05);}
+		.footer__title::after{content:'▼'; font-size:10px; color:var(--muted); transition:transform .2s ease;}
+		.footer__title.collapsed::after{transform:rotate(-90deg);}
+		.footer__content{max-height:2000px; transition:all .3s ease; overflow:hidden;}
+		.footer__content.collapsed{max-height:0 !important; opacity:0; margin:0;}
 		.search-row{display:flex; gap:6px; margin-top:6px;}
 		.input{flex:1; padding:8px 10px; border:1px solid var(--border); border-radius:6px; font-size:14px;}
 		.btn{padding:8px 10px; border:1px solid var(--border); background:#fff; border-radius:6px; cursor:pointer; transition:.15s ease;}
@@ -35,9 +50,13 @@
 		.checkbox-group__item{display:flex; align-items:flex-start; gap:6px; font-size:13px; line-height:1.4;}
 		.checkbox-group__item input[type="checkbox"]{margin-top:2px; accent-color:var(--accent);}
 		.notice{margin-top:8px; font-size:12px; color:var(--muted);}
-		.content{flex:1; display:flex; flex-direction:column; background:#fff; min-height:0;}
+		.content{flex:1; display:flex; flex-direction:column; background:#fff; min-height:0; position:relative;}
 		.viewer-wrap{flex:1; position:relative; min-height:0;}
 		.viewer{position:absolute; inset:0; width:100%; height:100%; border:0; background:#fff;}
+		.floating-toggle{position:absolute; left:20px; top:20px; z-index:100; background:var(--accent); color:#fff; border:none; width:44px; height:44px; border-radius:50%; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,.15); display:none; align-items:center; justify-content:center; font-size:20px; transition:all .2s ease;}
+		.floating-toggle:hover{transform:scale(1.08); box-shadow:0 6px 16px rgba(0,0,0,.2);}
+		.floating-toggle:active{transform:scale(.95);}
+		.floating-toggle.visible{display:flex;}
 		.search-panel{flex:1; display:flex; flex-direction:column; gap:16px; padding:20px 24px; background:#fff; min-height:0; overflow:auto;}
 		.results__bar{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;}
 		.results__heading{display:flex; flex-direction:column; gap:4px;}
@@ -52,6 +71,8 @@
 		@media (max-width:768px){
 			.layout{flex-direction:column; height:auto; min-height:calc(100vh - 86px);}
 			.sidebar{width:100%; max-width:none; border-right:none; border-bottom:1px solid var(--border); height:auto;}
+			.sidebar.hidden{transform:translateY(-100%); margin-left:0; margin-top:-100%;}
+			.floating-toggle{left:auto; right:20px;}
 		}
 		@media (max-width:540px){
 			.results__bar{flex-direction:column; align-items:flex-start;}
@@ -67,22 +88,26 @@
 	</header>
 	<div class="layout">
 		<aside class="sidebar" aria-label="文章目錄與全文檢索">
-			<div class="sidebar__section">
-				<p class="section__title">讀本目錄</p>
+			<div class="sidebar__header">
+				<p id="catalog-toggle" class="section__title" style="flex:1; margin:0;">讀本目錄</p>
+				<button id="sidebar-toggle" class="sidebar-toggle" type="button" title="收起側邊欄" aria-label="收起側邊欄">◀</button>
 			</div>
 			<ul id="article-list" class="list" aria-label="文章列表"></ul>
 			<div class="sidebar__footer" aria-label="全文檢索區">
-				<div class="mutedsm">檢索文字</div>
-				<div class="search-row">
-					<input id="search-input" class="input" type="text" placeholder="輸入欲檢索的文字…" aria-label="檢索文字輸入">
-					<button id="search-btn" class="btn btn--primary" type="button">搜尋</button>
+				<p id="search-toggle" class="footer__title">檢索文字</p>
+				<div id="search-content" class="footer__content">
+					<div class="search-row">
+						<input id="search-input" class="input" type="text" placeholder="輸入欲檢索的文字…" aria-label="檢索文字輸入">
+						<button id="search-btn" class="btn btn--primary" type="button">搜尋</button>
+					</div>
+					<div class="mutedsm" style="margin-top:12px;">勾選欲檢索的文章（可複選）</div>
+					<div id="scope-checkboxes" class="checkbox-group" role="group" aria-label="檢索文章範圍"></div>
+					<p class="notice">提示：若未勾選任何文章，將以目前閱讀的文章進行檢索。</p>
 				</div>
-				<div class="mutedsm" style="margin-top:12px;">勾選欲檢索的文章（可複選）</div>
-				<div id="scope-checkboxes" class="checkbox-group" role="group" aria-label="檢索文章範圍"></div>
-				<p class="notice">提示：若未勾選任何文章，將以目前閱讀的文章進行檢索。</p>
 			</div>
 		</aside>
 		<main class="content" aria-label="文章檢視與檢索結果">
+			<button id="floating-toggle" class="floating-toggle" type="button" title="顯示側邊欄" aria-label="顯示側邊欄">▶</button>
 			<div class="viewer-wrap">
 				<iframe id="viewer" class="viewer" src="" title="文章內容預覽"></iframe>
 			</div>
@@ -102,6 +127,62 @@
 	</div>
 	<script>
 		(function(){
+			// 侧边栏显示/隐藏功能
+			const sidebar = document.querySelector('.sidebar');
+			const sidebarToggle = document.getElementById('sidebar-toggle');
+			const floatingToggle = document.getElementById('floating-toggle');
+
+			// 初始化侧边栏状态
+			const sidebarHidden = localStorage.getItem('sidebarHidden') === 'true';
+			if (sidebarHidden) {
+				sidebar.classList.add('hidden');
+				floatingToggle.classList.add('visible');
+			}
+
+			// 切换侧边栏
+			function toggleSidebar() {
+				const isHidden = sidebar.classList.toggle('hidden');
+				floatingToggle.classList.toggle('visible', isHidden);
+				localStorage.setItem('sidebarHidden', isHidden);
+			}
+
+			sidebarToggle.addEventListener('click', toggleSidebar);
+			floatingToggle.addEventListener('click', toggleSidebar);
+
+			// 折叠/展开功能
+			const catalogToggle = document.getElementById('catalog-toggle');
+			const articleList = document.getElementById('article-list');
+			const searchToggle = document.getElementById('search-toggle');
+			const searchContent = document.getElementById('search-content');
+
+			// 初始化折叠状态（从 localStorage 读取）
+			const catalogCollapsed = localStorage.getItem('catalogCollapsed') === 'true';
+			const searchCollapsed = localStorage.getItem('searchCollapsed') === 'true';
+
+			if (catalogCollapsed) {
+				catalogToggle.classList.add('collapsed');
+				articleList.classList.add('collapsed');
+			}
+
+			if (searchCollapsed) {
+				searchToggle.classList.add('collapsed');
+				searchContent.classList.add('collapsed');
+			}
+
+			// 切换折叠状态
+			catalogToggle.addEventListener('click', function() {
+				const isCollapsed = catalogToggle.classList.toggle('collapsed');
+				articleList.classList.toggle('collapsed');
+				localStorage.setItem('catalogCollapsed', isCollapsed);
+			});
+
+			searchToggle.addEventListener('click', function() {
+				const isCollapsed = searchToggle.classList.toggle('collapsed');
+				searchContent.classList.toggle('collapsed');
+				localStorage.setItem('searchCollapsed', isCollapsed);
+			});
+
+			// 主应用逻辑
 			const articles = [
 				{ title: "君子為禮", path: "articles/君子為禮.html" },
 				{ title: "示例文章二（sample-2）", path: "articles/sample-2.html" },

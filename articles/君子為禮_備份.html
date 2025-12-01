@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>君子為禮 廣義讀本</title>
+  <title>君子為禮 廣義讀本 20240520</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -224,44 +224,6 @@
       object-fit: contain;
     }
 
-    /* 注释链接样式 */
-    a.footnote-ref {
-      text-decoration: none;
-      color: var(--accent);
-      font-weight: 600;
-      padding: 0 0.15em;
-      transition: all 0.2s ease;
-      border-radius: 0.2em;
-    }
-
-    a.footnote-ref:hover {
-      background-color: var(--glyph-bg);
-      text-decoration: underline;
-    }
-
-    .footnote-backref {
-      text-decoration: none;
-      color: var(--accent);
-      margin-left: 0.5em;
-      font-size: 0.9em;
-      opacity: 0.7;
-      transition: opacity 0.2s ease;
-    }
-
-    .footnote-backref:hover {
-      opacity: 1;
-      text-decoration: underline;
-    }
-
-    /* 高亮效果 */
-    .footnotes li:target {
-      background-color: var(--glyph-bg);
-      padding: 0.5rem;
-      margin-left: -0.5rem;
-      border-radius: 0.5rem;
-      transition: background-color 0.3s ease;
-    }
-
 
     footer {
       border-top: 1px solid var(--border);
@@ -295,7 +257,12 @@
 <body>
   <header class="doc-header">
     <h1>君子為禮</h1>
-    <p class="doc-subtitle">《君子為禮 廣義讀本》</p>
+    <p class="doc-subtitle">《君子為禮 廣義讀本 20240520》</p>
+    <aside class="glyph-notice" aria-label="文字圖片保留說明">
+      <h2>文字圖片保留說明</h2>
+      <p>原文中以 <code>[]</code> 標示的漢語古文字圖片暫以佔位符保留，頁面載入後會自動轉換為標示明確的紅框圖字佔位符，並同步列入「圖字佔位清單」，以利後續補入實際影像。</p>
+      <p>後續若取得對應字形影像，請將其轉為 Base64 並以 <code>&lt;img src="data:image/格式;base64,..." alt="圖字XXX"&gt;</code> 取代相同 <code>data-label</code> 的佔位符。</p>
+    </aside>
   </header>
 
   <main>
@@ -363,7 +330,7 @@
     </section>
 
     <section class="doc-section" id="transcription">
-      <h2 id="transcription-title">釋文</h2>
+      <h2>釋文</h2>
       <div class="transcription-block">
         <p>（顏）[圖字013]（淵）[圖字014]（侍）於夫=子=（夫子。夫子）曰：「韋（回），君子為豊（禮），以依[1]於[圖字015]（仁）。」[圖字016]（顏）[圖字017]（淵）[圖字018]（作）[2]而<br>[圖字019](答)曰：「韋（回）不[圖字020]（敏），弗能少居[3]也。」夫子曰：「[圖字021]（坐），[圖字022]（吾）語女（汝）。言之而不義，[4]【1】口勿言也；視/見之而不義，目勿視也；聖（聽）之而不義，耳勿聖（聽）也；[圖字023]（動）而不義，身毋[圖字024]（動）女/安（焉）。」[圖字025]（顏）[圖字026]（淵）退，[圖字027]（數）日不出。[圖字028]〔□□問〕[5]【2】之曰：「[圖字029]（吾）子可（何）亓（其）[圖字030]（[圖字031]惰/瘠）[6]也？」曰：「然，[圖字032]（吾）[圖字033]（新親）[7]𦖞（聞）言於夫子，欲行之不能，[8]欲[圖字034]（去）之而不可，[圖字035]（吾）是以[圖字036]（[圖字037]瘠）也。」</p>
 
@@ -643,8 +610,8 @@
   </main>
 
   <footer>
-    <p>轉製日期：2025-12-1</p>
-    <p>說明：本頁人工整理，如有錯誤，請聯繫作者和網頁製作者。</p>
+    <p>轉製日期：2025-11-11</p>
+    <p>說明：本頁人工整理，尚需補入原始古文字圖像檔。</p>
   </footer>
 
   <script>
@@ -772,116 +739,6 @@
           };
           span.parentNode.replaceChild(img, span);
         }
-      });
-    })();
-
-    // 注释跳转功能
-    (function () {
-      // 处理释文中的注释标记，将其转换为可点击的链接
-      const transcriptionBlock = document.querySelector('.transcription-block');
-      if (!transcriptionBlock) return;
-
-      const walker = document.createTreeWalker(
-        transcriptionBlock,
-        NodeFilter.SHOW_TEXT,
-        null
-      );
-
-      const nodesToProcess = [];
-      let node;
-      
-      while ((node = walker.nextNode())) {
-        if (node.parentNode && node.parentNode.closest('script, style, code, a')) continue;
-        const text = node.nodeValue;
-        // 匹配注释标记 [数字]，但排除 [圖字XXX] 格式
-        if (/\[(\d{1,3})\]/.test(text) && !/\[圖字\d+\]/.test(text)) {
-          nodesToProcess.push(node);
-        }
-      }
-
-      nodesToProcess.forEach((textNode) => {
-        const text = textNode.nodeValue;
-        const fragment = document.createDocumentFragment();
-        let lastIndex = 0;
-        
-        // 匹配 [1], [2], [3] 等格式（1-3位数字）
-        const pattern = /\[(\d{1,3})\]/g;
-        let match;
-        
-        while ((match = pattern.exec(text)) !== null) {
-          const fullMatch = match[0]; // [1]
-          const number = match[1];    // 1
-          
-          // 添加匹配前的文本
-          if (match.index > lastIndex) {
-            fragment.appendChild(
-              document.createTextNode(text.slice(lastIndex, match.index))
-            );
-          }
-          
-          // 创建注释链接
-          const link = document.createElement('a');
-          link.href = `#fn-${number}`;
-          link.className = 'footnote-ref';
-          link.textContent = fullMatch;
-          link.setAttribute('title', `跳转到注释 ${number}`);
-          fragment.appendChild(link);
-          
-          lastIndex = match.index + fullMatch.length;
-        }
-        
-        // 添加剩余的文本
-        if (lastIndex < text.length) {
-          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
-        }
-        
-        textNode.parentNode.replaceChild(fragment, textNode);
-      });
-
-      // 在注释列表中添加返回链接
-      const footnotes = document.querySelectorAll('.footnotes li[id^="fn-"]');
-      footnotes.forEach((footnote) => {
-        const id = footnote.getAttribute('id');
-        const number = id.replace('fn-', '');
-        
-        // 创建返回链接
-        const backLink = document.createElement('a');
-        backLink.href = '#transcription-title';
-        backLink.className = 'footnote-backref';
-        backLink.textContent = '↑返回';
-        backLink.setAttribute('title', '返回正文');
-        
-        // 将返回链接添加到注释末尾
-        footnote.appendChild(backLink);
-      });
-
-      // 平滑滚动效果
-      document.querySelectorAll('a.footnote-ref, a.footnote-backref').forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId) || 
-                               document.querySelector(this.getAttribute('href'));
-          
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center'
-            });
-            
-            // 更新URL但不触发滚动
-            history.pushState(null, null, this.getAttribute('href'));
-            
-            // 添加临时高亮效果
-            if (targetElement.tagName === 'LI') {
-              targetElement.style.transition = 'background-color 0.3s ease';
-              const originalBg = window.getComputedStyle(targetElement).backgroundColor;
-              setTimeout(() => {
-                targetElement.style.backgroundColor = '';
-              }, 2000);
-            }
-          }
-        });
       });
     })();
   </script>
