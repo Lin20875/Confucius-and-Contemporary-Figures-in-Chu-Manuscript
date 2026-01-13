@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>民之父母</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #fdfdfc;
+      --fg: #1a1a1a;
+      --accent: #8c1d40;
+      --muted: #555;
+      --border: #d8cfc4;
+      --glyph-border: rgba(180, 32, 32, 0.6);
+      --glyph-bg: rgba(255, 228, 232, 0.45);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111;
+        --fg: #f3f0e9;
+        --muted: #b0a89e;
+        --border: #3a332b;
+        --glyph-border: rgba(255, 126, 137, 0.8);
+        --glyph-bg: rgba(140, 29, 64, 0.25);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Serif CJK TC", "PingFang TC", "Microsoft JhengHei", serif;
+      line-height: 1.7;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    header,
+    main,
+    footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: clamp(1.5rem, 3vw, 3rem) clamp(1.25rem, 3vw, 2.5rem);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(140, 29, 64, 0.08), transparent);
+    }
+
+    .doc-header h1 {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      margin: 0 0 0.35em;
+      letter-spacing: 0.08em;
+    }
+
+    .doc-subtitle {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .glyph-notice {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.65);
+      font-size: 0.95rem;
+    }
+
+    .glyph-notice h2 {
+      margin: 0 0 0.6em;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+    }
+
+    code {
+      font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+      font-size: 0.9em;
+      background: rgba(0, 0, 0, 0.06);
+      padding: 0.1em 0.4em;
+      border-radius: 0.3em;
+    }
+
+    main h2 {
+      font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+      margin-top: 0;
+      letter-spacing: 0.06em;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.7rem);
+      margin-top: 2rem;
+      letter-spacing: 0.04em;
+    }
+
+    h4 {
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+      margin-top: 1.5rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 1.25em 1.5em;
+      padding: 0;
+    }
+
+    li + li {
+      margin-top: 0.25em;
+    }
+
+    .doc-section {
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .transcription-block {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .transcription-block p {
+      text-indent: 2em;
+    }
+
+    .transcription-block p:first-child {
+      margin-top: 0;
+    }
+
+    .footnotes {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-top: 2.5rem;
+      counter-reset: footnote;
+    }
+
+    .footnotes li {
+      margin-bottom: 1rem;
+    }
+
+    .glyph-legend {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.5);
+      font-size: 0.92rem;
+    }
+
+    .glyph-legend h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .glyph-legend ul {
+      columns: 1;
+      gap: 1rem;
+      margin-left: 0;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .glyph-legend li {
+      margin-bottom: 0.4em;
+      padding-left: 1.35em;
+      position: relative;
+    }
+
+    .glyph-legend li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .glyph-placeholder {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.6em;
+      min-height: 1.6em;
+      padding: 0 0.3em;
+      margin: 0 0.12em;
+      border: 1px dashed var(--glyph-border);
+      background-color: var(--glyph-bg);
+      border-radius: 0.35em;
+      font-weight: 600;
+      color: var(--accent);
+      font-family: "Noto Sans Symbols2", "Noto Serif CJK TC", serif;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .glyph-placeholder::after {
+      content: attr(data-label);
+      font-size: 0.62em;
+      color: var(--muted);
+      margin-left: 0.25em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .glyph-placeholder[data-label=""]::after {
+      content: "圖字???";
+    }
+
+    /* 图片样式 */
+    .transcription-block img,
+    main img[alt^="圖字"] {
+      max-height: 1.6em;
+      vertical-align: middle;
+      margin: 0 0.12em;
+      display: inline-block;
+      object-fit: contain;
+    }
+
+    /* 注释链接样式 */
+    a.footnote-ref {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      padding: 0 0.15em;
+      transition: all 0.2s ease;
+      border-radius: 0.2em;
+    }
+
+    a.footnote-ref:hover {
+      background-color: var(--glyph-bg);
+      text-decoration: underline;
+    }
+
+    .footnote-backref {
+      text-decoration: none;
+      color: var(--accent);
+      margin-left: 0.5em;
+      font-size: 0.9em;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .footnote-backref:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* 高亮效果 */
+    .footnotes li:target {
+      background-color: var(--glyph-bg);
+      padding: 0.5rem;
+      margin-left: -0.5rem;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    footer p {
+      margin: 0.4em 0;
+    }
+
+    @media (max-width: 768px) {
+      header,
+      main,
+      footer {
+        padding: clamp(1.25rem, 6vw, 2rem) clamp(1rem, 4.5vw, 1.75rem);
+      }
+
+      .glyph-legend ul {
+        columns: 1;
+      }
+
+      .transcription-block p {
+        text-indent: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-header">
+    <h1>民之父母</h1>
+    <p class="doc-subtitle">《民之父母》</p>
+  </header>
+
+  <main>
+    <section class="doc-section" id="bianlian">
+      <h2>本篇竹簡編聯</h2>
+      <ul>
+        <li>《民之父母》</li>
+        <li>侯乃峰《上博楚簡儒學文獻校理》：本篇共14簡，保存狀况良好，内容基本完整。因簡文内容見於傳世典籍《禮記．孔子閒居》和《孔子家語．論禮》，其中所要表達的思想脉絡清晰，行文結構嚴密有序，故本篇不存在編聯問題。</li>
+        <li>凡例：</li>
+        <li>□表示缺字；若□有缺字，則是利用其他資料所增補</li>
+        <li>()註明該字之今字、通假字</li>
+        <li>(？)代表括號前之字，其隸定尚有疑問</li>
+        <li>【】內的數字代表簡序，並標注在各簡簡末</li>
+        <li>﹛﹜代表為書手之脫文</li>
+        <li>〈〉代表書手寫訛字</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="transcription">
+      <h2 id="transcription-title">釋文</h2>
+      <div class="transcription-block">
+        <p>《上海博物館藏戰國楚竹書（二）˙民之父母》簡文：</p>
+        <p>子[圖字001][1]（夏）[圖字002]（問）於孔子：「《[圖字003]〈詩[2]〉》曰：『幾（凱）[圖字004][3]（悌）君子，民之父母。』敢[圖字005] （問）可（何）女（如）而[4]可胃（謂）民之父母？」</p>
+        <p>孔=[5][圖字006]（答）曰：「民【1】之父母虎[6]（乎）？必達[7]於豊（禮）樂之[圖字007][8]（原），[圖字008]至[9]（致）『五至』，[圖字009]行『三王亡（無）』，[圖字010]皇于天[10]下。四方又（有） [圖字011][11]，必先[圖字012]（知）之，其【2】可胃（謂）民之父母矣。」</p>
+        <p>子[圖字013]（夏）曰：「敢[圖字014]（問）可（何）胃（謂）『五至』？」</p>
+        <p>孔=（孔子）曰：「『五至』虎（乎）？勿[12]（物）之所[13]至者，志[14]亦[15]至安（焉）；志之【3】所至者，豊（禮）亦至安（焉）；豊（禮）之所至者，樂亦至安（焉）；樂之所至者，[圖字015]（哀）亦至安（焉）。[圖字016]（哀）樂相生[16]，君子【4】[圖字017]正[17]，此之謂『五至』。」</p>
+        <p>子[圖字018]（夏）曰：「『五至』既[圖字019]（聞）之矣，敢問可（何）胃（謂）『三亡（無）』？」</p>
+        <p>孔=（孔子）曰：「『三亡（無）』虎（乎）？亡（無）聲之樂，亡（無）[圖字020]（體）【5】之豊（禮），亡（無）備（服）之喪，君子[圖字021]此皇于天下，奚[18]（繫）耳而聖（聽）之，不可[圖字022]（得）而[圖字023]（聞）也，明目而視之，不可【6】[圖字024]（得）而視也[19]，而[圖字025]（得）既[20]塞於四[圖字026]（海）矣，此之胃（謂）『三亡（無）』。」</p>
+        <p>子[圖字027]（夏）曰：「亡（無）聖（聲）之樂，亡（無）[圖字028]（體）之豊（禮），亡（無）備（服）之喪，可（何）志【7】是[圖字029][21] ？」</p>
+        <p>孔=（孔子）曰：「善才（哉）！商也，[圖字030]（將）可[圖字031]（敎）[圖字032]（詩）矣。『城（成）王不敢康，[圖字033] （乃）夜[圖字034]命又（宥）[圖字035]（密）』，亡（無）聖（聲）之樂；『[圖字036]（威）我（義）[圖字037][圖字038]，【8】不可選也。』亡體之禮；『凡民有喪，匍匐救之』，無服之喪也。」</p>
+        <p>子[圖字039]（夏）曰：「亓才[圖字040][22]也，敗[23]（美）矣、[圖字041]（宏）矣、大矣，[圖字042]（盡）【9】於此而已乎？」</p>
+        <p>孔子曰：「猶有五起焉。」</p>
+        <p>子夏曰：「所謂五起，可[圖字043]而[圖字044]（聞）[圖字045]（與）？」</p>
+        <p>孔=（孔子） [圖字046] [24]（曰）：「亡（無）聖（聲）之樂，[圖字047]（氣）志不[圖字048]；【10】亡（無）[圖字049]（體）之豊（禮），[圖字050]（威）我（儀）[圖字051][圖字052]，亡（無）備（服）之喪，內[圖字053][25]巽[26]悲，亡（無）聖（聲）之樂，塞于四方。亡（無）[圖字054]（體）之豊（禮），日逑（就）月相（將）[27]，亡（無）[圖字055]〈服〉之【11】喪，屯（純）[圖字056]（德）同[28]明。亡（無）聖（聲）之樂，它（施）[圖字057]（及）孫=（孫子）；亡（無）[圖字058]（體）之豊（禮），塞於四[圖字059]（海）；亡備（服）之喪，為民父母；亡（無）聖（聲）之樂，[圖字060]（氣）【12】志既[圖字061]（得），亡（無）[圖字062]（體）之豊（禮），[圖字063]（威）我（儀）異=（異異）；亡（無）備（服）之喪，它（施）[圖字064]四或（國）；亡（無）聖（聲）之樂，[圖字065]（氣）志既從；亡（無）[圖字066]（體）之豊（禮），上下禾（和）同；亡（無）備（服）【13】之喪，[圖字067][圖字068]（畜）萬邦[29]。」【14】</p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="annotations">
+      <h2>注釋</h2>
+      <ol class="footnotes">
+        <li id="fn-1"> 濮茅左：[圖字069]即夏字。[圖字070]，字從日、從它。…甲骨文中，虫、它不分。簡文同，『夏』字也作從日從蟲。/黃錫全：將[圖字071]、[圖字072]同歸為夏字，但無說明之間的差異。/黃德寬：認為「此字下部所從應是『虫』，不從『它』。」季旭昇：認為蟲、它屬「偏旁互用」的關係/ 蘇建洲：引證〈禹鼎〉、〈秦公簋〉中的禹字从「虫」，與《說文》古文、容成氏簡17禹字从它，來說明二偏旁的確有互換的可能。</li>
+        <li id="fn-2"> 侯乃峰：對應今本「詩」之字，原簡字形作「[圖字073]」。原整理者疑 是「詩」字異體（第155頁）。按：對此字形的分析彙眾說紛紜，可參劉洪濤《研究》所引（第5頁）。/李守奎、曲冰、孫偉龍：由全篇簡文抄寫狀况来分析，可見本篇抄手頗為馬虎，如將簡7「志」字涉上文誤寫成「[圖字074]」（得）字，將簡9「則[圖字075]（美）」二 字誤混寫成「敗」字（詳細分析參下文），將簡11「備」（服）字涉上文誤寫 成「[圖字076]」（體）字等；且抄完之後又没有認真校勘，如簡13的「亡（無）備 （服）[圖字077]（喪）」，據文例顯然脱漏一個「之」字，稍微注意即可發現，而抄寫者没有補足。因此，對應今本「詩」之字最有可能是抄手在抄寫中產生的錯字，是「詩」之譌字。/房振三：將此字釋為「諧」，以為右部字形是「皆」之省减；簡文「諧」字乃指有韻之文辭；今本「諧」字皆作「詩」，當 是同義互换，或是古人用語的差異。侯乃峰：或亦可備一說。</li>
+        <li id="fn-3"> 蘇建洲：△字戈旁「有分筆書寫的現象」。</li>
+        <li id="fn-4"> 黃錫全：在《上博(二)》未刊行前，即具上博書法館所印之宣傳冊，將此字對應《孔子閒居》之斯字，隸定為「[圖字078]」。/廖名春：認同此黃氏之說，以為：「《漢簡》(案：當為《汗簡》之筆誤)錄《古上書》斯字即从亓从斤，因此，[圖字079]即斯字。其說是。上海博物館書館釋文作『而』，誤矣。」</li>
+        <li id="fn-5"> 濮茅左：「孔=，孔子合文。」</li>
+        <li id="fn-6"> 濮茅左：「『△』，疑『虖』省形，與簡文『虎』似有別，通『乎』。…『△』，或釋作『虎』，讀為『乎』。」/ 黃德寬：「2簡『虖』黃分析此字從虍從人，讀作『虖』。」</li>
+        <li id="fn-7"> 侯乃峰：達，原簡字形作「[圖字080]」。關於此字構形的分析頗多，可參李家浩、趙平安、魏宜輝、孫剛等先生文。</li>
+        <li id="fn-8"> 侯乃峰：[圖字081]，原整理者據原簡字形「[圖字082]」提出兩說，先疑為「[圖字083]」字，又以為或釋「[圖字084]」、「[圖字085]」，讀作 「原」（第157頁）。/何琳儀：贊成釋「[圖字086]」之說，以為其字從「竹」、從 「厂」、從「泉」，「厂」與「泉」借用一筆。侯乃峰：其分析字形當可信。</li>
+        <li id="fn-9"> 侯乃峰：原整理者讀「至」為「致」（第156、157頁）。季旭昇《讀本》以為：「致」應該是「至」的轉注字，在典籍中多用為送詣、送至、 求得。這些義項用在本簡都不太合適，本簡可以直接照「至」字解，白話語譯為「做到」（第6頁）。其說可從。</li>
+        <li id="fn-10"> 按：楚文字的天與而，確實存在著混淆的情形，因此李零認為「楚文字的天、而二字即易混淆，差別只是而字最下面的兩筆或向左或向右曲。」但其實這種分法尚未成為定論，就民之父母的「天」與「而」二字而言，字形具有非常明顯的差異，根本不會混亂。天字出現兩次皆作[圖字087]形，最末兩筆訛作刀形，與「而」作[圖字088]形，差異頗大。</li>
+        <li id="fn-11"> 蘇建洲： 「敗」一般作 （包山46），「△」所從「攴」旁寫法頗怪，亦見簡9作 ，寫法不知所承？存此備考。/ 林素清先生： 「敗」、「美」二字音近，簡文不妨讀為「四方有美，必先知之」，意思是說，君子若能夠通於禮樂之源，能夠達到「五至」與「三無」的境界，則必能感知、發現天下四方之人的美德懿行。</li>
+        <li id="fn-12"> 侯乃峰：勿，今本作「詩」。原整理者以為：「勿」，疑「志」之誤寫，但「勿」讀作「物」，似亦通。「志」，恩意（第159 頁）。季旭昇《讀本》以為原整理者的解釋是有問題的，簡文的「五至」與今本並不相同，簡文是對的，而今本的文字則是錯的；簡文的「勿」就是 「物」，指「萬物」（第7頁）。其說可從。</li>
+        <li id="fn-13"> 高佑仁：字作[圖字089]，△字戶旁與《上博簡(一)》諸篇章之所字的戶旁作[圖字090](緇衣簡17)、[圖字091](緇衣簡17)，兩者並無差異，只是△字之戶旁筆畫向下，不似《緇衣》等諸篇章，往外撇非常明顯的。再者，就斤旁而論，△字之斤手柄部分斷成兩筆，甚至比小篆斤還更接近隸書，《緇衣》簡[圖字092]則與戶旁借一筆，《性情論》簡[圖字093]則承襲金文字形，保留較早字形。</li>
+        <li id="fn-14"> 侯乃峰：志，季旭昇《讀本》解釋為執政者的恩意，並認為今本作「詩」是誤字 （第8頁）。其說可信。劉洪濤《研究》亦認同此說，以為「志」指人的主觀内心。《說文．心部》：「志，意也。」《詩．大序》：「詩者，志之所之也。在心為志，發言為詩。」孔穎達正義：「感物而動乃呼為志。」「物之所至者，志亦至焉」，是說外物作用於人的内心，人的内心必然會對外物做出相應的反應（第9頁）。其說可參。</li>
+        <li id="fn-15"> 高佑仁：亦字共出現四次(簡3一次、簡4三次)，都作[圖字094]形，從大、八為指示性符號，是腋之初文，但民之父母△於右腋下再加一筆飾筆，成為非常特殊得字形。而由此亦可反證列於《楚系簡帛文字編》頁1134存疑字下之[圖字095]字，應是亦字無疑，李零已先釋作「亦」，可謂有先見之明。</li>
+        <li id="fn-16"> 季旭昇：《上博(二)讀本》據圖片摹作「[圖字096]」。</li>
+        <li id="fn-17"> 侯乃峰：今本《孔子家語．論禮》在「哀樂相生」之前有「詩禮相成」四字。/寧鎮疆：認為這是《論禮》將簡本單句散文改成對偶句的結果，反映出 《論禮》對原文的改動較大；此處應該以竹書本為原貌，《禮記》是脫去了「君子以正」，而《家語》妄加「詩禮相成」以求與「哀樂相生」形成整齊、對稱之勢，但却由於失察文理而弄巧成拙。/劉洪濤：認為簡本假如有「詩禮相成」一句，原亦應作「志禮相成」。但「禮」、「樂」 是一對概念，「樂」、「哀」是一對概念，而「禮」與「志」並不是一對概念，二者無法「相成」，「志禮相成」一句跟「五至」關係矛盾。因此，「詩（志）禮相成」一句非簡本所原有，應為《論禮》編者誤解原文文意之後所添加（第11頁）。按：《孔子家語．論禮》的「詩禮相成」為編寫者誤加之說可信。</li>
+        <li id="fn-18"> 侯乃峰：奚耳，原整理者讀為「繫耳」（第164頁）。/劉樂賢：該字仍當以按傳世本讀「傾」為佳。奚字古音是支部匣紐，傾字古音是耕部溪紐，二者讀音接近，存在通假的可能。侯乃峰：其說可信。季旭昇《讀本》補充了一條文獻的證據：《禮記．祭義》「君子頃步而弗敢 忘」，鄭注：「頃當為跬，聲之誤也。」「跬」字所從的「圭」聲與本簡的「奚」 聲上古同屬牙音支部字，而「頃」聲則屬牙音耕部字，三字為陰陽對轉的關係（第10頁）。劉洪濤《研究》亦指出，上古音「傾」、「奚」二字音近可通。《荀子．勸學》「不積蹞步，無以至千里」，《大戴禮記．勸學》「蹞」作 「跬」；《說文．言部》「[圖字097]」字異體作「[圖字098]」，「[圖字099]」的聲旁「[圖字100]」從「圭」聲；這是「奚」、「傾」相通的間接例證（第13頁）。說皆可參。/ 濮茅左： 「奚」，字形見於《包山楚簡》第一七九簡，讀為「繫」。「奚（繫）耳而聖（聽）之」意與《漢書·賈山傳》：「使天下之人戴目而視，傾耳而聽」、《漢書．王褒傳》：「不單頃耳而聽已聰」、《後漢書．盧植傳》「天下聚目而視，攢耳而聽」中的「傾耳而聽」、「頃耳而聽」、「攢耳而聽」同。/ 林素清：此字下半從「糸」，字形不成問題。但上半「爪」的起筆略直，不像一般「爪」的起筆稍斜，且右下似乎又多出一筆，整體看來很像「日」字。如果簡文有寫錯或形訛的可能，似不妨改釋作「昃」。「昃耳而聽」即「側耳而聽」，與「傾耳而聽」的意思相同，見《淮南子‧主術》：「側目而視，側耳而聽」，又見《史記‧張丞相列傳》：「呂後側耳於其箱聽」，都是專注、傾聽之意。《上博（二）》也有一個例子，見《昔者君老》簡一：「太子朝君，君之母弟是相。太子昃聽。」這裡的「昃聽」，我以為也是專注的意思。/ 黃德寬： 《說文解字·言部》：「謑」或作「[圖字101] 」，從 [圖字102]【下作A】聲。「A」：《說文》謂「從圭聲」，「圭」屬見紐支部。凡此均可證「奚」讀爲「傾」。「傾耳而聽」爲先秦常語，讀「繫耳」則不合常理。/ 蘇建州： 奚作「[圖字103]」，其上部作[圖字104]，的確與一般作[圖字105]稍有不同，但還不至於訛成「日「形，如本簡常見的「豊」字旗上訛成的「爪」形…簡6「明」作[圖字106]，其所从「日」旁作[圖字107]可知兩者筆順是完全不同的。</li>
+        <li id="fn-19"> 侯乃峰：兩個「[圖字108]」字，原簡字形作「[圖字109]」、「[圖字110]」。/裘錫圭：古文字中「視」作立人形，「見」作跪坐人形。/黄德寬：原簡字形均寫作從目、從人（直立），這種寫法由郭店簡與上海博物館所公布的簡文看，均應讀作「視」；今本文句表明第一字應釋作「視」，第二個「見」當為承上字「視」之形而訛寫。侯乃峰：劉洪濤《研究》指出，黄氏認為此「視」為「見」字之說可從，不過戰國文字「視」、「見」二字經常混淆，未必一定就是涉上文而訛（第13頁）。其說較為圓通。</li>
+        <li id="fn-20"> 侯乃峰：「[圖字111]既」二字，今本作「志氣」。對於此處異文，諸家眾說紛紜，可參劉洪濤《研究》所引（第13-14頁）。/何琳儀：「得」與「志」聲韻均合，典籍往往可以通假。（其說當是以為簡文的「[圖字112]既」讀為「志氣」）/寧鎮疆：竹書「得既」實即為今本的「志氣」，本無多曲折。（而其說又引何老師之說為證，則亦是看作通假。） 侯乃峰：我們認為此處確實當以今本作「志氣」為是，但簡本「[圖字113]既」的 「[圖字114]」並非是音近讀作「志」，而當是抄手涉上文兩個「[圖字115]」字誤寫的結果。因下文簡12有讀為「德」的「[圖字116]」字，此處若將「[圖字117]」讀為「志」，則是同樣一個「[圖字118]」字，在同一篇抄本中，忽而讀作「志」，忽而讀作「德」，古人恐不會如此用字。又，傳世本《孔子家語．論禮》於此句之後尚多出「行之充於四海」一句。寧鎮疆先生認為這應當又是《家語》將散文改成對偶句的例子。其說可信。</li>
+        <li id="fn-21"> 侯乃峰：[圖字119]，原整理者讀為「[圖字120]」，訓為「近」（第 165頁）。其說可信。楚簡文字中與此有關的字形多見，詳細討論可參周波先生之文。</li>
+        <li id="fn-22"> 侯乃峰：[圖字121]，原整理者疑為「許」字繁文，又謂或釋為「設」（第168頁）。劉信芳師疑 「許」讀為「語」，有如「論語」之「語」。其說可信。</li>
+        <li id="fn-23"> 侯乃峰：敗，原簡字形作「[圖字122]」，原整理者讀為「快」，又疑是「[圖字123]」之誤寫（第 168頁）。按：認為「敗」是「[圖字124]」之誤寫有可能。楚簡中的「[圖字125]」字作「[圖字126]」（郭店《老子》甲15）、「[圖字127]」（郭店《唐虞之道》17）、「[圖字128]」（上博二《容成氏》14）等形，與左部減省成一個「貝」的「敗」字如「[圖字129]」（包山文書128）、 「[圖字130]」（上博七《凡物流形》甲19）形寫法較為近似。不過，楚簡中的「敗」 字左部絕大多數寫作兩個「貝」形，如本篇簡2即有「敗」字寫作「[圖字131]」 形。又此句簡文對應今本的「言則大矣！美矣！盛矣」和「言則美矣！大矣」，其中「亓（其）才（在）[圖字132]（語）也」可對應「言」字，而竹書本不見「則」字。在楚簡文字中，「則」字或寫作「[圖字133]」（上博一《缁衣》17）、 「[圖字134]」（上博二《子羔》2）形。因此，我們懷疑此處簡文所據的底本原本當作「亓（其）才（在）[圖字135]（語）也，則[圖字136]（美）矣！厷（宏）矣！大矣」，抄手在抄寫時誤將「則」字的左部與「[圖字137]（美）」字的右部混寫在一起，從而形成了誤字「[圖字138]」。</li>
+        <li id="fn-24"> 侯乃峰：汩，其字形分析參附録《楚簡文字「减體象形」現象舉隅————兼談楚簡「汩」字》。</li>
+        <li id="fn-25"> 侯乃峰： [圖字139]，原整理者讀為「恕」（第171頁）。季旭昇《讀本》以為「[圖字140]」字楚簡多見，讀為「吾」，無論從字形還是字音來看要讀為「恕」有點困難，對此字之釋讀存疑待考（第20頁）。劉洪濤《研究》引用范常喜先生對上博五《三德》中兩見的一個字的看法，以為其字是 一個兩聲字，所從「女」、「[圖字141]」兩旁皆聲，「恕」從「如」聲，「如」又從「女」 聲，可證「[圖字142]」可用作「恕」（第23頁）。其說當是。</li>
+        <li id="fn-26"> 侯乃峰：所謂的「巽」字，今本對應之字作「孔」，原簡字形作「[圖字143]」。因其上部與《說文》「巽」字的古文「[圖字144]」和篆文「[圖字145]」（兩個字形實質一樣）上部極其相似，故原整理者疑為「巽」字（第171頁）。其說當是。/楊澤生：懷疑「巽」應該讀作「洵」。「洵」和「巽」的古音分屬心母真部和心母文部，聲母相同而韻母相近，故可相通。古書中有不少從 「旬」之字與從「巽」之字相通的例子，可以佐證。「洵」這個副詞用於謂詞前，表示對動作行為或事實的肯定。這樣，同樣作為副詞的「洵」 與「孔」意義相近。/劉信芳師以為「哭」讀為「甚」，「孔」釋「甚」。侯乃峰：或亦可備一說。按：若釋「巽」不誤，則「巽」或可讀為「允」。《論語．為政》：「先生饌。」《經典釋文》：「饌，鄭作餕。」可證「巽」聲與「允」聲可通。《爾雅．釋詁》：「允，信也。」「允，誠也。」亦可講通簡文。</li>
+        <li id="fn-27"> 侯乃峰：此句《禮記．孔子閒居》作「日就月將」，詩句出自《詩．周頌・敬之》。原整理者把「逑」訓為「聚斂也」、「匹也，合也」， 把「相」訓為「省視也」、「導也」、「共助」，謂「日逑月相」意為「日聚月扶」；又以為或讀為「日就月將」（第171-172頁）。季旭昇《讀本》以為詩句意為「每天都有進步，每個月都有助益」（第20頁）。其說當是。 按：此詩句在史惠鼎銘文中作「日[圖字146]（就）月[圖字147]（將）」，其中讀為「將」之字從「爿」得聲。簡文的「相」字，原簡字形作「[圖字148]」，將「目」旁寫在左邊，如此寫法的「相」在楚系簡文中極其罕見。本篇簡4有個正常寫法的「相」字作「[圖字149]」形。雖然上古音「相」屬心母陽部，「將」屬精母陽部，二字音近可通，然據簡文中的寫法，我們懷疑此處底本或當本是「牀」字，抄 手誤抄為「相」字。楚簡中的「牀」字作「[圖字150]」（包山喪葬260）、「[圖字151]」 （上博五《季庚子問於孔子》9）等形，即與此處所謂的「相」字寫法極其相似。/黃德寬：被釋作「逑」的這個字，作[圖字152]形，所從之形與「求」明顯不同（見同書《從政》甲十八），其字右部所從與《緇衣》讀作「格、略」的兩字所從相同，與上海簡《緇衣》所從也相同。故此字當隸定作「[圖字153]」，讀作「格」。/ 季旭昇《讀本》摹作「[圖字154]」/ 黎廣基：黃氏說該字「所從之形與『求』明顯不同」，唯一的證據是《從政（甲篇）》第十八簡的字例。然而同書中「求」字凡數見，分別作「[圖字155]」（《容成氏》簡十）、「[圖字156]」（《容成氏》簡二九）、「[圖字157]」（《容成氏》簡三七）等形，不但彼此字形接近，寫法亦與「[圖字158]」字的右旁相似，這以《容成氏》簡十的例子最為明顯。反觀《從政》篇的「求」字作「[圖字159]」，寫法比較特殊，不能視作「求」字的典型。至於「[圖字160]」字，郭店簡作「[圖字161]」（《緇衣》簡三八），上海簡作「[圖字162]」（《緇衣》簡十九），其右部所從雖亦與「[圖字163]」字右部相似，但參合比勘，以筆勢論，似不如「求」字字形的貼近。</li>
+        <li id="fn-28"> 侯乃峰：同，原整理者先是就「同」字為訓，又以為或讀為「孔」，今本作「孔明」（第172頁）。諸家或有另尋他解者。劉洪濤《研究》以為，把「同」讀如本字不可信。上古音定母、溪母雖然不近，但有 相通的例子，上古音「同」、「孔」又都屬東部，故可通用。原整理者後說可 從（第25頁）。其說當是。</li>
+        <li id="fn-29"> 蘇建洲：認為應△字丰旁因形近而訛成「毛」。</li>
+      </ol>
+    </section>
+
+    <section class="image-manager" id="image-config" style="display: none;">
+      <div data-label="圖字001" data-path="images_民之父母_20260112/001.png"></div>
+      <div data-label="圖字002" data-path="images_民之父母_20260112/002.png"></div>
+      <div data-label="圖字003" data-path="images_民之父母_20260112/003.png"></div>
+      <div data-label="圖字004" data-path="images_民之父母_20260112/004.png"></div>
+      <div data-label="圖字005" data-path="images_民之父母_20260112/005.png"></div>
+      <div data-label="圖字006" data-path="images_民之父母_20260112/006.png"></div>
+      <div data-label="圖字007" data-path="images_民之父母_20260112/007.png"></div>
+      <div data-label="圖字008" data-path="images_民之父母_20260112/008.png"></div>
+      <div data-label="圖字009" data-path="images_民之父母_20260112/009.png"></div>
+      <div data-label="圖字010" data-path="images_民之父母_20260112/010.png"></div>
+      <div data-label="圖字011" data-path="images_民之父母_20260112/011.png"></div>
+      <div data-label="圖字012" data-path="images_民之父母_20260112/012.png"></div>
+      <div data-label="圖字013" data-path="images_民之父母_20260112/013.png"></div>
+      <div data-label="圖字014" data-path="images_民之父母_20260112/014.png"></div>
+      <div data-label="圖字015" data-path="images_民之父母_20260112/015.png"></div>
+      <div data-label="圖字016" data-path="images_民之父母_20260112/016.png"></div>
+      <div data-label="圖字017" data-path="images_民之父母_20260112/017.png"></div>
+      <div data-label="圖字018" data-path="images_民之父母_20260112/018.png"></div>
+      <div data-label="圖字019" data-path="images_民之父母_20260112/019.png"></div>
+      <div data-label="圖字020" data-path="images_民之父母_20260112/020.png"></div>
+      <div data-label="圖字021" data-path="images_民之父母_20260112/021.png"></div>
+      <div data-label="圖字022" data-path="images_民之父母_20260112/022.png"></div>
+      <div data-label="圖字023" data-path="images_民之父母_20260112/023.png"></div>
+      <div data-label="圖字024" data-path="images_民之父母_20260112/024.png"></div>
+      <div data-label="圖字025" data-path="images_民之父母_20260112/025.png"></div>
+      <div data-label="圖字026" data-path="images_民之父母_20260112/026.png"></div>
+      <div data-label="圖字027" data-path="images_民之父母_20260112/027.png"></div>
+      <div data-label="圖字028" data-path="images_民之父母_20260112/028.png"></div>
+      <div data-label="圖字029" data-path="images_民之父母_20260112/029.png"></div>
+      <div data-label="圖字030" data-path="images_民之父母_20260112/030.png"></div>
+      <div data-label="圖字031" data-path="images_民之父母_20260112/031.png"></div>
+      <div data-label="圖字032" data-path="images_民之父母_20260112/032.png"></div>
+      <div data-label="圖字033" data-path="images_民之父母_20260112/033.png"></div>
+      <div data-label="圖字034" data-path="images_民之父母_20260112/034.png"></div>
+      <div data-label="圖字035" data-path="images_民之父母_20260112/035.png"></div>
+      <div data-label="圖字036" data-path="images_民之父母_20260112/036.png"></div>
+      <div data-label="圖字037" data-path="images_民之父母_20260112/037.png"></div>
+      <div data-label="圖字038" data-path="images_民之父母_20260112/038.png"></div>
+      <div data-label="圖字039" data-path="images_民之父母_20260112/039.png"></div>
+      <div data-label="圖字040" data-path="images_民之父母_20260112/040.png"></div>
+      <div data-label="圖字041" data-path="images_民之父母_20260112/041.png"></div>
+      <div data-label="圖字042" data-path="images_民之父母_20260112/042.png"></div>
+      <div data-label="圖字043" data-path="images_民之父母_20260112/043.png"></div>
+      <div data-label="圖字044" data-path="images_民之父母_20260112/044.png"></div>
+      <div data-label="圖字045" data-path="images_民之父母_20260112/045.png"></div>
+      <div data-label="圖字046" data-path="images_民之父母_20260112/046.png"></div>
+      <div data-label="圖字047" data-path="images_民之父母_20260112/047.png"></div>
+      <div data-label="圖字048" data-path="images_民之父母_20260112/048.png"></div>
+      <div data-label="圖字049" data-path="images_民之父母_20260112/049.png"></div>
+      <div data-label="圖字050" data-path="images_民之父母_20260112/050.png"></div>
+      <div data-label="圖字051" data-path="images_民之父母_20260112/051.png"></div>
+      <div data-label="圖字052" data-path="images_民之父母_20260112/052.png"></div>
+      <div data-label="圖字053" data-path="images_民之父母_20260112/053.png"></div>
+      <div data-label="圖字054" data-path="images_民之父母_20260112/054.png"></div>
+      <div data-label="圖字055" data-path="images_民之父母_20260112/055.png"></div>
+      <div data-label="圖字056" data-path="images_民之父母_20260112/056.png"></div>
+      <div data-label="圖字057" data-path="images_民之父母_20260112/057.png"></div>
+      <div data-label="圖字058" data-path="images_民之父母_20260112/058.png"></div>
+      <div data-label="圖字059" data-path="images_民之父母_20260112/059.png"></div>
+      <div data-label="圖字060" data-path="images_民之父母_20260112/060.png"></div>
+      <div data-label="圖字061" data-path="images_民之父母_20260112/061.png"></div>
+      <div data-label="圖字062" data-path="images_民之父母_20260112/062.png"></div>
+      <div data-label="圖字063" data-path="images_民之父母_20260112/063.png"></div>
+      <div data-label="圖字064" data-path="images_民之父母_20260112/064.png"></div>
+      <div data-label="圖字065" data-path="images_民之父母_20260112/065.png"></div>
+      <div data-label="圖字066" data-path="images_民之父母_20260112/066.png"></div>
+      <div data-label="圖字067" data-path="images_民之父母_20260112/067.png"></div>
+      <div data-label="圖字068" data-path="images_民之父母_20260112/068.png"></div>
+      <div data-label="圖字069" data-path="images_民之父母_20260112/069.png"></div>
+      <div data-label="圖字070" data-path="images_民之父母_20260112/070.png"></div>
+      <div data-label="圖字071" data-path="images_民之父母_20260112/071.png"></div>
+      <div data-label="圖字072" data-path="images_民之父母_20260112/072.png"></div>
+      <div data-label="圖字073" data-path="images_民之父母_20260112/073.png"></div>
+      <div data-label="圖字074" data-path="images_民之父母_20260112/074.png"></div>
+      <div data-label="圖字075" data-path="images_民之父母_20260112/075.png"></div>
+      <div data-label="圖字076" data-path="images_民之父母_20260112/076.png"></div>
+      <div data-label="圖字077" data-path="images_民之父母_20260112/077.png"></div>
+      <div data-label="圖字078" data-path="images_民之父母_20260112/078.png"></div>
+      <div data-label="圖字079" data-path="images_民之父母_20260112/079.png"></div>
+      <div data-label="圖字080" data-path="images_民之父母_20260112/080.png"></div>
+      <div data-label="圖字081" data-path="images_民之父母_20260112/081.png"></div>
+      <div data-label="圖字082" data-path="images_民之父母_20260112/082.png"></div>
+      <div data-label="圖字083" data-path="images_民之父母_20260112/083.png"></div>
+      <div data-label="圖字084" data-path="images_民之父母_20260112/084.png"></div>
+      <div data-label="圖字085" data-path="images_民之父母_20260112/085.png"></div>
+      <div data-label="圖字086" data-path="images_民之父母_20260112/086.png"></div>
+      <div data-label="圖字087" data-path="images_民之父母_20260112/087.png"></div>
+      <div data-label="圖字088" data-path="images_民之父母_20260112/088.png"></div>
+      <div data-label="圖字089" data-path="images_民之父母_20260112/089.png"></div>
+      <div data-label="圖字090" data-path="images_民之父母_20260112/090.png"></div>
+      <div data-label="圖字091" data-path="images_民之父母_20260112/091.png"></div>
+      <div data-label="圖字092" data-path="images_民之父母_20260112/092.png"></div>
+      <div data-label="圖字093" data-path="images_民之父母_20260112/093.png"></div>
+      <div data-label="圖字094" data-path="images_民之父母_20260112/094.png"></div>
+      <div data-label="圖字095" data-path="images_民之父母_20260112/095.png"></div>
+      <div data-label="圖字096" data-path="images_民之父母_20260112/096.png"></div>
+      <div data-label="圖字097" data-path="images_民之父母_20260112/097.png"></div>
+      <div data-label="圖字098" data-path="images_民之父母_20260112/098.png"></div>
+      <div data-label="圖字099" data-path="images_民之父母_20260112/099.png"></div>
+      <div data-label="圖字100" data-path="images_民之父母_20260112/100.png"></div>
+      <div data-label="圖字101" data-path="images_民之父母_20260112/101.png"></div>
+      <div data-label="圖字102" data-path="images_民之父母_20260112/102.png"></div>
+      <div data-label="圖字103" data-path="images_民之父母_20260112/103.png"></div>
+      <div data-label="圖字104" data-path="images_民之父母_20260112/104.png"></div>
+      <div data-label="圖字105" data-path="images_民之父母_20260112/105.png"></div>
+      <div data-label="圖字106" data-path="images_民之父母_20260112/106.png"></div>
+      <div data-label="圖字107" data-path="images_民之父母_20260112/107.png"></div>
+      <div data-label="圖字108" data-path="images_民之父母_20260112/108.png"></div>
+      <div data-label="圖字109" data-path="images_民之父母_20260112/109.png"></div>
+      <div data-label="圖字110" data-path="images_民之父母_20260112/110.png"></div>
+      <div data-label="圖字111" data-path="images_民之父母_20260112/111.png"></div>
+      <div data-label="圖字112" data-path="images_民之父母_20260112/112.png"></div>
+      <div data-label="圖字113" data-path="images_民之父母_20260112/113.png"></div>
+      <div data-label="圖字114" data-path="images_民之父母_20260112/114.png"></div>
+      <div data-label="圖字115" data-path="images_民之父母_20260112/115.png"></div>
+      <div data-label="圖字116" data-path="images_民之父母_20260112/116.png"></div>
+      <div data-label="圖字117" data-path="images_民之父母_20260112/117.png"></div>
+      <div data-label="圖字118" data-path="images_民之父母_20260112/118.png"></div>
+      <div data-label="圖字119" data-path="images_民之父母_20260112/119.png"></div>
+      <div data-label="圖字120" data-path="images_民之父母_20260112/120.png"></div>
+      <div data-label="圖字121" data-path="images_民之父母_20260112/121.png"></div>
+      <div data-label="圖字122" data-path="images_民之父母_20260112/122.png"></div>
+      <div data-label="圖字123" data-path="images_民之父母_20260112/123.png"></div>
+      <div data-label="圖字124" data-path="images_民之父母_20260112/124.png"></div>
+      <div data-label="圖字125" data-path="images_民之父母_20260112/125.png"></div>
+      <div data-label="圖字126" data-path="images_民之父母_20260112/126.png"></div>
+      <div data-label="圖字127" data-path="images_民之父母_20260112/127.png"></div>
+      <div data-label="圖字128" data-path="images_民之父母_20260112/128.png"></div>
+      <div data-label="圖字129" data-path="images_民之父母_20260112/129.png"></div>
+      <div data-label="圖字130" data-path="images_民之父母_20260112/130.png"></div>
+      <div data-label="圖字131" data-path="images_民之父母_20260112/131.png"></div>
+      <div data-label="圖字132" data-path="images_民之父母_20260112/132.png"></div>
+      <div data-label="圖字133" data-path="images_民之父母_20260112/133.png"></div>
+      <div data-label="圖字134" data-path="images_民之父母_20260112/134.png"></div>
+      <div data-label="圖字135" data-path="images_民之父母_20260112/135.png"></div>
+      <div data-label="圖字136" data-path="images_民之父母_20260112/136.png"></div>
+      <div data-label="圖字137" data-path="images_民之父母_20260112/137.png"></div>
+      <div data-label="圖字138" data-path="images_民之父母_20260112/138.png"></div>
+      <div data-label="圖字139" data-path="images_民之父母_20260112/139.png"></div>
+      <div data-label="圖字140" data-path="images_民之父母_20260112/140.png"></div>
+      <div data-label="圖字141" data-path="images_民之父母_20260112/141.png"></div>
+      <div data-label="圖字142" data-path="images_民之父母_20260112/142.png"></div>
+      <div data-label="圖字143" data-path="images_民之父母_20260112/143.png"></div>
+      <div data-label="圖字144" data-path="images_民之父母_20260112/144.png"></div>
+      <div data-label="圖字145" data-path="images_民之父母_20260112/145.png"></div>
+      <div data-label="圖字146" data-path="images_民之父母_20260112/146.png"></div>
+      <div data-label="圖字147" data-path="images_民之父母_20260112/147.png"></div>
+      <div data-label="圖字148" data-path="images_民之父母_20260112/148.png"></div>
+      <div data-label="圖字149" data-path="images_民之父母_20260112/149.png"></div>
+      <div data-label="圖字150" data-path="images_民之父母_20260112/150.png"></div>
+      <div data-label="圖字151" data-path="images_民之父母_20260112/151.png"></div>
+      <div data-label="圖字152" data-path="images_民之父母_20260112/152.png"></div>
+      <div data-label="圖字153" data-path="images_民之父母_20260112/153.png"></div>
+      <div data-label="圖字154" data-path="images_民之父母_20260112/154.png"></div>
+      <div data-label="圖字155" data-path="images_民之父母_20260112/155.png"></div>
+      <div data-label="圖字156" data-path="images_民之父母_20260112/156.png"></div>
+      <div data-label="圖字157" data-path="images_民之父母_20260112/157.png"></div>
+      <div data-label="圖字158" data-path="images_民之父母_20260112/158.png"></div>
+      <div data-label="圖字159" data-path="images_民之父母_20260112/159.png"></div>
+      <div data-label="圖字160" data-path="images_民之父母_20260112/160.png"></div>
+      <div data-label="圖字161" data-path="images_民之父母_20260112/161.png"></div>
+      <div data-label="圖字162" data-path="images_民之父母_20260112/162.png"></div>
+      <div data-label="圖字163" data-path="images_民之父母_20260112/163.png"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>轉製日期：2026-01-12</p>
+    <p>說明：本頁人工整理，如有錯誤，請聯繫作者和網頁製作者。</p>
+  </footer>
+
+  <script>
+    (function () {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+      const nodesToProcess = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        if (node.parentNode && node.parentNode.closest('script, style, code')) continue;
+        const text = node.nodeValue;
+        // 检查是否包含 [] 或 [圖字XXX] 格式
+        if (text.includes('[]') || /\[圖字\d{3}\]/.test(text)) {
+          nodesToProcess.push(node);
+        }
+      }
+
+      const imageConfig = document.getElementById('image-config');
+      const placeholders = new Map(); // 存储所有占位符：label -> span元素
+      const imagePaths = new Map(); // 存储图片路径配置：label -> path
+
+      // 读取图片路径配置
+      if (imageConfig) {
+        const configItems = imageConfig.querySelectorAll('div[data-label][data-path]');
+        configItems.forEach(item => {
+          const label = item.getAttribute('data-label');
+          const path = item.getAttribute('data-path');
+          if (label && path) {
+            imagePaths.set(label, path);
+          }
+        });
+      }
+
+      let counter = 1;
+
+      const pad = function (num) {
+        return String(num).padStart(3, '0');
+      };
+
+      // 处理文本节点，创建占位符
+      // 支持两种格式：[圖字177] 或 [圖字001]（带序号）
+      nodesToProcess.forEach((textNode) => {
+        let text = textNode.nodeValue;
+        
+        // 先处理带序号的格式 [圖字XXX]
+        const numberedPattern = /\[圖字(\d{3})\]/g;
+        const numberedMatches = [];
+        let match;
+        while ((match = numberedPattern.exec(text)) !== null) {
+          numberedMatches.push({
+            index: match.index,
+            label: `圖字${match[1]}`,
+            length: match[0].length
+          });
+        }
+        
+        // 再处理普通格式 []
+        const simplePattern = /\[\]/g;
+        const simpleMatches = [];
+        while ((match = simplePattern.exec(text)) !== null) {
+          // 检查是否已经被带序号的格式覆盖
+          const isOverlapped = numberedMatches.some(nm => 
+            match.index >= nm.index && match.index < nm.index + nm.length
+          );
+          if (!isOverlapped) {
+            simpleMatches.push({
+              index: match.index,
+              label: `圖字${pad(counter)}`,
+              length: 2
+            });
+            counter += 1;
+          }
+        }
+        
+        // 合并所有匹配，按位置排序
+        const allMatches = [...numberedMatches, ...simpleMatches].sort((a, b) => a.index - b.index);
+        
+        if (allMatches.length === 0) return;
+
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        
+        allMatches.forEach((matchInfo) => {
+          // 添加匹配前的文本
+          if (matchInfo.index > lastIndex) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, matchInfo.index)));
+          }
+          
+          // 创建占位符
+            const span = document.createElement('span');
+            span.className = 'glyph-placeholder';
+          span.dataset.label = matchInfo.label;
+            span.setAttribute('role', 'img');
+          span.setAttribute('aria-label', `${matchInfo.label} 待補圖片`);
+          span.textContent = matchInfo.label; // 显示序号而不是□
+            fragment.appendChild(span);
+
+          // 存储占位符引用
+          placeholders.set(matchInfo.label, span);
+          
+          lastIndex = matchInfo.index + matchInfo.length;
+        });
+        
+        // 添加剩余的文本
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+
+        textNode.parentNode.replaceChild(fragment, textNode);
+      });
+
+      // 根据配置自动加载图片
+      placeholders.forEach((span, label) => {
+        const imagePath = imagePaths.get(label);
+        if (imagePath && span.parentNode) {
+          const img = document.createElement('img');
+          img.src = imagePath;
+          img.alt = label;
+          img.style.maxHeight = '1.6em';
+          img.style.verticalAlign = 'middle';
+          img.style.margin = '0 0.12em';
+          img.style.display = 'inline-block';
+          img.onerror = function() {
+            // 图片加载失败时保持占位符
+            console.warn(`圖片載入失敗: ${label} - ${imagePath}`);
+          };
+          span.parentNode.replaceChild(img, span);
+        }
+      });
+    })();
+
+    // 注释跳转功能
+    (function () {
+      // 处理释文中的注释标记，将其转换为可点击的链接
+      const transcriptionBlock = document.querySelector('.transcription-block');
+      if (!transcriptionBlock) return;
+
+      const walker = document.createTreeWalker(
+        transcriptionBlock,
+        NodeFilter.SHOW_TEXT,
+        null
+      );
+
+      const nodesToProcess = [];
+      let node;
+      
+      while ((node = walker.nextNode())) {
+        if (node.parentNode && node.parentNode.closest('script, style, code, a')) continue;
+        const text = node.nodeValue;
+        // 匹配注释标记 [数字]，但排除 [圖字XXX] 格式
+        if (/\[(\d{1,3})\]/.test(text) && !/\[圖字\d+\]/.test(text)) {
+          nodesToProcess.push(node);
+        }
+      }
+
+      nodesToProcess.forEach((textNode) => {
+        const text = textNode.nodeValue;
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        
+        // 匹配 [1], [2], [3] 等格式（1-3位数字）
+        const pattern = /\[(\d{1,3})\]/g;
+        let match;
+        
+        while ((match = pattern.exec(text)) !== null) {
+          const fullMatch = match[0]; // [1]
+          const number = match[1];    // 1
+          
+          // 添加匹配前的文本
+          if (match.index > lastIndex) {
+            fragment.appendChild(
+              document.createTextNode(text.slice(lastIndex, match.index))
+            );
+          }
+          
+          // 创建注释链接
+          const link = document.createElement('a');
+          link.href = `#fn-${number}`;
+          link.className = 'footnote-ref';
+          link.textContent = fullMatch;
+          link.setAttribute('title', `跳转到注释 ${number}`);
+          fragment.appendChild(link);
+          
+          lastIndex = match.index + fullMatch.length;
+        }
+        
+        // 添加剩余的文本
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+
+        textNode.parentNode.replaceChild(fragment, textNode);
+      });
+
+      // 在注释列表中添加返回链接
+      const footnotes = document.querySelectorAll('.footnotes li[id^="fn-"]');
+      footnotes.forEach((footnote) => {
+        const id = footnote.getAttribute('id');
+        const number = id.replace('fn-', '');
+        
+        // 创建返回链接
+        const backLink = document.createElement('a');
+        backLink.href = '#transcription-title';
+        backLink.className = 'footnote-backref';
+        backLink.textContent = '↑返回';
+        backLink.setAttribute('title', '返回正文');
+        
+        // 将返回链接添加到注释末尾
+        footnote.appendChild(backLink);
+      });
+
+      // 平滑滚动效果
+      document.querySelectorAll('a.footnote-ref, a.footnote-backref').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId) || 
+                               document.querySelector(this.getAttribute('href'));
+          
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+            
+            // 更新URL但不触发滚动
+            history.pushState(null, null, this.getAttribute('href'));
+            
+            // 添加临时高亮效果
+            if (targetElement.tagName === 'LI') {
+              targetElement.style.transition = 'background-color 0.3s ease';
+              const originalBg = window.getComputedStyle(targetElement).backgroundColor;
+              setTimeout(() => {
+                targetElement.style.backgroundColor = '';
+              }, 2000);
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

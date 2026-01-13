@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>魯邦大旱</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #fdfdfc;
+      --fg: #1a1a1a;
+      --accent: #8c1d40;
+      --muted: #555;
+      --border: #d8cfc4;
+      --glyph-border: rgba(180, 32, 32, 0.6);
+      --glyph-bg: rgba(255, 228, 232, 0.45);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111;
+        --fg: #f3f0e9;
+        --muted: #b0a89e;
+        --border: #3a332b;
+        --glyph-border: rgba(255, 126, 137, 0.8);
+        --glyph-bg: rgba(140, 29, 64, 0.25);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Serif CJK TC", "PingFang TC", "Microsoft JhengHei", serif;
+      line-height: 1.7;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    header,
+    main,
+    footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: clamp(1.5rem, 3vw, 3rem) clamp(1.25rem, 3vw, 2.5rem);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(140, 29, 64, 0.08), transparent);
+    }
+
+    .doc-header h1 {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      margin: 0 0 0.35em;
+      letter-spacing: 0.08em;
+    }
+
+    .doc-subtitle {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .glyph-notice {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.65);
+      font-size: 0.95rem;
+    }
+
+    .glyph-notice h2 {
+      margin: 0 0 0.6em;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+    }
+
+    code {
+      font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+      font-size: 0.9em;
+      background: rgba(0, 0, 0, 0.06);
+      padding: 0.1em 0.4em;
+      border-radius: 0.3em;
+    }
+
+    main h2 {
+      font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+      margin-top: 0;
+      letter-spacing: 0.06em;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.7rem);
+      margin-top: 2rem;
+      letter-spacing: 0.04em;
+    }
+
+    h4 {
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+      margin-top: 1.5rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 1.25em 1.5em;
+      padding: 0;
+    }
+
+    li + li {
+      margin-top: 0.25em;
+    }
+
+    .doc-section {
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .transcription-block {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .transcription-block p {
+      text-indent: 2em;
+    }
+
+    .transcription-block p:first-child {
+      margin-top: 0;
+    }
+
+    .footnotes {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-top: 2.5rem;
+      counter-reset: footnote;
+    }
+
+    .footnotes li {
+      margin-bottom: 1rem;
+    }
+
+    .glyph-legend {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.5);
+      font-size: 0.92rem;
+    }
+
+    .glyph-legend h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .glyph-legend ul {
+      columns: 1;
+      gap: 1rem;
+      margin-left: 0;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .glyph-legend li {
+      margin-bottom: 0.4em;
+      padding-left: 1.35em;
+      position: relative;
+    }
+
+    .glyph-legend li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .glyph-placeholder {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.6em;
+      min-height: 1.6em;
+      padding: 0 0.3em;
+      margin: 0 0.12em;
+      border: 1px dashed var(--glyph-border);
+      background-color: var(--glyph-bg);
+      border-radius: 0.35em;
+      font-weight: 600;
+      color: var(--accent);
+      font-family: "Noto Sans Symbols2", "Noto Serif CJK TC", serif;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .glyph-placeholder::after {
+      content: attr(data-label);
+      font-size: 0.62em;
+      color: var(--muted);
+      margin-left: 0.25em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .glyph-placeholder[data-label=""]::after {
+      content: "圖字???";
+    }
+
+    /* 图片样式 */
+    .transcription-block img,
+    main img[alt^="圖字"] {
+      max-height: 1.6em;
+      vertical-align: middle;
+      margin: 0 0.12em;
+      display: inline-block;
+      object-fit: contain;
+    }
+
+    /* 注释链接样式 */
+    a.footnote-ref {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      padding: 0 0.15em;
+      transition: all 0.2s ease;
+      border-radius: 0.2em;
+    }
+
+    a.footnote-ref:hover {
+      background-color: var(--glyph-bg);
+      text-decoration: underline;
+    }
+
+    .footnote-backref {
+      text-decoration: none;
+      color: var(--accent);
+      margin-left: 0.5em;
+      font-size: 0.9em;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .footnote-backref:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* 高亮效果 */
+    .footnotes li:target {
+      background-color: var(--glyph-bg);
+      padding: 0.5rem;
+      margin-left: -0.5rem;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    footer p {
+      margin: 0.4em 0;
+    }
+
+    @media (max-width: 768px) {
+      header,
+      main,
+      footer {
+        padding: clamp(1.25rem, 6vw, 2rem) clamp(1rem, 4.5vw, 1.75rem);
+      }
+
+      .glyph-legend ul {
+        columns: 1;
+      }
+
+      .transcription-block p {
+        text-indent: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-header">
+    <h1>魯邦大旱</h1>
+    <p class="doc-subtitle">《魯邦大旱 廣義讀本》</p>
+  </header>
+
+  <main>
+    <section class="doc-section" id="bianlian">
+      <h2>本篇竹簡編聯</h2>
+      <ul>
+        <li>劉樂賢：簡6最後一字的後面有分章號，整理者據此認為本篇為不與其他篇連抄的獨立篇章。因第5簡末端殘斷，孔子對子貢的答語已散佚，第5、6簡之間是否有缺簡或缺幾簡已無從得知。從現存文字看，第6簡和前面5簡的關聯立並不十分明顯，它與前面5簡的關係尚有待進一步研究。</li>
+        <li>廖名春：簡５與簡６之間尚缺一兩支簡的可能性雖不能排除，然依照其上文的對話情況可知孔子此處的話也不會太長，所以此兩支相接的可能性還是比較大的。</li>
+        <li>顧史考：同意廖名春，認爲簡１至簡５應該連讀，而簡５與６原連讀的可能性亦大。</li>
+      </ul>
+      <p><strong>本文編聯説明</strong>：從整理者意見，次序為1、2、3、4、5、6。</p>
+    </section>
+
+    <section class="doc-section" id="transcription">
+      <h2 id="transcription-title">釋文</h2>
+      <div class="transcription-block">
+        <p>魯邦大旱，哀公[1]胃（謂）[圖字001]（孔子）曰：「子不爲我[圖字002]（圖）[2]之？」[圖字003]（孔子） [圖字004]（答）[3]曰：「邦大旱，母（毋）乃[4][圖字005]（失）者（諸）[圖字006]（型刑）與惪（德）[5][圖字007]（乎）？唯[6][圖字008]……【1】[型（刑）惪（德）皆當者，天其佑之。願君善[圖字009]（圖）之！」公曰：「若然，則女（如）] [7]之可（何）才（哉）[8]？」[圖字010]（孔子）曰：「[圖字011]（庶）[9]民[圖字012]（知）敚（/説）[10]之事[圖字013]（鬼）[11]也，[12]不[圖字014]（知）[圖字015]（型刑）與惪（德）。女（汝/如）[13]母（毋）[圖字016]（愛）[14]珪璧[圖字017]（幣）[15]帛於山川，[16]政（正）[17]坓（刑）與[圖字018]…【2】[惪（德），則民 [圖字019]（將）歸君而邦乃治矣。」公曰：「諾，[圖字020]（吾）[圖字021]（將）厚祭之。」[圖字022]（孔子）] [18] 出，遇子[圖字023]（[圖字024]貢），[19]曰[20]：「賜，而（爾）昏（聞）[圖字025]（巷）[21][圖字026]（路）之言，母（毋）乃[22]胃（謂）丘[23]之[圖字027] （答）非與（歟）？」子[圖字028]（[圖字029]貢）曰：「否。[圖字030]（[圖字031]抑）[24][圖字032]（吾）子[25]女（乃/如）[26][圖字033]（重）命[27]丌（其）[28]與（歟）[29]？[30]女（若）夫[31]政（正）坓（刑）與惪（德）[32][圖字034]（以）事上天，此是才（哉）。[33]女（若）天[夫][34]母（毋）[圖字035]（愛）圭（珪）璧【3】[圖字036]（幣）帛於山川，母（毋）乃[35]不可。[36] 夫山，石[圖字037]（以）爲膚，木[圖字038]（以）爲民[毛][37]，女（如）天不雨，石 [圖字039]（將） [圖字040]（焦），木 [圖字041]（將）死，丌（其）欲雨或[38]甚[39]於我，或（/又）[40]必寺（待）[圖字042]（吾）名（禜/命）[41][圖字043]（乎）？ [42]夫川，水[圖字044]（以）爲膚[國][43]，魚[圖字045]（以）【4】爲民，女（如）天不雨，水[圖字046]（將）沽（涸），魚[圖字047]（將）死，丌（其）欲雨或甚[44]於我，或（/又）[45]必寺（待）[圖字048]（吾）名（禜/命）[圖字049]（乎）？」[46][圖字050]（孔子）曰：「於（嗚）[圖字051]（呼）[47][圖字052]…【5】[賜也，而（爾）通乎天人之際，而未能達乎民心。女（如）不厚祭，][48]公[49]剴（豈）[50]不飯[51]杒（梁粱）[52]飤（食）[53]肉才（哉）？[圖字053] （殹抑）[54]亡（無）女（如）[55][圖字054]（庶）民可（何）。[56][圖字055]」【6】</p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="annotations">
+      <h2>注釋</h2>
+      <ol class="footnotes">
+        <li id="fn-1"> 整理者：「哀公」，魯哀公，春秋末年魯國國君，名蔣（一作將），謚哀公，在位二十七年。簡文所說的魯國大旱發生在哀公十五年夏秋時。魯哀公就如何解除大旱之事間於孔子。</li>
+        <li id="fn-2"> 整理者：隸作「[圖字056]」，從「囗」「者」聲，讀「圖」，謀劃。/蘇建洲：此字內「者」字下部變形音化為「氏」，後分化為「氐」。/臧克和：「[圖字057]」可能有三種解釋，一讀「圖」：一讀「襘」，除去凶荒：一讀為「[圖字058]」，指天地山川之祭。/劉寶俊：「[圖字059]」是圖畫的「圖」異體。/俞紹宏、張青松：此字變形音化為「氏」之說似不確。</li>
+        <li id="fn-3"> 整理者：從「曰」「合」聲，讀「答」。/陳偉：似當如黃錫全所云，看作「合」字別體。「合」用作對答之字，按後世的用字習慣有兩種可能，一是用作「答」，是用作「對」。先秦古書習見「對曰」，而少見「答曰」。《論語》《禮記》中屢見「孔子對日」，「孔子答日」則無一見。「合」當讀「對」。簡3的「合」亦然。/蘇建洲：這裏應讀「答」。</li>
+        <li id="fn-4"> 林志鵬：本篇「毋乃」三見。「毋乃」一般用放反間句，義猶「得無」。「毋乃」之反語乃是表達委婉、試探的語氣。/梁靜：「毋乃」由「毋」和「乃」兩組成，一個表示否定，一個表示背定，常用在疑問句中，它的含義相當放現代漢語中的「不會/是……（吧）？」用委婉的語氣表示推測或質疑。如果「毋乃」句中「帶有感嘆或反問」這樣比較強烈的語氣，多半是由於這句話中還用了其他的方式來表達了相應的語氣。/俞紹宏、張青松：楚簡中「母」有時用作「毋」，整理者往往將此類用作「毋」的「母」直接隸作「毋」。「毋乃」，表示委婉測度的語氣，相當放「莫非」「豈非」。</li>
+        <li id="fn-5"> 整理者：古「型」「刑」通用。孔子意思是，由大旱引起的問題，解除之道不是在加強刑、德之治嗎？/廖名春：「刑與德」指殺戮、慶賞。「失諸刑與德」即批評魯哀公政不在己，治國之柄操諸季氏。/劉樂賢：「刑」指刑罰懲戒。「德」指德化賞慶。孔子說刑、德有問題，實際上就是說國家的政令有失誤。這種將天災與政治聯繫的說法，與古代流行的天人感應說相合。/林志鵬：「德」指內在修養，「刑」泛指法制、法度。/淺野裕一：「刑」，指上天降下大旱對魯君實施懲罰。魯哀公無法察覺旱炎之持續乃是上天責怪自己失政而降下之天刑的行為，就是「失諸刑與德」的過失了。「德」是指上天欣然接受君主的善政而授予的天賞了。/蘇建洲：「刑」，刑罰。「德」，德澤。/俞紹宏、張青松：劉樂賢說可參。</li>
+        <li id="fn-6"> 李銳：簡1末「唯之何在」疑讀「為之何在」。/林志鵬：簡1末「唯」讀「雖」。</li>
+        <li id="fn-7"> 秦樺林：可在「之」前補一「女」字，讀「若」。「若之何」，怎麼辦。/廖名春：簡1末殘，可補「正刑與德。庶民以我不知以說之事鬼也，若」。/林志鵬：不排除簡1、2之間有缺簡。/顧史考：在簡1下「唯」下補「『型（刑）惪（德）皆當者，天其佑之。願君善[圖字060]（圖）之！』公曰：『若然，則女（如）。』」/俞紹宏、張青松：簡1末「唯」屬於孔子答語內容，因下文殘損而難以確定其具體用法。</li>
+        <li id="fn-8"> 整理者：「才」讀「在」。/季旭昇：廖名春、林志鵬、楊朝明：「才」讀「哉」。</li>
+        <li id="fn-9"> 整理者：「庶」字古文異體。「庶民」為與公室相對而言的眾民。/李運富：楚簡中從「火」「石」之字分析為從「火」「石」，「石」亦聲，為「炙」字異構或體。後借表眾庶，加上形體演變，原形消失，「庶」成了眾庶義的專字。包山簡、中山王墓另有從「火」「者」聲的「煮」字，從「火」「石」之「庶」不該釋作「煮」字。/陳嘉凌：從「庶」省聲，庶民之「庶」專用字。/裘錫圭：從甲骨金文看，「庶」本從「火」「石」，「石」亦聲，可能是「煮」和「炙」的共同初文，「眾庶」是其假借義。</li>
+        <li id="fn-10"> 整理者：「敚」，「奪」字，讀「說」，為古代傳統的求雨祭名。孔子以為抗禦大旱民間但知「說」祭，不知須保持刑德之治。/彭浩：「敚」（說）為「六祈」之一種，並非專門的求雨祭名，見於求雨，也見於其他祭祀。古代求雨之祭稱作「雩」，在雩祭時除舞而呼雩外，還要有說，乃雩祭（早年求雨的祭祀）的一部分，是人與神交通的一種方式。/李學勤：「說」原釋解為祝辭。這裡的「說」當即禱祝之意。/毛慶：「敚」讀「說」，悅。簡文意為，庶民知道與喜歡的事，是祭鬼神，而不知刑與德。/康少峰：「敚」讀「悅」。/范麗梅：「說」祭乃是一種通過辭說號呼昊天上帝或先祖父母或山川鬼神的祭祀，是有災變時可以作為號呼告神以請事求福的方式之一，其具體做法是陳論其事以責之或以祠說於上帝鬼神。/林志鵬：簡文「說」為陳辭以求解除旱災。/羅新慧：讀如字，「敚」祭是直接探取行動，以強行的進攻的方式來達到目的。/連劭名：「說」，教。</li>
+        <li id="fn-11"> 整理者：釋「視」，「視也」作一句。/黃德寬：「鬼」字異文。/.顏世鉉：讀「畏」。文意即庶民相信說祭求雨之事，此乃是出於敬畏鬼神之心。/李守奎：為《說文》「鬼」字古文之變形。/林志鵬：釋「畏」。 /臧克和：從整理者釋「視」，讀「示」。「視」為「示」字古文。本簡簡文在[圖字061]的基礎上再加「示」部，以突出強調所事對象為鬼神，也就是本簡所及的山川之神靈。整體語意，可以直解為「孔子日：一般民眾了解敚祭事神，不了解刑罰資德」。</li>
+        <li id="fn-12"> 陳偉：「事鬼也」屬上讀，即奉事鬼神。</li>
+        <li id="fn-13"> 整理者、劉樂賢：「女」讀「如」。/劉樂賢、顏世鉉：作「若」。/季旭昇：讀「汝」，指哀公。/陳劍：孔子跟國君說話，不至於稱其為「汝」。「女」讀「如」。/蘇建洲：「女」讀「汝」「如」皆對，前者口氣比較直接：後者口氣較為和緩，有「應該」「應當」的意思。/沈培：「女」讀「如」，可能訓為「不如」。/俞紹宏、張青松：後人述史與時人紀實不同，簡文是後人追述歷史，稱哀公「汝」不存在犯忌問題。「女」訓「不如」文意也通。</li>
+        <li id="fn-14"> 整理者：「女」讀「如」。隸作[圖字062]，釋讀為「[圖字063]」，與「[圖字064]」相通，隱也、霾也、幽也。/劉樂賢：「愛」本字讀，音惜。/李學勤：「愛」，吝惜。/毛慶：「[圖字065]」「[圖字066]」古聲、韻不同，只是韻部存在通轉關係。應隸作「[圖字067]」，上面「一」之左端下彎僅起裝飾作用，《玉篇》訓「奢也」。「[圖字068]」即「忕」，亦為奢侈之意。/劉雲：此字從「心」，「害」或「[圖字069]」省聲之字。</li>
+        <li id="fn-15"> 裘錫圭：從「巾」「采」聲，「[圖字070]」字變體。</li>
+        <li id="fn-16"> 整理者：簡文意即不進行大旱之祭，但須保持刑德之治。/劉樂賢：「毋愛珪壁幣帛於山川」，是說要祭祀山川。/常佩雨：孔子重視祭禮凝聚人民、實施道德教化的功能，但「事神」是為了「人事」。孔子認為魯國旱災與政事有關，其對策之一是建議魯哀公修明政事即「正刑與德」。</li>
+        <li id="fn-17"> 整理者：「政刑」，社會治理之政。/劉樂賢：「政」讀「正」（「政」也可訓為「正」）。/廣瀨薰雄：讀「正」，匡正。/李學勤：讀「正」，端正、糾正。/ </li>
+        <li id="fn-18">整理者：簡2末可補「德」。孔子似乎對庶民習知的「說」之事持寬容態度，在提出「正刑德」的同時也主張祭祀。/ 李學勤：「政刑與」下是「德」字。/廖名春：簡2末補「德以事上天，鬼神感之，大旱必止矣。孔子」。「神」，上天。「鬼」，山川。/林志鵬：闕損文字補「德以事上天」。/蘇建洲：古籍中「鬼神」一詞中「鬼」「神」意思相近，「神」是指「神靈」，與「天」的地位似有不同。廖氏擬補證據力不強。/廣瀨薰雄：補其頭十個字作「德以事上天，其幸而雨乎」（此後五字從《晏子》本末尾之語），而疑其後十個字左右可補如「哀公不悦而退之。孔子」之類的句子。/史傑鵬：疑「正刑與德」後講的大概即「等把這件事應付過去再説吧」一類的話，意即先以祭祀爲要，而「正刑與德」則可以待他日。 顧史考：簡2末補補「惪（德），則民 [圖字071]（將）歸君而邦乃治矣。公曰：諾，[圖字072]（吾）[圖字073]（將）厚祭之。[圖字074]（孔子）」。</li>
+        <li id="fn-19"> 整理者：[圖字075]從「章」從「[圖字076]」，或從「貝」從「[圖字077]」，字又作「贛」，與「貢」通。端木賜，字子貢，衛人，少孔子三十一歲。利口巧辭，孔子常拙其辯。/俞紹宏、張青松：「遇子貢」後可加逗號。</li>
+        <li id="fn-20"> 整理者：「出遇子貢曰」作一句。</li>
+        <li id="fn-21"> 整理者：從「行」「止」，餘下部分為聲旁，宜讀「巷」。/</li>
+        <li id="fn-22"> 整理者：孔子自稱其名「丘」。</li>
+        <li id="fn-23"> 王化平：「毋乃」是複式虛詞，一般與「乎」形成固定搭配，委婉表示對某事的認識或估計，一般不表示詢間，而是帶有感嘆或反問的口氣。</li>
+        <li id="fn-24"> 整理者、蘇建洲：釋「殹」，屬上讀「也」，語助詞。/何琳儀：屬下讀「繄」，語首助詞。/秦樺林：首助詞「繄」典籍中多訓為「是」，起加強肯定語氣的作用，而「歟」為典型的句尾疑問語氣詞。贊同整理者「否也」之原讀，認爲本篇「殹」讀「也」。/劉樂賢：「否殹」讀「否也」。/俞志慧：簡文中子貢的答語為「否」。「殹」讀「抑」，相當於「或者」。/廖名春：「殹」讀「抑」，表示反詰，相當於「豈」。/王化平：「[圖字078]」為語氣詞。簡文讀為：「[圖字079]！夫子！」解為：「啊！夫子！」/裘錫圭：滬簡《子羔》篇「殹」陳劍讀「抑」。本篇此字當讀「抑」，表轉折的運詞。/廖名春：[圖字080]是轉折連詞，與清華簡《金騰》的「殹」、今本《金縢》的「噫」用法完全相同，不管是讀「繄」或「抑」，都是「而」「然」「但」的意思。/俞紹宏、張青松：「[圖字081]」「[圖字082]」為「殹」字異體。這裏「抑」解為表反詰的副詞或轉折連詞文意均可通。</li>
+        <li id="fn-25"> 俞志慧：「吾子」為孔子對子貢的敬稱。/秦樺林：儒家文獻中孔子多對弟子稱呼「吾子」；相當於第二人稱「您」。/劉樂賢：簡文子貢以「吾子」稱孔子，與文獻中的宰予、子路以「吾子」稱孔子完全一致。可能是說孔子重天命，也可能是簡文抄寫時有訛脫，以致意思不明。/季旭昇：「子」有尊稱的意思，「吾子」就是「我的老師」。/廖名春：「命」與「說」都是祭祀之名，陳劍疑「命」讀「禜」。考慮到讀本字也可說通，則仍以「命」為「禜」之同義詞視之。「重命」是看重禳除旱災的祭祀。子貢指責孔子迷信鬼神祭祀。/黃人二、蘇建洲：「吾子」為子貢稱孔子。/俞紹宏、張青松：「吾子」為子貢稱孔子。</li>
+        <li id="fn-26"> 整理者：「女」讀「若」。/顏世鉉：「女」讀「乃」。/秦樺林：「女」讀「若」，表示不肯定的副詞，可譯為「似乎」「大約」等。/廖名春：「女」讀「如」。疑「如其」表示強調語氣。/林志鵬：「女」讀「如」訓「而」，「而」猶今之「但」「卻」。/蘇建洲：「女」讀「若」，副詞，用在動詞或動詞結構之前，表示所述事實大體如此，不很肯定，可以譯為似乎、仿佛、好像等。讀「如」亦無不可。/俞紹宏、張青松：「女」秦樺林、蘇建洲說也可備一說。/顧史考：讀爲「如」（或「若」）而當「如果」「假如」義來理解。</li>
+        <li id="fn-27"> 整理者：「重命」讀「重名」，聲譽，指巷路上的評論，此謂重視巷路的反映。/顏世鉉：「重命」，重視百姓生命。子貢認為孔子乃是關注在重視百姓生命這一點上吧。/季旭昇、蘇建洲：「命」，天命，上天的旨意。/李學勤：「[圖字083]」讀「踵」，《說文》「往來貌」。《爾雅》「命」，告也。/苑麗梅：「命」代指「說」祭。「命」或「名」，指的是「說」祭時號呼的行為。/林志鵬：「命」從原釋。/淺野裕一：「名」讀「明」，神明，祭祀等神事稱為「明」。簡4、5「名」用法同，也有可能是「明」字誤寫。/劉信芳：「[圖字084]」讀「踵」，追尋。「命」是人對事物的稱呼。「踵命」的意思是追尋「山川」之所以稱名，猶如「正名」「循名」，是一種依據事物的名與實來證明事理的方法。/秦樺林：「重命」，尊名。/裘錫圭：同意廣瀨蒸雄「重」訓「重覆」。「命」從李學勤訓「告」。/俞紹宏、張青松：「重命」或可從整理者說。</li>
+        <li id="fn-28"> 俞志慧：「重命其」為「重其命」之倒。/顧史考：從俞氏誤乙之説，認爲「命」、「其」二字乃倒文，應作「其命」。/秦樺林：「其」作副詞，表示估量、推測、不肯定，可譯為「大約」「大概」「可能」等。/苑麗梅：「其」於句首，表推度，意為大概是那樣吧，兼有指代作用。/林志鵬：「其」作反詰副詞，用法同「豈」。/裘錫圭：讀「其」，很可能與《詩經·鄭風》裏「忌」是表示同一個句末語氣詞的，音「記」。/俞紹宏、張青松：「其」或可從裘錫圭說。</li>
+        <li id="fn-29"> 秦樺林：「與」「歟」還可以表示推測，估計。「若…其數歟」連用，很可能是加強測度語氣。/李學勤：「與」，猶親也。「踵命其與」意為往來告其親友。/裘錫圭：古漢語可以在句末語氣詞後加表疑問語氣的「歟」。/顧史考：姑將「歟」視爲某種强調假設語氣之詞（或亦可以考慮讀如字而屬下句）。</li>
+        <li id="fn-30"> 俞志慧：「抑吾子若重命其歟」為孔子語。/ 廣瀨薰雄：「抑吾子如重命其與」不是疑問句，意思是，如果您重複命令的話，民眾會隨從您。/季旭昇：「繫吾子女重命，其歟」意思是「可是老師您比較重視天命，是這樣吧」。/廖名春：「吾子如重命其歟」相當於「吾子如其重命歟」，是子貢對孔子建言的總看法。/毛慶：廣瀨薰雄認為「否……毋乃不可」是子貢的話，正確。/林志鵬：「吾子如重名其歟」即「豈吾子而重名歟」。/秦樺林：簡文大意是，您似乎尊極於它們（山川之神）吧。/蘇建洲：簡文是說，老師您大概比較重視天命吧？亦即帶有一點詢間、推測的語氣。如果釋「乃」，口氣上比較偏向肯定。 </li>
+        <li id="fn-31"> 整理者：「女」讀「如」。/劉樂賢、秦樺林、顧史考：兩個「女夫」當讀為「若夫」，為轉語詞，又稱發語詞。/蘇建洲：「女夫」讀作「若夫」，多用以承接上文，另提一事，用在下句或下段的開頭，可譯為「至於」「至放說到」等。</li>
+        <li id="fn-32"> 顧史考：「德」字下加逗號。</li>
+        <li id="fn-33"> 劉樂賢：簡文意為，認為旱災像上天的警告，執政者應端正政令以順應天意。也是從天人感應的角度立論。</li>
+        <li id="fn-34"> 整理者：在簡文中「天」「夫」「而」等字時有筆誤的情形，如上博竹書《民之父母》之「夫下」，今本為「天下」。「如夫」為句首連接語氣辭，這樣的連接辭在古文獻中較為少見。</li>
+        <li id="fn-35"> 俞紹宏、張青松：「毋乃」，豈非，莫非，恐怕是。「毋乃不可」，恐怕不可。</li>
+        <li id="fn-36"> 俞志慧：「抑吾子若重命其歟」至「毋乃不可」為子貢語。/廣瀨薰雄：同意俞，「否……毋乃不可」是子貢的話。/毛慶：支持此處為子貢語。/顏世鉉：孔子認為邦大旱主要原因乃在為政上失諸刑與德，端正刑德纔是最重要的關鍵。同時孔子也能理解百姓對禱神以求雨的態度，以百姓的立場出發，並不反對禱神求雨。但他認為端正刑與德仍是最重要的。簡3、4意思應是：孔子問子貢說，他回答魯哀公說他理解百姓對禱神求雨的態度，所以不反對舉行禱神求雨的儀式，他這個看法是否錯了？子貢說孔子這個看法立沒錯，子貢認為孔子仍是從重視百姓生命的角度出發的。因此，孔子和子貢二人在禱神求雨的看法上，應是一致的。/俞紹宏、張青松：同意俞，子貢的意思是說，對山川進行祭祀以求雨恐怕不可行。/顧史考：「可」字下應為問號。</li>
+        <li id="fn-37"> 李學勤：「夫山，石以為膚」以下一段，原釋已指出類似《晏子春秋》內篇的《景公欲祠靈山河伯以禱雨晏子諫第十五》。簡文對照，揣想簡4的「民」當為「毛」字，因楚文字「毛」「民」近似而誤。</li>
+        <li id="fn-38"> 整理者、秦樺林、廖名春：「或甚於」之「或」讀作本義字。/陳偉：「其欲雨或甚於我」的「或」字恐讀「又」，表示程度上更進一層，與「甚」的意義正好相關。/ 裘錫圭：「或」可訓為「又」，簡4兩個「或」不必讀「又」。/俞紹宏、張青松：「或」，或許，訓「又」文意也通。「或」訓「又」可能是源於「或」讀「又」，因而具有「又」之訓。若此，表示「又」義之「或」讀「又」也不無道理。</li>
+        <li id="fn-39"> 陳嘉凌：「甚」，更超過。</li>
+        <li id="fn-40"> 整理者：「或」讀「何」。/何琳儀：「或必待吾命乎」之「或」如字讀，訓「又」。/秦樺林、廖名春：：「或必」之「或」讀作「何」。/ </li>
+        <li id="fn-41"> 整理者：「寺[圖字085]名」讀「恃乎名」，簡5「或必寺乎名乎」同，辭意指山川之神恃名傲世，不欲施雨。/劉樂賢：1）簡文似可讀為「或必待乎名乎」。「待乎名」，等到叫名字。在求雨祭儀中，祭祀者必定會叫呼山川之名。2）「或必寺吾名乎」是否定祭祀求雨的意思，可讀為「或必祠乎禜乎」（「寺」讀「祠」是陳明的意見。「名」讀「禜」是陳劍2003年1月9日在清華大學思想文化研究所討論會上發育的意見）。「祠」「禜」為祭名。「禜」是《周禮·春官·大祝》禜六祈】之一。也可讀為「或必待乎禜乎」或「或必待吾禜乎」，祭名只有「禜」。/季旭昇：「寺」讀「待」。/廖名春：本簡及簡5讀「恃乎命」。「恃」，重，倚重。「恃乎命」就是看重「命」這一類禳除旱災的祭祀，就是迷信鬼神之祭。/李學勤：「寺」是動詞，讀「祠」。前一「或必祠乎」後的「名乎」二字是衍文。/范麗梅：簡4、5「名」代指「說」祭。簡文在此所嗚呼的對象是山川鬼神，甚或是指名「旱魁」，命呼之離去的意思。「[圖字086]」讀「吾」。簡文讀為「何必待吾名」。/林志鵬：「寺」從讀「待」說。「名」指「文」，即「禮」。/王志平：「或」讀「有」。「寺」從劉樂賢讀。「名」指攻說。/裘錫圭：「名」似可當「稱名」講。</li>
+        <li id="fn-42">顏世鉉：禱神求雨的儀式中，所呼之名除天地山川諸神之名外，尚有珪璧幣帛等之名。/陳偉：簡文讀為「又必待吾命乎」，意思是說難道必須等待我們的呼喚嗎。/ 陳劍：簡文讀作「又必待吾禜乎」。子貢是贊成孔子正刑德之主張，反對其以圭璧幣帛祭祀山川的，其意謂山川遇旱災，想要下雨比我們還想得厲害，又怎麼會一定要等到我們舉行禜祭之後才下雨呢？毋愛圭璧幣帛於山川，亦即舉行禜祭於山川是也。/劉樂賢：1）簡文似可讀為「或必待乎名乎」。2）「或必寺吾名乎」是否定祭祀求雨的意思，可讀為「或必祠乎禜乎」。/ 蘇建洲：簡文讀為「又必待吾禜乎」，簡3、4所載內容說明子貢反對禱神求雨，而應把重點放在執政者政績上。/連劭名：「寺[圖字087]名乎」讀為「待吾命乎」。/裘錫圭：簡文意即還一定要等待吾人舉稱其名而祭禱之嗎?/ 俞紹宏、張青松：可參陳劍說。</li>
+        <li id="fn-43"> 李學勤：「水以為膚」，「膚」字應依《晏子》改作「國」字。</li>
+        <li id="fn-44"> 整理者：釋為「或者」。/毛慶：「或」字為副詞，為「也許」「或許」之義。</li>
+        <li id="fn-45"> 整理者：釋文括注為「何」。/毛慶：此「或」字同樣為副詞，為「又」之義。</li>
+        <li id="fn-46"> 俞志慧：「毋乃不可」至第二個「或必恃乎名乎」為孔子語。/曹峰：「女夫政[圖字088]與[圖字089]……寺[圖字090]名[圖字091]」為孔子語。/毛慶：同意俞說，認爲「毋乃不可」至第二個「或必恃乎名乎」爲孔子語之説，又謂「毋乃不可」下的小鉤形符號正是暗示説話主角已轉換。/顧史考：不同意俞，認爲「否。抑吾子若重命其歟」至第二個「或必恃乎名乎」仍是子貢語。反駁毛慶標點轉換説話者之説，因爲下面「[圖字092]」字後亦有同樣的符號，無論如何也似乎祇能解釋爲句讀標點符號，並非如毛氏所云。</li>
+        <li id="fn-47"> 整理者：讀「於呼」。/季旭昇、楊朝明：讀「於乎」。/廖名春、林志鵬：讀「嗚呼」。</li>
+        <li id="fn-48"> 廖名春：簡5末補「賜也，我告汝：命者，君子以為文，庶民以為神。如不命，王」。</li>
+        <li id="fn-49"> 整理者：「公」指王公而言，魯國的高層貴族。</li>
+        <li id="fn-50"> 整理者：從「刀」，「豈」聲，字書未見，讀「豈」。「豈不」是對公行為的確定語氣。</li>
+        <li id="fn-51"> 整理者：隸作「[圖字093]」，讀「飽」。/徐在國：「飽」字或體。/劉樂賢：釋「飯」。/李學勤：乃「飫」之訛。/陳秉新、陳英傑、陳英傑：即「簋」字異體，讀「[圖字094]」，飽也。/毛慶：即「養」，供養。「養」甲、金文字與《說文》古文均為「[圖字095]」。古代與食部有關文字，有偏旁「食」與具體食物互相替代的現象，有的先有「食」旁而後為具體食物代之，有的先用具體食物作偏旁後以「食」代之。「[圖字096]」以「食」旁代「羊」旁。/李守奎：釋「飯」。楚文字「攴」「反」形近易混。/王志平：釋「飯」。/俞志慧：右從「反」，應從施謝捷釋「飯」。/徐在國：《說文》：「飯，食也。」</li>
+        <li id="fn-52"> 整理者：讀「粱」，優於粟菽的食糧。/徐在國：「杒」釋「梁」，讀「粱」。/毛慶：通「任」，佞。「養任」即「養佞」，養佞人。/李守奎：楚簡中「[圖字097]」「刃」相混訛，「杒」是「梁」字。</li>
+        <li id="fn-53"> 整理者：「飤」通作「飼」「食」，「飤肉」即食肉。/毛慶：「飤」，糧。</li>
+        <li id="fn-54"> 整理者：「[圖字098]」屬上讀「也」。/何琳儀：「殹」屬下讀作「繄無如庶民何」。/季旭昇：陳嘉凌讀「殹」為「繄」，後加逗號。/李學勤：「繄」為句首語氣詞，用法同「唯」。/廖名春：讀「抑」。/秦樺林：認爲此處讀「抑」並不合適，因爲以爲「豈……哉？抑……何？」無法當選擇問句。/毛慶：讀「繄」，句首語氣助詞，均有輕微轉折之義，這是共同的。而第三簡之「繄」還有輕微的假定之義，第六簡之「繄」則還有接近放「惟」的意項，即同於《左傳·隱公元年》「爾有母遺，繄我獨無」的「繄」之義。/林志鵬：黃人二以為簡6「殹」讀「繄」。簡3此字從讀「也」。/王志平：讀「抑」，屬下讀。/俞紹宏、張青松：釋「殹」之字當隸作「[圖字099]」。簡3、6「抑」解為反詰副詞或解為轉折連詞於文意均可通，相應地「與」可解為表示反問或疑問語氣。簡6「何」後加問號。/顧史考：同意廖名春，反駁秦樺林，指出此兩句正當默認的選擇問句，意思即［你既知魯公將如何，那你究竟要依我意而讓魯公進行求雨祭］，還是根本不採取幫助百姓之策呢？</li>
+        <li id="fn-55"> 李學勤：「無如」猶云「無奈」。/毛慶：「如」是「奈」的意思。</li>
+        <li id="fn-56"> 整理者：「無如庶民何」為倒裝句，意即大旱之年「公」照樣飽食粱肉，庶民則無可如何。/秦樺林：讀為「公豈不飽梁食肉哉也？無如庶民何」。/毛慶：簡文當釋為「卻惟無奈於庶民」。/林志鵬：孔子解釋之重點可能與正名及禮、德立用有關。</li>
+      </ol>
+    </section>
+
+    <section class="image-manager" id="image-config" style="display: none;">
+      <div data-label="圖字001" data-path="images_魯邦大旱_20260112/001.png"></div>
+      <div data-label="圖字002" data-path="images_魯邦大旱_20260112/002.png"></div>
+      <div data-label="圖字003" data-path="images_魯邦大旱_20260112/003.png"></div>
+      <div data-label="圖字004" data-path="images_魯邦大旱_20260112/004.png"></div>
+      <div data-label="圖字005" data-path="images_魯邦大旱_20260112/005.png"></div>
+      <div data-label="圖字006" data-path="images_魯邦大旱_20260112/006.png"></div>
+      <div data-label="圖字007" data-path="images_魯邦大旱_20260112/007.png"></div>
+      <div data-label="圖字008" data-path="images_魯邦大旱_20260112/008.png"></div>
+      <div data-label="圖字009" data-path="images_魯邦大旱_20260112/009.png"></div>
+      <div data-label="圖字010" data-path="images_魯邦大旱_20260112/010.png"></div>
+      <div data-label="圖字011" data-path="images_魯邦大旱_20260112/011.png"></div>
+      <div data-label="圖字012" data-path="images_魯邦大旱_20260112/012.png"></div>
+      <div data-label="圖字013" data-path="images_魯邦大旱_20260112/013.png"></div>
+      <div data-label="圖字014" data-path="images_魯邦大旱_20260112/014.png"></div>
+      <div data-label="圖字015" data-path="images_魯邦大旱_20260112/015.png"></div>
+      <div data-label="圖字016" data-path="images_魯邦大旱_20260112/016.png"></div>
+      <div data-label="圖字017" data-path="images_魯邦大旱_20260112/017.png"></div>
+      <div data-label="圖字018" data-path="images_魯邦大旱_20260112/018.png"></div>
+      <div data-label="圖字019" data-path="images_魯邦大旱_20260112/019.png"></div>
+      <div data-label="圖字020" data-path="images_魯邦大旱_20260112/020.png"></div>
+      <div data-label="圖字021" data-path="images_魯邦大旱_20260112/021.png"></div>
+      <div data-label="圖字022" data-path="images_魯邦大旱_20260112/022.png"></div>
+      <div data-label="圖字023" data-path="images_魯邦大旱_20260112/023.png"></div>
+      <div data-label="圖字024" data-path="images_魯邦大旱_20260112/024.png"></div>
+      <div data-label="圖字025" data-path="images_魯邦大旱_20260112/025.png"></div>
+      <div data-label="圖字026" data-path="images_魯邦大旱_20260112/026.png"></div>
+      <div data-label="圖字027" data-path="images_魯邦大旱_20260112/027.png"></div>
+      <div data-label="圖字028" data-path="images_魯邦大旱_20260112/028.png"></div>
+      <div data-label="圖字029" data-path="images_魯邦大旱_20260112/029.png"></div>
+      <div data-label="圖字030" data-path="images_魯邦大旱_20260112/030.png"></div>
+      <div data-label="圖字031" data-path="images_魯邦大旱_20260112/031.png"></div>
+      <div data-label="圖字032" data-path="images_魯邦大旱_20260112/032.png"></div>
+      <div data-label="圖字033" data-path="images_魯邦大旱_20260112/033.png"></div>
+      <div data-label="圖字034" data-path="images_魯邦大旱_20260112/034.png"></div>
+      <div data-label="圖字035" data-path="images_魯邦大旱_20260112/035.png"></div>
+      <div data-label="圖字036" data-path="images_魯邦大旱_20260112/036.png"></div>
+      <div data-label="圖字037" data-path="images_魯邦大旱_20260112/037.png"></div>
+      <div data-label="圖字038" data-path="images_魯邦大旱_20260112/038.png"></div>
+      <div data-label="圖字039" data-path="images_魯邦大旱_20260112/039.png"></div>
+      <div data-label="圖字040" data-path="images_魯邦大旱_20260112/040.png"></div>
+      <div data-label="圖字041" data-path="images_魯邦大旱_20260112/041.png"></div>
+      <div data-label="圖字042" data-path="images_魯邦大旱_20260112/042.png"></div>
+      <div data-label="圖字043" data-path="images_魯邦大旱_20260112/043.png"></div>
+      <div data-label="圖字044" data-path="images_魯邦大旱_20260112/044.png"></div>
+      <div data-label="圖字045" data-path="images_魯邦大旱_20260112/045.png"></div>
+      <div data-label="圖字046" data-path="images_魯邦大旱_20260112/046.png"></div>
+      <div data-label="圖字047" data-path="images_魯邦大旱_20260112/047.png"></div>
+      <div data-label="圖字048" data-path="images_魯邦大旱_20260112/048.png"></div>
+      <div data-label="圖字049" data-path="images_魯邦大旱_20260112/049.png"></div>
+      <div data-label="圖字050" data-path="images_魯邦大旱_20260112/050.png"></div>
+      <div data-label="圖字051" data-path="images_魯邦大旱_20260112/051.png"></div>
+      <div data-label="圖字052" data-path="images_魯邦大旱_20260112/052.png"></div>
+      <div data-label="圖字053" data-path="images_魯邦大旱_20260112/053.png"></div>
+      <div data-label="圖字054" data-path="images_魯邦大旱_20260112/054.png"></div>
+      <div data-label="圖字055" data-path="images_魯邦大旱_20260112/055.png"></div>
+      <div data-label="圖字056" data-path="images_魯邦大旱_20260112/056.png"></div>
+      <div data-label="圖字057" data-path="images_魯邦大旱_20260112/057.png"></div>
+      <div data-label="圖字058" data-path="images_魯邦大旱_20260112/058.png"></div>
+      <div data-label="圖字059" data-path="images_魯邦大旱_20260112/059.png"></div>
+      <div data-label="圖字060" data-path="images_魯邦大旱_20260112/060.png"></div>
+      <div data-label="圖字061" data-path="images_魯邦大旱_20260112/061.png"></div>
+      <div data-label="圖字062" data-path="images_魯邦大旱_20260112/062.png"></div>
+      <div data-label="圖字063" data-path="images_魯邦大旱_20260112/063.png"></div>
+      <div data-label="圖字064" data-path="images_魯邦大旱_20260112/064.png"></div>
+      <div data-label="圖字065" data-path="images_魯邦大旱_20260112/065.png"></div>
+      <div data-label="圖字066" data-path="images_魯邦大旱_20260112/066.png"></div>
+      <div data-label="圖字067" data-path="images_魯邦大旱_20260112/067.png"></div>
+      <div data-label="圖字068" data-path="images_魯邦大旱_20260112/068.png"></div>
+      <div data-label="圖字069" data-path="images_魯邦大旱_20260112/069.png"></div>
+      <div data-label="圖字070" data-path="images_魯邦大旱_20260112/070.png"></div>
+      <div data-label="圖字071" data-path="images_魯邦大旱_20260112/071.png"></div>
+      <div data-label="圖字072" data-path="images_魯邦大旱_20260112/072.png"></div>
+      <div data-label="圖字073" data-path="images_魯邦大旱_20260112/073.png"></div>
+      <div data-label="圖字074" data-path="images_魯邦大旱_20260112/074.png"></div>
+      <div data-label="圖字075" data-path="images_魯邦大旱_20260112/075.png"></div>
+      <div data-label="圖字076" data-path="images_魯邦大旱_20260112/076.png"></div>
+      <div data-label="圖字077" data-path="images_魯邦大旱_20260112/077.png"></div>
+      <div data-label="圖字078" data-path="images_魯邦大旱_20260112/078.png"></div>
+      <div data-label="圖字079" data-path="images_魯邦大旱_20260112/079.png"></div>
+      <div data-label="圖字080" data-path="images_魯邦大旱_20260112/080.png"></div>
+      <div data-label="圖字081" data-path="images_魯邦大旱_20260112/081.png"></div>
+      <div data-label="圖字082" data-path="images_魯邦大旱_20260112/082.png"></div>
+      <div data-label="圖字083" data-path="images_魯邦大旱_20260112/083.png"></div>
+      <div data-label="圖字084" data-path="images_魯邦大旱_20260112/084.png"></div>
+      <div data-label="圖字085" data-path="images_魯邦大旱_20260112/085.png"></div>
+      <div data-label="圖字086" data-path="images_魯邦大旱_20260112/086.png"></div>
+      <div data-label="圖字087" data-path="images_魯邦大旱_20260112/087.png"></div>
+      <div data-label="圖字088" data-path="images_魯邦大旱_20260112/088.png"></div>
+      <div data-label="圖字089" data-path="images_魯邦大旱_20260112/089.png"></div>
+      <div data-label="圖字090" data-path="images_魯邦大旱_20260112/090.png"></div>
+      <div data-label="圖字091" data-path="images_魯邦大旱_20260112/091.png"></div>
+      <div data-label="圖字092" data-path="images_魯邦大旱_20260112/092.png"></div>
+      <div data-label="圖字093" data-path="images_魯邦大旱_20260112/093.png"></div>
+      <div data-label="圖字094" data-path="images_魯邦大旱_20260112/094.png"></div>
+      <div data-label="圖字095" data-path="images_魯邦大旱_20260112/095.png"></div>
+      <div data-label="圖字096" data-path="images_魯邦大旱_20260112/096.png"></div>
+      <div data-label="圖字097" data-path="images_魯邦大旱_20260112/097.png"></div>
+      <div data-label="圖字098" data-path="images_魯邦大旱_20260112/098.png"></div>
+      <div data-label="圖字099" data-path="images_魯邦大旱_20260112/099.png"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>轉製日期：2026-01-12</p>
+    <p>說明：本頁人工整理，如有錯誤，請聯繫作者和網頁製作者。</p>
+  </footer>
+
+  <script>
+    (function () {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+      const nodesToProcess = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        if (node.parentNode && node.parentNode.closest('script, style, code')) continue;
+        const text = node.nodeValue;
+        // 检查是否包含 [] 或 [圖字XXX] 格式
+        if (text.includes('[]') || /\[圖字\d{3}\]/.test(text)) {
+          nodesToProcess.push(node);
+        }
+      }
+
+      const imageConfig = document.getElementById('image-config');
+      const placeholders = new Map(); // 存储所有占位符：label -> span元素
+      const imagePaths = new Map(); // 存储图片路径配置：label -> path
+
+      // 读取图片路径配置
+      if (imageConfig) {
+        const configItems = imageConfig.querySelectorAll('div[data-label][data-path]');
+        configItems.forEach(item => {
+          const label = item.getAttribute('data-label');
+          const path = item.getAttribute('data-path');
+          if (label && path) {
+            imagePaths.set(label, path);
+          }
+        });
+      }
+
+      let counter = 1;
+
+      const pad = function (num) {
+        return String(num).padStart(3, '0');
+      };
+
+      // 处理文本节点，创建占位符
+      // 支持两种格式：[圖字177] 或 [圖字001]（带序号）
+      nodesToProcess.forEach((textNode) => {
+        let text = textNode.nodeValue;
+        
+        // 先处理带序号的格式 [圖字XXX]
+        const numberedPattern = /\[圖字(\d{3})\]/g;
+        const numberedMatches = [];
+        let match;
+        while ((match = numberedPattern.exec(text)) !== null) {
+          numberedMatches.push({
+            index: match.index,
+            label: `圖字${match[1]}`,
+            length: match[0].length
+          });
+        }
+        
+        // 再处理普通格式 []
+        const simplePattern = /\[\]/g;
+        const simpleMatches = [];
+        while ((match = simplePattern.exec(text)) !== null) {
+          // 检查是否已经被带序号的格式覆盖
+          const isOverlapped = numberedMatches.some(nm => 
+            match.index >= nm.index && match.index < nm.index + nm.length
+          );
+          if (!isOverlapped) {
+            simpleMatches.push({
+              index: match.index,
+              label: `圖字${pad(counter)}`,
+              length: 2
+            });
+            counter += 1;
+          }
+        }
+        
+        // 合并所有匹配，按位置排序
+        const allMatches = [...numberedMatches, ...simpleMatches].sort((a, b) => a.index - b.index);
+        
+        if (allMatches.length === 0) return;
+
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        
+        allMatches.forEach((matchInfo) => {
+          // 添加匹配前的文本
+          if (matchInfo.index > lastIndex) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, matchInfo.index)));
+          }
+          
+          // 创建占位符
+            const span = document.createElement('span');
+            span.className = 'glyph-placeholder';
+          span.dataset.label = matchInfo.label;
+            span.setAttribute('role', 'img');
+          span.setAttribute('aria-label', `${matchInfo.label} 待補圖片`);
+          span.textContent = matchInfo.label; // 显示序号而不是□
+            fragment.appendChild(span);
+
+          // 存储占位符引用
+          placeholders.set(matchInfo.label, span);
+          
+          lastIndex = matchInfo.index + matchInfo.length;
+        });
+        
+        // 添加剩余的文本
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+
+        textNode.parentNode.replaceChild(fragment, textNode);
+      });
+
+      // 根据配置自动加载图片
+      placeholders.forEach((span, label) => {
+        const imagePath = imagePaths.get(label);
+        if (imagePath && span.parentNode) {
+          const img = document.createElement('img');
+          img.src = imagePath;
+          img.alt = label;
+          img.style.maxHeight = '1.6em';
+          img.style.verticalAlign = 'middle';
+          img.style.margin = '0 0.12em';
+          img.style.display = 'inline-block';
+          img.onerror = function() {
+            // 图片加载失败时保持占位符
+            console.warn(`圖片載入失敗: ${label} - ${imagePath}`);
+          };
+          span.parentNode.replaceChild(img, span);
+        }
+      });
+    })();
+
+    // 注释跳转功能
+    (function () {
+      // 处理释文中的注释标记，将其转换为可点击的链接
+      const transcriptionBlock = document.querySelector('.transcription-block');
+      if (!transcriptionBlock) return;
+
+      const walker = document.createTreeWalker(
+        transcriptionBlock,
+        NodeFilter.SHOW_TEXT,
+        null
+      );
+
+      const nodesToProcess = [];
+      let node;
+      
+      while ((node = walker.nextNode())) {
+        if (node.parentNode && node.parentNode.closest('script, style, code, a')) continue;
+        const text = node.nodeValue;
+        // 匹配注释标记 [数字]，但排除 [圖字XXX] 格式
+        if (/\[(\d{1,3})\]/.test(text) && !/\[圖字\d+\]/.test(text)) {
+          nodesToProcess.push(node);
+        }
+      }
+
+      nodesToProcess.forEach((textNode) => {
+        const text = textNode.nodeValue;
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        
+        // 匹配 [1], [2], [3] 等格式（1-3位数字）
+        const pattern = /\[(\d{1,3})\]/g;
+        let match;
+        
+        while ((match = pattern.exec(text)) !== null) {
+          const fullMatch = match[0]; // [1]
+          const number = match[1];    // 1
+          
+          // 添加匹配前的文本
+          if (match.index > lastIndex) {
+            fragment.appendChild(
+              document.createTextNode(text.slice(lastIndex, match.index))
+            );
+          }
+          
+          // 创建注释链接
+          const link = document.createElement('a');
+          link.href = `#fn-${number}`;
+          link.className = 'footnote-ref';
+          link.textContent = fullMatch;
+          link.setAttribute('title', `跳转到注释 ${number}`);
+          fragment.appendChild(link);
+          
+          lastIndex = match.index + fullMatch.length;
+        }
+        
+        // 添加剩余的文本
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+
+        textNode.parentNode.replaceChild(fragment, textNode);
+      });
+
+      // 在注释列表中添加返回链接
+      const footnotes = document.querySelectorAll('.footnotes li[id^="fn-"]');
+      footnotes.forEach((footnote) => {
+        const id = footnote.getAttribute('id');
+        const number = id.replace('fn-', '');
+        
+        // 创建返回链接
+        const backLink = document.createElement('a');
+        backLink.href = '#transcription-title';
+        backLink.className = 'footnote-backref';
+        backLink.textContent = '↑返回';
+        backLink.setAttribute('title', '返回正文');
+        
+        // 将返回链接添加到注释末尾
+        footnote.appendChild(backLink);
+      });
+
+      // 平滑滚动效果
+      document.querySelectorAll('a.footnote-ref, a.footnote-backref').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId) || 
+                               document.querySelector(this.getAttribute('href'));
+          
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+            
+            // 更新URL但不触发滚动
+            history.pushState(null, null, this.getAttribute('href'));
+            
+            // 添加临时高亮效果
+            if (targetElement.tagName === 'LI') {
+              targetElement.style.transition = 'background-color 0.3s ease';
+              const originalBg = window.getComputedStyle(targetElement).backgroundColor;
+              setTimeout(() => {
+                targetElement.style.backgroundColor = '';
+              }, 2000);
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>相邦之道</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #fdfdfc;
+      --fg: #1a1a1a;
+      --accent: #8c1d40;
+      --muted: #555;
+      --border: #d8cfc4;
+      --glyph-border: rgba(180, 32, 32, 0.6);
+      --glyph-bg: rgba(255, 228, 232, 0.45);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111;
+        --fg: #f3f0e9;
+        --muted: #b0a89e;
+        --border: #3a332b;
+        --glyph-border: rgba(255, 126, 137, 0.8);
+        --glyph-bg: rgba(140, 29, 64, 0.25);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Serif CJK TC", "PingFang TC", "Microsoft JhengHei", serif;
+      line-height: 1.7;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    header,
+    main,
+    footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: clamp(1.5rem, 3vw, 3rem) clamp(1.25rem, 3vw, 2.5rem);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(140, 29, 64, 0.08), transparent);
+    }
+
+    .doc-header h1 {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      margin: 0 0 0.35em;
+      letter-spacing: 0.08em;
+    }
+
+    .doc-subtitle {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .glyph-notice {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.65);
+      font-size: 0.95rem;
+    }
+
+    .glyph-notice h2 {
+      margin: 0 0 0.6em;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+    }
+
+    code {
+      font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+      font-size: 0.9em;
+      background: rgba(0, 0, 0, 0.06);
+      padding: 0.1em 0.4em;
+      border-radius: 0.3em;
+    }
+
+    main h2 {
+      font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+      margin-top: 0;
+      letter-spacing: 0.06em;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.7rem);
+      margin-top: 2rem;
+      letter-spacing: 0.04em;
+    }
+
+    h4 {
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+      margin-top: 1.5rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 1.25em 1.5em;
+      padding: 0;
+    }
+
+    li + li {
+      margin-top: 0.25em;
+    }
+
+    .doc-section {
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .transcription-block {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .transcription-block p {
+      text-indent: 2em;
+    }
+
+    .transcription-block p:first-child {
+      margin-top: 0;
+    }
+
+    .footnotes {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-top: 2.5rem;
+      counter-reset: footnote;
+    }
+
+    .footnotes li {
+      margin-bottom: 1rem;
+    }
+
+    .glyph-legend {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.5);
+      font-size: 0.92rem;
+    }
+
+    .glyph-legend h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .glyph-legend ul {
+      columns: 1;
+      gap: 1rem;
+      margin-left: 0;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .glyph-legend li {
+      margin-bottom: 0.4em;
+      padding-left: 1.35em;
+      position: relative;
+    }
+
+    .glyph-legend li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .glyph-placeholder {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.6em;
+      min-height: 1.6em;
+      padding: 0 0.3em;
+      margin: 0 0.12em;
+      border: 1px dashed var(--glyph-border);
+      background-color: var(--glyph-bg);
+      border-radius: 0.35em;
+      font-weight: 600;
+      color: var(--accent);
+      font-family: "Noto Sans Symbols2", "Noto Serif CJK TC", serif;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .glyph-placeholder::after {
+      content: attr(data-label);
+      font-size: 0.62em;
+      color: var(--muted);
+      margin-left: 0.25em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .glyph-placeholder[data-label=""]::after {
+      content: "圖字???";
+    }
+
+    /* 图片样式 */
+    .transcription-block img,
+    main img[alt^="圖字"] {
+      max-height: 1.6em;
+      vertical-align: middle;
+      margin: 0 0.12em;
+      display: inline-block;
+      object-fit: contain;
+    }
+
+    /* 注释链接样式 */
+    a.footnote-ref {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      padding: 0 0.15em;
+      transition: all 0.2s ease;
+      border-radius: 0.2em;
+    }
+
+    a.footnote-ref:hover {
+      background-color: var(--glyph-bg);
+      text-decoration: underline;
+    }
+
+    .footnote-backref {
+      text-decoration: none;
+      color: var(--accent);
+      margin-left: 0.5em;
+      font-size: 0.9em;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .footnote-backref:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* 高亮效果 */
+    .footnotes li:target {
+      background-color: var(--glyph-bg);
+      padding: 0.5rem;
+      margin-left: -0.5rem;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    footer p {
+      margin: 0.4em 0;
+    }
+
+    @media (max-width: 768px) {
+      header,
+      main,
+      footer {
+        padding: clamp(1.25rem, 6vw, 2rem) clamp(1rem, 4.5vw, 1.75rem);
+      }
+
+      .glyph-legend ul {
+        columns: 1;
+      }
+
+      .transcription-block p {
+        text-indent: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-header">
+    <h1>相邦之道</h1>
+    <p class="doc-subtitle">《相邦之道 廣義讀本》</p>
+  </header>
+
+  <main>
+    <section class="doc-section" id="bianlian">
+      <h2>本篇竹簡編聯</h2>
+      <ul>
+        <li>裘錫圭2006：本篇2、4號簡皆有孔子，內容上也有聯繫，屬於一篇。1、3號簡在內容上並無與它們屬於一篇的明顯證據；雖然字體與2、4號簡接近，但其「事」字上部皆似「昏」之形，而2號「事」字為正常寫法，二者似乎不大可能屬於一篇。1號簡思想頗接近《管子》，與儒家是有距離的。</li>
+        <li>淺野裕一2005：本篇的論述邏輯為：哀公問、孔子答相邦之道、民事，孔子與子貢問答。全文有4至6支竹簡。</li>
+        <li>陳思婷2008：本篇第一部分（簡1-3）乃魯哀公與孔子對「相邦之道」與「民事」兩個問題的回答，第二部分（簡4）為孔子與子貢的對話，以為哀公問「相邦之道」問題失當。</li>
+        <li>梁靜2014：本篇第一部分記錄了孔子與魯哀公對話，第二部分記錄孔子與弟子自貢的對話。「公」問孔子「相邦之道」與「民事」，孔子一一作答。之後孔子又與子貢談起這次對話，對身為一國之君的「公」不問「有邦之道而問相邦之道」，孔子很是不以為然。「相邦」即後世所言的「相國」「丞相」「宰相」，是執政大臣。「相邦之道」也就是臣道，「有邦之道」則是君道。</li>
+        <li>顧史考2016：2、[曰]1，3，4。本篇記錄了孔子與魯哀公及弟子子貢的兩場小對話，內容有關相國之道與民師之要。淺野裕一《上博楚簡相邦之道的整體結構》（王鱗雯譯，臺灣《清華學報》新35卷第2期，2005年）據簡4推測本篇簡長51產米，又說不好據簡4推斷本篇簡長。</li>
+        <li>俞紹宏、張青松2019：姑且從裘錫圭說。暫依原釋所定簡序排列。</li>
+      </ul>
+      <p><strong>本文編聯説明</strong>：依原釋，次序為1，2，3，4。</p>
+    </section>
+
+    <section class="doc-section" id="transcription">
+      <h2 id="transcription-title">釋文</h2>
+      <div class="transcription-block">
+        <p>「…[1]先亓（其）欲[2]，備（服）亓（其）[圖字001]（勥強）[3]，牧亓（其）[圖字002]（倦/患）[4]，[圖字003]（寈靜）㠯（以）寺（待）[5]時=（時/待。時）出[6]古=（故，故）此[7][出] 事=（事，事）[8]出政=（政。政）[9]母（毋）忘所[圖字004]（治/司）[10]，事[11]…【1】</p>
+        <p>…□□□□人[12]，可胃（謂）[圖字005]（相）邦[13]矣。」公曰：「[圖字006]（敢）昏（問）民事[14]？」孔＝（孔子）【2】…</p>
+        <p>…[農夫勸於耕，以][15] 實官蒼（倉）[16]，百攻（工）[圖字007]（勸）於事[17]，㠯（以）實[圖字008]（府）庫[18]。[圖字009]（庶）□/人/民[19] [圖字010]（懽勸）[20]於四枳（枝肢）之褻（藝）[21]， 㠯（以）備軍逃[圖字011]（旅）[22]…【3】</p>
+        <p>…□/者[23] 。」孔＝（孔子）退，告子[圖字012]（贛貢）曰：「[圖字013]（吾）見於君[24]，不昏（問）又（有）邦之[圖字014]（道），而昏（問）[圖字015]（相）邦之[圖字016]（道），不亦[圖字017]（愆/戇）[圖字018]（乎）[25]？」子[圖字019]（贛貢）[圖字020]（曰）：「[圖字021]（吾）子[26] 之𥅽（答）也可（何）女（如）？」孔=（孔子）[圖字022]（曰）：「女（如/汝）𧧍[27]（訊/思）。【4】</p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="annotations">
+      <h2>注釋</h2>
+      <ol class="footnotes">
+        <li id="fn-1"> 顧史考：簡1首補「曰」字，上接讀簡2。</li>
+        <li id="fn-2"> 整理者：本簡備言欲相邦者所需之個人修養及準備功夫，循序漸進，層次分明。凡謀事首需確知意欲所在，應有所為而為，故云「先其欲」。/ 淺野裕一：「先其欲」為「巧妙地引導人民的欲望」。殘存部分的開頭三句，同樣都有「A其B」的句型，三個「其」均指「民」。/ 季旭昇：本篇開頭三句的「其」字都應該指人民。「先其欲」，謂人民之所欲，相邦者應該先想到、先做到。「相邦之道」是指已為相邦之人，輔助國君治國之道；而不是未為相邦之人，儲備相邦之能力。因此，本句的「其」字也應該指「人民」。/ 裘錫圭：「先其欲」下三句是講在上者用臣民之法。「先其欲」，施政應先考慮到臣民之所欲。/ 陳思婷：由第二簡孔子「可謂相邦之道」的結語可知，哀公請教孔子的重點在於「輔佐助治理國家（相邦）的方法為何」，而不是「如何能居相邦之位」，因此若依原考釋之說，則不能切合哀公所提出的疑問。故此處之「其」字，應依淺野裕一說，用以指稱「人民」。/ 俞紹宏、張青松：古有「先馬」一詞，《荀子·正論》「諸侯持輪、挾輿、先馬」，楊倞注「先馬，導馬也」，牽着馬在前引路，則「先」有在前引導義。《老子》「先有拱璧以先駟馬」「欲先民，必以身後之」，其中的「先」應當即此義。《禮記·郊特牲》：「男先於道。」鄭玄注：「先，謂倡導也。」簡文「先其欲」或可解為引導民眾的欲望。</li>
+        <li id="fn-3"> 整理者：「備其強」當言厚儲實力，或曰隱含馬王堆漢墓帛書《十六經·果童》「陰陽備，物化雙乃生」之意，與滬簡二《從政》乙篇簡5「君子強行，以待名之至也」意亦相若。/ 淺野裕一：讀為「備其強」，釋為「設法使人民精進努力於生計」。/ 裘錫圭：「服其強」意謂使臣民出其強力以服上事，「服」可視為使動詞。/ 季旭昇：「備」應該讀為「服」（楚文字「備」多讀為「服」），「服其強」意思是：人民（以及豪族）的強者，要讓他們悅服。/ 陳思婷：「服其強」之「其」字，指稱「人民」。「服」則應釋為「使服從、使順從」之義，人民中的強者，應指「豪強」之類。「服其強」意即「使人民中的豪強順服」。/ 梁靜：「服其強」，使臣民中的強者也服從在上者。/ 顧史考：「備其強」又疑與下文「庶民勸於四肢之藝，以備軍旅」有關。「備」如字讀。</li>
+        <li id="fn-4"> 整理者：「牧」於此固有引導、護牧之意，而《周易》中的「自牧」則又與修養攸關。「[圖字023]」又見於滬簡一《孔子詩論》簡4、《性情論》簡31，隸作「[圖字024]」釋「惓」，煩悶，與「患」義亦相當。「牧其惓」蓋指如有煩悶憂慮則宜加以疏導及調息抒解。/ 淺野裕一：「牧其惓」釋「消解人民的倦怠。」/ 裘錫圭：「牧」之義似應為撫養。「[圖字025]」似讀「倦」。「牧其倦」意謂於臣民勞倦之時加以養撫。一說「牧其[圖字026]」讀「謀其患」，意謂為臣民之憂患而謀慮。/ 季旭昇、陳思婷：本簡「[圖字027]」字應讀為「患」，意義較清朗；「牧」，察也，見《方言》卷十二。牧其患，謂人民的戚患要仔細察知。/ 梁靜：「牧」，司、治。讀「患」。「牧其患」，指在上者針對臣民所憂患的事物來達到制服他們的目的。/ 顧史考：原釋「牧」者似「共」字寫得較草率者。「共其患」意即與民同憂，此亦即相邦者之所以「靜以待時」的原因。/ 俞紹宏、張青松：「牧」訓「撫養」「察」「司、治」，以及「[圖字028]」讀「倦」「患」或也均可備一說。</li>
+        <li id="fn-5"> 整理者：「寈」讀「靜」，郭店楚簡《性自命出》第六十二簡：「身谷寈（靜）而毋[圖字029]」。「靜」為上乘之修養功夫。「[圖字030]」釋「寺」讀「待」。「靜以待」作一句，「靜以待」也是謀定而後動之前奏。/ 季旭昇：靜以待，謂相邦者遇事勿急燥，宜靜而待之，謀定而後動。此為處事態度，與〈性自命出〉之「修養功夫」似無關係。/ 陳思婷：從季旭昇說，「寈」應讀為「靜」，即不採取貿然躁進之態度。</li>
+        <li id="fn-6"> 整理者：「[圖字031]」後「[圖字032]」釋為「寺」（待時）。「待時出」作一句。此句蓋深明「窮達以時」之至理，並清楚表達欲為君相邦者之心聲。/ 陳斯鵬：釋為「時＝」，仍讀為「待時」。/ 淺野裕一：釋「待時出」為「時機到來後就發佈政令」。/ 裘錫圭：「[圖字033]」釋為「時」重文，前一「時」屬上讀，後加句號。後一「時」屬下讀作「時出故」。/ 季旭昇：待時出，謂「到最適當的時候才處理」。/ 陳思婷：由簡文墨跡來看，陳斯鵬說釋字可從，此當為「時」字，其合文符號位於右下方。若如整理者般解釋為個人修養準備功夫，那麼就不能呼應哀公「何謂相邦之道」的疑問。哀公所詢問的重點，在於已身處相邦之位者，如何善盡「相邦」的責任。此句「待時出」之「出」字若釋為「出仕」之意，就和哀公之問相抵觸。故此句應承上文「靜以待」而來，相邦者所等待的，就是發佈政令的適當時機。</li>
+        <li id="fn-7"> 整理者：「[圖字034]」釋「此」。/ 淺野裕一：「此」為「比」之訛，比較計量。比較計量人民之事業，促使君主發出政令。/ 裘錫圭：「[圖字035]」應為「出」之誤字：「古」下的重文號貼近「出」，抄寫者誤以為「古」字重文號與「出」為一字的筆劃，遂將「出」誤寫為「此」。「故」有成例、常規、事理之類意思，這種常規是由四時決定的。重文「事」前者屬上讀，後者屬下讀作「事出政」。人們必須按照「時」所決定的「故」來行事，而為了安排好各種事，就需要有在上者來施「政」。</li>
+        <li id="fn-8"> 整理者：「事=」讀「事使」合文。「故此事使出政」為一句。/ 淺野裕一：「使」屬下讀。/ 季旭昇：故此，疑釋「因此」。事事出政，首一「事」字疑當釋為「勤」；次一「事」字釋為「職守」，全句謂：勤於職守以出政令。政毋忘所治事，即毋忘所治理之事。/ 陳思婷：「事事」為一動名結構的詞組，如《慎子．民雜》曰：「君臣之道，臣事事，而君無事。」此簡「事事」可從季旭昇釋為「勤於職守」。/ 黃武智：「事=」疑讀「使事」，意為處理政事。</li>
+        <li id="fn-9"> 陳思婷：「出政」即「發布政令」。</li>
+        <li id="fn-10"> 整理者：「[圖字036]」隸「司」讀「治」。「政毋忘所治」作一句。/ 裘錫圭：從「司」「合」雙聲，讀「始」。「時出故，故出事，事出政」，推本溯源，政是出自時的。「政毋忘所始」就是施政必須合乎天時的意思。/ 淺野裕一：「政毋忘所治」，政令不能忽視受統治的人民。/ 陳思婷：「司」，主。「司事」即掌管事務。</li>
+        <li id="fn-11"> 整理者：簡1末字未釋。/ 虛一而靜：簡1末字釋「事」，屬上讀「政毋忘所治事」。/季旭昇：末一「事」字原缺，據殘餘字形，似為「事」字。/ 裘錫圭：簡1末「事」與前文「政」為對文。/ 陳思婷：釋「事」。「政毋忘所治事」作一句，意即「（所發出的）政令內容，不忘所掌理之事」。/ 梁靜：簡1「政」以下簡文運同其後闕損文字或讀為「政毋忘所治事，（事毋忘所由故，故毋忘所待時）」，或讀為「政毋忘所治，事（毋忘所由，故毋忘所□，時毋忘所□）」。/ 顧史考：簡1末「事」今姑讀「使」。其後補殘關文字補作「民以時，則民有所勸：農夫勸於耕，【1】以【3】」，其中簡「農夫勸於耕，以」為淺野裕一補。/</li>
+        <li id="fn-12"> 裘錫圭：簡2首第2、4殘字從「辶」。第4個字與「人」之間尚有一字地位。</li>
+        <li id="fn-13"> 整理者：「相邦」一辭未見於先秦典籍，但見於金文，《中山王方壺》：「隹十四年，中山王命相邦[圖字037]，斁郾吉金，鑄為彝壺。」此外，戰國青銅兵器亦屢見之，如《四年相邦呂不韋戈》、《四年相邦呂不韋矛》、《二年相邦春平侯劍》、《十三年相邦義戈》、《八年相邦建君》等，然皆只用作名詞。/ 淺野裕一：「相邦」，輔弼角色之任務。/ 季旭昇：「相邦」，先秦多作「相國」，《戰國策》多見，《左傳．僖公廿三年》「吾觀晉公子之從者，皆足以相國」，用法與本篇類似。/ 陳思婷：「相邦」與「有邦」對舉，由語法來看，顯然是將「相邦」作為動名詞組，而非作為官職之名。「相」即「輔佐、扶助」，「相邦」即「輔佐助治理國家」之意。/ 柯佩君：「[圖字038]」右原從「見」，「目」「見」形符可互換，「見」下「人」訛作「又」。/ 梁靜：「相邦」即後世所言的「相國」「丞相」「宰相」，是執政大臣。/ 劉寶俊：「[圖字039]」增「又」「止」，當表示動作行為，為輔佐、幫助義，區別於名詞「丞相、相國」。/ 顧史考：文獻中多見「相國」，為避劉邦諱而改。/ 俞紹宏、張青松：「[圖字040]」為「目」下增「又」。</li>
+        <li id="fn-14"> 淺野裕一：「民事」之內容即農業上的穀糧生產與囤積，工業上之器具、武器之製造與蓄積，以及透過鍛煉身體以應兵役義務之準備。/ 陳思婷：「民事」一詞常見，或指農事，或指政事、民政，或指人民服徭役之事。這裏應泛指人民之事，即政事、民政。</li>
+        <li id="fn-15"> 淺野裕一：簡9首補「農夫勸於耕，以」。/ 陳思婷：從淺野裕一增補，指出殘簡文字為三個排比的句型，在強調各種工作階層的人必須各盡其職。下文「百工勸於事，以實府庫」，指工匠們勉力從事器物的製作，以充實國家庫藏；「庶民勸於四肢，以備軍□」，乃針對人民勤於鍛鍊四肢，以備兵需。據此，則「實官倉」乃針對糧食穀物的蓄積，故本句「實官倉」之前可補一「以」字，而主詞應為「農人」或「農夫」，《詩．小雅．甫田》：「我取其陳，食我農人，自古有年。」《詩．周頌．噫嘻》：「率時農夫，播厥百穀。」</li>
+        <li id="fn-16"> 陳思婷：「倉」，《說文》曰：「穀藏也，倉黃取而藏之，故謂之倉。」段玉裁注：「穀藏者，謂穀所藏之處。」</li>
+        <li id="fn-17"> 整理者：「百工勸於事」猶言百工勉力於事。/ 陳思婷：「百工」，各種工匠。「勸」，勉勵、獎勵。</li>
+        <li id="fn-18"> 整理者：「府庫」乃國家財政所繫，故有關稅收皆存於茲。/ 陳思婷：「[圖字041]」，乃楚系「府庫」之「府」專字，「府」即國家儲藏財物的地方。正如此簡以「實官倉」與「實府庫」對舉，前者應為農民努力耕作以充實穀倉，後者則指各種工匠勤勉製作器物，以充實國家庫藏。/ 張峰：「庫」受下文「府」字從「宀」影響類化增加「宀」。/ 劉寶俊：「[圖字042]」為藏府、庫府專字。</li>
+        <li id="fn-19"> 整理者：首字疑乃「[圖字043]（庶）」字之殘，其下或為「民」字。「[圖字044]（庶）民」一辭於《上海博物館藏戰國楚竹書（二）魯邦大旱》第二及第六簡中兩見，可取與本簡字形參對。若然，「庶民」正可與上文「百工（攻）」對言，於義亦合也。/ 張新俊：「[圖字045]」下補「人」。/ 蘇建洲：認為「[圖字046]」其下从众，乃「庶民」之專用字。/ 陳思婷：從整理者補「民」，「庶民」為古代常見辭語。/ 史傑鵬：「庶」後一字釋「人」。</li>
+        <li id="fn-20"> 整理者：讀「觀」。/ 范常喜、淺野裕一、裘錫圭：讀「勸」，乃努力從事之意。/ 陳思婷：讀「勸」較合適，即「勉勵、獎勵」之意。/ 俞紹宏、張青松：「觀」原簡字形省去一個「口」形。</li>
+        <li id="fn-21"> 整理者、陳思婷：「四枳」讀為「四肢」。《郭店楚墓竹簡･唐虞之道》第二十六簡：「〈枝（肢）〉倦惰。」「四肢之藝」，所指應為強身健體之技藝，且與軍事攸關，故下文云：「以備軍⋯⋯」/ 范常喜：《韓非子·顯學》：「征賦錢粟以實倉庫，且以救饑饉備軍旅也，而以上為貪。」如果從《韓非子》中的例句來看，「四肢之藝」也可能是泛指農事而言。/ 陳思婷：范常喜恐不恰當。先秦「藝」字除指「種植」之外，亦有「才能、技術」之意，如《尚書．金縢》：「予仁若考，能多材多藝。」《論語．雍也》：「求也藝。」由於上文已分別針對農工之事加以論述，此處若再次重申農事則略嫌緟複，因此「藝」釋為「種植」的可能性較小；又從「以實軍旅」來看，此句係針對軍事方面而言，故「勸於四肢之藝」應如原考釋所說，在強調「強身健體之技藝」。</li>
+        <li id="fn-22"> 整理者：此簡最後一字殘損，擬隸作「[圖字047]」。/ 淺野裕一：最後一字釋「徒」，讀此句為「庶【民】勸於四肢之藝，以備軍徒」。/ 范常喜、裘錫圭：隸「[圖字048]」意不可解。此字實應為「旅」字。/ 于智博：「軍」後一字隸作「[圖字049]」，實為「旅」。/ 黃武智：「軍」後一字隸作「侍」。/ 史傑鵬：「軍」後一字釋「懽」，讀「旅」。</li>
+        <li id="fn-23"> 整理者：隸作「者」。/ 陳思婷、裘錫圭：本簡首字字跡並不清晰，從殘存的筆畫和上列的楚系「者」字相較，不能確認是否即為「者」字。此字暫存疑待考。/ 裘迷：簡4首殘字為「才」字殘，簡文中讀「哉」。</li>
+        <li id="fn-24"> 整理者：「君」雖未明指為何君，然揆諸先秦文獻，多有魯哀公問於孔子之記載，且問答之間，孔子亦有逕稱「哀公」為「君」者。因疑本篇所稱「公」、「君」，或當指魯哀公而言。/ 陳思婷：在《荀子．子道》、《家語》、〈相邦之道〉中，孔子對子貢說話時，都逕稱哀公為「君」。原考釋謂〈相邦之道〉「所稱『公』、『君』，或當指魯哀公而言」，應該是沒有疑問的。/ 陳霞光：「公」「君」指魯哀公說可能不當。/ 俞紹宏、張青松：「公」「君」具體所指不可強求。</li>
+        <li id="fn-25"> 整理者：「[圖字050]」隸作「[圖字051]」，讀為「欽」。「不亦欽乎？」文獻中相同語例多於「不亦」下綴以「可」、「宜」、「異」、「善」等字。「不亦欽乎？」備見讚許之意。/ 孟蓬生：讀「不亦[圖字052]乎」為「不亦可[圖字053]乎」，屬增字為訓，不可取。且增「可」字後全句即含被動意義，兩句話意義可謂大相徑庭。疑讀為「謙」，問話者為一國之君，不問有國（統治國家）的道術，卻問幫助治理國家的道術，有降低身份的意思，故孔子稱之為「謙」。/ 董珊：讀作「愆」，訓為「失」。相當於曾侯乙編鐘所見之「遣」字，意即孔子認為哀公失問。/ 何有祖：推測左部殘筆為「章」，字可隸作「[圖字054]」。從「欠」聲，讀作「贛」，愚。「吾見於君，不問有邦之道，而問相邦之道，不亦戇乎？」大意是：哀公他不向我詢問有邦之君道，卻跟我問做相邦這種臣道，不是很戇愚麽？/ 季旭昇：董說讀「愆」、何說讀「戇」都有可能。不得隸定作「[圖字055]」（從「歆」聲），讀「欽」、讀「謙」，均非。/ 陳思婷：董珊說可從，而言之未盡。由字形而言，「[圖字056]」左上部件應為「[圖字057]」之省體並加注「[圖字058]」聲，讀為「愆」。遣、愆古音皆在溪紐元部，《說文．心部》：「愆，過也。」義為差錯之意。「不亦愆乎」即孔子對哀公失問之評語。/ 艅艎：「有邦之道」乃「友邦之道」之誤寫。上古音「有」「友」匣母雙聲，之部疊顏，屬同音字，蓋讀音於楚方言中亦幾同。簡文意為，君接見我時，他不問我如何與他國搞好關係，而問我如何治理國家。「欽」，取讚許之義。「友邦」與「相邦」皆為明君之舉，故「不亦欽平」者是也。「不亦欽平」，這不也很令人欽佩嗎？/ 易泉：「戇」「哂」多多少少含有貶責的意味。至於楚簡所見讀為「友」的字例，或從兩「又」，或在其下添加「甘」或「日」，似沒有讀「有」為「友」的。/ 于智博：隸定「[圖字059]」左上從「言」。/ 李守奎：「[圖字060]」左上為「言」，從「言」「欠」雙聲。簡文中讀「欠」，有所不足也。/ 黃武智：「[圖字061]」為「歆」字增「土」旁之繁體，可訓為「欣」，欣喜。/ 文若水：「[圖字062]」上從「[圖字063]」，讀為「愆」，過錯。/ 海天：「[圖字064]」又《陳公治兵》簡18，左上從「章」，讀「謙」。/ 裘錫圭：「[圖字065]」從「言」「坎」聲，疑讀「謙」。/梁靜：「相邦之道」也就是臣道，「有邦之道」則是君道。孔子對身為一國之君的「公」不問「有邦之」道而問「相邦之道」，很是不以為然。/ 王寧：「[圖字066]」上面是從「言」「欠」的「噬」字。從「土」「噬」聲，當是「[圖字067]」字的繁構或異體。簡文中讀「哲」，智慧、聰明；也可以借用後世奉承皇帝的話說是「聖明」。孔子誇獎國君不問有邦之道而問相邦之道很聖明。古書中「哲」也可與「知（智）」通假。/ 俞紹宏、張青松：讀「謙」文意可通，似也可備一說。</li>
+        <li id="fn-26"> 劉樂賢：「吾子」不但可以用在稱呼平輩或晚輩，也可以用來稱呼長輩，而且孔子的學生們，也都有稱孔子為「吾子」的記錄。/ 季旭昇：「子」字本來就有尊稱的意思，「吾子」就是「我的老師」，似乎也未必有不敬的意味。戰國材料中和文獻用法不同的文例太多了，這不會是唯一的一樁。</li>
+        <li id="fn-27"> 整理者：「[圖字068]」，从言，从卥，卥形與古文「西」近同，故字可隸作「𧧍」。「女𧧍」，疑或讀為「如斯」。「如斯」皆含有「庶幾」之意。/ 孟蓬生：「𧧍」即「訊」字。《說文．言部》：「訊，問也。从言，卂聲。[圖字069]，古文訊从卥。」《字彙》以後，《康熙字典》、《漢語大字典》皆以「𧧍」為「哂」的俗字，非古義也。「如（訊）」的意思是說，君問我以相邦之道，我即以相邦之道來回答他。/ 董珊、何有祖：「𧧍」可能讀為「哂笑」之「哂」，孔子是說：就像哂笑一樣回答了他。其諷刺之語如何，從殘餘簡文已經難以看出。/ 淺野裕一：釋為「汝察（讓你想吧）」，又在補記中改釋讀為「汝訊」。/ 季旭昇：哀公雖然不詢問「有邦之道」，反而問『相邦之道』，但孔子仍然平實地回答，似未有如哂笑般的回答內容。孟說讀「𧧍」為「訊」，可通，但感覺上孔子這樣的回答意義不太大。」/ 陳思婷：從季旭昇，又提出或可釋讀為「汝思」，即孔子讓子貢自行思索平日所學之意。/ 艅艎：孔子日：「如哂。」似乎有「如其言」的意味，即順從了國君所願而答之。/ 于智博：「[圖字070]」隸作從「言」「囟」，讀「訊」。/ 李守奎：「𧧍」即古「訊」字，問。《集韻·稕韻》：「訊，古作𧨼。」為了便於和字書中的「𧧍」相區別，當以《集韻》隸定為便。「如訊」義為我之回答如其問。/ 俞紹宏、張青松：孟蓬生、李守奎說可參。又「如」有順隨義，艅艎說也可備一說。</li>
+      </ol>
+    </section>
+
+    <section class="image-manager" id="image-config" style="display: none;">
+      <div data-label="圖字001" data-path="images_相邦之道_20260112/001.png"></div>
+      <div data-label="圖字002" data-path="images_相邦之道_20260112/002.png"></div>
+      <div data-label="圖字003" data-path="images_相邦之道_20260112/003.png"></div>
+      <div data-label="圖字004" data-path="images_相邦之道_20260112/004.png"></div>
+      <div data-label="圖字005" data-path="images_相邦之道_20260112/005.png"></div>
+      <div data-label="圖字006" data-path="images_相邦之道_20260112/006.png"></div>
+      <div data-label="圖字007" data-path="images_相邦之道_20260112/007.png"></div>
+      <div data-label="圖字008" data-path="images_相邦之道_20260112/008.png"></div>
+      <div data-label="圖字009" data-path="images_相邦之道_20260112/009.png"></div>
+      <div data-label="圖字010" data-path="images_相邦之道_20260112/010.png"></div>
+      <div data-label="圖字011" data-path="images_相邦之道_20260112/011.png"></div>
+      <div data-label="圖字012" data-path="images_相邦之道_20260112/012.png"></div>
+      <div data-label="圖字013" data-path="images_相邦之道_20260112/013.png"></div>
+      <div data-label="圖字014" data-path="images_相邦之道_20260112/014.png"></div>
+      <div data-label="圖字015" data-path="images_相邦之道_20260112/015.png"></div>
+      <div data-label="圖字016" data-path="images_相邦之道_20260112/016.png"></div>
+      <div data-label="圖字017" data-path="images_相邦之道_20260112/017.png"></div>
+      <div data-label="圖字018" data-path="images_相邦之道_20260112/018.png"></div>
+      <div data-label="圖字019" data-path="images_相邦之道_20260112/019.png"></div>
+      <div data-label="圖字020" data-path="images_相邦之道_20260112/020.png"></div>
+      <div data-label="圖字021" data-path="images_相邦之道_20260112/021.png"></div>
+      <div data-label="圖字022" data-path="images_相邦之道_20260112/022.png"></div>
+      <div data-label="圖字023" data-path="images_相邦之道_20260112/023.png"></div>
+      <div data-label="圖字024" data-path="images_相邦之道_20260112/024.png"></div>
+      <div data-label="圖字025" data-path="images_相邦之道_20260112/025.png"></div>
+      <div data-label="圖字026" data-path="images_相邦之道_20260112/026.png"></div>
+      <div data-label="圖字027" data-path="images_相邦之道_20260112/027.png"></div>
+      <div data-label="圖字028" data-path="images_相邦之道_20260112/028.png"></div>
+      <div data-label="圖字029" data-path="images_相邦之道_20260112/029.png"></div>
+      <div data-label="圖字030" data-path="images_相邦之道_20260112/030.png"></div>
+      <div data-label="圖字031" data-path="images_相邦之道_20260112/031.png"></div>
+      <div data-label="圖字032" data-path="images_相邦之道_20260112/032.png"></div>
+      <div data-label="圖字033" data-path="images_相邦之道_20260112/033.png"></div>
+      <div data-label="圖字034" data-path="images_相邦之道_20260112/034.png"></div>
+      <div data-label="圖字035" data-path="images_相邦之道_20260112/035.png"></div>
+      <div data-label="圖字036" data-path="images_相邦之道_20260112/036.png"></div>
+      <div data-label="圖字037" data-path="images_相邦之道_20260112/037.png"></div>
+      <div data-label="圖字038" data-path="images_相邦之道_20260112/038.png"></div>
+      <div data-label="圖字039" data-path="images_相邦之道_20260112/039.png"></div>
+      <div data-label="圖字040" data-path="images_相邦之道_20260112/040.png"></div>
+      <div data-label="圖字041" data-path="images_相邦之道_20260112/041.png"></div>
+      <div data-label="圖字042" data-path="images_相邦之道_20260112/042.png"></div>
+      <div data-label="圖字043" data-path="images_相邦之道_20260112/043.png"></div>
+      <div data-label="圖字044" data-path="images_相邦之道_20260112/044.png"></div>
+      <div data-label="圖字045" data-path="images_相邦之道_20260112/045.png"></div>
+      <div data-label="圖字046" data-path="images_相邦之道_20260112/046.png"></div>
+      <div data-label="圖字047" data-path="images_相邦之道_20260112/047.png"></div>
+      <div data-label="圖字048" data-path="images_相邦之道_20260112/048.png"></div>
+      <div data-label="圖字049" data-path="images_相邦之道_20260112/049.png"></div>
+      <div data-label="圖字050" data-path="images_相邦之道_20260112/050.png"></div>
+      <div data-label="圖字051" data-path="images_相邦之道_20260112/051.png"></div>
+      <div data-label="圖字052" data-path="images_相邦之道_20260112/052.png"></div>
+      <div data-label="圖字053" data-path="images_相邦之道_20260112/053.png"></div>
+      <div data-label="圖字054" data-path="images_相邦之道_20260112/054.png"></div>
+      <div data-label="圖字055" data-path="images_相邦之道_20260112/055.png"></div>
+      <div data-label="圖字056" data-path="images_相邦之道_20260112/056.png"></div>
+      <div data-label="圖字057" data-path="images_相邦之道_20260112/057.png"></div>
+      <div data-label="圖字058" data-path="images_相邦之道_20260112/058.png"></div>
+      <div data-label="圖字059" data-path="images_相邦之道_20260112/059.png"></div>
+      <div data-label="圖字060" data-path="images_相邦之道_20260112/060.png"></div>
+      <div data-label="圖字061" data-path="images_相邦之道_20260112/061.png"></div>
+      <div data-label="圖字062" data-path="images_相邦之道_20260112/062.png"></div>
+      <div data-label="圖字063" data-path="images_相邦之道_20260112/063.png"></div>
+      <div data-label="圖字064" data-path="images_相邦之道_20260112/064.png"></div>
+      <div data-label="圖字065" data-path="images_相邦之道_20260112/065.png"></div>
+      <div data-label="圖字066" data-path="images_相邦之道_20260112/066.png"></div>
+      <div data-label="圖字067" data-path="images_相邦之道_20260112/067.png"></div>
+      <div data-label="圖字068" data-path="images_相邦之道_20260112/068.png"></div>
+      <div data-label="圖字069" data-path="images_相邦之道_20260112/069.png"></div>
+      <div data-label="圖字070" data-path="images_相邦之道_20260112/070.png"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>轉製日期：2026-01-12</p>
+    <p>說明：本頁人工整理，如有錯誤，請聯繫作者和網頁製作者。</p>
+  </footer>
+
+  <script>
+    (function () {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+      const nodesToProcess = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        if (node.parentNode && node.parentNode.closest('script, style, code')) continue;
+        const text = node.nodeValue;
+        // 检查是否包含 [] 或 [圖字XXX] 格式
+        if (text.includes('[]') || /\[圖字\d{3}\]/.test(text)) {
+          nodesToProcess.push(node);
+        }
+      }
+
+      const imageConfig = document.getElementById('image-config');
+      const placeholders = new Map(); // 存储所有占位符：label -> span元素
+      const imagePaths = new Map(); // 存储图片路径配置：label -> path
+
+      // 读取图片路径配置
+      if (imageConfig) {
+        const configItems = imageConfig.querySelectorAll('div[data-label][data-path]');
+        configItems.forEach(item => {
+          const label = item.getAttribute('data-label');
+          const path = item.getAttribute('data-path');
+          if (label && path) {
+            imagePaths.set(label, path);
+          }
+        });
+      }
+
+      let counter = 1;
+
+      const pad = function (num) {
+        return String(num).padStart(3, '0');
+      };
+
+      // 处理文本节点，创建占位符
+      // 支持两种格式：[圖字177] 或 [圖字001]（带序号）
+      nodesToProcess.forEach((textNode) => {
+        let text = textNode.nodeValue;
+        
+        // 先处理带序号的格式 [圖字XXX]
+        const numberedPattern = /\[圖字(\d{3})\]/g;
+        const numberedMatches = [];
+        let match;
+        while ((match = numberedPattern.exec(text)) !== null) {
+          numberedMatches.push({
+            index: match.index,
+            label: `圖字${match[1]}`,
+            length: match[0].length
+          });
+        }
+        
+        // 再处理普通格式 []
+        const simplePattern = /\[\]/g;
+        const simpleMatches = [];
+        while ((match = simplePattern.exec(text)) !== null) {
+          // 检查是否已经被带序号的格式覆盖
+          const isOverlapped = numberedMatches.some(nm => 
+            match.index >= nm.index && match.index < nm.index + nm.length
+          );
+          if (!isOverlapped) {
+            simpleMatches.push({
+              index: match.index,
+              label: `圖字${pad(counter)}`,
+              length: 2
+            });
+            counter += 1;
+          }
+        }
+        
+        // 合并所有匹配，按位置排序
+        const allMatches = [...numberedMatches, ...simpleMatches].sort((a, b) => a.index - b.index);
+        
+        if (allMatches.length === 0) return;
+
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        
+        allMatches.forEach((matchInfo) => {
+          // 添加匹配前的文本
+          if (matchInfo.index > lastIndex) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, matchInfo.index)));
+          }
+          
+          // 创建占位符
+            const span = document.createElement('span');
+            span.className = 'glyph-placeholder';
+          span.dataset.label = matchInfo.label;
+            span.setAttribute('role', 'img');
+          span.setAttribute('aria-label', `${matchInfo.label} 待補圖片`);
+          span.textContent = matchInfo.label; // 显示序号而不是□
+            fragment.appendChild(span);
+
+          // 存储占位符引用
+          placeholders.set(matchInfo.label, span);
+          
+          lastIndex = matchInfo.index + matchInfo.length;
+        });
+        
+        // 添加剩余的文本
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+
+        textNode.parentNode.replaceChild(fragment, textNode);
+      });
+
+      // 根据配置自动加载图片
+      placeholders.forEach((span, label) => {
+        const imagePath = imagePaths.get(label);
+        if (imagePath && span.parentNode) {
+          const img = document.createElement('img');
+          img.src = imagePath;
+          img.alt = label;
+          img.style.maxHeight = '1.6em';
+          img.style.verticalAlign = 'middle';
+          img.style.margin = '0 0.12em';
+          img.style.display = 'inline-block';
+          img.onerror = function() {
+            // 图片加载失败时保持占位符
+            console.warn(`圖片載入失敗: ${label} - ${imagePath}`);
+          };
+          span.parentNode.replaceChild(img, span);
+        }
+      });
+    })();
+
+    // 注释跳转功能
+    (function () {
+      // 处理释文中的注释标记，将其转换为可点击的链接
+      const transcriptionBlock = document.querySelector('.transcription-block');
+      if (!transcriptionBlock) return;
+
+      const walker = document.createTreeWalker(
+        transcriptionBlock,
+        NodeFilter.SHOW_TEXT,
+        null
+      );
+
+      const nodesToProcess = [];
+      let node;
+      
+      while ((node = walker.nextNode())) {
+        if (node.parentNode && node.parentNode.closest('script, style, code, a')) continue;
+        const text = node.nodeValue;
+        // 匹配注释标记 [数字]，但排除 [圖字XXX] 格式
+        if (/\[(\d{1,3})\]/.test(text) && !/\[圖字\d+\]/.test(text)) {
+          nodesToProcess.push(node);
+        }
+      }
+
+      nodesToProcess.forEach((textNode) => {
+        const text = textNode.nodeValue;
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        
+        // 匹配 [1], [2], [3] 等格式（1-3位数字）
+        const pattern = /\[(\d{1,3})\]/g;
+        let match;
+        
+        while ((match = pattern.exec(text)) !== null) {
+          const fullMatch = match[0]; // [1]
+          const number = match[1];    // 1
+          
+          // 添加匹配前的文本
+          if (match.index > lastIndex) {
+            fragment.appendChild(
+              document.createTextNode(text.slice(lastIndex, match.index))
+            );
+          }
+          
+          // 创建注释链接
+          const link = document.createElement('a');
+          link.href = `#fn-${number}`;
+          link.className = 'footnote-ref';
+          link.textContent = fullMatch;
+          link.setAttribute('title', `跳转到注释 ${number}`);
+          fragment.appendChild(link);
+          
+          lastIndex = match.index + fullMatch.length;
+        }
+        
+        // 添加剩余的文本
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+
+        textNode.parentNode.replaceChild(fragment, textNode);
+      });
+
+      // 在注释列表中添加返回链接
+      const footnotes = document.querySelectorAll('.footnotes li[id^="fn-"]');
+      footnotes.forEach((footnote) => {
+        const id = footnote.getAttribute('id');
+        const number = id.replace('fn-', '');
+        
+        // 创建返回链接
+        const backLink = document.createElement('a');
+        backLink.href = '#transcription-title';
+        backLink.className = 'footnote-backref';
+        backLink.textContent = '↑返回';
+        backLink.setAttribute('title', '返回正文');
+        
+        // 将返回链接添加到注释末尾
+        footnote.appendChild(backLink);
+      });
+
+      // 平滑滚动效果
+      document.querySelectorAll('a.footnote-ref, a.footnote-backref').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId) || 
+                               document.querySelector(this.getAttribute('href'));
+          
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+            
+            // 更新URL但不触发滚动
+            history.pushState(null, null, this.getAttribute('href'));
+            
+            // 添加临时高亮效果
+            if (targetElement.tagName === 'LI') {
+              targetElement.style.transition = 'background-color 0.3s ease';
+              const originalBg = window.getComputedStyle(targetElement).backgroundColor;
+              setTimeout(() => {
+                targetElement.style.backgroundColor = '';
+              }, 2000);
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

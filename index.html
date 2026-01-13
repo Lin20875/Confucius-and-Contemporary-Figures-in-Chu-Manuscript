@@ -63,8 +63,10 @@
 		.results__title{margin:0; font-size:20px;}
 		.results__hint{margin:0; font-size:13px; color:var(--muted);}
 		.results__list{flex:1; overflow:auto; padding:12px 4px 12px 0; margin:0; display:flex; flex-direction:column; gap:14px;}
-		.result{padding:12px 18px; border:1px solid var(--border); border-radius:10px; background:#fff;}
-		.result__article{font-size:13px; color:var(--muted); margin:0 0 6px;}
+		.result{padding:12px 18px; border:1px solid var(--border); border-radius:10px; background:#fff; position:relative;}
+		.result__header{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; gap:12px;}
+		.result__article{font-size:13px; color:var(--muted); margin:0; flex:1;}
+		.result__goto{flex-shrink:0;}
 		.result__excerpt{margin:0; line-height:1.6; font-size:14px;}
 		.result__mark{background:rgba(140,29,64,.18); color:inherit; padding:0 2px; border-radius:2px;}
 		.results__empty{margin:0; font-size:13px; color:var(--muted);}
@@ -184,9 +186,22 @@
 
 			// 主应用逻辑
 			const articles = [
+				{ title: "民之父母", path: "articles/民之父母.html" },
+				{ title: "窮達以時", path: "articles/窮達以時.html" },
+				{ title: "仲弓", path: "articles/仲弓.html" },
+				{ title: "史蒥問於夫子", path: "articles/史蒥問於夫子.html" },
 				{ title: "君子為禮", path: "articles/君子為禮.html" },
-				{ title: "示例文章二（sample-2）", path: "articles/sample-2.html" },
-				{ title: "示例文章乙（sample-b）", path: "articles/sample-b.html" }
+				{ title: "子羔", path: "articles/子羔.html" },
+				{ title: "孔子見季桓子", path: "articles/孔子見季桓子.html" },
+				{ title: "季庚子問於孔子", path: "articles/季庚子問於孔子.html" },
+				{ title: "尊德義", path: "articles/尊德義.html" },
+				{ title: "弟子問", path: "articles/弟子問.html" },
+				{ title: "從政", path: "articles/從政.html" },
+				{ title: "成之聞之", path: "articles/成之聞之.html" },
+				{ title: "相邦之道", path: "articles/相邦之道.html" },
+				{ title: "邦家之政", path: "articles/邦家之政.html" },
+				{ title: "顏淵問於孔子", path: "articles/顏淵問於孔子.html" },
+				{ title: "魯邦大旱", path: "articles/魯邦大旱.html" }
 			];
 
 			const listEl = document.getElementById('article-list');
@@ -270,6 +285,58 @@
 				return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 			}
 
+			// 从文章 HTML 中提取图片配置
+			function extractImageConfig(doc) {
+				const imagePaths = new Map();
+				const imageConfig = doc.getElementById('image-config');
+				if (imageConfig) {
+					const configItems = imageConfig.querySelectorAll('div[data-label][data-path]');
+					configItems.forEach(item => {
+						const label = item.getAttribute('data-label');
+						const path = item.getAttribute('data-path');
+						if (label && path) {
+							imagePaths.set(label, path);
+						}
+					});
+				}
+				return imagePaths;
+			}
+
+			// 将文本中的占位符替换为图片 HTML
+			function processGlyphPlaceholders(text, imagePaths, articleBasePath) {
+				// 获取文章所在目录（用于拼接图片路径）
+				const baseDir = articleBasePath.substring(0, articleBasePath.lastIndexOf('/') + 1);
+				
+				let result = text;
+				let counter = 1;
+				const pad = (num) => String(num).padStart(3, '0');
+				
+				// 先处理带序号的格式 [圖字XXX]
+				result = result.replace(/\[圖字(\d{3})\]/g, (match, num) => {
+					const label = `圖字${num}`;
+					const imagePath = imagePaths.get(label);
+					if (imagePath) {
+						return `<img src="${baseDir}${imagePath}" alt="${label}" style="max-height:1.6em;vertical-align:middle;margin:0 0.12em;display:inline-block;" onerror="this.outerHTML='<span style=\\'display:inline-flex;align-items:center;justify-content:center;min-width:1.2em;height:1.4em;padding:0.1em 0.3em;margin:0 0.12em;border:1px dashed rgba(180,32,32,0.6);background-color:rgba(255,228,232,0.45);border-radius:0.35em;font-weight:600;color:#8c1d40;font-size:0.85em;\\'>${label}</span>'">`;
+					} else {
+						return `<span style="display:inline-flex;align-items:center;justify-content:center;min-width:1.2em;height:1.4em;padding:0.1em 0.3em;margin:0 0.12em;border:1px dashed rgba(180,32,32,0.6);background-color:rgba(255,228,232,0.45);border-radius:0.35em;font-weight:600;color:#8c1d40;font-size:0.85em;">${label}</span>`;
+					}
+				});
+				
+				// 再处理普通格式 []
+				result = result.replace(/\[\]/g, () => {
+					const label = `圖字${pad(counter)}`;
+					counter++;
+					const imagePath = imagePaths.get(label);
+					if (imagePath) {
+						return `<img src="${baseDir}${imagePath}" alt="${label}" style="max-height:1.6em;vertical-align:middle;margin:0 0.12em;display:inline-block;" onerror="this.outerHTML='<span style=\\'display:inline-flex;align-items:center;justify-content:center;min-width:1.2em;height:1.4em;padding:0.1em 0.3em;margin:0 0.12em;border:1px dashed rgba(180,32,32,0.6);background-color:rgba(255,228,232,0.45);border-radius:0.35em;font-weight:600;color:#8c1d40;font-size:0.85em;\\'>${label}</span>'">`;
+					} else {
+						return `<span style="display:inline-flex;align-items:center;justify-content:center;min-width:1.2em;height:1.4em;padding:0.1em 0.3em;margin:0 0.12em;border:1px dashed rgba(180,32,32,0.6);background-color:rgba(255,228,232,0.45);border-radius:0.35em;font-weight:600;color:#8c1d40;font-size:0.85em;">${label}</span>`;
+					}
+				});
+				
+				return result;
+			}
+
 			function getSelectedScopeIndices() {
 				return Array.from(scopeGroup.querySelectorAll('input[type="checkbox"]:checked'))
 					.map(input => parseInt(input.value, 10))
@@ -292,7 +359,6 @@
 				setHint("檢索中…");
 				showSearchPanel();
 
-				const pattern = new RegExp(escapeRegExp(query), 'gi');
 				const results = [];
 
 				for (const idx of articleIndices) {
@@ -304,25 +370,94 @@
 						const parser = new DOMParser();
 						const doc = parser.parseFromString(htmlText, "text/html");
 
-						const segments = Array.from(doc.querySelectorAll('p, li, blockquote, h1, h2, h3, h4'));
-						segments.forEach((node) => {
-							const text = node.textContent || "";
-							if (!text.trim()) return;
-							if (pattern.test(text)) {
-								const marked = text.replace(pattern, (match) => `<mark class="result__mark">${match}</mark>`);
-								results.push({
-									articleTitle: art.title,
-									excerpt: marked
-								});
-								pattern.lastIndex = 0;
+						// 提取图片配置（在移除 script 之前）
+						const imagePaths = extractImageConfig(doc);
+
+						// 移除 script 和 style 标签
+						const scripts = doc.querySelectorAll('script, style');
+						scripts.forEach(el => el.remove());
+
+						// 扩大检索范围，包括 main 中的所有文本内容
+						const mainContent = doc.querySelector('main');
+						if (mainContent) {
+							// 查找所有包含文本的元素（优先查找 transcription-block 中的内容）
+							const segments = Array.from(mainContent.querySelectorAll('p, li, blockquote, h1, h2, h3, h4'));
+							
+							// 如果没找到，尝试直接获取 main 的文本
+							if (segments.length === 0) {
+								const allText = mainContent.textContent || "";
+								if (allText.includes(query)) {
+									// 创建正则表达式进行匹配和标记
+									const pattern = new RegExp(escapeRegExp(query), 'gi');
+									const marked = allText.replace(pattern, (match) => `<mark class="result__mark">${match}</mark>`);
+									// 截取包含查询词的部分（前后各100字符）
+									const matchIndex = allText.toLowerCase().indexOf(query.toLowerCase());
+									if (matchIndex !== -1) {
+										const start = Math.max(0, matchIndex - 100);
+										const end = Math.min(allText.length, matchIndex + query.length + 100);
+										let excerpt = '...' + marked.substring(start, end) + '...';
+										// 应用图片替换
+										excerpt = processGlyphPlaceholders(excerpt, imagePaths, art.path);
+										results.push({
+											articleIndex: idx,
+											articleTitle: art.title,
+											articlePath: art.path,
+											excerpt: excerpt,
+											query: query
+										});
+									}
+								}
 							} else {
-								pattern.lastIndex = 0;
+								segments.forEach((node) => {
+									const text = node.textContent || "";
+									if (!text.trim()) return;
+									
+									// 检查是否包含查询词（不区分大小写）
+									if (text.toLowerCase().includes(query.toLowerCase())) {
+										// 创建新的正则表达式实例，避免 lastIndex 问题
+										const pattern = new RegExp(escapeRegExp(query), 'gi');
+										let marked = text.replace(pattern, (match) => `<mark class="result__mark">${match}</mark>`);
+										// 应用图片替换
+										marked = processGlyphPlaceholders(marked, imagePaths, art.path);
+										results.push({
+											articleIndex: idx,
+											articleTitle: art.title,
+											articlePath: art.path,
+											excerpt: marked,
+											query: query
+										});
+									}
+								});
 							}
-						});
+						} else {
+							// 如果没有 main 标签，使用原来的方法
+							const segments = Array.from(doc.querySelectorAll('p, li, blockquote, h1, h2, h3, h4'));
+							segments.forEach((node) => {
+								const text = node.textContent || "";
+								if (!text.trim()) return;
+								
+								if (text.toLowerCase().includes(query.toLowerCase())) {
+									const pattern = new RegExp(escapeRegExp(query), 'gi');
+									let marked = text.replace(pattern, (match) => `<mark class="result__mark">${match}</mark>`);
+									// 应用图片替换
+									marked = processGlyphPlaceholders(marked, imagePaths, art.path);
+									results.push({
+										articleIndex: idx,
+										articleTitle: art.title,
+										articlePath: art.path,
+										excerpt: marked,
+										query: query
+									});
+								}
+							});
+						}
 					} catch (err) {
 						results.push({
+							articleIndex: idx,
 							articleTitle: art.title,
-							excerpt: `<span style="color:#b00020;">${err.message}</span>`
+							articlePath: art.path,
+							excerpt: `<span style="color:#b00020;">${err.message}</span>`,
+							query: query
 						});
 					}
 				}
@@ -337,19 +472,173 @@
 				results.forEach((item) => {
 					const wrapper = document.createElement('article');
 					wrapper.className = 'result';
+					
+					// 创建标题和按钮的容器
+					const header = document.createElement('div');
+					header.className = 'result__header';
+					
 					const title = document.createElement('p');
 					title.className = 'result__article';
 					title.textContent = "文章：《" + item.articleTitle + "》";
+					
+					// 创建"前往该文"按钮
+					const gotoBtn = document.createElement('button');
+					gotoBtn.className = 'btn btn--ghost result__goto';
+					gotoBtn.textContent = '前往该文';
+					gotoBtn.type = 'button';
+					gotoBtn.addEventListener('click', () => {
+						// 切换到对应文章
+						if (item.articleIndex !== undefined && item.articleIndex !== currentIndex) {
+							currentIndex = item.articleIndex;
+							loadArticle();
+							renderList();
+							renderScope();
+						} else if (item.articlePath) {
+							// 如果索引不存在，通过路径查找
+							const foundIdx = articles.findIndex(a => a.path === item.articlePath);
+							if (foundIdx !== -1 && foundIdx !== currentIndex) {
+								currentIndex = foundIdx;
+								loadArticle();
+								renderList();
+								renderScope();
+							}
+						}
+						
+						// 显示文章视图
+						showViewer();
+						
+						// 等待iframe加载完成后定位到相关位置
+						if (item.query) {
+							// 监听iframe加载完成事件
+							const handleLoad = () => {
+								setTimeout(() => {
+									scrollToQueryInIframe(item.query);
+								}, 300);
+								iframe.removeEventListener('load', handleLoad);
+							};
+							iframe.addEventListener('load', handleLoad);
+							// 如果iframe已经加载完成，立即执行
+							if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+								handleLoad();
+							}
+						}
+					});
+					
+					header.appendChild(title);
+					header.appendChild(gotoBtn);
+					
 					const excerpt = document.createElement('p');
 					excerpt.className = 'result__excerpt';
 					excerpt.innerHTML = item.excerpt;
-					wrapper.appendChild(title);
+					
+					wrapper.appendChild(header);
 					wrapper.appendChild(excerpt);
 					frag.appendChild(wrapper);
 				});
 				resultsEl.innerHTML = "";
 				resultsEl.appendChild(frag);
 				setHint("找到 " + results.length + " 筆結果。");
+			}
+
+			// 在iframe中滚动到包含查询词的位置
+			function scrollToQueryInIframe(query) {
+				try {
+					const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+					if (!iframeDoc || !iframeDoc.body) return;
+					
+					// 先尝试查找所有包含查询词的段落元素
+					const allElements = iframeDoc.querySelectorAll('p, li, blockquote, h1, h2, h3, h4, span, div');
+					let foundElement = null;
+					
+					for (const elem of allElements) {
+						const text = elem.textContent || '';
+						if (text.toLowerCase().includes(query.toLowerCase())) {
+							foundElement = elem;
+							break;
+						}
+					}
+					
+					if (foundElement) {
+						// 高亮显示匹配的文本
+						const text = foundElement.textContent || '';
+						const matchIndex = text.toLowerCase().indexOf(query.toLowerCase());
+						if (matchIndex !== -1) {
+							// 尝试在元素内高亮文本
+							const walker = iframeDoc.createTreeWalker(
+								foundElement,
+								NodeFilter.SHOW_TEXT,
+								null
+							);
+							
+							let textNode;
+							let currentPos = 0;
+							while (textNode = walker.nextNode()) {
+								const nodeText = textNode.textContent || '';
+								const nodeStart = currentPos;
+								const nodeEnd = currentPos + nodeText.length;
+								
+								if (matchIndex >= nodeStart && matchIndex < nodeEnd) {
+									// 在这个文本节点中找到匹配
+									const range = iframeDoc.createRange();
+									const localIndex = matchIndex - nodeStart;
+									range.setStart(textNode, localIndex);
+									range.setEnd(textNode, Math.min(localIndex + query.length, nodeText.length));
+									
+									// 创建高亮标记
+									const mark = iframeDoc.createElement('mark');
+									mark.style.backgroundColor = 'rgba(140,29,64,.3)';
+									mark.style.padding = '2px 4px';
+									mark.style.borderRadius = '3px';
+									mark.style.transition = 'background-color 0.3s ease';
+									
+									try {
+										range.surroundContents(mark);
+										// 3秒后移除高亮
+										setTimeout(() => {
+											if (mark.parentNode) {
+												const parent = mark.parentNode;
+												parent.replaceChild(iframeDoc.createTextNode(mark.textContent), mark);
+												parent.normalize();
+											}
+										}, 3000);
+									} catch (e) {
+										// 如果surroundContents失败，跳过
+										console.warn('无法高亮文本:', e);
+									}
+									break;
+								}
+								currentPos = nodeEnd;
+							}
+						}
+						
+						// 滚动到元素位置
+						foundElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+					} else {
+						// 如果没找到元素，尝试在整个文档中查找文本节点
+						const walker = iframeDoc.createTreeWalker(
+							iframeDoc.body,
+							NodeFilter.SHOW_TEXT,
+							null
+						);
+						
+						let textNode;
+						while (textNode = walker.nextNode()) {
+							if (textNode.textContent && textNode.textContent.toLowerCase().includes(query.toLowerCase())) {
+								let element = textNode.parentElement;
+								while (element && (!element.offsetParent || element === iframeDoc.body)) {
+									element = element.parentElement;
+								}
+								
+								if (element && element !== iframeDoc.body) {
+									element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+									break;
+								}
+							}
+						}
+					}
+				} catch (err) {
+					console.warn('无法定位到查询位置:', err);
+				}
 			}
 
 			searchBtn.addEventListener('click', runSearch);
