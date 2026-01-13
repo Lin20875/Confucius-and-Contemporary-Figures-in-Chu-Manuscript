@@ -70,16 +70,67 @@
 		.result__excerpt{margin:0; line-height:1.6; font-size:14px;}
 		.result__mark{background:rgba(140,29,64,.18); color:inherit; padding:0 2px; border-radius:2px;}
 		.results__empty{margin:0; font-size:13px; color:var(--muted);}
+		/* 移动端布局优化 */
 		@media (max-width:768px){
-			.layout{flex-direction:column; height:auto; min-height:calc(100vh - 86px);}
-			.sidebar{width:100%; max-width:none; border-right:none; border-bottom:1px solid var(--border); height:auto;}
-			.sidebar.hidden{transform:translateY(-100%); margin-left:0; margin-top:-100%;}
-			.floating-toggle{left:auto; right:20px;}
+			.header{padding:10px 14px;}
+			.header__title{font-size:20px;}
+			.header__meta{font-size:12px; margin:4px 0 0;}
+			.layout{flex-direction:column; height:auto; min-height:calc(100vh - 70px);}
+			.sidebar{
+				width:100%; 
+				max-width:none; 
+				border-right:none; 
+				border-bottom:1px solid var(--border); 
+				height:auto;
+				max-height:60vh;
+				overflow:hidden;
+				transition:max-height .3s ease, padding .3s ease;
+			}
+			.sidebar.mobile-collapsed{
+				max-height:48px;
+				overflow:hidden;
+			}
+			.sidebar.mobile-collapsed .list,
+			.sidebar.mobile-collapsed .sidebar__footer{
+				display:none;
+			}
+			.sidebar__header{
+				display:flex;
+				align-items:center;
+				justify-content:space-between;
+				padding:10px 14px;
+				min-height:48px;
+			}
+			.mobile-expand-btn{
+				display:flex;
+				align-items:center;
+				gap:6px;
+				background:var(--accent);
+				color:#fff;
+				border:none;
+				padding:6px 12px;
+				border-radius:6px;
+				font-size:13px;
+				cursor:pointer;
+			}
+			.mobile-expand-btn:active{transform:scale(.95);}
+			.list{max-height:25vh; overflow:auto;}
+			.sidebar__footer{max-height:35vh; overflow:auto;}
+			.checkbox-group{max-height:100px;}
+			.floating-toggle{left:auto; right:16px; bottom:20px; top:auto; width:50px; height:50px;}
+			.content{min-height:50vh;}
+			.viewer-wrap{min-height:60vh;}
 		}
 		@media (max-width:540px){
+			.header__title{font-size:18px;}
 			.results__bar{flex-direction:column; align-items:flex-start;}
 			.btn--ghost{width:100%;}
-			.search-panel{padding:18px;}
+			.search-panel{padding:14px;}
+			.sidebar.mobile-collapsed{max-height:44px;}
+			.sidebar__header{padding:8px 12px; min-height:44px;}
+		}
+		@media (min-width:769px){
+			.mobile-expand-btn{display:none !important;}
 		}
 	</style>
 </head>
@@ -92,6 +143,10 @@
 		<aside class="sidebar" aria-label="文章目錄與全文檢索">
 			<div class="sidebar__header">
 				<p id="catalog-toggle" class="section__title" style="flex:1; margin:0;">讀本目錄</p>
+				<button id="mobile-expand" class="mobile-expand-btn" type="button" aria-label="展開/收起選單">
+					<span id="mobile-expand-icon">▼</span>
+					<span id="mobile-expand-text">展開</span>
+				</button>
 				<button id="sidebar-toggle" class="sidebar-toggle" type="button" title="收起側邊欄" aria-label="收起側邊欄">◀</button>
 			</div>
 			<ul id="article-list" class="list" aria-label="文章列表"></ul>
@@ -129,27 +184,55 @@
 	</div>
 	<script>
 		(function(){
+			// 检测是否为移动端
+			function isMobile() {
+				return window.innerWidth <= 768;
+			}
+
 			// 侧边栏显示/隐藏功能
 			const sidebar = document.querySelector('.sidebar');
 			const sidebarToggle = document.getElementById('sidebar-toggle');
 			const floatingToggle = document.getElementById('floating-toggle');
+			const mobileExpandBtn = document.getElementById('mobile-expand');
+			const mobileExpandIcon = document.getElementById('mobile-expand-icon');
+			const mobileExpandText = document.getElementById('mobile-expand-text');
 
 			// 初始化侧边栏状态
 			const sidebarHidden = localStorage.getItem('sidebarHidden') === 'true';
-			if (sidebarHidden) {
+			if (sidebarHidden && !isMobile()) {
 				sidebar.classList.add('hidden');
 				floatingToggle.classList.add('visible');
 			}
 
-			// 切换侧边栏
+			// 移动端默认折叠侧边栏
+			if (isMobile()) {
+				sidebar.classList.add('mobile-collapsed');
+				mobileExpandIcon.textContent = '▼';
+				mobileExpandText.textContent = '展開';
+			}
+
+			// 切换侧边栏（桌面端）
 			function toggleSidebar() {
 				const isHidden = sidebar.classList.toggle('hidden');
 				floatingToggle.classList.toggle('visible', isHidden);
 				localStorage.setItem('sidebarHidden', isHidden);
 			}
 
+			// 切换移动端侧边栏
+			function toggleMobileSidebar() {
+				const isCollapsed = sidebar.classList.toggle('mobile-collapsed');
+				if (isCollapsed) {
+					mobileExpandIcon.textContent = '▼';
+					mobileExpandText.textContent = '展開';
+				} else {
+					mobileExpandIcon.textContent = '▲';
+					mobileExpandText.textContent = '收起';
+				}
+			}
+
 			sidebarToggle.addEventListener('click', toggleSidebar);
 			floatingToggle.addEventListener('click', toggleSidebar);
+			mobileExpandBtn.addEventListener('click', toggleMobileSidebar);
 
 			// 折叠/展开功能
 			const catalogToggle = document.getElementById('catalog-toggle');
@@ -157,9 +240,14 @@
 			const searchToggle = document.getElementById('search-toggle');
 			const searchContent = document.getElementById('search-content');
 
-			// 初始化折叠状态（从 localStorage 读取）
+			// 初始化折叠状态（移动端默认折叠检索功能）
 			const catalogCollapsed = localStorage.getItem('catalogCollapsed') === 'true';
-			const searchCollapsed = localStorage.getItem('searchCollapsed') === 'true';
+			let searchCollapsed = localStorage.getItem('searchCollapsed') === 'true';
+			
+			// 移动端首次加载时默认折叠检索功能
+			if (isMobile() && localStorage.getItem('searchCollapsed') === null) {
+				searchCollapsed = true;
+			}
 
 			if (catalogCollapsed) {
 				catalogToggle.classList.add('collapsed');
@@ -182,6 +270,23 @@
 				const isCollapsed = searchToggle.classList.toggle('collapsed');
 				searchContent.classList.toggle('collapsed');
 				localStorage.setItem('searchCollapsed', isCollapsed);
+			});
+
+			// 监听窗口大小变化
+			window.addEventListener('resize', function() {
+				if (isMobile()) {
+					// 移动端：隐藏桌面版的隐藏状态
+					sidebar.classList.remove('hidden');
+					floatingToggle.classList.remove('visible');
+				} else {
+					// 桌面端：移除移动版的折叠状态
+					sidebar.classList.remove('mobile-collapsed');
+					// 恢复桌面端的隐藏状态
+					if (localStorage.getItem('sidebarHidden') === 'true') {
+						sidebar.classList.add('hidden');
+						floatingToggle.classList.add('visible');
+					}
+				}
 			});
 
 			// 主应用逻辑
@@ -249,6 +354,12 @@
 							renderScope();
 							showViewer();
 							setHint("已切換至《" + a.title + "》");
+						}
+						// 移动端点击文章后自动折叠侧边栏
+						if (isMobile() && !sidebar.classList.contains('mobile-collapsed')) {
+							sidebar.classList.add('mobile-collapsed');
+							mobileExpandIcon.textContent = '▼';
+							mobileExpandText.textContent = '展開';
 						}
 					});
 					li.appendChild(link);
