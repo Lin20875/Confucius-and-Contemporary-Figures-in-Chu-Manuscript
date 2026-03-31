@@ -51,8 +51,24 @@
 		.checkbox-group__item input[type="checkbox"]{margin-top:2px; accent-color:var(--accent);}
 		.notice{margin-top:8px; font-size:12px; color:var(--muted);}
 		.content{flex:1; display:flex; flex-direction:column; background:#fff; min-height:0; position:relative;}
+		.mode-bar{display:flex; gap:6px; padding:8px 14px; border-bottom:1px solid var(--border); background:var(--bg); flex-shrink:0; flex-wrap:wrap; align-items:center;}
+		.mode-bar__label{font-size:13px; color:var(--muted); margin-right:4px; white-space:nowrap;}
+		.mode-btn{padding:6px 14px; border:1px solid var(--border); background:#fff; border-radius:6px; cursor:pointer; font-size:13px; transition:.15s ease; white-space:nowrap;}
+		.mode-btn:hover{background:rgba(140,29,64,.06); border-color:var(--accent);}
+		.mode-btn--active{border-color:var(--accent); color:#fff; background:var(--accent);}
+		.mode-btn--active:hover{filter:brightness(.95);}
+		.mode-btn[disabled]{opacity:.45; cursor:not-allowed;}
+		.viewer-container{flex:1; display:flex; min-height:0; position:relative;}
 		.viewer-wrap{flex:1; position:relative; min-height:0;}
 		.viewer{position:absolute; inset:0; width:100%; height:100%; border:0; background:#fff;}
+		.viewer-wrap--huibian{flex:1; position:relative; min-height:0; border-left:2px solid var(--accent); display:none;}
+		.viewer-wrap--huibian .viewer{background:#faf8f2;}
+		.viewer-container.mode-compare .viewer-wrap,
+		.viewer-container.mode-compare .viewer-wrap--huibian{flex:1; display:block;}
+		.viewer-container.mode-huibian-only .viewer-wrap{display:none;}
+		.viewer-container.mode-huibian-only .viewer-wrap--huibian{flex:1; display:block; border-left:none;}
+		.viewer-container.mode-reader-only .viewer-wrap--huibian{display:none;}
+		.no-huibian-notice{display:none; flex:1; align-items:center; justify-content:center; color:var(--muted); font-size:15px; text-align:center; padding:40px;}
 		.floating-toggle{position:absolute; left:20px; top:20px; z-index:100; background:var(--accent); color:#fff; border:none; width:44px; height:44px; border-radius:50%; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,.15); display:none; align-items:center; justify-content:center; font-size:20px; transition:all .2s ease;}
 		.floating-toggle:hover{transform:scale(1.08); box-shadow:0 6px 16px rgba(0,0,0,.2);}
 		.floating-toggle:active{transform:scale(.95);}
@@ -71,6 +87,8 @@
 		.result__mark{background:rgba(140,29,64,.18); color:inherit; padding:0 2px; border-radius:2px;}
 		.results__empty{margin:0; font-size:13px; color:var(--muted);}
 		/* 移动端布局优化 */
+		.viewer-container.mode-compare .no-huibian-notice{display:none;}
+		.viewer-container.mode-huibian-only .no-huibian-notice{display:none;}
 		@media (max-width:768px){
 			.header{padding:10px 14px;}
 			.header__title{font-size:20px;}
@@ -120,6 +138,10 @@
 			.floating-toggle{left:auto; right:16px; bottom:20px; top:auto; width:50px; height:50px;}
 			.content{min-height:50vh;}
 			.viewer-wrap{min-height:60vh;}
+			.mode-bar{padding:6px 10px; gap:4px;}
+			.mode-btn{padding:5px 10px; font-size:12px;}
+			.viewer-container.mode-compare{flex-direction:column;}
+			.viewer-container.mode-compare .viewer-wrap--huibian{border-left:none; border-top:2px solid var(--accent); min-height:50vh;}
 		}
 		@media (max-width:540px){
 			.header__title{font-size:18px;}
@@ -165,8 +187,22 @@
 		</aside>
 		<main class="content" aria-label="文章檢視與檢索結果">
 			<button id="floating-toggle" class="floating-toggle" type="button" title="顯示側邊欄" aria-label="顯示側邊欄">▶</button>
-			<div class="viewer-wrap">
-				<iframe id="viewer" class="viewer" src="" title="文章內容預覽"></iframe>
+			<div class="mode-bar">
+				<span class="mode-bar__label">顯示模式：</span>
+				<button id="mode-reader" class="mode-btn mode-btn--active" type="button">僅顯示讀本</button>
+				<button id="mode-huibian" class="mode-btn" type="button">僅顯示相關文獻匯編</button>
+				<button id="mode-compare" class="mode-btn" type="button">讀本與相關文獻匯編對照閱讀</button>
+			</div>
+			<div id="viewer-container" class="viewer-container mode-reader-only">
+				<div class="viewer-wrap">
+					<iframe id="viewer" class="viewer" src="" title="文章內容預覽"></iframe>
+				</div>
+				<div class="viewer-wrap--huibian">
+					<iframe id="viewer-huibian" class="viewer" src="" title="相關文獻匯編預覽"></iframe>
+				</div>
+				<div id="no-huibian" class="no-huibian-notice">
+					<p>本篇讀本暫無對應的相關文獻匯編</p>
+				</div>
 			</div>
 			<section id="search-panel" class="search-panel" aria-live="polite" hidden>
 				<div class="results__bar">
@@ -309,27 +345,117 @@
 				{ title: "魯邦大旱", path: "articles/魯邦大旱.html" }
 			];
 
+			const huibianMap = {
+				"民之父母": "articles/huibian/民之父母_匯編.html",
+				"窮達以時": "articles/huibian/窮達以時_匯編.html",
+				"仲弓": "articles/huibian/仲弓_匯編.html",
+				"史蒥問於夫子": "articles/huibian/史蒥問於夫子_匯編.html",
+				"君子為禮": "articles/huibian/君子為禮_匯編.html",
+				"子羔": "articles/huibian/子羔_匯編.html",
+				"孔子見季桓子": "articles/huibian/孔子見季桓子_匯編.html",
+				"季庚子問於孔子": "articles/huibian/季庚子問於孔子_匯編.html",
+				"弟子問": "articles/huibian/弟子問_匯編.html",
+				"相邦之道": "articles/huibian/相邦之道_匯編.html",
+				"邦家之政": "articles/huibian/邦家之政_匯編.html",
+				"顏淵問於孔子": "articles/huibian/顏淵問於孔子_匯編.html",
+				"魯邦大旱": "articles/huibian/魯邦大旱_匯編.html",
+			};
+
 			const listEl = document.getElementById('article-list');
 			const iframe = document.getElementById('viewer');
+			const iframeHuibian = document.getElementById('viewer-huibian');
+			const viewerContainer = document.getElementById('viewer-container');
+			const noHuibianEl = document.getElementById('no-huibian');
 			const searchInput = document.getElementById('search-input');
 			const searchBtn = document.getElementById('search-btn');
 			const scopeGroup = document.getElementById('scope-checkboxes');
 			const hintEl = document.getElementById('search-hint');
 			const resultsEl = document.getElementById('search-results');
-			const viewerWrap = document.querySelector('.viewer-wrap');
+			const viewerWrap = viewerContainer;
 			const searchPanel = document.getElementById('search-panel');
 			const returnBtn = document.getElementById('return-btn');
 
+			const modeReaderBtn = document.getElementById('mode-reader');
+			const modeHuibianBtn = document.getElementById('mode-huibian');
+			const modeCompareBtn = document.getElementById('mode-compare');
+
 			let currentIndex = 0;
+			let currentMode = 'reader';
+
+			function hasHuibian(title) {
+				return !!huibianMap[title];
+			}
+
+			function getHuibianPath(title) {
+				return huibianMap[title] || '';
+			}
+
+			function updateModeButtons() {
+				modeReaderBtn.classList.toggle('mode-btn--active', currentMode === 'reader');
+				modeHuibianBtn.classList.toggle('mode-btn--active', currentMode === 'huibian');
+				modeCompareBtn.classList.toggle('mode-btn--active', currentMode === 'compare');
+
+				const title = articles[currentIndex].title;
+				const hb = hasHuibian(title);
+				modeHuibianBtn.disabled = !hb;
+				modeCompareBtn.disabled = !hb;
+
+				viewerContainer.classList.remove('mode-reader-only', 'mode-huibian-only', 'mode-compare');
+				noHuibianEl.style.display = 'none';
+
+				if (currentMode === 'reader') {
+					viewerContainer.classList.add('mode-reader-only');
+				} else if (currentMode === 'huibian') {
+					if (hb) {
+						viewerContainer.classList.add('mode-huibian-only');
+					} else {
+						viewerContainer.classList.add('mode-reader-only');
+					}
+				} else if (currentMode === 'compare') {
+					if (hb) {
+						viewerContainer.classList.add('mode-compare');
+					} else {
+						viewerContainer.classList.add('mode-reader-only');
+						noHuibianEl.style.display = 'flex';
+					}
+				}
+			}
+
+			function loadHuibian() {
+				const title = articles[currentIndex].title;
+				const path = getHuibianPath(title);
+				if (path && (currentMode === 'huibian' || currentMode === 'compare')) {
+					if (iframeHuibian.src !== location.origin + '/' + path &&
+					    !iframeHuibian.src.endsWith('/' + path)) {
+						iframeHuibian.src = path;
+					}
+				}
+			}
+
+			function setMode(mode) {
+				currentMode = mode;
+				localStorage.setItem('viewMode', mode);
+				updateModeButtons();
+				loadHuibian();
+			}
+
+			const savedMode = localStorage.getItem('viewMode');
+			if (savedMode && ['reader','huibian','compare'].includes(savedMode)) {
+				currentMode = savedMode;
+			}
+
+			modeReaderBtn.addEventListener('click', () => setMode('reader'));
+			modeHuibianBtn.addEventListener('click', () => { if (!modeHuibianBtn.disabled) setMode('huibian'); });
+			modeCompareBtn.addEventListener('click', () => { if (!modeCompareBtn.disabled) setMode('compare'); });
 
 			function showViewer(){
-				viewerWrap.removeAttribute('hidden');
+				viewerContainer.removeAttribute('hidden');
 				searchPanel.setAttribute('hidden','');
 			}
 
 			function showSearchPanel(){
 				searchPanel.removeAttribute('hidden');
-				viewerWrap.setAttribute('hidden','');
+				viewerContainer.setAttribute('hidden','');
 			}
 
 			function setHint(text){
@@ -343,8 +469,14 @@
 					li.className = 'list__item';
 					const link = document.createElement('a');
 					link.href = '#';
-					link.textContent = a.title;
 					link.className = 'link' + (idx === currentIndex ? ' link--active' : '');
+					link.textContent = a.title;
+					if (hasHuibian(a.title)) {
+						const badge = document.createElement('span');
+						badge.textContent = '匯';
+						badge.style.cssText = 'display:inline-block;font-size:10px;background:var(--accent);color:#fff;border-radius:3px;padding:1px 4px;margin-left:6px;vertical-align:middle;';
+						link.appendChild(badge);
+					}
 					link.addEventListener('click', (e) => {
 						e.preventDefault();
 						if (currentIndex !== idx) {
@@ -390,6 +522,8 @@
 			function loadArticle() {
 				const art = articles[currentIndex];
 				iframe.src = art.path;
+				updateModeButtons();
+				loadHuibian();
 			}
 
 			function escapeRegExp(str) {
@@ -764,6 +898,7 @@
 			renderList();
 			renderScope();
 			loadArticle();
+			updateModeButtons();
 		})();
 	</script>
 </body>

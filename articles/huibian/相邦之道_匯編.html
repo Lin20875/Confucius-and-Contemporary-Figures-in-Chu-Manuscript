@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>相邦之道 — 相關文獻彙編</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --fg: #1a1a1a;
+      --accent: #2e6b4f;
+      --accent2: #8c6d1f;
+      --muted: #666;
+      --border: #d5cdb8;
+      --section-bg: #f0ece0;
+      --bamboo-bg: #e8f0e8;
+      --table-header-bg: #e8e2d0;
+      --table-stripe: #f5f2ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Noto Serif CJK TC","PingFang TC","Microsoft JhengHei",serif;
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header, main, footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(1.2rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(46,107,79,.08), transparent);
+    }
+    header h1 {
+      font-size: clamp(1.6rem,3vw,2.4rem);
+      margin: 0 0 .3em;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    header .subtitle {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    /* ── 大段标题：带背景条 ── */
+    .hb-section {
+      font-size: clamp(1.25rem,2.2vw,1.7rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding: .4em .7em;
+      background: var(--section-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 .5rem .5rem 0;
+    }
+
+    /* ── 中级标题：无背景 ── */
+    .hb-topic {
+      font-size: clamp(1.1rem,1.8vw,1.35rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 2rem 0 .6rem;
+      padding: .2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── 篇名引导 ── */
+    .hb-intro {
+      font-size: clamp(1.05rem,1.6vw,1.2rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 1.8rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 小标题 / 来源标题 ── */
+    .hb-source {
+      font-size: clamp(1rem,1.5vw,1.1rem);
+      font-weight: bold;
+      color: #444;
+      margin: 1.5rem 0 .4rem;
+      padding-left: .5em;
+      border-left: 3px solid var(--accent2);
+    }
+    .hb-subsource {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      margin: 1.2rem 0 .3rem;
+      padding-left: 1em;
+    }
+    .hb-subhead {
+      font-size: clamp(1.02rem,1.5vw,1.12rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 1.5rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 正文段落：无背景框 ── */
+    .hb-text {
+      margin: .6em 0;
+      font-size: .95rem;
+      text-indent: 2em;
+    }
+
+    /* ── 带编号前缀的段落 ── */
+    .hb-listed {
+      text-indent: 0;
+      padding-left: 2.8em;
+      position: relative;
+    }
+    .num-pfx {
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      min-width: 2.5em;
+      text-align: right;
+      padding-right: .3em;
+      color: var(--accent2);
+      font-weight: bold;
+    }
+    h2 .num-pfx, h3 .num-pfx, h4 .num-pfx {
+      position: static;
+      min-width: auto;
+      text-align: left;
+      padding-right: .2em;
+    }
+
+    /* ── 简文区块：保留背景框 ── */
+    .hb-bamboo {
+      margin: 1em 0;
+      padding: .8em 1.2em;
+      background: var(--bamboo-bg);
+      border: 1px solid #b5cfb5;
+      border-radius: .5rem;
+      font-size: .95rem;
+      line-height: 1.9;
+    }
+    .hb-bamboo p { margin: 0; }
+
+    /* ── 真实表格 ── */
+    .hb-table-wrap {
+      margin: 1.2em 0;
+      overflow-x: auto;
+    }
+    .hb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .hb-table th,
+    .hb-table td {
+      border: 1px solid var(--border);
+      padding: .5em .7em;
+      vertical-align: top;
+      text-align: left;
+    }
+    .hb-table th {
+      background: var(--table-header-bg);
+      font-weight: bold;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hb-table tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    footer p { margin: .3em 0; }
+
+    @media(max-width:768px) {
+      .hb-section { font-size: 1.15rem; }
+      header, main, footer {
+        padding: clamp(1rem,5vw,1.5rem) clamp(.8rem,4vw,1.2rem);
+      }
+      .hb-table { font-size: .82rem; }
+      .hb-table th, .hb-table td { padding: .35em .5em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>相邦之道 — 相關文獻彙編</h1>
+    <p class="subtitle">與讀本對照之相關傳世文獻及學者研究匯集</p>
+  </header>
+  <main>
+    <h2 class="hb-section"><span class="num-pfx">一、</span>孔子與君主關於「相邦之道」的問答</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈相邦之道〉相應內容：</h3>
+      <p class="hb-text">「… 先其欲<a href="#xbzd-1">①</a>，服其強<a href="#xbzd-2">②</a>，牧其倦/患<a href="#xbzd-3">③</a>，靜以待時/待<a href="#xbzd-4">④</a>。時出故，故出/此事（，）事出政。政毋忘所治/司（，）事<a href="#xbzd-5">⑤</a>…【1】…□□□□人 ，可謂相邦<a href="#xbzd-6">⑥</a>矣。」</p>
+    </div>
+    <h3 class="hb-topic" id="xbzd-1">①先其欲</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《尚書．周書．泰誓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>天矜于民，民之所欲，天必從之。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈公冶長〉第十六章：子謂子產，「有君子之道四焉：其行己也恭，其事上也敬，其養民也惠，其使民也義。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：人民為了生存的需要，產生了各種的「欲」，而一個盡責的政府，必須能滿足人民生活上的基本欲望。孔子即以養民為要務。子謂子產「有君子之道四焉」，「養民也惠」即其中之一端。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈先進〉第十七章：季氏富於周公，而求也為之聚斂而附益之。子曰：「非吾徒也，小子鳴鼓而攻之，可也！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏淵〉第九章：哀公問於有若曰：「年饑，用不足，如之何﹖」有若對曰：「盍徹乎﹖」曰：「二，吾猶不足，如之何其徹也﹖」對曰：「百姓足，君孰與不足﹖百姓不足，君孰與足﹖」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第九章：子適衛，冉有僕。子曰：「庶矣哉！」冉有曰：「既庶矣，又何加焉﹖」曰：「富之。」曰：「既富矣，又何加焉﹖」曰：「教之。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第一章：子路問政。子曰：先之勞之。請益。曰：無倦。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>淺野裕一：《論語．子路》中有「子路問政。子曰：先之勞之。請益。曰：無倦。」將先丶勞丶無倦當成為政的要點，此與第一簡之內容很相似。〈相邦之道〉的作者很可能是以道樣的文章為範本。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孔子家語．賢君》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>哀公問政於孔子，孔子對曰：「政之急者，莫大乎使民富且壽也。」公曰：「為之奈何？」孔子曰：「省力役，薄賦歛，則民富矣；敦禮教，遠罪疾，則民壽矣。」公曰：「寡人欲行夫子之言，恐吾國貧矣。」孔子曰：「《詩》云：『愷悌君子，民之父母。』未有子富而父母貧者也。」 </p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：由孔子的言論來看，其所言養民之途徑，不外乎裕民生、輕賦稅、惜力役、節財用等等，並認為執政者不僅要使人民過著富庶的生活，還要更進一步地教育人民，因為「養民」是國家必要的政策，卻不是最高的目標；充裕的衣食，僅是人民生活的必要條件，以「德」以「禮」教化人民，才能使人民具有美善的品性與行為。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《孟子．梁惠王上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>明君制民之產，必使仰足以事父母，俯足以畜妻子；樂歲終身飽，凶年免於死亡；然後驅而之善，故民之從之也輕。今也制民之產，仰不足以事父母，俯不足以畜妻子；樂歲終身苦，凶年不免於死亡；此惟救死而恐不贍，奚暇治禮義哉？</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《荀子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈大略〉：舜曰：「維予從欲而治。」（……）不富無以養民情，不教無以理民性。故家五畝宅，百畝田，務其業而勿奪其時，所以富之也。立大學，設庠序，脩六禮，明七教，所以道之也。《詩》曰：「飲之食之，教之誨之。」王事具矣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈榮辱〉：人之情，食欲有芻豢，衣欲有文繡，行欲有輿馬，又欲夫餘財蓄積之富也，然而窮年累世不知不足，是人之情也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈正論〉：以人之情為欲多而不欲寡，故賞以富厚而罰以殺損也，是百王之所同也。故上賢祿天下，次賢祿一國，下賢祿田邑，愿愨之民完衣食。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《管子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈形勢解〉：人主之所以令則行、禁則止者，必令於民所好而禁於民之所惡也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈牧民〉：政之所興，在順民心。政之所廢，在逆民心。民惡憂勞，我佚樂之。民惡貧賤，我富貴之，民惡危墜，我存安之。民惡滅絕，我生育之。</p>
+    <h3 class="hb-topic" id="xbzd-2">②服其強</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《管子．侈靡》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>為之畜化，用其臣者，予而奪之，使而輟之，徒以而富之，父繫而伏之，予虛爵而驕之。收其春秋之時而消之，有集禮我而居之。時舉其強者以譽之。強而可使服事。（……）不欲，強能不服，智而不牧。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>上博簡〈季康子問於孔子〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡3：君子在民之上，執民之中，施教於百姓，而民不服焉，是君子之恥也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>梁靜：「服其強」可徑理解為，使臣民中的強者也服從於在上者。〈季康子問於孔子〉也強調要使「民」服於「君子」。</p>
+    <h3 class="hb-topic" id="xbzd-3">③牧其倦/患</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《墨子．非樂上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>民有三患：飢者不得食，寒者不得衣，勞者不得息，三者民之巨患也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《荀子．富國》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>使百姓無凍餧之患，則是聖君賢相之事也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：根據《墨子．非樂上》和《荀子．富國》，可見人民所患，在於生活是否溫飽、作息是否合宜，這樣的基本需求，是為政者必須加以滿足的。因此，當百姓的生活出現戚患時，為政者必須察知問題所在，並了解問題發生的原因究竟是天災抑或人禍，設法加以解決。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《左傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈成公十八年〉：晉悼公即位于朝。始命百官，施舍、已責，逮鰥寡，振廢滯，匡乏困，救災患，⋯⋯所以復霸也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈昭公十四年〉：夏，楚子使然丹簡上國之兵於宗丘，且撫其民。分貧，振窮；長孤幼，養老疾；收介特，救災患⋯⋯。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：正如荀子所言「使百姓無凍餧之患，則是聖君賢相之事」，能解除百姓憂患者，即為聖君賢相，史書中對於這樣的聖君賢相，亦持肯定態度。</p>
+    <h3 class="hb-topic" id="xbzd-4">④靜以待時/待</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《管子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈宙合〉：時則動，不時則靜。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈霸言〉：是以聖王務具其備而慎守其時，以備待時，以時興事。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《周易．繫辭下傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>待時而動，何不利之有？</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《呂氏春秋．審分覽》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>無言無思，靜以待時，時至而應，心暇者勝。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《禮記．樂令》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>凡舉大事，毋逆大數，必順其時。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《左傳．莊公八年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>姑務修德，以待時乎！</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《孟子．公孫丑上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>齊人有言曰：「雖有智慧，不如乘勢；雖有鎡基，不如待時。」</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《韓非子．五蠹》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>蓄積待時。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《呂氏春秋．孝行覽》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>聖人之於事，似緩而急、似遲而素以待時。</p>
+    <h4 class="hb-source"><span class="num-pfx">9.</span>郭店楚簡〈窮達以時〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡15：窮達以時，幽明不再。故君子惇於反已。</p>
+    <h4 class="hb-source"><span class="num-pfx">10.</span>《荀子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈宥坐〉：君子博學深謀，脩身端行，以俟其時。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈天論〉：政令不明，舉錯不時，本事不理，夫是之謂人祅。</p>
+    <h4 class="hb-source"><span class="num-pfx">11.</span>《孔子家語．在厄》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫遇不遇者，時也，賢不肖者，才也。君子博學深謀而不遇時者，眾矣，何獨丘哉。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：在儒家思想中，「應時」、「順時」、「隨時而變」是一個相當重要的議題。例如孔子困於陳蔡時與子路的對答中，即闡釋了士之窮達取決於天時的概念，這段記錄可見於郭店楚簡〈窮達以時〉、《荀子．宥坐》、《孔子家語．在厄》等文獻。</p>
+    <h4 class="hb-source"><span class="num-pfx">12.</span>《論語．學而》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第五章：子曰：「道千乘之國，敬事而信，節用而愛人，使民以時。」</p>
+    <h4 class="hb-source"><span class="num-pfx">13.</span>《孟子．梁惠王上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>不違農時，穀不可勝食也；數罟不入洿池，魚鱉不可勝食也；斧斤以時入山林，材木不可勝用也。穀與魚鱉不可勝食，材木不可勝用，是使民養生喪死無憾也。養生喪死無憾，王道之始也。五畝之宅，樹之以桑，五十者可以衣帛矣！雞豚狗彘之畜，無失其時，七十者可以食肉矣！百畝之田，勿奪其時，數口之家可以無飢矣！謹庠序之教，申之以孝悌之義，頒白者不負戴於道路矣。</p>
+    <h4 class="hb-source"><span class="num-pfx">14.</span>《周禮．地官司徒第二》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>閭師：掌國中及四郊之人民、六畜之數，以任其力，以待其政令，以時徵其賦。</p>
+    <h4 class="hb-source"><span class="num-pfx">15.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>時使薄斂，所以勸百姓也</p>
+    <h4 class="hb-source"><span class="num-pfx">16.</span>《大戴禮記．誥志第七十一》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子曰：「知仁合則天地成，天地成則庶物時，庶物時則民財敬，民財敬以時作；時作則節事，節事以動眾，動眾則有極；有極以使民則勸，勸則有功，有功則無怨，無怨則嗣世久，唯聖人！」</p>
+    <h3 class="hb-topic" id="xbzd-5">⑤故出/此事（，）事出政。政毋忘所治/司（，）事</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《慎子．民雜》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>君臣之道，臣事事，而君無事。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：「事事」為一動名結構的詞組。此簡「事事」可從季師釋為「勤於職守」。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《墨子．非命下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>出政施教，賞善罰暴。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《晏子春秋．景公異熒惑守虛而不去晏子諫第二十一》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>為善不用，出政不行。</p>
+    <h3 class="hb-topic" id="xbzd-6">⑥相邦</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>〈中山王𰯼方壺〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>隹十四年，中山王𰯼命相邦，斁郾吉金，（鑄）為彝壺。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《管子．君臣》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>天有常象，地有常形，人有常禮，一設而不更，此謂三常；兼而一之，人君之道也。分而職之，人臣之事也。君失其道，無以有其國；臣失其事，無以有其位。（……）是故，道德出於君。制令傳於相，事業程於官，百姓之力也胥令而動者也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>梁靜：「相邦」即後世所言的「相國」、「丞相」、「宰相」，是執政大臣。「相邦之道」也就是臣道，「有邦之道」則是君道。關於臣道與君道，《管子．君臣》中有很多論述，可以當做正確理解簡文的一個參考。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：〈相邦之道〉將「相邦」與「有邦」對舉，由語法來看，顯然是將「相邦」作為動名詞組，而非作為官職之名。「相邦」即「輔佐助治理國家」之意。</p>
+    <h2 class="hb-section"><span class="num-pfx">二、</span>孔子與君主關於「民事」的問答</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈相邦之道〉相應內容：</h3>
+      <p class="hb-text">公曰：「敢問民事<a href="#xbzd2-1">①</a>？」孔子【2】…</p>
+      <p class="hb-text">…農夫勸於耕，以實官倉<a href="#xbzd2-2">②</a>，百工勸於事<a href="#xbzd2-3">③</a>，以實府庫<a href="#xbzd2-4">④</a>。庶□/人/民勸於四肢之藝，以備軍旅<a href="#xbzd2-5">⑤</a>…【3】</p>
+      <p class="hb-text">…□/者。」</p>
+    </div>
+    <h3 class="hb-topic" id="xbzd2-1">①民事</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《孟子･滕文公上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>滕文公問為國。孟子曰：「民事不可緩也。詩云：晝爾于茅，宵爾索綯。亟其乘屋，其始播百穀。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《韓非子･解老》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>有道之君，外無怨讎於鄰敵，而內有德澤於人民⋯⋯遇諸侯有禮義則役希起，治民務本則淫奢止。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《左傳･襄公四年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>修民事，田以時。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《管子･國蓄》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>先王以字財物，以御民事，而平天下也。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《國語．魯語下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>天子及諸候合民事於外朝，合神事於內朝。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《尚書．太甲下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>無輕民事，惟難。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>傳：無輕為力役之事，必重難之乃可。</p>
+    <h3 class="hb-topic" id="xbzd2-2">②農夫勸於耕，以實官倉</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩經》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈小雅．楚茨〉：我倉既盈，我庾維億。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈小雅．甫田〉：我取其陳，食我農人，自古有年。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈周頌．噫嘻〉：率時農夫，播厥百穀。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：「實官倉」乃針對糧食穀物的蓄積，故本句「實官倉」之前應可補一「以」字，而主詞應為「農人」或「農夫」。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《國語‧越語下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>除民之害，以避天殃，田野開闢，府倉實，民眾殷。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>韋昭注：貨財曰府，米粟曰倉。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孟子．梁惠王下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>倉廩實、府庫充。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《管子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈牧民〉：凡有地牧民者，務在四時，守在倉廩。國多財，則遠者來；地辟舉，則民留處。倉廩實，則知禮節；衣食足，則知榮辱。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈小問〉：桓公曰：「善哉！牧民何先﹖」管子對曰：「有時先事，有時先政，有時先德，有時先恕。飄風暴雨，不為人害，涸旱不為民患。百川道，年穀熟，糶貸賤，禽獸與人聚，食民食，民不疾疫。當此時也，民富且驕，牧民者厚收善歲，以充倉廩。禁藪澤，此謂先之以事。隨之以刑，敬之以禮樂，以振其淫，此謂先之以政。飄風暴雨為民害，涸旱為民患，年穀不熟，歲饑，糶貸貴，民疾疫。當此時也，民貧且罷，牧民者發倉廩山林藪澤以共其財，後之以事，先之以恕，以振其罷，此謂先之以德。其收之也，不奪民財。其施之也，不失有德。富上而足下，此聖王之至事也。」桓公曰：「善。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈形勢解〉：人主之所以使下盡力而親上者，必為天下致利除害也，故德澤加於天下，惠施厚於萬物，父子得以安，群生得以育，故萬民驩盡其力，而樂為上用，入則務本疾作，以實倉廩，出則盡節死敵，以安社稷，雖勞苦卑辱，而不敢告也。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《荀子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈富國〉：將闢田野，實倉廩，便備用，上下一心，三軍同力。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈王制〉：殷之日，安以靜兵息民，慈愛百姓，辟田野，實倉廩，便備用，安謹募選閱材伎之士，然後漸賞慶以先之，嚴刑罰以防之，擇士之知事者，使相率貫也，是以厭然畜積修飾，而物用之足也。兵革器械者，彼將日日暴露毀折之中原，我今將脩飾之，拊循之，掩蓋之於府庫。貨財粟米者，彼將日日棲遲薛越之中野，我今將畜積并聚之於倉廩。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《墨子．七患》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>倉無備粟，不可以待凶饑。庫無備兵，雖有義不能征無義。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《論語．為政》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第二十章：季康子問，使民敬忠以勸，如之何。子曰：臨之以莊則敬。孝慈則忠。舉善而教不能則勸。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>淺野裕一：第三簡中兩度出現的「勸」，與《論語．為政》之「使民敬忠以勸」、「舉善而教不能則勸」中的「勸」是相同用法。</p>
+    <h3 class="hb-topic" id="xbzd2-3">③百工勸於事</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《周禮．冬官．考工記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>國有六職，百工與居一焉。⋯⋯審曲面埶，以飭五材，以辨民器，謂之百工。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>知者創物，巧者述之守之，世謂之工，百工之事，皆聖人之作也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《莊子．徐无鬼》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>庶人有旦暮之業則勤，百工有器械之巧則壯。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：古籍中「百工」實有三義，一為「百官、眾官」之意，二指各種工匠，如《莊子．徐无鬼》；三為古職官名，專管營建製造之事務。《相邦之道》的「百工」應解第二義。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《尚書‧多方》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>慎厥麗，乃勸；厥民刑，用勸。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔傳：湯慎其施政於民，民乃勸善，其人雖刑，亦用勸善，言政刑清。</p>
+    <h3 class="hb-topic" id="xbzd2-4">④以實府庫</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《史記･孫子吳起列傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>起曰：治百官，親萬民，實府庫，子孰與起？</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《周禮･天官冢宰･大府》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>凡萬民之貢，以充府庫。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈月令〉：命有司發倉廩，賜貧窮，根乏絕，開府庫，周天下。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈曲禮下〉：君命，大夫與士肄，在官言官，在府言府，在庫言庫，在朝言朝。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《墨子．七患》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>倉無備粟，不可以待凶饑。庫無備兵，雖有義不能征無義。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：「府」即國家儲藏財物的地方，《墨子》正如此簡以「實官倉」與「實府庫」對舉，前者應為農民努力耕作以充實穀倉，後者則指各種工匠勤勉製作器物，以充實國家庫藏。</p>
+    <h3 class="hb-topic" id="xbzd2-5">⑤庶人/民勸於四肢之藝，以備軍旅</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《韓非子．顯學》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>征賦錢粟以實倉庫，且以救饑饉備軍旅也，而以上為貪。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《尚書》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈禹貢〉：淮沂其乂，蒙羽其藝。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔傳：二水已治，二山已可種藝。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>范常喜：整理者指出「四肢之藝」所應為強身健體之技藝，且與軍事攸關，故下文云：「以備軍⋯⋯」。但如果從《韓非子》中的例句來看，「四肢之藝」也可能是泛指農事而言。「藝」在先秦多指農業種植。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈金縢〉：予仁若考，能多材多藝。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈雍也〉第八章：季康子問：「仲由可使從政也與？」子曰：「由也果，於從政乎何有？」曰：「賜也，可使從政也與？」曰：「賜也達，於從政乎何有？」曰：「求也，可使從政也與？」曰：「求也藝，於從政乎何有？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：范常喜認為「四肢之藝」可能是泛指農事而言，這樣的看法，恐不恰當。先秦「藝」字除指「種植」之外，亦有「才能、技術」之意，如《尚書．金縢》、《論語．雍也》。因此，「藝」不必皆指「農業種植」之事。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第三十章：子曰：「以不教民戰，是謂棄之。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：由於上文已分別針對農工之事加以論述，此處若再次重申農事則略嫌緟複，因此「藝」釋為「種植」的可能性較小；又從「以實軍旅」來看，此句係針對軍事方面而言，故「勸於四肢之藝」應如原考釋所說，在強調「強身健體之技藝」。由《論語．子路》來看，孔子認為執政者應注重人民的軍事訓練，以充實作戰技能。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏淵〉第七章：子貢問政。子曰：「足食，足兵，民信之矣。」子貢曰：「必不得已而去，於斯三者何先？」曰：「去兵。」子貢曰：「必不得已而去，於斯二者何先？」曰：「去食。自古皆有死，民無信不立。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：哀公問「民事」，孔子的回答至少包括了「農人勤耕、工人勤事、庶人勤兵」三方面，對照《論語．顏淵》之語，可知孔子認為經濟與國防皆是立國的重要基礎。為了使經濟成長，落實於「民事」上，具體地說，就是「農夫勸於耕，以實官倉；百工勸於事，以實府庫」；為了充實國防，在「民事」上，就得由「庶民勸於四肢之藝，以備軍旅」著手。</p>
+    <h2 class="hb-section"><span class="num-pfx">三、</span>孔子退朝後與子貢之問答</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈相邦之道〉相應內容：</h3>
+      <p class="hb-text">孔子退，告子貢曰：「吾見於君<a href="#xbzd3-1">①</a>，不問有邦之道，而問相邦之道，不亦愆/戇乎<a href="#xbzd3-2">②</a>？」子貢曰：「吾子之答也何如？」孔子曰：「如/汝訊/思<a href="#xbzd3-3">③</a>。」【4】</p>
+    </div>
+    <h3 class="hb-topic" id="xbzd3-1">①吾見於君</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記．哀公問》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孔子侍坐於哀公，哀公曰：「敢問人道誰為大﹖」孔子愀然作色而對曰：「君之及此言也，百姓之德也！固臣敢無辭而對﹖人道，政為大。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《韓非子．內儲說上七術》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>魯哀公問於孔子曰：「鄙諺曰：莫眾而迷。今寡人舉事，與群臣慮之，而國愈亂，其故何也﹖」孔子對曰：「明主之問臣，一人知之，一人不知也。如是者，明主在上，群臣直議於下。今群臣無不一辭同軌乎季孫者，舉魯國盡化為一，君雖問境內之人，猶不免於亂也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孔子家語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈好生〉：魯哀公問於孔子曰：「昔者舜冠何冠乎？」孔子不對。公曰：「寡人有問於子，而子無言，何也？」對曰：「以君之問不先其大者，故方思所以為對。」公曰：「其大何乎？」孔子曰：「舜之為君也，其政好生而惡殺，其任授賢而替不肖，德若天地而靜虛，化若四時而變物；是以四海承風，暢於異類，鳳翔麟至，鳥獸馴德。無他，好生故也。君舍此道而冠冕是問，是以緩對。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈五儀解〉：哀公問於孔子曰：「寡人欲吾國小而能守，大則攻，其道如何？」孔子對日：「使君朝堥有禮，上下相親，天下百姓，皆君之民，將誰攻之？苟違此道，民畔如歸，皆君之讎也，將與誰守？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈正論解〉：哀公問於孔子曰：「二三大夫皆勸寡人使隆敬於高年，何也？」孔子對曰：「君之及此言，將天下實賴之，豈惟魯哉？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈三恕〉：子貢問於孔子曰：「子從父命，孝乎；臣從君命，貞乎；奚疑焉？」孔子曰：「鄙哉賜！汝不識也。昔者明王萬乘之國，有爭臣七人，則主無過舉；千乘之國，有爭臣五人，則社稷不危也；百乘之家，有爭臣三人，則祿位不替；父有爭子，不陷無禮；士有爭友，不行不義。故子從父命，奚詎為孝？臣從君命，奚詎為貞？夫能審其所從、之謂孝、之謂貞矣。」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《荀子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公〉：魯哀公問於孔子曰：「寡人生於深宮之中，長於婦人之手，寡人未嘗知哀也，未嘗知憂也，未嘗知勞也，未嘗知懼也，未嘗知危也。」孔子曰：「君之所問，聖君之問也，丘、小人也，何足以知之？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公〉：魯哀公問舜冠於孔子，孔子不對。三問，不對。哀公曰：「寡人問舜冠於子，何以不言也﹖」孔子對曰：「古之王者，有務而拘領者矣，其政好生而惡殺焉，是以鳳在列樹，麟在郊野，烏鵲之巢可俯而窺也。君不此問而問舜冠，所以不對也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：「君」雖未明指為何君，然揆諸先秦文獻，多有魯哀公問於孔子之記載，且問答之間，孔子亦有逕稱「哀公」為「君」者，如《荀子･哀公》。因疑本篇所稱「公」、「君」，或當指魯哀公而言。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：傳世古籍中，魯哀公問政於孔子的記載頗多，馬驌《繹史．孔子類記一．哀公問》即蒐羅了許多孔子與哀公之間的應答，其內容見於《禮記》、《論語》、《家語》、《史記》、《說苑》、《呂氏春秋》、《三朝記》、《韓非子》、《新序》、《莊子》、《荀子》、《韓詩外傳》等書。至於出土簡帛方面，《上博（一）．魯邦大旱》亦有哀公向孔子請教如何抵禦大旱的記錄。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子道〉：魯哀公問於孔子曰：「子從父命，孝乎？臣從君命，貞乎？」三問，孔子不對。孔子趨出以語子貢曰：「鄉者，君問丘也，曰：『子從父命，孝乎？臣從君命，貞乎？』三問而丘不對，賜以為何如？」子貢曰：「子從父命，孝之國，有爭臣四人，則封疆不削；千乘之國，有爭臣三人，則社稷不危；百乘矣。臣從君命，貞矣，夫子有奚對焉？」孔子曰：「小人哉！賜不識也！昔萬乘之家，有爭臣二人，則宗廟不毀。父有爭子，不行無禮；士有爭友，不為不義。故子從父，奚子孝？臣從君，奚臣貞？審其所以從之之謂孝、之謂貞也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：然而比較值得注意的是《荀子‧子道》的這段記載。哀公與孔子的這番應答又見於《家語》。《荀子》與《家語》的這段文字，與〈相邦之道〉的內容性質相近，同樣都是哀公向孔子問政請益，事後孔子再把自己與哀公對話的情形向子貢轉述，並與子貢討論。在《荀子．子道》、《家語》、〈相邦之道〉中，孔子對子貢說話時，都逕稱哀公為「君」。原考釋謂〈相邦之道〉「所稱『公』、『君』，或當指魯哀公而言」，應該是沒有疑問的。</p>
+    <h3 class="hb-topic" id="xbzd3-2">②不問有邦之道，而問相邦之道，不亦愆/戇乎？</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈魯邦大旱〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡1-6：魯邦大旱，哀公謂孔子：子不爲我圖之？孔子答曰：邦大旱，無乃失諸刑與德乎？唯…【1】之何在？孔子曰：庶民知說之事鬼？也，不知刑與德，如毋愛珪璧幣帛於山川，政刑與⋯【2】出遇子贛曰：賜，爾聞巷路之言，無乃謂丘之答非與？子贛曰：否，繄吾子女命丌與？若夫政刑與德以事上天，此是哉。若夫毋愛珪璧【3】幣帛於山川，無乃不可。夫山，石以爲膚，木以爲民，如天不雨，石將焦，木將死，其欲雨或甚於我，或必待乎名乎？夫川，水以爲膚，魚以【4】爲民，如天不雨，水將涸，魚將死，其欲雨或甚於我，或必待乎名乎？孔子曰：烏乎⋯【5】公豈不飽粱食肉哉，繄無如庶民何■【6】</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>何有祖：此句大意是哀公他不向我詢問有邦之君道，卻跟我問做相邦這種臣道，不是很戇愚麽？無獨有偶，相近的評價也見於另一處孔子與子貢的對話，即上博二〈魯邦大旱〉一文中。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《左傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈莊公十年〉：肉食者鄙，未能遠謀。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>何有祖：曹劌有言「肉食者鄙，未能遠謀」，頗能幫助我們理解孔子言語中對哀公所透露出的失望。〈相邦之道〉此段文字也是孔子見魯哀公之後再與子貢討論，話語中流露著對哀公行政能力不足之失望。當然〈相邦之道〉也許還沒有到如此嚴重之境地，但是孔子詼諧話語中透露出來的的嘲諷意味卻是比較明顯的。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈莊公十八年〉：名位不同，禮則異數。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《論語．憲問》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第二十六章：子曰：「不在其位，不謀其政。」曾子曰：「君子思不出其位。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>正義：此章戒人侵官也，言不在此位則不得謀此位之政，欲使各專一守於其本職也。曾子遂曰，君子思謀當不出已位，言思慮所及，不越其職。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第十一章：齊景公問政於孔子。孔子對曰：「君君，臣臣，父父，子子。」公曰：「善哉！信如君不君，臣不臣，父不父，子不子，雖有粟，吾得而食諸？」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《大戴禮記．小辨第七十四》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>公曰：「寡人欲學小辨，以觀於政，其可乎？」子曰：「否，不可。社稷之主愛日，日不可得，學不可以辨。是故昔者先王學齊大道，以觀於政。天子學樂辨風，制禮以行政；諸候學禮辨官政以行事，以尊天子；大夫學德別義，矜行以事君；士學順，辨言以遂志；庶人聽長辨禁,農以力行。如此，猶恐不濟。奈何其小辨乎？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>盧辯注：小辨，謂小辨給也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：孔子提供禮治思想，禮治思想又以倫理關係作為原則，由家庭生活中的父子兄弟，推衍到社會上的君臣尊卑，使政治倫理化，每個人都明白自己位居何種角色，應負何種義務及責任，就可以淡化權力的爭取、維持社會的和諧。因此孔子不斷強調「正名思想」，強調「君君、臣臣、父父、子子」，每個人「名位不同，禮則異數」。因此〈相邦之道〉一文中，哀公詢問「相邦之道」，就孔子一貫的思想看來，自是失當之問。確立了這一論點，我們就可以為〈相邦之道〉的整體定調，導出的結果，孔子對哀公的評論自然是「不亦愆乎」了。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>上博簡〈季康子問於孔子〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡2：君子之從事者於民之上，君子之大務何？</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡8：艾含語肥也，以處邦家之述/術……</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>梁靜：季康子身為執政大臣，向孔子請教時不問「民務」，卻問「君子之大務」、「處邦家之術」，在一定程度上也有僭越之嫌。</p>
+    <h3 class="hb-topic" id="xbzd3-3">③孔子退，告子貢曰……如/汝訊/思</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第十七章：子曰：「由！誨女知之乎？知之為知之，不知為不知，是知也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈八俏〉第十七章：子貢欲去告朔之餼羊。子曰：「賜也，爾愛其羊，我愛其禮。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：「女」通「汝」，《論語》中孔子稱弟子不稱其名，則稱「女」或「爾」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第十五章：子曰：「學而不思則罔，思而不學則殆。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子罕〉第九章：子曰：「吾有知乎哉？無知也！有鄙夫問於我；空空如也，我扣其兩端而竭焉。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：在《論語》的記載中，常見孔子因材施材，甚至有「不教之教」的方式。孔子主張學思並重，故〈相邦之道〉中，子貢詢問孔子與魯哀公是如何談論「相邦之道」的內容時，孔子只是簡短回答：「汝思。」即是要子貢從孔子平日的言論去思索理解，而不作立即之回應，啟發學生主動反省的能力與精神，即是一位良師所能給學生的最佳教育。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>常佩雨：《相邦之道》結尾孔子回答子貢問題時用「汝思」，譯為「你想想吧」，即要求子貢從孔子平日的言論去思索理解，而不立即作解答，如同《論語．子罕》中之情景，展示了孔門師生問學時孔子循循善誘、鼓勵學生發表看法、獨立思考的施教特點。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈學而〉第十五章：子貢曰：「貧而無諂，富而無驕，何如？」子曰：「可也。未若貧而樂，富而好禮者也。」子貢曰：「《詩》云：『如切如磋，如琢如磨。』其斯之謂與？」子曰：「賜也，始可與言詩已矣！告諸往而知來者。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈先進〉第三章：德行：顏淵，閔子騫，冉伯牛，仲弓。言語：宰我，子貢。政事：冉有，季路。文學：子游，子夏。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《史記．貨殖列傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子贛既學於仲尼，退而仕於衛，廢著鬻財於曹、魯之閒。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：子貢是孔子相當親近的弟子之一。身為孔門十哲之一的子貢，善於「言語」，相較於孔門其他弟子，子貢留給我們的印象是善問、善於推理、善於比較的，在《論語》、《荀子》、《莊子》等記載中，孔子與子貢的對話，常是有來有往，輪過幾番，方能中止，他不以孔子第一回給的答案為滿足，總是要再追問，「那如何如何，又怎麼樣？」孔子稱許他「告諸往而知來者」，便是說他的反應敏捷、言詞機靈，聞一而能知其後，懂得運用推論的道理，因此子貢經常是孔子討論各式各樣問題的對象。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《荀子．子道》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>魯哀公問於孔子曰：「子從父命，孝乎？臣從君命，貞乎？」三問，孔子不對。孔子趨出以語子貢曰：「鄉者，君問丘也，曰：『子從父命，孝乎？臣從君命，貞乎？』三問而丘不對，賜以為何如？」子貢曰：「子從父命，孝之國，有爭臣四人，則封疆不削；千乘之國，有爭臣三人，則社稷不危；百乘矣。臣從君命，貞矣，夫子有奚對焉？」孔子曰：「小人哉！賜不識也！昔萬乘之家，有爭臣二人，則宗廟不毀。父有爭子，不行無禮；士有爭友，不為不義。故子從父，奚子孝？臣從君，奚臣貞？審其所以從之之謂孝、之謂貞也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>上博簡〈魯邦大旱〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>[孔子] 出，遇子貢，曰：「賜，爾聞巷路之言，毋乃謂丘之答非歟？」子貢曰：「否。抑吾子女乃/如重命/名其歟？若夫正刑與德以事上天，此是哉。若夫毋愛珪璧【3】幣帛於山川，毋乃 不可。夫山，石以爲膚，木以爲毛 ，如天不雨，石將焦，木將死，其欲雨或甚於我，或/又必待吾禜/命乎？夫川，水以爲國，魚以【4】爲民，如天不雨，水將涸，魚將死，其欲雨或甚於我，或/又必待吾禜/命乎？」孔子曰：「嗚呼…【5】[賜也，爾通乎天人之際，而未能達乎民心。如不厚祭，] 公豈不飯粱食肉哉？抑無如庶民何。」【6】</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳思婷：《荀子．子道》篇中有一段記載，其內容同樣是孔子在回答哀公之問後，和子貢討論的情形。與此類似的情形，又見於〈魯邦大旱〉，其內容敘述哀公向孔子請教如何抵禦大旱，「孔子提出需要督正刑與德，也不要吝惜用圭璧幣帛等祭品儀式向山精水靈求雨。之後孔子遇見子貢，兩人對抵禦大旱是否要舉行祭祀的態度進行討論，孔子對天命重視且敬畏，故贊成祭祀，子貢認為解決大旱是不需要祭祀，對祭祀採取理性的態度」。以上所舉的兩個例子，和〈相邦之道〉相同，都在記載孔子向子貢轉述哀公所提的問題之後，師生之間的討論。在《荀子‧天道》中，孔子直接問子貢：「賜以為何如？」〈魯邦大旱〉記曰：「出遇子贛曰：『賜，爾聞巷路之言，毋乃謂丘之答非歟？』」在〈相邦之道〉中，孔子則是回答子貢：「汝思。」可見孔子非常鼓勵學生發表、思考自己的看法，關於這一點，我們從《論語》即可窺見中孔子與門人之間的相處情形，例如〈先進〉篇中孔子與子路、曾晳、冉有、公西華等四位弟子的談話，從子路的「率爾而對」與其餘三位弟子的回答，以及〈公冶長〉孔子讓顏淵、子路「各言爾志」後，子路又再請教「願聞子之志」的記載，可以知道孔子和學生的師生關係是平等而和諧的，老師可詢問學生的看法，學生也可以請教老師的意見。孔子對學生因材施教、循循善誘的教學方法，使他獲得門人的愛戴與親近。</p>
+  </main>
+  <footer>
+    <p>本頁內容整理自《相邦之道》相關文獻彙編</p>
+  </footer>
+</body>
+</html>

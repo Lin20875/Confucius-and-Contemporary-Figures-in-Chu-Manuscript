@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>顏淵問於孔子 — 相關文獻彙編</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --fg: #1a1a1a;
+      --accent: #2e6b4f;
+      --accent2: #8c6d1f;
+      --muted: #666;
+      --border: #d5cdb8;
+      --section-bg: #f0ece0;
+      --bamboo-bg: #e8f0e8;
+      --table-header-bg: #e8e2d0;
+      --table-stripe: #f5f2ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Noto Serif CJK TC","PingFang TC","Microsoft JhengHei",serif;
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header, main, footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(1.2rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(46,107,79,.08), transparent);
+    }
+    header h1 {
+      font-size: clamp(1.6rem,3vw,2.4rem);
+      margin: 0 0 .3em;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    header .subtitle {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    /* ── 大段标题：带背景条 ── */
+    .hb-section {
+      font-size: clamp(1.25rem,2.2vw,1.7rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding: .4em .7em;
+      background: var(--section-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 .5rem .5rem 0;
+    }
+
+    /* ── 中级标题：无背景 ── */
+    .hb-topic {
+      font-size: clamp(1.1rem,1.8vw,1.35rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 2rem 0 .6rem;
+      padding: .2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── 篇名引导 ── */
+    .hb-intro {
+      font-size: clamp(1.05rem,1.6vw,1.2rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 1.8rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 小标题 / 来源标题 ── */
+    .hb-source {
+      font-size: clamp(1rem,1.5vw,1.1rem);
+      font-weight: bold;
+      color: #444;
+      margin: 1.5rem 0 .4rem;
+      padding-left: .5em;
+      border-left: 3px solid var(--accent2);
+    }
+    .hb-subsource {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      margin: 1.2rem 0 .3rem;
+      padding-left: 1em;
+    }
+    .hb-subhead {
+      font-size: clamp(1.02rem,1.5vw,1.12rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 1.5rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 正文段落：无背景框 ── */
+    .hb-text {
+      margin: .6em 0;
+      font-size: .95rem;
+      text-indent: 2em;
+    }
+
+    /* ── 带编号前缀的段落 ── */
+    .hb-listed {
+      text-indent: 0;
+      padding-left: 2.8em;
+      position: relative;
+    }
+    .num-pfx {
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      min-width: 2.5em;
+      text-align: right;
+      padding-right: .3em;
+      color: var(--accent2);
+      font-weight: bold;
+    }
+    h2 .num-pfx, h3 .num-pfx, h4 .num-pfx {
+      position: static;
+      min-width: auto;
+      text-align: left;
+      padding-right: .2em;
+    }
+
+    /* ── 简文区块：保留背景框 ── */
+    .hb-bamboo {
+      margin: 1em 0;
+      padding: .8em 1.2em;
+      background: var(--bamboo-bg);
+      border: 1px solid #b5cfb5;
+      border-radius: .5rem;
+      font-size: .95rem;
+      line-height: 1.9;
+    }
+    .hb-bamboo p { margin: 0; }
+
+    /* ── 真实表格 ── */
+    .hb-table-wrap {
+      margin: 1.2em 0;
+      overflow-x: auto;
+    }
+    .hb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .hb-table th,
+    .hb-table td {
+      border: 1px solid var(--border);
+      padding: .5em .7em;
+      vertical-align: top;
+      text-align: left;
+    }
+    .hb-table th {
+      background: var(--table-header-bg);
+      font-weight: bold;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hb-table tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    footer p { margin: .3em 0; }
+
+    @media(max-width:768px) {
+      .hb-section { font-size: 1.15rem; }
+      header, main, footer {
+        padding: clamp(1rem,5vw,1.5rem) clamp(.8rem,4vw,1.2rem);
+      }
+      .hb-table { font-size: .82rem; }
+      .hb-table th, .hb-table td { padding: .35em .5em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>顏淵問於孔子 — 相關文獻彙編</h1>
+    <p class="subtitle">與讀本對照之相關傳世文獻及學者研究匯集</p>
+  </header>
+  <main>
+    <h2 class="hb-section">一、「入事」：孔子爲政思想相關文獻記載</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈顏淵問於孔子〉相應内容：</h3>
+      <p class="hb-text">…。（顏淵問於孔子曰：「敢問君子之<a href="#yywykz-1">①</a>入事也有道乎？」孔子曰：「有。」顏淵曰：「敢【1a】問何如？」孔子曰：「<a href="#yywykz-2">②</a>遂/敬有過/道而【1b】<a href="#yywykz-3">③</a>先有司 ，老老而慈幼，豫/舉絞/約而收貧。祿不足則請，有餘則辭 。【12a】遂/敬有過/道，所以為緩也；先【2b】[有] 司 ，所以【2a】得情也；<a href="#yywykz-4">④</a>老老而慈幼，所以處仁也；豫/舉絞/約而收貧，所以取【11】親也；祿不足則請，有餘 【12b】則辭，所以揚/期信也。蓋君子之入事也如此矣。」</p>
+    </div>
+    <h3 class="hb-topic" id="yywykz-1">①「入事」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《大戴禮記．子張問入官》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子張問入官於孔子，孔子曰：「安身取譽為難也。」子張曰：「安身取譽如何？」孔子曰：「有善勿專，教不能勿搢，已過勿發，失言勿踦，不善辭勿遂，行事勿留。君子入官，自行此六路者，則身安譽至，而政從矣。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《孔子家語．入官》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子張問入官於孔子。孔子曰：「安身取譽為難。」子張曰：「為之如何？」孔子曰：「己有善勿專，教不能勿怠，已過勿發，失言勿椅，不善勿遂，行事勿留。君子入官，自此六者，則身安譽至而政從矣。且夫忿數者，官獄所由生也；拒諫者，慮之所以塞也；慢易者，禮之所以失也；怠惰者，時之所以後也；奢侈者，財之所以不足也；專獨者，事之所以不成也。君子入官，除此六者，則身安譽至而政從矣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳劍：簡1、簡5「內（入）事」之「事」與後文「內（入）教」之「教」相對而言，又跟《論語．子路》、《上博三．仲弓》簡5之「政」相當，顯然正應理解為「政事」。「入事」可與《大戴禮記．子張問入官》（又見《孔子家語．入官》）之「入官」聯繫理解，不能解為「內事」。</p>
+    <h3 class="hb-topic" id="yywykz-2">②「遂/敬有過/道」</h3>
+    <h4 class="hb-source">a. 「敬有過」</h4>
+    <h5 class="hb-subsource">1.《論語》</h5>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第二章：仲弓為季氏宰，問政。子曰：「先有司，赦小過，舉賢才。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顔淵〉第十九章：季康子問政於孔子曰：「如殺無道，以就有道，何如？」孔子對曰：「子為政，焉用殺？子欲善，而民善矣。君子之德風，小人之德草。草上之風，必偃。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉承：孔子主張慎殺，意在勸導為政者導民向善，而非依靠殺伐來震懾民眾。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第三章：子曰：「道之以政，齊之以刑，民免而無恥。道之以德，齊之以禮，有恥且格。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉承：德和刑雖然都是統治的必要手段，但前者的意義在於薰陶、教化，後者則是強制、鎮壓。所以孔子主張為政應兩手並用，但以德治為先。</p>
+    <h5 class="hb-subsource">2. 上博五《季康子問於孔子》</h5>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>大罪殺【21】之，臧罪刑之，小罪罰之。苟能固守【2A】而行之，民必服矣。古/故子以此言爲奚如？」孔子曰：「由丘觀之，則美【13】言也已。且夫今之先人，世三代之傳史，豈敢不以其先人之傳志告？」康子曰：「然其宔人亦曰：『古之爲【14】邦者必以此。』」孔子曰：「言則美矣。然【15A】異於丘之所聞。丘聞之，臧文仲有言曰：『君子強則遺，威則民不【9】道，嚴則失衆，猛則無親，好刑則【10A】不祥，好殺則作亂。是故賢人之居邦家也，夙興夜寐、【10B】降瑞以比，民之播美，棄惡毋歸。愼小以答大，疏言而密守之。毋禁遠，毋稽邇。惡人勿陷，好【1】人勿貴。救民以辟，大罪則赦之以刑，臧罪則赦之以罰，小則䚹之。……</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>蘇建洲、劉波、劉承：「敬宥其過」義為謹慎地寬恕別人的過錯，此可以《上博五．季康子問於孔子》之語來理解，即簡21-22季康子問於孔子「大罪殺之，臧罪刑之，小罪罰之」，而簡20孔子回答說：「大罪則赦之以刑，臧罪則赦之以罰，小則貲之。」由此可知，要據過錯的輕重謹慎地採取赦免措施。</p>
+    <h5 class="hb-subsource">3. 上博（三）〈仲弓〉篇</h5>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>老老慈幼，先有司，舉賢才，宥過赦罪。</p>
+    <h4 class="hb-source">b. 「敬有道」</h4>
+    <h5 class="hb-subsource">1. 《論語》</h5>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏淵〉第十九章：季康子問政於孔子曰：「如殺無道，以就有道，何如？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈學而〉第十四章：子曰：「君子食無求飽，居無求安，敏於事而慎於言，就有道而正焉，可謂好學也已。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：該句即容易解釋。先秦文獻雖然未見「敬有道」之搭配，然「就有道」則有之，如《論語．顏淵》第十九章和〈學而〉第十四章，似正即本篇「敬有道」之謂：「有道」之士要敬而就之以為正己之資，「有司」則要先任之以令各職其事，兩者正可相對成文。相對成文。〈學而〉該章的「食無求飽，居無求安，敏於事而慎於言」，亦恰與本篇下文「素行而信，先處忠也；貧而安樂，先處【仁也】」及「庸言之信，行之敬」相互呼應。</p>
+    <h3 class="hb-topic" id="yywykz-3">③「先有司」</h3>
+    <h4 class="hb-source">1. 《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第二章：仲弓為季氏宰，問政。子曰：「先有司，赦小過，舉賢才。」曰：「焉知賢才而舉之？」曰：「舉爾所知，爾所不知，人其舍諸？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>歷來對《論語》「先有司」理解有分歧，主要説法有三：1）爲政者要以身作則，先為衆有司人員作榜樣（朱熹）；2）爲政者要先以任命有司為首務（劉寶楠）；3）先舉薦賢才擔任有司之職（程樹德）</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉承：上博簡的相關簡文為解決這一問題提供了充足的材料。在本篇中，孔子認為「先有司」的重要性在於「所以得情也」。這裏的「情」指民情、民意，即為政者可以通過有司體察到民情。（以有司的作用為推論依據，再結合上博（三）〈仲弓〉篇，主張應以劉寶楠之說為是，詳見下文）</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>*鳲鳩、李零、廖名春：仍認為上博簡「先有司」蓋言「身先有司，為之導引於前」、「做出表率」、「率先垂範」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顔淵〉第十九章：季康子問政於孔子曰：「如殺無道，以就有道，何如？」孔子對曰：「子為政，焉用殺？子欲善，而民善矣。君子之德風，小人之德草。草上之風，必偃。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顔淵〉第十七章：季康子問政於孔子。孔子對曰：「政者，正也。子帥以正，孰敢不正？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第六章：子曰：「其身正，不令而行；其身不正，雖令不從。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>《論語》中也有孔子重視為政者表率作用的言論。</p>
+    <h4 class="hb-source">2. 上博（三）〈仲弓〉篇</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>仲弓曰：「敢問為政何先？」【5】仲尼【28】曰：「老老慈幼 ，先有司 ，舉賢才，宥過與/赦罪，【7】政之始也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>仲弓曰：「若夫老老慈幼，既聞命矣。夫先有司為之如何？」仲尼曰：「夫民 安舊而重遷，【8】早/弁使不行，綏弛【14】有成，是故有司不可不先也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉承、晁福林：孔子在〈仲弓〉篇對「先有司」的闡述更為具體，主旨是為政者必須把選拔職司人員作為首要政務（即劉寶楠解釋最接近原意）。「有司」之所以重要，是因為他們身處於基層，往往最能接近民眾，瞭解民眾的意願，能夠向上級傳達真實的民情。為政者要想制定正確的舉措，就必須先要選拔職司人員以順應民意。</p>
+    <h3 class="hb-topic" id="yywykz-4">④「老老而慈幼」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博（三）〈仲弓〉篇</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>仲弓曰：「敢問為政何先？」【5】仲尼【28】曰：「老老慈幼 ，先有司 ，舉賢才，宥過與/赦罪，【7】政之始也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《孟子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈梁惠王上〉：老吾老，以及人之老；幼吾幼，以及人之幼。天下可運於掌。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈告子下〉：五霸，桓公為盛。葵丘之會諸侯，束牲、載書而不歃血。初命曰：……三命曰：「敬老慈幼，無忘賓旅。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《荀子．大略》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>親親、故故、庸庸、勞勞，仁之殺也；貴貴、尊尊、賢賢、老老、長長、義之倫也。行之得其節，禮之序也。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《管子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈入國〉：行九惠之教，一曰老老，二曰慈幼……</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈禮運〉：故人不獨親其親，不獨子其子。使老有所終，壯有所用，幼有所長，鰥寡孤獨廢疾者，皆有所養。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈祭義〉：先王之所以治天下者五貴：有德、貴貴、貴老、敬長、慈幼。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈大學〉：所謂平天下在治其國者：上老老而民興孝，上長長而民興弟，上恤孤而民不倍，是以君子有絜矩之道也。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《周禮》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈地官司徒．大司徒〉：以保息六養萬民：一日慈幼，二日養老，三日振窮，四日恤貧，五日寬疾，六曰安富。</p>
+    <h2 class="hb-section">二、「入教」：孔子教化思想相關文獻記載</h2>
+    <h3 class="hb-intro"><span class="num-pfx">- </span>〈顏淵問於孔子〉相應内容：</h3>
+    <p class="hb-text">顏淵曰：「君子之入【5a】事也，回既聞命矣，敢問【5b】 君子之入教也有 道乎？」孔子曰：「有。」顏淵［曰］：「敢問何如？」孔子曰：「①②修身以 【6a】先，則民莫不從矣；③前 【6b】以博愛，則民莫遺親矣；④導之以儉，則民知足矣；⑤前之以讓，則民不爭矣；⑥或/又迪/由而教 【7】以/之能，能賤不肖而遠之，則民知禁矣。如進者勸行，退者知禁，則其於教也不遠矣。」</p>
+    <h3 class="hb-topic">①「修身以先，則民莫不從矣；前以博愛，則民莫遺親矣；導之以儉，則民知足矣；前之以讓，則民不爭矣；或/又迪/由而教以/之能，能賤不肖而遠之，則民知禁矣。」</h3>
+    <h4 class="hb-source">1. 《孝經．三才章》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>先王見教之可以化民也，是故先之以博愛，而民莫遺其親；陳之以德義，而民興行；先之以敬讓，而民不爭；導之以禮樂，而民和睦；示之以好惡，而民知禁。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>復旦吉大：《孝經．三才章》第七與本篇相同，此所列亦適好即五項。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>比較《孝經》和《顔淵問於孔子》所列五項，内容較相似的有其中三項：</p>
+    <div class="hb-table-wrap"><table class="hb-table">
+  <tr>
+    <th>《顔淵問於孔子》</th>
+    <th>《孝經》</th>
+  </tr>
+  <tr>
+    <td>修身以先，則民莫不從矣</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>前以博愛，則民莫遺親矣</td>
+    <td>是故先之以博愛，而民莫遺其親</td>
+  </tr>
+  <tr>
+    <td>導之以儉，則民知足矣</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>前之以讓，則民不爭矣</td>
+    <td>先之以敬讓，而民不爭</td>
+  </tr>
+  <tr>
+    <td>或/又迪/由而教以/之能，能/以能賤 不肖而遠之，則民知禁矣</td>
+    <td>示之以好惡，而民知禁</td>
+  </tr>
+</table></div>
+    <h4 class="hb-source">2. 《周禮．地官．大司徒》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>因此五物者民之常，而施十有二教焉：一曰以祀禮教敬，則民不茍。二曰以陽禮教讓，則民不爭。三曰以陰禮教親，則民不怨。四曰以樂禮教和，則民不乖。五曰以儀辨等，則民不越。六曰以俗教安，則民不愉。七曰以刑教中，則民不虣。八曰以誓教恤，則民不怠。九曰以度教節，則民知足。十曰以世事教能，則民不失職。十有一曰以賢制爵，則民慎德。十有二曰以庸制祿，則民興功。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>比較《周禮》和《顔淵問於孔子》所列五項，内容較相似的有其中三項：</p>
+    <div class="hb-table-wrap"><table class="hb-table">
+  <tr>
+    <th>《顔淵問於孔子》</th>
+    <th>《孝經》</th>
+  </tr>
+  <tr>
+    <td>修身以先［之］，則民莫不從矣</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>前以博愛，則民莫遺親矣</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>導之以儉，則民知足矣</td>
+    <td>九曰以度教節，則民知足。</td>
+  </tr>
+  <tr>
+    <td>前之以讓，則民不爭矣</td>
+    <td>二曰以陽禮教讓，則民不爭。</td>
+  </tr>
+  <tr>
+    <td>或/又迪/由而教以/之能，能賤不肖而遠之，則民知禁矣</td>
+    <td>十曰以世事教能，則民不失職。</td>
+  </tr>
+</table></div>
+    <h4 class="hb-source">3. 《孔子家語．王言解》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>曾子曰：「敢問何謂七教？」孔子曰：「上敬老則下益孝，上尊齒則下益悌，上樂施則下益寬，上親賢則下擇友，上好德則下不隱，上惡貪則下恥爭，上廉讓則下恥節，此之謂七教。七教者，治民之本也。」</p>
+    <h3 class="hb-topic">②「修身以先，則民莫不從矣」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顔淵〉第十七章：季康子問政於孔子。孔子對曰：「政者，正也。子帥以正，孰敢不正？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顔淵〉第十九章：季康子問政於孔子曰：「如殺無道，以就有道，何如？」孔子對曰：「子為政，焉用殺？子欲善，而民善矣。君子之德風，小人之德草。草上之風，必偃。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第六章：子曰：「其身正，不令而行；其身不正，雖令不從。」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第十三章：子曰：「苟正其身矣，於從政乎何有？不能正其身，如正人何？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈憲問〉第四十二章：子路問君子。子曰：「脩己以敬。」曰：「如斯而已乎？」曰：「脩己以安人。」曰：「如斯而已乎？」曰：「脩己以安百姓。脩己以安百姓，堯舜其猶病諸！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：對於君子而言「修身」是基本的德性，故為人君者必需先「正自己」才能夠「匡天下」，此為為政者的第一要務。《顔淵問於孔子》中可見人君修身之後，百姓才會「莫不從矣」，此句簡文與《論語．子路》：「苟正其身矣，於從政乎何有？不能正其身，如正人何？」文意相仿，應是同一思想來源。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《禮記．大學》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>自天子以至於庶人，壹是皆以修身為本。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>堯舜帥天下以仁，而民從之，桀紂帥天下以暴，而民從之，其所令，反其所好，而民不從。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>平天下在治其國者，上老老而民興孝，上長長而民興弟，上恤孤而民不倍。</p>
+    <h3 class="hb-topic">③「前以博愛，則民莫遺親矣」</h3>
+    <h4 class="hb-source">1. 《肩水金關漢簡》（三）</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《行葦》則兄弟具尼矣，故曰：先之以博愛，而民莫遺其親。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉嬌：《顔淵問於孔子》「前以博愛，則民莫遺親矣」對應《肩水金關漢簡（三）》「先之以博愛而民莫遺其親」（彼冠以「故曰」） </p>
+    <h4 class="hb-source">2. 《論語．泰伯》第二章</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子曰：「恭而無禮則勞，慎而無禮則葸，勇而無禮則亂，直而無禮則絞。君子篤於親，則民興於仁；故舊不遺，則民不偷。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：儒門講求親親之殺，「博愛」仍有其等級差別，並非墨家的兼愛，故簡文中的孔子言上位者若「博愛」，下位者則愛親人，同於《論語．泰伯》篇的「興於仁」之說，表示儒家的「愛」皆是由「仁心」所發。</p>
+    <h3 class="hb-topic">④「導之以儉，則民知足矣」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈述而〉第三十六章：子曰：「奢則不孫，儉則固。與其不孫也，寧固。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈八佾〉第四章：林放問禮之本。子曰：「大哉問！禮，與其奢也，寧儉；喪，與其易也，寧戚。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：《論語》中常見孔子強調「奢」與「儉」的對比，可見孔子認為待人處事，甚至是為禮，都以「儉」為基礎。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈學而〉第十章：子貢曰：「夫子溫、良、恭、儉、讓以得之。」</p>
+    <h3 class="hb-topic">⑤「前之以讓，則民不爭矣」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．顏淵》第十八章</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>季康子患盜，問於孔子。孔子對曰：「苟子之不欲，雖賞之不竊。」</p>
+    <h3 class="hb-topic">⑥「或/又迪/由而教以/之能，能賤不肖而遠之，則民知禁矣。」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《史記．太史公自序》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫春秋，上明三王之道，下辨人事之紀，別嫌疑，明是非，定猶豫，善善惡惡，賢賢賤不肖，存亡國，繼絕世，補敝起廢，王道之大者也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《說苑．尊賢》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>田忌曰：「申孺為人，侮賢者而輕不肖者，賢不肖者俱不為用，是以亡也；田居為人，尊賢者而賤不肖者，賢者負任，不肖者退，是以分別而相去也；眄子之為人也，尊賢者而愛不肖者，賢不肖俱負任，是以王僅得存耳。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子路問於孔子曰：「治國何如？」孔子曰：「在於尊賢而賤不肖。」子路曰：「范中行氏尊賢而賤不肖，其亡何也？」曰：「范中行氏尊賢而不能用也，賤不肖而不能去也；賢者知其不己用而怨之，不肖者知其賤己而讎之。賢者怨之，不肖者讎之；怨讎並前，中行氏雖欲無亡，得乎？」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孔子家語．賢君》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子路問於孔子曰：「賢君治國，所先者何？」孔子曰：「在於尊賢而賤不肖。」子路曰：「由聞晉中行氏尊賢而賤不肖矣，其亡何也？」孔子曰：「中行氏尊賢而不能用，賤不肖而不能去。賢者知其不用而怨之，不肖者知其必己賤而讎之。怨讎竝存於國，鄰敵搆兵於郊，中行氏雖欲無亡，豈可得乎？」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《荀子．非十二子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>信信、信也，疑疑、亦信也。貴賢、仁也，賤不肖、亦仁也。言而當、知也，默而當，亦知也，故知默猶知言也。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《淮南子．泰族訓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>聖王在上，明好惡以示之，經誹譽以導之，親賢而進之，賤不肖而退之，無被創流血之苦，而有高世尊顯之名，民孰不從！</p>
+    <h2 class="hb-section">三、「致名」：孔子處世思想相關文獻記載</h2>
+    <h3 class="hb-intro"><span class="num-pfx">- </span>〈顏淵問於孔子〉相應内容：</h3>
+    <p class="hb-text">顏淵曰：【9】「君子之入教也，回既聞命矣，敢問致名？」孔子曰：「①德成則名至矣，名至必卑身。身治，大則祿 【10】…</p>
+    <p class="hb-text">［富爵貴而名聲章明，小則□□□□而□□□□□。］②君子讓而得之，小人爭而失之。【8】</p>
+    <p class="hb-text">［□□而□，先處□也；□□而□，先處□也；］③干/未/素行而信，先處忠也；④貧而安樂，先處【13ab】…</p>
+    <p class="hb-text">［仁也。君子□□□□□□，□□□□□□也。□□□□□□］ 示 ，則斤/勤 而毋欲得安/焉； 【14】…</p>
+    <p class="hb-text">［□□□□□□□，則□而毋欲□焉。如此則富貴或在茲之］內矣。⑤庸言之信，庸行之敬…【4】 </p>
+    <p class="hb-text">［有所有餘而不敢盡之，有所不足而不敢弗勉。如此則貧賤］必不在茲之內矣。」顏淵廼【3】… </p>
+    <h3 class="hb-topic">①「德成則名至矣，名至必卑身。身治，大則祿…」</h3>
+    <h4 class="hb-source">1. 《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈里仁〉第五章：子曰：「富與貴是人之所欲也，不以其道得之，不處也；貧與賤是人 之所惡也，不以其道得之，不去也。君子去仁，惡乎成名？君子無終食之間違仁，造次必於是，顛沛必於是。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：從其《論語》「君子去仁，惡乎成名 」之句來看，「致名」確實是孔門弟子至要的關懷，然成名總有成名之道，亦即須臾不離仁而已矣，無論如何也是無法強求而得之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈述而〉第十一章：子曰：「富而可求也，雖執鞭之士，吾亦為之。如不可求，從吾所好。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：富貴亦為孔子所願，但不以義取之乃視之如浮雲耳。因而務在求道而不在干祿。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈衛靈公〉第三十一章：子曰：「君子謀道不謀食。耕也，餒在其中矣；學也，祿在其中矣。君子憂道不憂貧。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第十八章：「子張學干祿」而夫子即對之曰：「多聞闕疑，慎言其餘，則寡尤；多見闕殆，慎行其餘，則寡悔。言寡尤，行寡悔，祿在其中矣。」 </p>
+    <h3 class="hb-topic">②「君子讓而得之，小人爭而失之。」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《荀子．儒效》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>爭之則失，讓之則至。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>復旦讀書會：此處蓋可補「君子讓」三個字。又疑此以下二句所謂蓋亦即「至名」的問題，「君子讓而得之，小人爭而失之」如《荀子．儒效》講「貴名」之「爭之則失，讓之則至」等文大致相同。</p>
+    <h3 class="hb-topic">③「干/未/素行而信，先處忠也」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>君子素其位而行，不願乎其外。素富貴行乎富貴，素貧賤行乎貧賤，素夷狄行乎夷狄，素患難行乎患難。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：放在《顔淵問於孔子》的脈絡當中，則釋讀為「素」其實或許更加貼切。《禮記．中庸》云：「君子素其位而行，不願乎其外。素富貴行乎富貴，素貧賤行乎貧賤，素夷狄行乎夷狄，素患難行乎患難」，且此幾句與「庸德之行，庸言之謹」等句（與下面簡4文相近）屬於該文同一段文，或非偶然。</p>
+    <h3 class="hb-topic">④「貧而安樂，先處…」</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈學而〉第十四章：君子食無求飽，居無求安，敏於事而慎於言，就有道而正焉，可謂好學也已。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈學而〉第十五章：子貢曰：「貧而無諂，富而無驕，何如？」子曰：「可也。未若貧而樂，富而好禮者也。」子貢曰：「《詩》云：『如切如磋，如琢如磨。』其斯之謂與？」子曰：「賜也，始可與言詩已矣！告諸往而知來者。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈雍也〉第十一章：子曰：「賢哉回也！一簞食，一瓢飲，在陋巷。人不堪其憂，回也不改其樂。賢哉回也！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李國勇、常佩雨：本篇散簡13 有「貧而安樂」，既是孔子針對顏淵的闡釋概括，也是顏淵承師傳述給門弟子的處世良規。簡文當是顏淵一系弟子門人輾轉傳授記錄，屬典型的顏淵文獻。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈述而〉第十六章：子曰：「飯疏食飲水，曲肱而枕之，樂亦在其中矣。不義而富且貴，於我如浮雲。」</p>
+    <h3 class="hb-topic">⑤「庸言之信，庸行之敬」</h3>
+    <h4 class="hb-source">1. 《周易．文言．乾》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>九二曰：「見龍在田，利見大人。」何謂也？子曰：「龍德而正中者也；庸言之信，庸行之謹，閑邪存其誠，善世而不伐，德博而化。」易曰：「見龍在田，利見大人。」君德也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李國勇、常佩雨：簡4「俑（庸）言之信，俑（庸）行之敬（謹）」 （《易．文言》） 的引用，展現儒學在戰國時期楚地傳播過程中以義理、哲學解易的易學發展新階段。</p>
+    <h4 class="hb-source">2. 《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子曰：「道不遠人。人之為道而遠人，不可以為道。《詩》云：『伐柯伐柯，其則不遠。』執柯以伐柯，睨而視之，猶以為遠。故君子以人治人，改而止。忠恕違道不遠，施諸己而不愿，亦勿施於人。君子之道四，丘未能一焉：所求乎子以事父，未能也；所求乎臣以事君，未能也；所求乎弟以事兄，未能也；所求乎朋友先施之，未能也。庸德之行，庸言之謹，有所不足，不敢不勉，有餘不敢盡；言顧行，行顧言，君子胡不慥慥爾！</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：簡 4在其「內矣」後所剩的八個字相 當於「庸言之信，庸行之敬」 ，恰亦極其接近於 《禮記‧中庸》的一句話，即「庸德之行，庸言之謹」。</p>
+    <h4 class="hb-source">3. 《荀子．不苟》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>庸言必信之，庸行必慎之，畏法流俗，而不敢以其所獨甚，若是則可謂「愨士」矣。</p>
+    <h2 class="hb-section">四、顔淵相關文獻記載</h2>
+    <h3 class="hb-intro"><span class="num-pfx">- </span>〈顏淵問於孔子〉相應内容：</h3>
+    <p class="hb-text">顏淵問於孔子曰：「敢問君子之入事也有道乎？」（……）顏淵曰：「敢問何如？」（……）顏淵曰：「君子之入事也，回既聞命矣，敢問君子之入教也有道乎？」（……）顏淵曰：「敢問何如？」（……）顏淵曰：「君子之入教也，回既聞命矣，敢問致名？」</p>
+    <h4 class="hb-source">1. 《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈雍也〉第三章：哀公問：「弟子孰為好學？」孔子對曰：「有顏回者好學，不遷怒，不貳過。不幸短命死矣！今也則亡，未聞好學者也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李國勇、常佩雨：對應〈顏淵問於孔子〉載顏淵問道於師，反復質疑，「敢問君子之內（入） 事（仕） 也有道乎？」「敢問何如？」「敢問君子之內教也有道乎？」「敢問至明（名）？」顏淵的問題類型，屬於「轉問」，逐步深入，在問學中展示其對君子修養構成的深入思索與思想的逐步進階。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈雍也〉第七章：子曰：「回也，其心三月不違仁，其餘則日月至焉而已矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李國勇、常佩雨：〈顏淵問於孔子〉孔子語「德成則名至矣，名至必卑身，身治則大祿。」與〈雍也〉第七章內涵一致。簡文「德」、「仁」、「愛」、「忠」、「讓」、「樂」、「儉」各1 見；「敬」、「信」、「行」、「身」、「名」各3 見，「教」2 見。由此可窺見孔門師弟問學的重點所在，以及「顏氏之儒」重於修身立德、踐履篤行的特點。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈雍也〉第十一章：子曰：「賢哉，回也！一簞食，一瓢飲，在陋巷。人不堪其憂，回也不改其樂。賢哉，回也！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李國勇、常佩雨：本篇散簡13有「貧而安樂」，既是孔子針對顏淵的闡釋概括，也是顏淵承師傳述給門弟子的處世良規。簡文當是顏淵一系弟子門人輾轉傳授記錄，屬典型的顏淵文獻。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈衛靈公〉第十一章：顏淵問為邦。子曰：「行夏之時，乘殷之輅，服周之冕，樂則韶舞。放鄭聲，遠佞人。鄭聲淫，佞人殆。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>湯淺邦弘：顏淵在傳世文獻中，通常被描繪為不願出仕（接受俸祿）而寧願過清貧生活的形象」，然而同時在《論語》等文獻中「也有對政治略有關心並請教於孔子的一面」，而此亦即〈顏淵問於孔子〉所強調的一面。</p>
+    <h4 class="hb-source">2. 《莊子．讓王》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孔子謂顏回曰：「回，來！家貧居卑，胡不仕乎？」顏回對曰：「不願仕。回有郭外之田五十畝，足以給饘粥；郭內之田十畝，足以為絲麻；鼓琴足以自娛；所學夫子之道者足以自樂也。回不願仕。」</p>
+  </main>
+  <footer>
+    <p>本頁內容整理自《顏淵問於孔子》相關文獻彙編</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>史蒥問於夫子 — 相關文獻彙編</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --fg: #1a1a1a;
+      --accent: #2e6b4f;
+      --accent2: #8c6d1f;
+      --muted: #666;
+      --border: #d5cdb8;
+      --section-bg: #f0ece0;
+      --bamboo-bg: #e8f0e8;
+      --table-header-bg: #e8e2d0;
+      --table-stripe: #f5f2ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Noto Serif CJK TC","PingFang TC","Microsoft JhengHei",serif;
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header, main, footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(1.2rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(46,107,79,.08), transparent);
+    }
+    header h1 {
+      font-size: clamp(1.6rem,3vw,2.4rem);
+      margin: 0 0 .3em;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    header .subtitle {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    /* ── 大段标题：带背景条 ── */
+    .hb-section {
+      font-size: clamp(1.25rem,2.2vw,1.7rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding: .4em .7em;
+      background: var(--section-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 .5rem .5rem 0;
+    }
+
+    /* ── 中级标题：无背景 ── */
+    .hb-topic {
+      font-size: clamp(1.1rem,1.8vw,1.35rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 2rem 0 .6rem;
+      padding: .2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── 篇名引导 ── */
+    .hb-intro {
+      font-size: clamp(1.05rem,1.6vw,1.2rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 1.8rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 小标题 / 来源标题 ── */
+    .hb-source {
+      font-size: clamp(1rem,1.5vw,1.1rem);
+      font-weight: bold;
+      color: #444;
+      margin: 1.5rem 0 .4rem;
+      padding-left: .5em;
+      border-left: 3px solid var(--accent2);
+    }
+    .hb-subsource {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      margin: 1.2rem 0 .3rem;
+      padding-left: 1em;
+    }
+    .hb-subhead {
+      font-size: clamp(1.02rem,1.5vw,1.12rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 1.5rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 正文段落：无背景框 ── */
+    .hb-text {
+      margin: .6em 0;
+      font-size: .95rem;
+      text-indent: 2em;
+    }
+
+    /* ── 带编号前缀的段落 ── */
+    .hb-listed {
+      text-indent: 0;
+      padding-left: 2.8em;
+      position: relative;
+    }
+    .num-pfx {
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      min-width: 2.5em;
+      text-align: right;
+      padding-right: .3em;
+      color: var(--accent2);
+      font-weight: bold;
+    }
+    h2 .num-pfx, h3 .num-pfx, h4 .num-pfx {
+      position: static;
+      min-width: auto;
+      text-align: left;
+      padding-right: .2em;
+    }
+
+    /* ── 简文区块：保留背景框 ── */
+    .hb-bamboo {
+      margin: 1em 0;
+      padding: .8em 1.2em;
+      background: var(--bamboo-bg);
+      border: 1px solid #b5cfb5;
+      border-radius: .5rem;
+      font-size: .95rem;
+      line-height: 1.9;
+    }
+    .hb-bamboo p { margin: 0; }
+
+    /* ── 真实表格 ── */
+    .hb-table-wrap {
+      margin: 1.2em 0;
+      overflow-x: auto;
+    }
+    .hb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .hb-table th,
+    .hb-table td {
+      border: 1px solid var(--border);
+      padding: .5em .7em;
+      vertical-align: top;
+      text-align: left;
+    }
+    .hb-table th {
+      background: var(--table-header-bg);
+      font-weight: bold;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hb-table tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    footer p { margin: .3em 0; }
+
+    @media(max-width:768px) {
+      .hb-section { font-size: 1.15rem; }
+      header, main, footer {
+        padding: clamp(1rem,5vw,1.5rem) clamp(.8rem,4vw,1.2rem);
+      }
+      .hb-table { font-size: .82rem; }
+      .hb-table th, .hb-table td { padding: .35em .5em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>史蒥問於夫子 — 相關文獻彙編</h1>
+    <p class="subtitle">與讀本對照之相關傳世文獻及學者研究匯集</p>
+  </header>
+  <main>
+    <h2 class="hb-section"><span class="num-pfx">一、</span>史蒥自述</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈史蒥問於夫子〉相應内容：</h3>
+      <p class="hb-text">…其□之。」史蒥曰:「蒥也，故齊邦敝吏/史之子<a href="#shizhou">①</a>也。無如圖也… 」【1】</p>
+    </div>
+    <h3 class="hb-topic" id="shizhou">①史蒥……故齊邦敝吏/史之子</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《漢書．古今人表》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>中上：史留</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>王輝（中山）：疑簡文之「史留」與《漢書．古今人表》「中上」人名「史留」是同一人，不可能是周宣王太史之史籀。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語．衛靈公》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第七章：子曰：「直哉史魚！邦有道，如矢；邦無道，如矢。」君子哉蘧伯玉！邦有道，則仕；邦無道，則可卷而懷之。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孔子家語．賢君》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>又有大夫史鰌，以道去衛，而靈公郊舍三日，琴瑟不御，必待史鰌之入而後敢入。臣以此取之，雖次之賢，不亦可乎？</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>王志平：史鰌之身世古書不詳，假如史蒥即史鰌，其父為「故齊邦敝吏」，則史鰌為齊才衛用，對於春秋戰國之遊士固無不宜。《孔子家語．賢君》記載史鰌亦曾去衛。雖說君子「不去父母之邦」，但是史官的流動播遷實是先秦時期的常態。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>尉侯凱：本篇「史蒥」是一位齊國史官，是孔子的晚輩。典籍中的「史鰌」是衛國大夫，且年長孔子二十餘歲，二者不可能是同一個人。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>梁靜：「蒥」與「鰌」雖韻部相同，但聲母相差較大。因而史蒥到底是不是史鰌還未成定論。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《報任少卿書》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>文史星暦，近乎卜祝之間，固主上所戲弄，倡優所畜，流俗之所輕也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>王志平：春秋之世，巫祝卜史，世襲其官，「史蒥」之父，可能也是史官。但是史官的地位官階，又屬於比較低賤的官吏。所以史蒥謙稱「敝吏之子」，其故在此。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：「敝」也有「棄」「棄置」之類含義，則史蒥之父或被棄黜。</p>
+    <h2 class="hb-section"><span class="num-pfx">二、</span>論「使子師之」</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈史蒥問於夫子〉相應内容：</h3>
+      <p class="hb-text">…□之以其子。子，其身之貳也<a href="#qishenzhier">①</a>。今使子師之<a href="#shizishizhi">②</a>，君之擇之慎矣，夫【2】不可以弗戒。子之事行，百姓得其利，邦家以夷/親<a href="#bangjiayiyi">③</a>；子之事不行，百姓…【11】</p>
+      <p class="hb-text">…必危其邦家，則能貴於禹、湯，禹、湯則學<a href="#yutangzexue">④</a>，/。自始【3】有民以來，未有能才/哉（。）立於地之上，一或不免有禍，不…【10】</p>
+    </div>
+    <h3 class="hb-topic" id="qishenzhier">①子，其身之貳也</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《左傳．文公十六年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，司城蕩卒，公孫壽辭司城，請使意諸為之，既而告人曰，君無道，吾官近，懼及焉，棄官則族無所庇，子，身之貳也，姑紓死焉，雖亡子，猶不亡族，既，夫人將使公田孟諸而殺之，公知之，盡以寶行，蕩意諸曰，盍適諸侯，公曰，不能其大夫，至于君祖母，以及國人，諸侯誰納我，且既為人君，而又為人臣，不如死，盡以其寶賜左右，以使行，夫人使謂司城去公，對曰，臣之而逃其難，若後君何。</p>
+    <h3 class="hb-topic" id="shizishizhi">②今使子師之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《國語．楚語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>莊王使士亹傅太子箴，辭曰：「臣不才，無能益焉。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>羅運環：此句意思是「現在[國君]令您（史蒥）爲他（太子）的老師。」句式與「莊王使士亹傅太子箴」相近似。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《左傳．襄公十三年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>楚子疾，告大夫曰，不穀不德，少主社稷，生十年而喪先君，未及習師保之教訓，而應受多福，是以不德，而亡師于鄢，以辱社稷，為大夫憂，其弘多矣，若以大夫之靈，獲保首領，以歿於地，唯是春秋窀穸之事，所以從先君於禰廟者，請為靈若厲，大夫擇焉，莫對，及五命，乃許，秋，楚共王卒，子囊謀諡，大夫曰，君有命矣，子囊曰，君命以共，若之何毀之，赫赫楚國，而君臨之，撫有蠻夷，奄征南海，以屬諸夏，而知其過，可不謂共乎，請謚之共，大夫從之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>復旦讀書會：《左傳．襄公十三年》有一則材料，記載楚王感歎自己没有遵守師保的教訓而導致失德亡軍，這從反面説明古人立師保是爲了使自己有德。史蒥爲太子師，正是要使太子有德。</p>
+    <h3 class="hb-topic" id="bangjiayiyi">③邦家以夷/親</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《新序．刺奢》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>魯獻子聘於晉，宣子觴之，三徙，鍾石之懸不移而具。獻子曰：「富哉家！」宣子曰：「子之家孰與我家富？」獻子曰：「吾家甚貧，惟有二士曰顏回、茲無靈者，使吾邦家安平，百姓和協。惟此二者耳，吾盡於此矣！」客出，宣子曰：「彼君子也，以養賢為富；我鄙人也，以鍾石為富。」孔子曰：「孟獻子之富可著於《春秋》。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《史記．龜策列傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>衛平對曰：「不然。河雖神賢，不如崑崙之山；江之源理，不如四海，而人尚奪取其寶，諸侯爭之，兵革為起。小國見亡，大國危殆，殺人父兄，虜人妻子，殘國滅廟，以爭此寶。戰攻分爭，是暴彊也。故云取之以暴彊而治以文理，無逆四時，必親賢士；與陰陽化，鬼神為使；通於天地，與之為友。諸侯賓服，民眾殷喜。邦家安寧，與世更始。……</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>Mpsyx：讀為「夷」，義為「平安」。「邦家以夷」跟「邦家以寧」意思略同。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《韓非子．説林上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>任章曰：「無故索地，鄰國必恐，彼重欲無厭，天下必懼，君予之地，智伯必驕而輕敵，鄰邦必懼而相親，以相親之兵待輕敵之國，則智伯之命不長矣。《周書》曰：「將欲敗之，必姑輔之，將欲取之，必姑予之。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：可讀爲「親」，簡文「邦家以親」指國與國之間親近，「鄰邦必懼而相親」，可見「親」字可用來形容二國之間的情誼。</p>
+    <h3 class="hb-topic" id="yutangzexue">④必危其邦家，則能貴於禹、湯，禹、湯則學</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．憲問》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第三章：子曰：「邦有道，危言危行；邦無道，危行言孫。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《孟子．梁惠王下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孟子對曰：「有。惟仁者為能以大事小，是故湯事葛，文王事昆夷；惟智者為能以小事大，故大王事獯鬻，句踐事吳。以大事小者，樂天者也；以小事大者，畏天者也。樂天者保天下，畏天者保其國。《詩》云：『畏天之威，于時保之。』」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：簡文文意爲必能正其國家，則可使禹湯學習。需要説明的是，禹、湯爲古代聖王，何以要學習他國？此種舉動即爲「仁者」的表率，《孟子．梁惠王下》「惟仁者爲能以大事小，是故湯事葛、文王事昆夷。」與簡文同。</p>
+    <h2 class="hb-section"><span class="num-pfx">三、</span>強調為政用人要「慎始」</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈史蒥問於夫子〉相應内容：</h3>
+      <p class="hb-text">…聽/取同<a href="#tingqutong">①</a>，故教於始乎哉，/。始得可<a href="#shideke">②</a>人而與/舉之，【4】仁援仁而進之，不仁人弗得進矣，/。始得不可人而舉之<a href="#renerjuzhi">③</a>【孔9】</p>
+    </div>
+    <h3 class="hb-topic" id="tingqutong">①聽/取同</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《逸周書．酆謀解》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>維王三祀，王在酆，謀言告聞，王召周公旦曰：「嗚呼！商其咸辜，維日望謀建功，謀言多信，今如其何？」周公曰：「時至矣。」乃興師循故，初用三同，一戚取同，二任用能，三矢無聲。三讓：一近市，二賤粥，三施資。三虞：一邊不侵內，二道不敺牧，三郊不留人。王曰：「嗚呼！允從三，三無咈，厥徵可因，與周同愛，愛微無疾，疾取不取，疾至致備，曲禱不德，不德不成，害不在小，終維實大，悔後乃無，帝命不謟，應時作謀，不敏殆哉。」周公曰：「言斯允格，誰從已出，出而不允乃菑，往而不往乃弱，士卒咸若周一心。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>侯乃峰：「恆取同」在講選取人才的標準，即「（擇人之人）會始終選擇與自己（特質）相同的人」；因此教化（或政教）開始是很重要的（「故教於始乎哉」）。</p>
+    <h3 class="hb-topic" id="shideke">②可</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈學記〉：大學之法，禁於未發之謂豫，當其可之謂時。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔穎達疏：言受教之端，是時最可也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈內則〉：擇於諸母與可者，必求其寬裕、慈惠、溫良、恭敬、慎而寡言者，使為子師，其次為慈母，其次為保母，皆居子室。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄注：此人君養子之禮也。諸母，眾妾也。可者，傅、御之屬也。子師，教示以善道者。慈母，知其嗜欲者。保母，安其居處者。士妻食乳之而已。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：根據《禮記》，「可」也可解為「傅、御之屬」，也即啟蒙老師。</p>
+    <h3 class="hb-topic" id="renerjuzhi">③始得可人而與/舉之，仁援仁而進之，不仁人弗得進矣，/。始得不可人而舉之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．顔淵》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第二十二章：樊遲問仁。子曰：「愛人。」問知。子曰：「知人。」樊遲未達。子曰：「舉直錯諸枉，能使枉者直。」樊遲退，見子夏。曰：「鄉也吾見於夫子而問知，子曰，『舉直錯諸枉，能使枉者直』，何謂也？」子夏曰：「富哉言乎！舜有天下，選於眾，舉皋陶，不仁者遠矣。湯有天下，選於眾，舉伊尹，不仁者遠矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>梁靜：簡文中史蒥與夫子所談的話題與人才的推舉有關。把有仁德的人推舉出來，就會讓不仁人自然遠去，這樣的觀點在《論語．顔淵》中孔子也講過，只不過他講得比較隱晦，完整的含義則是由子夏闡述出來的。《論語》中的「舉直錯諸枉，能使枉者直」，與簡文「始得可人而舉之，仁援仁而進之，不仁人弗得進矣」的含義顯然是一致的。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《韓詩外傳》卷七</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>昔者、衛大夫史魚病且死，謂其子曰：「我數言蘧伯玉之賢而不能進，彌子瑕不肖而不能退。為人臣，生不能進賢而退不肖，死不當治喪正堂，殯我於室、足矣。」衛君問其故，子以父言聞，君造然召蘧伯玉而貴之，而退彌子瑕，從殯於正堂，成禮而後去。生以身諫，死以尸諫，可謂直矣。《詩》曰：「靖共爾位，好是正直。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>梁靜：史魚見諸史載的事迹，很大一部分與他的「直」有關。而他之所以被如此評價，正與他極力向衛君推薦賢才蘧伯玉有關。事見《韓詩外傳》卷七，「生以身諫，死以尸諫」果然不愧「直」之名。可見，在人才的推舉方面，孔子與「夫子」觀點一致，而史鰌與「史蒥」則都是這一原則的踐行者。這種相似性，無疑增加了「史蒥」就是史鰌，而「夫子」即爲孔子的可能性。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>清華簡七〈趙簡子〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡3-4：子始造於善，則善人至，不善人退。子始造於不善，則不善人至，善人退。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《戰國策．齊策四》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>王曰：「寡人憂國愛民，固願得士以治之。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：「得何人而舉之」即得賢才而舉治，意亦同「願得士以治之」。</p>
+    <h2 class="hb-section"><span class="num-pfx">四、</span>強調為政要不違民意</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈史蒥問於夫子〉相應内容：</h3>
+      <p class="hb-text">…民氓不可侮<a href="#minmangbuke">①</a>。衆之所植，莫之能廢也；衆之廢【孔25】莫之能竪也。子以是視之，不其難與言也？且夫□…【5】</p>
+    </div>
+    <h3 class="hb-topic" id="minmangbuke">①民氓不可侮</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《尚書．康誥》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>惟乃丕顯考文王，克明德慎罰，不敢侮鰥寡。</p>
+    <h2 class="hb-section"><span class="num-pfx">五、</span>列舉人君八種過失</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈史蒥問於夫子〉相應内容：</h3>
+      <p class="hb-text">…也。」史蒥曰:「何謂八<a href="#ba">①</a>？」夫子<a href="#fuzi">②</a>曰：「納邪/僞<a href="#naxiewei">③</a>，幽/要/好色與酒<a href="#youyaohaose">④</a>，大鐘鼎<a href="#dazhongding">⑤</a>，【6】美宮室<a href="#meigongshi">⑥</a>，驅騁畋獵<a href="#chichengtianlie">⑦</a>，舉/預獄訟<a href="#juyusongyu">⑧</a>，此所以失。…【7】</p>
+    </div>
+    <h3 class="hb-topic" id="ba">①八</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《周禮．天官冢宰》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>以八法治官府：一曰官屬，以舉邦治。二曰官職，以辨邦治。三曰官聯，以會官治。四曰官常，以聽官治。五曰官成，以經邦治。六曰官法，以正邦治。七曰官刑，以糾邦治。八曰官計，以弊邦治。</p>
+    <h3 class="hb-topic" id="fuzi">②夫子</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《孟子．梁惠王上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>願夫子輔吾志。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>注：「夫子」指季孫。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈季氏〉第一章：季氏將伐顓臾。冉有、季路見於孔子曰：「季氏將有事於顓臾。」孔子曰：「求！無乃爾是過與？夫顓臾，昔者先王以為東蒙主，且在邦域之中矣，是社稷之臣也。何以伐為？」冉有曰：「夫子欲之，吾二臣者皆不欲也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>注：「夫子」指季孫。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈學而〉第十章：子禽問於子貢曰：「夫子至於是邦也，必聞其政，求之與？抑與之與？」子貢曰：「夫子溫、良、恭、儉、讓以得之。夫子之求之也，其諸異乎人之求之與？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈八佾〉第二十四章：儀封人請見。曰：「君子之至於斯也，吾未嘗不得見也。」從者見之。出曰：「二三子，何患於喪乎？天下之無道也久矣，天將以夫子為木鐸。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈里仁〉第十五章：子曰：「參乎！吾道一以貫之。」曾子曰：「唯。」子出。門人問曰：「何謂也？」曾子曰：「夫子之道，忠恕而已矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈公冶長〉第十三章：子貢曰：「夫子之文章，可得而聞也；夫子之言性與天道，不可得而聞也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈雍也〉第二十八章：子見南子，子路不說。夫子矢之曰：「予所否者，天厭之！天厭之！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈述而〉第十五章：冉有曰：「夫子為衛君乎？」子貢曰：「諾。吾將問之。」入，曰：「伯夷、叔齊何人也？」曰：「古之賢人也。」曰：「怨乎？」曰：「求仁而得仁，又何怨。」出，曰：「夫子不為也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子罕〉第十五章：大宰問於子貢曰：「夫子聖者與？何其多能也？」子貢曰：「固天縱之將聖，又多能也。」子聞之，曰：「大宰知我乎！吾少也賤，故多能鄙事。君子多乎哉？不多也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>注：「夫子」指孔子。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：〈史蒥問於夫子〉的「夫子」是孔子。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：此篇中的「夫子」是否確為孔子，實在難以定論。其所論的「仁人」、「敬」、「神」等概念，固然最類似於儒家思想，然而史蒥既為齊人，其請教的對象不見得即是從魯邦訪齊的孔子，實有可能即史蒥自己於本地所從受業的某位「夫子」，而其思想與儒教相似耳。在缺乏進一步的證據之前，對此有所保留可也。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《史記．孔子世家》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夏，衛靈公卒，立孫輒，是為衛出公。六月，趙鞅內太子蒯聵于戚。陽虎使太子絻，八人衰絰，偽自衛迎者，哭而入，遂居焉。冬，蔡遷于州來。是歲魯哀公三年，而孔子年六十矣。齊助衛圍戚，以衛太子蒯聵在故也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>梁靜：</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>學者所顧慮的其他問題———如果「史蒥」和「夫子」是「史鰌」和「孔子」的話，史鰌應比孔子年長，爲何在爲師這件事上要向孔子請教？而聽聞孔子之言后，又爲何説出「聞子之言大懼，不志所爲」這樣的話？則可能存在多種原因。一則涉及文獻與史實的相符程度這個問題。孔子所代表的儒家學派在戰國時期的地位雖未及後世，但也位列「顯學」，是諸子百家在論争中經常提及的重要人物之一。因而相關文獻所記的孔子故事，未必就是歷史上真實的「孔子」。簡文這裏也是如此。即使「史蒥」就是「史鰌」，卻未必代表歷史上真實的史鰌。「夫子」也是這樣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>二則根據文獻記載，孔子去衛國時，已是55歲之後的事情了，那時的孔子，無論在授徒講學還是政治事業方面，都已經有所成就。相反，孔子一生中只在35歲時去過齊國一次，當時的孔子還没有出仕，也不似後來門徒衆多。相比較而言，與身爲「師保」的「史蒥」進行這番對話的「夫子」，更有可能是在55歲之後才到達衛國的孔子。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>簡文内容與國君之子的教育有關，而孔子在衛國所經歷的蒯聵與出公父子爭位的事件與之在一定程度上有所暗合，或許并不是一個巧合。然而由於二人身份始終没有確證，因而不好做出過多的推論。</p>
+    <h3 class="hb-topic" id="naxiewei">③納邪/僞</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈孔子見季桓子〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡19：邪偽之民，亦以其物。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳劍：「邪僞」近義連用，「邪」意義重點在「（立身行事）不正」，「僞」意義重點在「人爲修飾、誇飾」。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論衡．累害篇》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>邪僞之人，治身以巧俗，脩詐以偶衆。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《新書．春秋》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>進忠正而遠邪僞，故民順附，而臣下爲用。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《新序．雜事二》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>賢者伏匿於山林，諂諛强於左右，邪僞立於本朝，諫者不得通入，此三殆也。酒漿流湎，以夜續朝，女樂俳優，從横大笑，外不脩諸侯之禮，内不秉國家之治，此四殆也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：簡文的「納邪僞」可與上引文的「遠邪僞」、「邪僞立於本朝」相呼應，「幽色與酒」則同於「酒漿流湎」、「女樂俳優」對應，此三者皆與賢主之道背離，故爲「此所以失」的八項之三。</p>
+    <h3 class="hb-topic" id="youyaohaose">④幽/要/好色與酒</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《新序．雜事二》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>賢者伏匿於山林，諂諛强於左右，邪僞立於本朝，諫者不得通入，此三殆也。酒漿流湎，以夜續朝，女樂俳優，從横大笑，外不脩諸侯之禮，内不秉國家之治，此四殆也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語．學而》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第七章：子夏曰：「賢賢易色，事父母能竭其力，事君能致其身，與朋友交言而有信。雖曰未學，吾必謂之學矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>邢曷疏：色，女人也。女有姿色，男子悅之，故經傳之文通謂女人為色。人多好色不好賢者，能改易好色之心以好賢，則善矣。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記．樂記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子夏對曰：「鄭音好濫淫志，宋音燕女溺志，衛音趨數煩志，齊音敖辟喬志；此四者皆淫於色而害於德，是以祭祀弗用也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《國語．晉語一》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>史蘇朝，告大夫日：「……雖好色，必惡心，不可謂好。好其色，必授之情。彼得其情以厚其欲，從其惡心，必敗國且深亂。亂必自女戎，三代皆然。」</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《韓詩外傳》卷二</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>昔者桀為酒池糟隄，縱靡靡之樂。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《尚書・酒誥》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>惟荒腆于酒，不惟自息乃逸，厥心疾很，不克畏死。辜在商邑，越殷國滅，無罹。弗惟德馨香祀，登聞于天；誕惟民怨，庶群自酒，腥聞在上。故天降喪于殷，罔愛于殷，惟逸。天非虐，惟民自速辜。」</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《左傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈襄公三十年〉：鄭伯有耆酒，為窟室，而夜飲酒，擊鍾焉，朝至未己。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈昭公七年〉：子皮之族，飲酒無度，故馬師氏與子皮氏有惡。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《載國策．魏策二》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>魯君興，必席擇言曰：「昔者帝女令儀狄作酒而美，進之禹，禹飲而甘之，遂疏儀狄，絕旨酒，曰：『後世必有以酒亡其國者。』……</p>
+    <h3 class="hb-topic" id="dazhongding">⑤大鐘鼎</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《荀子．樂論》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>君子以鐘鼓道志，以琴瑟樂心；動以干戚，飾以羽旄，從以磬管。……故曰：樂者，樂也。君子樂得其道，小人樂得其欲。以道制欲，則樂而不亂；以欲忘道，則惑而不樂。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>上博簡〈君人者何必安哉〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡3：君王有楚，不聽鼓鐘之聲，此其一回也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：「鐘」除了炫耀自己的地位之外，亦與「樂」息息相關。「鐘鼓」可道志，可見音樂的重要。〈君人者何必安哉〉其中亦是將楚王不聽鐘鼓之聲，視爲「三回」之一，也見音樂的重要性。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《説苑》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈正諫〉：莊王立鐘鼓之間，左伏楊姬，右擁越姬，左裯衽，右朝服，曰：「吾鼓鐘之不暇，何諫之聽！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈正諫〉：景公爲臺，臺成，又欲爲鐘。晏子諫曰：「君不勝欲爲臺，今復欲爲鐘，是重斂於民，民之哀矣。夫斂民之哀而以爲樂，不祥。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈反質〉：婦女優倡，鐘鼓管絃，流漫不禁，而天下愈竭。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《論語．陽貨》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第九章：子曰：「禮云禮云，玉帛云乎哉？樂云樂云，鐘鼓云乎哉？」</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《淮南子．本經訓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>凡亂之所由生者，皆在流遁。流遁之所生者五：大構駕，興宫室……鑿汙池之深，肆畛崖之遠……高築城郭，設樹險阻……大鐘鼎，美重器……煎熬焚炙，調齊和之適……此五者一，足以亡天下矣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：但君王若太過喜好音樂，則不宜，簡文的「大鐘鼎」意涵即是指「淫樂」。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>上博簡《君人者何必安哉》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡6：君王隆其祭，而不爲其樂。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：「隆其祭」，指不禮，濫祭淫祀。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《漢書．郊祀志》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>楚懷王隆祭祀，事鬼神，欲以獲福助，卻秦師，而兵挫地削，身辱國危。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《韓詩外傳》卷三</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>不高臺榭，非無土木也；不大鍾鼎，非無金錫也；不沈於酒，不貪於色，非辟醜也；直行情性之所安而制度，可以為天下法矣。故用不靡財，足以養其生，而天下稱其仁也；養不害性，足以成教，而天下稱其義也；適情辟餘，不求非其有，而天下稱其廉也；行成不可掩，息刑不可犯，執一道而輕萬物，天下稱其勇也。</p>
+    <h3 class="hb-topic" id="meigongshi">⑥美宮室</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《周禮》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>以本俗六安萬民：一曰媺宮室，二曰族墳墓，三曰聯兄弟，四曰聯師儒，五曰聯朋友，六曰聯朋友，六曰同衣服。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《韓非子．八姦》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>何謂養殃？曰：人主樂美宮室臺池、好飾子女狗馬以娛其心，此人主之殃也。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《戰國策．趙策二》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>與秦成，則高臺榭，美宫室，聽竽瑟之音，察五味之和，前有軒轅，後有長庭，美人巧笑，卒有秦患。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《史記．蘇秦列傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>秦成，則高臺榭，美宫室，聽竽瑟之音，前有樓闕軒轅，後有長姣美人，國被秦患而不與其憂。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：整理者認爲此處爲「淫禮」，易泉以爲是「費財力」，其實「美宗室」與上文的「大鐘鼎」同，皆指沉溺享樂。「美宫室」置於《韓非子》的〈八姦〉篇中，「八姦」指奸臣對君主權力進行巧取豪奪的八種手段，「養殃」便是人臣用「物質享樂」來腐蝕君主的手段。而《戰國策》和《史記》亦是如此記載，此二書更直指「美宫室」的下場爲被他國（秦國）佔領，可見「美宫室」的本意即爲物質享樂的極致，人君若浸淫其中，則會導致亡國。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《管子．禁藏》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫明王不美宫室，非喜小也；不聽鐘鼓，非惡樂也。爲其傷於本事，而妨於教也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：由傳世文獻亦可知，「美宫室」多與聲樂享樂作結合，如《戰國策》、《史記》「聽竽瑟之音」，而〈史蒥問於夫子〉簡6亦有「大鐘鼎」，傳世文獻亦有將「鐘」與「美宫室」合觀的情況，如《管子．禁藏》指「美宫室」、「聽鍾鼓」則傷事而妨教。前文指出大鐘鼎表示過度享樂，「美宫室」亦同。</p>
+    <h3 class="hb-topic" id="chichengtianlie">⑦驅騁畋獵</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《孟子．盡心下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孟子曰：「說大人，則藐之，勿視其巍巍然。堂高數仞，榱題數尺，我得志弗為也；食前方丈，侍妾數百人，我得志弗為也；般樂飲酒，驅騁田獵，後車千乘，我得志弗為也。在彼者，皆我所不為也；在我者，皆古之制也，吾何畏彼哉？</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《墨子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈非命中〉：是故昔者三代之暴王，不繆其耳目之淫，不慎其心志之辟，外之敺騁田獵畢弋，內沈於酒樂，不顧其國家百姓之政。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈非命下〉：然今以命為有者，昔三代暴王桀紂幽厲，貴為天子，富有天下，於此乎，不而矯其耳目之欲，而從其心意之辟，外之敺騁、田獵、畢弋，內湛於酒樂，而不顧其國家百姓之政，繁為無用，暴逆百姓，遂失其宗廟。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《道德經》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>五色令人目盲；五音令人耳聾；五味令人口爽；馳騁田獵，令人心發狂；難得之貨，令人行妨。是以聖人為腹不為目，故去彼取此。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《管子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈宙合〉：常邇其樂，立優美，而外淫于馳騁田獵，內縱于美色淫聲，下乃解怠惰失，百吏皆失其端。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈小匡〉：昔先君襄公，高臺廣池，湛樂飲酒，田獵罼弋，不聽國政。卑聖侮士，唯女是崇，九妃六嬪，陳妾數千，食必粱肉，衣必文繡，而戎士凍飢，戎馬待游車之獘戎士待陳妾之餘。倡優侏儒在前，而賢士大夫在後。是以國家不日益，不月長，吾恐宗廟之不掃除，社稷之不血食，敢問為之柰何？</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《淮南子．時則訓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>是故人主好鷙鳥猛獸，珍怪奇物，狡躁康荒，不愛民力，馳騁田獵，出入不時，如此，則百官務亂，事勤財匱，萬民悉苦，生業不修矣。</p>
+    <h3 class="hb-topic" id="juyusongyu">⑧舉/預獄訟</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《東觀漢記•明帝紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>外戚預政，上濁明主，下危臣子。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>苦行僧：「預」有干預的意思。「預獄訟」的意思就是干預獄訟，也就是以個人權勢影響司法公正。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>羅運環：「與獄訟」的「與」當以讀干預的「預」爲妥。國君按正常程序過問相關案件，不屬「預獄訟」。如《墨子．明鬼下》有一則齊莊公時獄訟故事，兩位大臣「訟三年而獄不斷」，才由齊莊公親自處理。又如《漢書．刑法志》高皇帝七年下詔禦史的內容有：「廷尉所不能决，謹具爲奏，傅所當比律令以聞」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：此字若讀爲「預」，文意雖可通，但「預」訓爲「干預」意時，其受詞多爲「政事」，未見「預」與「訟」、「獄」搭配使用的情況，且就楚簡的用字習慣而言，「預」和「與」也未見通假情況，故不從此説所論字即讀爲「舉」。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>上博二〈從政甲〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡8-9：從政有七機：獄則興，威則民不道，嚴則失衆，猛則無親，罰則民逃，好刑[則]……則民作亂，凡此七者，政之所殆也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：〈從政甲〉此句文意爲從政有七個不可爲的項目，「獄則興」爲其中之一，單周堯、黎廣基指出：如果在上位者喜興刑獄，又往往會招致人民的畏忌和怨恨。因此，《晏子春秋．諫下第二》云：「景公藉重而獄多，拘者滿圄，怨者滿朝。」《漢書．杜延年傳》云：「間者民頗言獄深，吏為峻詆……恐不合衆心。」可見無論先秦兩漢，獄事峻深，都不合衆心。因此，「預」字讀爲「舉」，訓爲興起之類的意思是可行的。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《漢書．兒寬傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>寬既治民，勸農業，緩刑罰，理獄訟，卑體下士，務在於得人心。</p>
+    <h2 class="hb-section">六、夫子解釋何謂「信」與「敬」</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈史蒥問於夫子〉相應内容：</h3>
+      <p class="hb-text">…害/曷鹿/從而不敬<a href="#haihelu">①</a>？子亦是/厥之惻/側。」史蒥曰：「何謂信？何謂【9】敬<a href="#heweixin">②</a>？」夫子曰:「敬也者，瞻人之彥色/顔色，而爲之僞/化<a href="#jingyezhe">③</a>，視其所欲<a href="#shiqisuoyu">④</a>而…」【8】</p>
+    </div>
+    <h3 class="hb-topic" id="haihelu">①害/曷鹿/從而不敬</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《呂氏春秋．仲冬紀第十一．至忠》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>荊莊哀王獵於雲夢，射隨兕，中之。申公子培劫王而奪之。王曰：「何其暴而不敬也？」命吏誅之。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《荀子．臣道》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>事人而不順者，不疾者也；疾而不順者，不敬者也；敬而不順者，不忠者也。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《論語．公冶長》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第十六章：子謂子産：「有君子之道四焉：其行己也恭，其事上也敬，其養民也惠，其使民也義。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>賴怡璇：簡文此處夫子與史蒥的對話，應是在説明人臣之道，人臣侍君講究服從，我們從《荀子．臣道》可見「順從」的重要性。《論語．公冶長》則實指事奉君王要「敬」而非只有「從」，故簡文指出只有「從」而「不敬」是不夠的。</p>
+    <h3 class="hb-topic" id="heweixin">②何謂信？何謂敬？</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈公冶長〉第一章：子曰：「晏平仲善與人交，久而敬之。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈季氏〉第十章：孔子曰：「君子有九思：視思明，聽思聰，色思溫，貌思恭，言思忠，事思敬，疑思問，忿思難，見得思義。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈憲問〉第四十二章：子路問君子。子曰：「脩己以敬。」曰：「如斯而已乎？」曰：「脩己以安人。」曰：「如斯而已乎？」曰：「脩己以安百姓。脩己以安百姓，堯舜其猶病諸！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：孔子重視潔身重敬，孔子把「敬」和「修己以安百姓」聯繫在一起。「修己以安百姓」也就是「博施於民」，注重的就是取信於民。敬，是國泰民安的重要手段。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第四章：樊遲請學稼，子曰：「吾不如老農。」請學為圃。曰：「吾不如老圃。」樊遲出。子曰：「小人哉，樊須也！上好禮，則民莫敢不敬；上好義，則民莫敢不服；上好信，則民莫敢不用情。夫如是，則四方之民襁負其子而至矣，焉用稼？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路〉第十九章：樊遲問仁。子曰：「居處恭，執事敬，與人忠。雖之夷狄，不可棄也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈學而〉第五章：子曰：「道千乘之國：敬事而信，節用而愛人，使民以時。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈衛靈公〉第六章：子張問行。子曰：「言忠信，行篤敬，雖蠻貊之邦行矣；言不忠信，行不篤敬，雖州里行乎哉？立，則見其參於前也；在輿，則見其倚於衡也。夫然後行。」子張書諸紳。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公問〉：公曰：「寡人雖無似也，愿聞所以行三言之道，可得聞乎？」孔子對曰：「古之為政，愛人為大；所以治愛人，禮為大；所以治禮，敬為大；敬之至矣，大昏為大。大昏至矣！大昏既至，冕而親迎，親之也。親之也者，親之也。是故，君子興敬為親；舍敬，是遺親也。弗愛不親；弗敬不正。愛與敬，其政之本與！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈聘義〉：敬讓也者，君子之所以相接也。故諸侯相接以敬讓，則不相侵陵。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈鄉飲酒義〉：尊讓、潔、敬也者，君子之所以相接也，君子尊讓則不爭，潔、敬則不慢，不慢不爭，則遠於闕、辨矣。不鬭、辨，則無暴亂之禍矣。斯君子所以免於人禍也。故聖人制之以道。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《易經・坤》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>「直」其正也，「方」其義也。君子敬以直內，義以方外，敬義立而德不孤。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>林栗：敬也者，百行之表也，君子欲正其身，非敬何先？敬以為正，義以爲中，其自立者，可謂卓然矣。然恐孤絕而無鄰，则偏迫獨行，而無以成其大，故日：『敬義立，而德不孤。』」不敬則昏，不敬則跲。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>上博簡〈從政甲〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡1-2：夫是則守之以信，教之以義，行之以禮也。</p>
+    <h3 class="hb-topic" id="jingyezhe">③敬也者，瞻人之彥色/顔色，而爲之僞/化</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．爲政》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第七章：子游問孝。子曰：「今之孝者，是謂能養。至於犬馬，皆能有養；不敬，何以別乎？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：簡文「敬也者，信」是孔子對「敬」最直接明確的詮釋。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>季旭昇：「瞻人之顔色而爲之」怎麽會是敬呢》我們認爲本簡下殘，此處夫子應是先從反面抨擊「瞻人之顔色」不是「敬」。「瞻人之顔色而爲之、爲視其所欲而……」之下，夫子接著說的應該是「則非敬」之類的話，全段文義才合理。孔子類似的表述，不爲罕見，如《論語．爲政》孔子回答子游問孝，說「今之孝者，是謂能養。至于犬馬，皆能有養；不敬，何以別乎？」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《荀子．儀兵》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>故厚德音以先之，明禮義以道之，致忠信以愛之，尚賢使能以次之，爵服慶賞以申之，時其事，輕其任，以調齊之，長養之，如保赤子。政令以定，風俗以一，有離俗不順其上，則百姓莫不敦惡，莫不毒孽，若祓不祥；然後刑於是起矣。是大刑之所加也，辱孰大焉！將以為利邪？則大刑加焉，身苟不狂惑戇陋，誰睹是而不改也哉！然後百姓曉然皆知循上之法，像上之志，而安樂之。於是有能化善、脩身、正行、積禮義、尊道德，百姓莫不貴敬，莫不親譽；然後賞於是起矣。是高爵豐祿之所加也，榮孰大焉！將以為害邪？則高爵豐祿以持養之；生民之屬，孰不願也！雕雕焉縣貴爵重賞於其前，縣明刑大辱於其後，雖欲無化，能乎哉！故民歸之如流水，所存者神，所為者化，而順，暴悍勇力之屬為之化而愿，旁辟曲私之屬為之化而公，矜糾收繚之屬為之化而調，夫是之謂大化至一。《詩》曰：「王猶允塞，徐方既來。」此之謂也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：今則讀為「化」而亦屬上。此亦民敬其君德、從風而化之之例。</p>
+    <h3 class="hb-topic" id="shiqisuoyu">④視其所欲</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《韓非子．主道》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>君無見其所欲，君見其所欲，臣自將雕琢；君無見其意，君見其意，臣將自表異。</p>
+    <h2 class="hb-section"><span class="num-pfx">六、</span>夫子讚美「臨事而懼」</h2>
+    <div class="hb-bamboo">
+    <h3 class="hb-intro"><span class="num-pfx">- </span>〈史蒥問於夫子〉相應内容：</h3>
+    <p class="hb-text">…「聞子之言大懼，不識所爲。」夫子曰：「善哉！臨事而懼，/希不<a href="#linshierju">①</a>… 【12】</p>
+    </div>
+    <h3 class="hb-topic" id="linshierju">①臨事而懼，/希不</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．述而》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第十一章：子謂顏淵曰：「用之則行，舍之則藏，唯我與爾有是夫！」子路曰：「子行三軍，則誰與？」子曰：「暴虎馮河，死而無悔者，吾不與也。必也臨事而懼，好謀而成者也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《尸子．發蒙》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孔子曰：「臨事而懼，希不濟。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>梁靜：《論語》和《尸子》都是説遇到重要的事情内心要有所懼怕，慎重處理，好好謀劃，才不會失誤。〈史蒥問於夫子〉簡文「希不」之後可以據《尸子》補出「濟」字。</p>
+  </main>
+  <footer>
+    <p>本頁內容整理自《史蒥問於夫子》相關文獻彙編</p>
+  </footer>
+</body>
+</html>

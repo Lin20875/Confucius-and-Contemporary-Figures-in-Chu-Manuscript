@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>魯邦大旱 — 相關文獻彙編</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --fg: #1a1a1a;
+      --accent: #2e6b4f;
+      --accent2: #8c6d1f;
+      --muted: #666;
+      --border: #d5cdb8;
+      --section-bg: #f0ece0;
+      --bamboo-bg: #e8f0e8;
+      --table-header-bg: #e8e2d0;
+      --table-stripe: #f5f2ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Noto Serif CJK TC","PingFang TC","Microsoft JhengHei",serif;
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header, main, footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(1.2rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(46,107,79,.08), transparent);
+    }
+    header h1 {
+      font-size: clamp(1.6rem,3vw,2.4rem);
+      margin: 0 0 .3em;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    header .subtitle {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    /* ── 大段标题：带背景条 ── */
+    .hb-section {
+      font-size: clamp(1.25rem,2.2vw,1.7rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding: .4em .7em;
+      background: var(--section-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 .5rem .5rem 0;
+    }
+
+    /* ── 中级标题：无背景 ── */
+    .hb-topic {
+      font-size: clamp(1.1rem,1.8vw,1.35rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 2rem 0 .6rem;
+      padding: .2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── 篇名引导 ── */
+    .hb-intro {
+      font-size: clamp(1.05rem,1.6vw,1.2rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 1.8rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 小标题 / 来源标题 ── */
+    .hb-source {
+      font-size: clamp(1rem,1.5vw,1.1rem);
+      font-weight: bold;
+      color: #444;
+      margin: 1.5rem 0 .4rem;
+      padding-left: .5em;
+      border-left: 3px solid var(--accent2);
+    }
+    .hb-subsource {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      margin: 1.2rem 0 .3rem;
+      padding-left: 1em;
+    }
+    .hb-subhead {
+      font-size: clamp(1.02rem,1.5vw,1.12rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 1.5rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 正文段落：无背景框 ── */
+    .hb-text {
+      margin: .6em 0;
+      font-size: .95rem;
+      text-indent: 2em;
+    }
+
+    /* ── 带编号前缀的段落 ── */
+    .hb-listed {
+      text-indent: 0;
+      padding-left: 2.8em;
+      position: relative;
+    }
+    .num-pfx {
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      min-width: 2.5em;
+      text-align: right;
+      padding-right: .3em;
+      color: var(--accent2);
+      font-weight: bold;
+    }
+    h2 .num-pfx, h3 .num-pfx, h4 .num-pfx {
+      position: static;
+      min-width: auto;
+      text-align: left;
+      padding-right: .2em;
+    }
+
+    /* ── 简文区块：保留背景框 ── */
+    .hb-bamboo {
+      margin: 1em 0;
+      padding: .8em 1.2em;
+      background: var(--bamboo-bg);
+      border: 1px solid #b5cfb5;
+      border-radius: .5rem;
+      font-size: .95rem;
+      line-height: 1.9;
+    }
+    .hb-bamboo p { margin: 0; }
+
+    /* ── 真实表格 ── */
+    .hb-table-wrap {
+      margin: 1.2em 0;
+      overflow-x: auto;
+    }
+    .hb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .hb-table th,
+    .hb-table td {
+      border: 1px solid var(--border);
+      padding: .5em .7em;
+      vertical-align: top;
+      text-align: left;
+    }
+    .hb-table th {
+      background: var(--table-header-bg);
+      font-weight: bold;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hb-table tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    footer p { margin: .3em 0; }
+
+    @media(max-width:768px) {
+      .hb-section { font-size: 1.15rem; }
+      header, main, footer {
+        padding: clamp(1rem,5vw,1.5rem) clamp(.8rem,4vw,1.2rem);
+      }
+      .hb-table { font-size: .82rem; }
+      .hb-table th, .hb-table td { padding: .35em .5em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>魯邦大旱 — 相關文獻彙編</h1>
+    <p class="subtitle">與讀本對照之相關傳世文獻及學者研究匯集</p>
+  </header>
+  <main>
+    <h2 class="hb-section"><span class="num-pfx">一、</span>「魯邦大旱」：魯國旱災的相關文獻記載</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈魯邦大旱〉相應內容：</h3>
+      <p class="hb-text">魯邦大旱，哀公謂孔子曰：「子不爲我圖之？」</p>
+    </div>
+    <p class="hb-text hb-listed"><span class="num-pfx">1.</span>《春秋》</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公十五年〉：秋，八月，大雩。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：〈魯邦大旱〉事發魯哀公十五年。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：這篇記載了魯哀公十五年（公元前480年）魯邦大旱期間，孔子與魯哀公、子貢的兩次對話。第一、二簡記載的是孔子與魯哀公的答對，是寫孔子借魯邦大旱之機，在不堅持反對以「說之事鬼」的情況下，向魯哀公提出了「正刑與德」的政治改革對策。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>楊朝明：雩祭是一種祈雨求穀的祭祀，《春秋》經的記事方式或者記事原則有明顯的個性，傳中關於雩祭的記載雖然不少，卻遠非全部的雩祭。《春秋》記載魯國「大雩」的著眼點在於《左傳》所說的「不時」。《春秋》「常事不書」，這樣，魯國不少正常的雩祭便不見於記載。魯國「大雩」都是祈雨之祭，與旱象相互聯繫，但未必一定是發生了「大旱」。相反，《春秋》經傳沒有記載魯國大旱，並不一定沒有旱災。《公羊傳》認為經言「大雩」在於「記災」，後世《公羊》學者更進而言大雩就意味著大旱，實有不當。所以，如果要落實此次「魯邦大旱」的時間，建議定為在魯哀公十一年到十六年的六年（即孔子在魯時間）之內。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳嘉凌：全文為敘述魯哀公十五年時發生大旱，哀公因此請教孔子如何抵禦大旱，孔子提出需要督正刑與德，也不要吝惜用圭壁幣帛等祭品儀式向山精水靈求雨，之後孔子遇見子貢，兩人對抵禦大旱時是否要舉行祭祀的態度進行討論，孔子對天命重視且敬畏，故贊成祭配，子貢認為解決大旱是不需要祭配，對祭祀采取理性的態度。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>秦飛：此次魯邦大旱事發魯哀公十二年（前483年）或十三年前482年）。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>*以下為反對/沒有落實魯邦大旱發生時間的學者意見：</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>林志鵬：儒家學者往往借孔子與魯哀公對話設為問答，用以鋪成事理。「記」者因聖人之言而為文章，若必以魯邦大旱為魯哀公十五年事，恐怕求之過深。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳侃理：〈魯邦大旱〉故事出於戰國儒家某一學派的構擬，意在反駁不重祭祀的儒家學派，反映了它的作者相信天人相關，不僅要求改善政治，還重視祭祀鬼神以應對天災的思想。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>黃君良：本篇強調祭祀河川對為政者起自我檢討、管束的作用，發揚道德自覺，作者將道德與鬼神、人民和為政三者緊密地聯繫起來；主張復興禮樂，強調其對政治的深遠影響。其寫作年代約在戰國初年。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔德立：本篇主體思想是神道設教，應為子思學派的著作。</p>
+    <h2 class="hb-section">二、「刑與德」：孔子重人事輕鬼神的相關文獻記載</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈魯邦大旱〉相應內容：</h3>
+      <p class="hb-text">魯邦大旱，哀公謂孔子曰：「子不爲我圖之？」孔子答曰：「邦大旱，毋乃失者諸刑與德乎？唯 ……【1】[刑德皆當者，天其佑之。願君善圖之！」公曰：「若然，則如之何哉？」孔子曰：「庶民知敚/説之事鬼也，不知刑與德。汝/如毋愛珪璧幣帛於山川，正刑與 …【2】[德，則民將歸君而邦乃治矣。」公曰：「諾，吾將厚祭之。」</p>
+    </div>
+    <h4 class="hb-source">1. 《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈八佾〉第十二章：祭如在，祭神如神在。子曰：「吾不與祭，如不祭。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈雍也〉第二十二章：樊遲問知。子曰：「務民之義，敬鬼神而遠之，可謂知矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈述而〉第二十一章：子不語怪、力、亂、神。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈述而〉第三十五章：子疾病，子路請禱。子曰：「有諸？」子路對曰：「有之。誄曰：『禱爾于上下神祇。』」子曰：「丘之禱久矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈先進〉第十二章：季路問事鬼神。子曰：「未能事人，焉能事鬼？」</p>
+    <h4 class="hb-source">2. 《韓詩外傳》卷三</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>傳曰：宋大水。魯人弔之曰：「天降淫雨，害於粢盛，延及君地，以憂執政，使臣敬弔。」宋人應之，曰：「寡人不仁，齋戒不修，使民不時，天加以災，又遺君憂，拜命之辱。」孔子聞之，曰：「宋國其庶幾矣。」弟子曰：「何謂？」孔子曰：「昔桀紂不任其過，其亡也忽焉。成湯文王知任其過，其興也勃焉。過而改之，是不過也。」宋人聞之，乃夙興夜寐，弔死問疾，戮力宇內，三歲，年豐政平。鄉使宋人不聞孔子之言，則年穀未豐，而國家未寧。《詩》曰：「佛時仔肩，示我顯德行。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：宋國遭遇水災，宋君知道從人事上改過，因而得到孔子的讚賞。這與簡文孔子以「唯正刑與德」救魯國旱災精神是一致的。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>楚莊王寢疾，卜之，曰：「河為祟。」大夫曰：「請用牲。」莊王曰：「止。古者聖王制，祭不過望。濉、漳、江、漢，楚之望也。寡人雖不德，河非所獲罪也。」遂不祭。三日而疾有瘳。孔子聞之曰：「楚莊王之霸，其有方矣。制節守職，反身不貳，其霸不亦宜乎！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：楚王不祭河而「疾有瘳」，孔子引為知己，也是在不信鬼神上有所共鳴。</p>
+    <h4 class="hb-source">3. 《左傳》、《孔子家語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《左傳．哀公六年》：昭王有疾，卜曰，河為祟，王弗祭，大夫請祭諸郊，王曰，三代命祀，祭不越望，江漢雎章，楚之望也，禍福之至，不是過也，不穀雖不德，河非所獲罪也，遂弗祭，孔子曰，楚昭王知大道矣，其不失國也宜哉，夏書曰，惟彼陶唐，帥彼天常，有此冀方，今失其行，亂其紀綱，乃滅而亡，又曰，允出茲在茲，由己率常可矣。 </p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《孔子家語．正論解》：楚昭王有疾，卜曰：「河為祟。」王弗祭。大夫請祭諸郊，王曰：「三代命祀，祭不越望。江、漢、沮、漳，楚之望也。禍福之至，不是過乎？不穀雖不德，河非所獲罪也。」遂不祭。孔子曰：「楚昭王知大道矣，其不失國也宜哉！《夏書》曰：『維彼陶唐，率彼天常，在此冀方。今失其行，亂其紀綱，乃滅而亡。』又曰：『允出玆在玆，由己率常可矣。</p>
+    <h2 class="hb-section">三、「毋愛璧幣帛於山川」：孔子對鬼神採取容忍態度的相關文獻記載</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈魯邦大旱〉相應內容：</h3>
+      <p class="hb-text">魯邦大旱，哀公謂孔子曰：「子不爲我圖之？」孔子答曰：「邦大旱，毋乃失者諸刑與德乎？唯 ……【1】[刑德皆當者，天其佑之。願君善圖之！」公曰：「若然，則如之何哉？」孔子曰：「庶民知敚/説之事鬼也，不知刑與德。汝/如毋愛珪璧幣帛於山川，正刑與 …【2】[德，則民將歸君而邦乃治矣。」公曰：「諾，吾將厚祭之。」</p>
+      <p class="hb-text">孔子] 出，遇子貢，曰：「賜，爾聞巷路之言，毋乃謂丘之答非歟？」子貢曰：「否。抑吾子女乃/如重命/名其歟？若夫正刑與德以事上天，此是哉。若夫毋愛珪璧【3】幣帛於山川，毋乃 不可。夫山，石以爲膚，木以爲毛 ，如天不雨，石將焦，木將死，其欲雨或甚於我，或/又必待吾禜/命乎？夫川，水以爲國，魚以【4】爲民，如天不雨，水將涸，魚將死，其欲雨或甚於我，或/又必待吾禜/命乎？」 孔子曰：「嗚呼…【5】[賜也，爾通乎天人之際，而未能達乎民心。如不厚祭，] 公豈不飯粱食肉哉？抑無如庶民何。」【6】</p>
+    </div>
+    <h3 class="hb-topic">1. 《論語》</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第二十四章：子曰：「非其鬼而祭之，諂也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：不是所應當祭祀的鬼神卻去祭祀，這是獻媚。換言之，有些鬼神還是一定要祭祀的。</p>
+    <h3 class="hb-topic">2. 《大戴禮記》</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈表記〉：子言之：「昔三代明王皆事天地之神明，無非卜筮之用，不敢以其私，褻事上帝。是故不犯日月，不違卜筮。卜筮不相襲也。大事有時日；小事無時日，有筮。外事用剛日，內事用柔日。不違龜筮。」子曰：「牲牷禮樂齊盛，是以無害乎鬼神，無怨乎百姓。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈千乘〉：凡民之藏貯，以及山川之神明加于民者，發國功謀。齋戒必敬，會時必節。日厤巫祝，執伎以守官，俟命以作。祈王年，禱民命，及畜穀蜚征庶虞草。</p>
+    <h3 class="hb-topic">3. 馬王堆帛書《易》傳《要》篇</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫子老而好《易》，居則在席，行則在橐。子贛曰：「夫子它日教此弟子曰：『德行亡者，神靈之趨；智谋遠者，卜筮之繁。』，賜以此為然矣。以此言取之，賜循之為也。夫子何以老而好之乎？」夫子曰：「君子言以矩方也。前祥而至者，弗祥而巧也。察其要者，不詭其德。尚書多盡矣，《周易》未失也，且有古之遺言焉。予非安其用也，予樂〔其辭也。賜，汝何〕尤於此乎！」〔子贛曰〕：「如是，則君子已重過矣。賜聞諸夫子曰：『遜正而行義，則人不惑矣。』，夫子今不安其用而樂其辭，則是用倚於人也，而可乎？」。子曰：「謬哉，賜！吾告汝：《易》之道，〔存乎其辭也。其用者〕此百姓之道〔之謂〕《易》也。夫《易》，剛者使知懼，柔者使知圖，愚人為而不妄，漸人為而去詐。文王仁，不得其志以成其慮。紂乃無道，文王作。諱而避咎，然後《易》始興也。予樂其知之〔自得，德〕之自〔生也〕。予何〔樂其〕事紂乎！」。子贛曰：「夫子亦信其筮乎？」。</p>
+    <p class="hb-text">子曰：「吾百占而七十當。唯周梁山之占也，亦必從其多者而已矣。」</p>
+    <p class="hb-text">子曰：「《易》，我後其祝卜矣，我觀其德義耳也。幽贊而達乎數，明數而達乎德，有仁〔存〕者而義行之耳。贊而不達於數，則其為之巫；數而不達於德，則其為之史。史巫之筮，向之而未也，好之而非也。後世之士疑丘者，或以《易》乎！吾求其德而已，吾與史巫同途而殊歸者也。君子德行焉求福，故祭祀而寡也；仁義焉求吉，故卜筮而希也。祝巫卜筮其後乎！」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：子貢責問孔子「何以老而好易？」，而孔子答以「我後其祝卜，我觀其德義耳也」，與〈魯邦大旱〉簡文的對答極其相似。/子貢認為孔子「老而好《易》」是捨棄「德行」，遠離「智謀」；是迷信「神靈」，迷信「卜筮」。這與簡文子貢反對祭祀鬼神、嚴辭責問孔子是完全一致的。孔子面對子貢的責問，一再解釋「予非安其用也」，「吾求其德而已，吾與史巫同途而殊歸者也」，甚至斥之為「謬哉，賜」這與簡文孔子的「嗚呼」之歎可謂異曲同工。</p>
+    <h3 class="hb-topic">4. 上博竹書《子羔》篇</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子羔問於孔子曰：「三王者作也，皆人子也，而其父賤而不足稱也與？抑亦誠天子也與？」孔子曰：「善，爾問之也。久矣其莫聞之。禹之母，有莘氏之女也，觀於伊而得之，懷三年而劃於背而生，生而能言，是禹也。契之母，有娀氏之女也，遊於央台之上，有燕銜卵而措諸其前，取而吞之，懷三年而劃於膺而生，生乃呼曰：『欽』，是契也。后稷之母，有邰氏之女也，遊於玄丘之內，冬見芺，搴而薦之，乃見人武，履以祈禱曰：「帝之武，倘使吾有身。懷三年，劃口而生，是后稷之母也。三王者之作也如是。」</p>
+    <p class="hb-text">子羔曰：「然則三王者孰為？」孔子曰：「帝舜。」子羔曰：「其亦天子也與，抑亦人子也與？」孔子曰：「有虞氏之樂正瞽瞍之子也。」子羔曰：「何故以得為帝？」孔子曰：「昔者而弗世也，善與善相授也，故能治天下，平萬邦，使無有、小大、肥瘠辨，皆得其社稷百姓而奉守之。堯見舜之德賢，故讓之。」子羔曰：「堯之得舜也，舜之德則誠善？伊堯之德則甚明與？」孔子曰：「均也。舜穡於童土之田，則天下之民歸之如流。」子羔曰：「舜之德若何，而可以得之童土之黎民也。」孔子曰：「吾聞夫舜，其幼也敏，以孝侍親，言之弗惑，寬裕溫良，知時用中，畏天愛民，舉賢而治，有以文而遠。堯之取舜也，從諸卉茅之中，與之言禮，悅溥而順；與之言樂，悅和而長；與之言政，悅簡而行；與之言道，悅繟而和。故夫舜之德其誠賢矣，由諸畎畝之中而使，君天下而稱。」子羔曰：「如舜在今之世則何若？」孔子曰：「亦己先王之由道，不逢明王，則亦不大使。」孔子曰：「舜其可謂受命之民矣。舜，人子也，而三天子事之。」……</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：孔子經過子羔一問，便即肯定禹、契、后稷等三代始祖的奇妙誕生故事，以其母感天而生子的傳説當作實有其事；號稱不言「怪力亂神」的孔子何以向弟子叙述此種怪事，比起其支持舉行求雨之祭，乃更加令讀者難以置信。然與本篇同樣的，其重點並非在此：經過子羔的不斷追問，乃知孔子所要强調的實即生爲人子的舜，因爲其從幼好學而一直修養自己，且後來爲明君堯所欣賞而付以重任，因而最後竟成爲彼三「天子」事此「人子」的局面；其重點在於儒家所恆言的修己以待時的概念上，就如本篇是將重點放在刑、德適當及順民情以行事的治道之上。兩篇均以並非理性的傳統禮俗或神秘信念當作可以包容甚至肯定之事，然其所以肯定之并非肯定其神秘本身，而純是爲了顯示出某種更高一層的孔教理念。由此可知，此兩篇之所以同載一册，確有可能並非偶然。</p>
+    <h2 class="hb-section">四、子貢敢於責問孔子的文獻記載</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈魯邦大旱〉相應內容：</h3>
+      <p class="hb-text">[孔子] 出，遇子貢，曰：「賜，爾聞巷路之言，毋乃謂丘之答非歟？」子貢曰：「否。抑吾子女乃/如重命/名其歟？若夫正刑與德以事上天，此是哉。若夫毋愛珪璧【3】幣帛於山川，毋乃 不可。夫山，石以爲膚，木以爲毛 ，如天不雨，石將焦，木將死，其欲雨或甚於我，或/又必待吾禜/命乎？夫川，水以爲國，魚以【4】爲民，如天不雨，水將涸，魚將死，其欲雨或甚於我，或/又必待吾禜/命乎？」孔子曰：「嗚呼…【5】[賜也，爾通乎天人之際，而未能達乎民心。如不厚祭，] 公豈不飯粱食肉哉？抑無如庶民何。」【6】</p>
+    </div>
+    <h3 class="hb-topic">1. 《論語》</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈八佾〉第十七章：子貢欲去告朔之餼羊。子曰：「賜也，爾愛其羊，我愛其禮。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：子貢從實際出發，認為再殺羊去舉行「告朔」儀式，實在沒有實際內容，所以就「欲去告朔之餼羊」。而孔子從維護周禮出發，則表示反對。子貢「欲去告朔之餼羊」，與〈魯邦大旱〉簡文子貢「何必恃乎命乎」的認識顯然是相同的，而孔子的保守與簡文孔子對「毋愛璧幣帛於山川」的妥協也是相符的。</p>
+    <h3 class="hb-topic">2. 馬王堆帛書《易》傳《要》篇</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫子老而好《易》，居則在席，行則在橐。子贛曰：「夫子它日教此弟子曰：『德行亡者，神靈之趨；智谋遠者，卜筮之繁。』，賜以此為然矣。以此言取之，賜循之為也。夫子何以老而好之乎？」（……）</p>
+    <p class="hb-text">〔子贛曰〕：「如是，則君子已重過矣。賜聞諸夫子曰：『遜正而行義，則人不惑矣。』，夫子今不安其用而樂其辭，則是用倚於人也，而可乎？」（……）</p>
+    <p class="hb-text">子贛曰：「夫子亦信其筮乎？」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>（廖名春分析見上文）</p>
+    <h3 class="hb-topic">3. 《史記》</h3>
+    <p class="hb-text">-〈仲尼弟子列傳〉：子貢利口巧辭，孔子常黜其辯。（……）喜揚人之美，不能匿人之過。</p>
+    <h3 class="hb-topic">4. 《淮南子》</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈人間訓〉：人或問孔子曰：（……）「子貢何如人也？」曰：「辯人也。丘弗如也。」</p>
+    <h2 class="hb-section">五、大臣諫君主旱災對策的相關文獻記載</h2>
+    <h3 class="hb-topic">*《晏子春秋》（與〈魯邦大旱〉有互見文字，内容最相似）</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈內篇．諫上．景公欲祠靈山河伯以禱雨晏子諫第十五〉：齊大旱逾時，景公召群臣問曰：「天不雨久矣，民且有饑色。吾使人卜，云，祟在高山廣水。寡人欲少賦斂以祠靈山，可乎？」群臣莫對。晏子進曰：「不可！祠此無益也。夫靈山固以石為身，以草木為髮，天久不雨，髮將焦，身將熱，彼獨不欲雨乎？祠之無益。」公曰：「不然，吾欲祠河伯，可乎？」晏子曰：「不可！河伯以水為國，以魚鱉為民，天久不雨，泉將下，百川竭，國將亡，民將滅矣，彼獨不欲雨乎？祠之何益！」景公曰：「今為之柰何？」晏子曰：「君誠避宮殿暴露，與靈山河伯共憂，其幸而雨乎！」于是景公出野居暴露，三日，天果大雨，民盡得種時。景公曰：「善哉！晏子之言，可無用乎！其維有德。」</p>
+    <div class="hb-table-wrap"><table class="hb-table">
+  <tr>
+    <td>魯邦大旱</td>
+    <td>夫  山，石以爲膚，木以為毛 ， 如天不雨，石將焦，木將死，</td>
+  </tr>
+  <tr>
+    <td>晏子春秋</td>
+    <td>夫靈山固以石為身，以草木為髮，天久不雨，髮將焦，身將熱， </td>
+  </tr>
+  <tr>
+    <td>魯邦大旱</td>
+    <td>其欲雨或甚於我，或/又必待吾禜/命乎？ </td>
+  </tr>
+  <tr>
+    <td>晏子春秋</td>
+    <td>彼獨不欲雨乎？             </td>
+  </tr>
+  <tr>
+    <td>魯邦大旱</td>
+    <td>夫川，水以爲國，魚以爲民，如天不雨，水將涸，魚將死， </td>
+  </tr>
+  <tr>
+    <td>晏子春秋</td>
+    <td>河伯以水為國，以魚鱉為民，天久不雨，泉將下，百川竭，</td>
+  </tr>
+  <tr>
+    <td>魯邦大旱</td>
+    <td>其欲雨或甚於我，或/又必待吾禜/命乎？</td>
+  </tr>
+  <tr>
+    <td>晏子春秋</td>
+    <td>國將亡，民將滅矣，彼獨不欲雨乎？</td>
+  </tr>
+</table></div>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>曹峰：〈魯邦大旱〉與《晏子春秋．內篇諫上》很可能誕生於非常接近的時代和非常接近的學派。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>比對二者内容，指出人物和情節設置有異，但意旨大同：</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>異：１）主要人物即齊景公與晏子，而非魯哀公、孔子與子貢，且亦有“群臣”之沈默以爲晏子陪襯；２）講出對祭祀的理性否定者即晏子，而説出最後結論者亦即晏子，可以説是兼當子貢與孔子的角色；３）晏子明言「祠此無益也」，並不支持對山川的祭祀，與孔子之態度有明顯的不同。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>同：晏子最後所講出之對策，即勸景公欲「誠避宫殿暴露，與靈山河伯共憂」，亦即要景公對自己的豐富生活作一定的犧牲，哪怕等於祇是象徵性的，仍要與山川之神靈（乃至與人民）表示「共憂」，此蓋亦與孔子之欲哀公少吃點「粱」與「肉」同理。晏子言「其幸而雨乎」，或乃意味著他並非真的相信天人感應，儘管其言在三天後確實即「幸而」得驗。然重點在於晏子之言，「其維有德」，與孔子一樣强調的是「德」上的表現，以誠心與人民及神靈共憂共樂。然則此兩個版本於精神上可以説是相當一致。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>比較其他《晏子春秋》諫文、如〈內篇．諫上．景公病久不愈欲誅祝史以謝晏子諫第十二〉，指出其他文章不但和〈第十五〉的大旱故事一樣，是有關某種禍患的向神求解法，而且晏子此章用來揭發其荒謬之面的那種極其理性且思路清晰的邏輯推理方法，也是如出一轍。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>認為〈魯邦大旱〉來源出於晏子類資料、改寫自《晏子春秋》內篇的《景公欲祠靈山河伯以禱雨晏子諫第十五》的可能性比較大。〈魯邦大旱〉是戰國儒家探用此已有之故事而加以儒家色彩，使之能為孔門之道服務。</p>
+    <h3 class="hb-topic">《孔子家語》、《禮記》</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《孔子家語．曲禮子貢問》：孔子在齊，齊大旱，春饑。景公問於孔子曰：「如之何？」孔子曰：「凶年則乘駑馬，力役不興，馳道不脩，祈以幣玉，祭事不懸，祀以下牲。此則賢君自貶以救民之禮也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《禮記．雜記下》：孔子曰：「凶年則乘駑馬。祀以下牲。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>楊朝明：《孔子家語》是孔子對齊君的答問，同是旱災，又同是國君向孔子詢問對策，與〈魯邦大旱〉相近。</p>
+    <h3 class="hb-topic">3. 《左傳》</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈僖公二十一年〉：夏，大旱，公欲焚巫尪，臧文仲曰：「非旱備也，脩城郭，貶食省用，務穡勸分，此其務也，巫尪何為，天欲殺之，則如勿生。若能為旱，焚之滋甚。」公從之，是歲也，饑而不害。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>楊朝明：春秋以來，關於重人還是重天的爭論不斷出現。孔子以前、以後，魯國以內、以外，都有這種典型的事例。臧文仲同樣認爲迷信鬼神無用，應當重「人事」而輕天、輕鬼神。而他「若能為旱，焚之滋甚」的說法，又與〈魯邦大旱〉中指出山川之神如果有神性應該像人們一樣期望下雨、甚至「其欲雨又甚於我」的説法如出一轍。</p>
+  </main>
+  <footer>
+    <p>本頁內容整理自《魯邦大旱》相關文獻彙編</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>子羔 — 相關文獻彙編</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --fg: #1a1a1a;
+      --accent: #2e6b4f;
+      --accent2: #8c6d1f;
+      --muted: #666;
+      --border: #d5cdb8;
+      --section-bg: #f0ece0;
+      --bamboo-bg: #e8f0e8;
+      --table-header-bg: #e8e2d0;
+      --table-stripe: #f5f2ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Noto Serif CJK TC","PingFang TC","Microsoft JhengHei",serif;
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header, main, footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(1.2rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(46,107,79,.08), transparent);
+    }
+    header h1 {
+      font-size: clamp(1.6rem,3vw,2.4rem);
+      margin: 0 0 .3em;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    header .subtitle {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    /* ── 大段标题：带背景条 ── */
+    .hb-section {
+      font-size: clamp(1.25rem,2.2vw,1.7rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding: .4em .7em;
+      background: var(--section-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 .5rem .5rem 0;
+    }
+
+    /* ── 中级标题：无背景 ── */
+    .hb-topic {
+      font-size: clamp(1.1rem,1.8vw,1.35rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 2rem 0 .6rem;
+      padding: .2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── 篇名引导 ── */
+    .hb-intro {
+      font-size: clamp(1.05rem,1.6vw,1.2rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 1.8rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 小标题 / 来源标题 ── */
+    .hb-source {
+      font-size: clamp(1rem,1.5vw,1.1rem);
+      font-weight: bold;
+      color: #444;
+      margin: 1.5rem 0 .4rem;
+      padding-left: .5em;
+      border-left: 3px solid var(--accent2);
+    }
+    .hb-subsource {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      margin: 1.2rem 0 .3rem;
+      padding-left: 1em;
+    }
+    .hb-subhead {
+      font-size: clamp(1.02rem,1.5vw,1.12rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 1.5rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 正文段落：无背景框 ── */
+    .hb-text {
+      margin: .6em 0;
+      font-size: .95rem;
+      text-indent: 2em;
+    }
+
+    /* ── 带编号前缀的段落 ── */
+    .hb-listed {
+      text-indent: 0;
+      padding-left: 2.8em;
+      position: relative;
+    }
+    .num-pfx {
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      min-width: 2.5em;
+      text-align: right;
+      padding-right: .3em;
+      color: var(--accent2);
+      font-weight: bold;
+    }
+    h2 .num-pfx, h3 .num-pfx, h4 .num-pfx {
+      position: static;
+      min-width: auto;
+      text-align: left;
+      padding-right: .2em;
+    }
+
+    /* ── 简文区块：保留背景框 ── */
+    .hb-bamboo {
+      margin: 1em 0;
+      padding: .8em 1.2em;
+      background: var(--bamboo-bg);
+      border: 1px solid #b5cfb5;
+      border-radius: .5rem;
+      font-size: .95rem;
+      line-height: 1.9;
+    }
+    .hb-bamboo p { margin: 0; }
+
+    /* ── 真实表格 ── */
+    .hb-table-wrap {
+      margin: 1.2em 0;
+      overflow-x: auto;
+    }
+    .hb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .hb-table th,
+    .hb-table td {
+      border: 1px solid var(--border);
+      padding: .5em .7em;
+      vertical-align: top;
+      text-align: left;
+    }
+    .hb-table th {
+      background: var(--table-header-bg);
+      font-weight: bold;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hb-table tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    footer p { margin: .3em 0; }
+
+    @media(max-width:768px) {
+      .hb-section { font-size: 1.15rem; }
+      header, main, footer {
+        padding: clamp(1rem,5vw,1.5rem) clamp(.8rem,4vw,1.2rem);
+      }
+      .hb-table { font-size: .82rem; }
+      .hb-table th, .hb-table td { padding: .35em .5em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>子羔 — 相關文獻彙編</h1>
+    <p class="subtitle">與讀本對照之相關傳世文獻及學者研究匯集</p>
+  </header>
+  <main>
+    <h2 class="hb-section"><span class="num-pfx">一、</span>孔子與子羔論三代始祖感生之事</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈子羔〉相應内容：</h3>
+      <p class="hb-text">子羔<a href="#zg-1">①</a>問於孔子曰：「三王者之作也，皆人子也，而其父賤而不足稱也歟<a href="#zg-2">②</a>？抑亦誠天子<a href="#zg-3">③</a>也歟？」孔子曰：「善，爾問之也。久矣，其莫 [得而聞矣<a href="#zg-5">⑤</a>。禹之母，有莘氏]【9】之女也<a href="#zg-6">⑥</a>，觀於伊而得之<a href="#zg-7">⑦</a>，娠/懷三【11上】年而劃於背而生<a href="#zg-8">⑧</a>，生而能言<a href="#zg-9">⑨</a>，是禹也。契之母，有娀氏之女【10】也<a href="#zg-10">⑩</a>，遊於瑶臺之上<a href="#zg-11">⑪</a>，有燕銜卵而措/錯諸其前，取而吞之<a href="#zg-12">⑫</a>，娠/懷【11下】三年而劃於膺<a href="#zg-13">⑬</a>，生乃呼曰：【港簡3】「金。」是契也。后稷之母，有邰氏之女也<a href="#zg-14">⑭</a>，遊於玄丘之汭<a href="#zg-15">⑮</a>，冬見芺，搴而薦之<a href="#zg-16">⑯</a>，乃見人武<a href="#zg-17">⑰</a>，履以忻<a href="#zg-18">⑱</a>，禱曰：帝之武尚 [使]【12】 [吾有身。懷三年，劃□而生]<a href="#zg-19">⑲</a>，是后稷之母也。三王者之作也如是。</p>
+    </div>
+    <h3 class="hb-topic" id="zg-1">①子羔</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《史記．仲尼弟子列傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>高柴，字子羔，少孔子三十歲。子羔長不盈五尺，授業孔子，孔子以為愚。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：也稱子高、子皋、季皋，春秋末年衛國人。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語．先進》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第二十五章：子路使子羔為費宰。子曰：「賊夫人之子。」子路曰：「有民人焉，有社稷焉。何必讀書，然後為學？」子曰：「是故惡夫佞者。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第十八章：柴也愚，參也魯，師也辟，由也喭。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>洪曉波：孔子評價弟子子羔用了一個「愚」字，那麼何謂「愚」呢？歷來學者的解釋多引用了何晏《論語集解》的說法：「愚直之愚」。當然何晏這麼說也是有根據的，孔子曾說過：「古之愚也直」。這樣解釋的話，子羔為人應該是憨直、耿直的。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孔子家語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈致思〉：季羔為衛之士師，刖人之足。俄而衛有蒯聵之亂，季羔逃之。走郭門，刖者守門焉，謂季羔曰：「彼有缺。」季羔曰：「君子不踰。」又曰：「彼有竇。」季羔曰：「君子不隧。」又曰：「於此有室。」季羔乃入焉。既而追者罷，羔將去，謂刖者曰：「吾不能虧主之法而親刖子之足。今吾在難，此正子之報怨之時，而逃我者三，何故哉？」刖者曰：「斷足固我之罪，無可奈何。曩者君治臣以法令先人後臣，欲臣之免也，臣知之；獄決罪定，臨當論刑，君愀然不樂，見君顏色，臣又知之。君豈私臣哉！天生君子，其道固然，此臣之所以說君也。」孔子聞之，曰：「善哉為吏！其用法一也。思仁恕則樹德，加嚴暴則樹怨，公以行之，其子羔乎？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈弟子行〉：自見孔子，出入於戶，未嘗越履，往來過之，足不履影，啟蟄不殺，方長不折，執親之喪，未嘗見齒，是高柴之行也。孔子曰：『柴於親喪，則難能也，啟蟄不殺，則順人道；方長不折，則恕仁也。成湯恭而以恕，是以日躋。』</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈七十二弟子解〉：高柴，齊人，高氏之別族，字子羔。少孔子四十歲，長不過六尺，狀貌甚惡，為人篤孝而有法正。少居魯，見知名於孔子之門，仕為武城宰。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈公西赤問〉：衛莊公之反國，改舊制，變宗廟，易朝市。高子皋問於孔子曰：「周禮繹祭於祊，祊在廟門之西，前朝而後市。今衛君欲其事事一更之，如之何？」孔子曰：「繹之於庫門內，祊之於東市，朝於西方，失之矣。」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈檀弓上〉：高子皋之執親之喪也，泣血三年，未嘗見齒，君子以為難。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈檀弓下〉：季子皋葬其妻，犯人之禾，申祥以告曰：「請庚之。」子皋曰：「孟氏不以是罪予，朋友不以是棄予，以吾為邑長於斯也。買道而葬，後難繼也。」</p>
+    <h3 class="hb-topic" id="zg-2">②其父賤而不足稱也歟</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．里仁》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第五章：貧與賤，是人之所惡也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>邢昺疏：無位曰賤。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《禮記．坊記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子云：「善則稱親，過則稱己，則民作孝。大誓曰：『予克紂，非予武，惟朕文考無罪，紂克予，非朕文考有罪，惟予小子無良。』」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：《禮記》尚有「善則稱人」、「善則稱君」之說，〈坊記〉所引《大誓》之文，今本未見，且《書》多見「萬方有罪，即當朕身，朕身有罪，無及萬方」之類説法，蓋歸善於人，歸過於己乃一久遠傳統。子羔因夏、商、周三代所歷數世而確知三王者之受福有土，此福之大者，衡之世官世職及三代血緣政治之背景，必當稱其先之烈，若未稱之，則或因位卑無善而不足稱，或因有罪錯而不宜稱，稱則揚父之短也，是為不孝。故其時善則稱親與為尊者諱皆天下通義，而舊說皆稱三王者之母而不及其父，子羔之疑，當基於此背景。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《史記．三代世表》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>張夫子問褚先生曰：「詩言契、后稷皆無父而生。今案諸傳記咸言有父，父皆黃帝子也，得無與詩謬秋？」褚先生曰：「不然。詩言契生於卵，后稷人迹者，欲見其有天命精誠之意耳。鬼神不能自成，須人而生，柰何無父而生乎！一言有父，一言無父，信以傳信，疑以傳疑，故兩言之。堯知契、稷皆賢人，天之所生，故封之契七十里，後十餘世至湯，王天下。堯知后稷子孫之後王也，故益封之百里，其後世且千歲，至文王而有天下。詩傳曰：『湯之先為契，無父而生。契母與姊妹浴於玄丘水，有燕銜卵墮之，契母得，故含之，誤吞之，即生契。契生而賢，堯立為司徒，姓之曰子氏。子者茲；茲，益大也。詩人美而頌之曰「殷社芒芒，天命玄鳥，降而生商」。商者質，殷號也。文王之先為后稷，后稷亦無父而生。后稷母為姜嫄，出見大人蹟而履踐之，知於身，則生后稷。姜嫄以為無父，賤而棄之道中，牛羊避不踐也。抱之山中，山者養之。又捐之大澤，鳥覆席食之。姜嫄怪之，於是知其天子，乃取長之。堯知其賢才，立以為大農，姓之曰姬氏。姬者，本也。詩人美而頌之曰「厥初生民」，深修益成，而道后稷之始也。』孔子曰：『昔者堯命契為子氏，為有湯也。命后稷為姬氏，為有文王也。大王命季歷，明天瑞也。太伯之吳，遂生源也。』天命難言，非聖人莫能見。舜、禹、契、后稷皆黃帝子孫也。黃帝策天命而治天下，德澤深後世，故其子孫皆復立為天子，是天之報有德也。人不知，以為閒從布衣匹夫起耳。夫布衣匹夫安能無故而起王天下乎？其有天命然。」</p>
+    <h3 class="hb-topic" id="zg-3">③人子……天子</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《荀子．天論》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>雩而雨，何也？曰：無佗也，猶不雩而雨也。日月食而救之，天旱而雩，卜筮然後決大事，非以為得求也，以文之也。故君子以為文，而百姓以為神。以為文則吉，以為神則凶也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：子羔之時關於三代始祖出生已有感生之一說流傳，但在不語怪力亂神的扎門師弟看來，實在難以理解，子羔故生此問。然孔於之意求非強調三代始祖感生之異說，孔子提出三代始祖神異的感生故事傳說，主要是為突顯出作為人子之舜（以德而受禪）的不同。此正《荀子．天論》所謂「君子以為文，而百姓以為神」。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈述而〉第二十六章：子曰：「聖人，吾不得而見之矣；得見君子者，斯可矣。」子曰：「善人，吾不得而見之矣；得見有恆者，斯可矣。亡而為有，虛而為盈，約而為泰，難乎有恆矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈季氏〉第八章：孔子曰：「君子有三畏：畏天命，畏大人，畏聖人之言。小人不知天命而不畏也，狎大人，侮聖人之言。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈季氏〉第九章：孔子曰：「生而知之者，上也；學而知之者，次也；困而學之，又其次也；困而不學，民斯為下矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子張〉第十二章：子游曰：「子夏之門人小子，當洒掃、應對、進退，則可矣。抑末也，本之則無。如之何？」子夏聞之曰：「噫！言游過矣！君子之道，孰先傳焉？孰後倦焉？譬諸草木，區以別矣。君子之道，焉可誣也？有始有卒者，其惟聖人乎！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：根據《論語》， 孔子曾把人分爲「小人」「君子」「賢人」「聖人」，其中「聖人」是孔子一生追求的至高境界，但也是難以企及的理想。之所以難以企及，主要緣於對聖人的「生而知之」的認識與理解。孔子認爲聖人天德、聖人天命，聖人與「多能」無關，聖人天命之。是天命決定你聖道前途，如果身負天命，就具有了成爲聖人的根底，非人力所能更改，但如果不受天命，便是能「學而知之」也是次一等的。〈子羔〉中孔子對「三王之作」故事的引用，不僅反映了孔子對天命至聖觀點的接受，也爲孔子以「德」至聖德聖人觀提供了新的證明材料。</p>
+    <h3 class="hb-topic" id="zg-4">④善，爾問之也</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《莊子．齊物論》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>南郭子綦隱几而坐，仰天而噓，嗒焉似喪其耦。顏成子游立侍乎前，曰：「何居乎？形固可使如槁木，而心固可使如死灰乎？今之隱几者，非昔之隱几者也。」子綦曰：「偃，不亦善乎，而問之也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：《莊子》子綦答顔成子遊與孔子答子羔此問，乃同一文例。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《禮記．學記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>善問者，如攻堅木，先其易者，後其節目，及其久也，相說以解。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳偉：孔子贊賞子羔反復發問、層層深入的問學態度和方式，適如〈學記〉所云。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孔子家語．廟制》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子羔問曰：「祭典云：『虞氏祖顓頊而宗堯；夏后氏亦祖顓頊而宗禹；殷人祖契而宗湯；周人祖文王而宗武王。』此四祖四宗，或乃異代，或其考祖之有功德，其廟可也。若有虞宗堯，夏祖顓頊，皆異代之有功德者也。亦可以存其廟乎？」孔子曰：「善，如汝所問也。如殷周之祖宗，其廟可以不毀。其他祖宗者，功德不殊，雖在殊代，亦可以無疑矣。《詩》云：『蔽茀甘棠，勿翦勿伐。』邵伯所憩，周人之於邵公也，愛其人，猶敬其所舍之樹。況祖宗其功德而可以不尊奉其廟焉？」</p>
+    <h3 class="hb-topic" id="zg-5">⑤久矣，其莫得而聞矣</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈述而〉第五章：子曰：「甚矣吾衰也！久矣吾不復夢見周公。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子罕〉十二章：子疾病，子路使門人為臣。病閒，曰：「久矣哉！由之行詐也，無臣而為有臣。吾誰欺？欺天乎？且予與其死於臣之手也，無寧死於二三子之手乎？且予縱不得大葬，予死於道路乎？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：「久矣」是孔子的感歎，故前置以表示強調。孔子因子羔疑禹、契、后稷「三王」為「天子」而非「人子」，而他則已經很久沒聽人問起過了，所以下文孔子就講述禹、契、后稷「三王」為「天子」的種種神異之事。</p>
+    <h3 class="hb-topic" id="zg-6">⑥禹之母，有莘氏之女也</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《大戴禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈帝繫〉：鯀娶於有莘氏，有莘氏之子謂之女志氏，産文命。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈五帝德〉：宰我曰：「請問禹？」孔子曰：「高陽之孫，鯀之子也，曰文命。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《吳越春秋．越王無餘外傳第六》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>禹父鯀者，帝顓頊之後。鯀娶於有莘氏之女，名曰女嬉。年壯未孳。嬉於砥山得薏苡而吞之，意若為人所感，因而妊孕，剖脅而產高密。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《路史》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，鯀納有莘氏曰志，是為修己，年壯不字，獲若后于石紐，服媚之而遂孕。歲有二月，以六月六日屠疈而生禹于僰道之石紐鄉，所謂刳兒坪者。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《尚書帝命驗》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>禹白帝精，以星感。修己山行，見流星，意感慄然，生姒戎文命。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《今本竹書紀年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>帝禹夏后氏，母曰修己，出行，見流星貫昴，夢接，意感。既而吞神珠，修己背剖。而生禹於石紐，虎鼻、大口、兩耳參鏤，首戴鉤鈴，胸有玉斗，足文履。已故名文命。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《帝王世紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《史記．夏本紀》引：父鲧妻修己，見流星貫昂，夢接意感，又吞神珠薏苡，胸拆而生禹于石砌。虎鼻大口，兩耳參漏，首戴鉤鈴，胸有玉鬥，足文履已，故名文命，字高密，身長九尺二寸，長於西羌。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《遁甲開山圖》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>榮氏解曰：女狄暮汲于石紐山下大祠前，水中得月精如雞子，愛而含之，不覺而吞，遂有身，十四月而生夏禹。</p>
+    <h3 class="hb-topic" id="zg-7">⑦觀於伊而得之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《呂氏春秋．孝行覽．本味》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>有侁氏女子採桑，得嬰兒于空桑之中，獻之其君。其君令烰人養之。察其所以然，曰：「其母居伊水之上，孕，夢有神告之曰：『臼出水而東走，毋顧。』明日，視臼出水，告其鄰，東走十里，而顧其邑盡為水，身因化為空桑」，故命之曰伊尹。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《水經注．伊水》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>昔有莘氏女采桑于伊川，得嬰兒于空桑中，言其母孕于伊水之濱，夢神告之曰：臼水出而東走。母明視而見臼水出焉，告其鄰居而走，顧望其邑，咸為水矣。其母化為空桑，子在其中矣，莘女取而獻之，命養於庖，長而有賢徳，殷以為尹，曰伊尹也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>林志鵬：「伊」疑即《書．禹貢》之伊水，《水經注》所云伊水一帶既有鯀化黃雄及有莘氏化空桑之傳説，知此地與有莘氏關係密切。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：林說近得實。有莘氏化空桑之傳説即其所引《水經注》文：「昔有莘氏女采桑于伊川，得嬰兒于空桑中，言其母孕于伊水之濱，夢神告之曰：臼水出而東走。母明視而見臼水出焉，告其鄰居而走，顧望其邑，咸為水矣。其母化為空桑，子在其中矣，莘女取而獻之，命養於庖，長而有賢徳，殷以為尹，曰伊尹也。」該傳説首見於《呂氏春秋．本味》篇，次序小異，且言湯求伊尹不得，故取有莘氏女，以伊尹為媵臣。此關於伊尹之傳説中有幾個地方值得特別注意，首先是有莘氏得於空桑中之嬰兒能自言其母之事；其次，臼水將汎濫，其母先得神夢而見水出焉，並拯救鄰居。前事與《子羔》言禹生而能言、後一事與禹母觀於伊有同構性，而「觀於伊而得之」與嬰兒自「言其母孕于伊水之濱」可以關聯。得之空桑的嬰兒從開始就與水有關，傳世文獻中伊尹與大水的關聯則比較少見，反而與禹受天命平治水土更切合，故疑伊尹的傳説是流傳在伊水附近的天命禹治水之傳説在後代的變化形態，〈子羔〉此文即其原型的一種節略表達。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>苗江磊：考禹母得孕，其「觀於伊」而有孕，此說於今傳文獻中並無儔匹，卻同《呂氏春秋．孝行》所記伊尹之降生有相類之處。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：簡文的「觀於伊而得之」，與文獻所載的「山行」「見流星貫昴」「夢接意感」「吞神珠」「薏苡」諸說皆不同。與《遁甲開山圖》榮氏解的「女狄暮汲石紐山下泉水中，得月精如雞子，愛而含之，不覺而吞」說也有區別。《寰宇記》：石紐「今在茂之汶川縣北四十。」任豫《益州記》：「廣平之石紐林者，今其地名刳兒坪。《蜀本記》作痢兒畔。」《十道記》： 「紐為秦州地名。」而簡文之「伊」，如讀如本字，只能指伊水。《水經注．伊水》：「伊水出南陽魯陽縣西蔓渠山。」一在今四川，一在今河南，顯然不是一個地方。</p>
+    <h3 class="hb-topic" id="zg-8">⑧娠/懷三年而劃於背而生</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《吳越春秋．越王無餘外傳第六》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>禹父鯀者，帝顓頊之後。鯀娶於有莘氏之女，名曰女嬉。年壯未孳。嬉於砥山得薏苡而吞之，意若為人所感，因而妊孕，剖脅而產高密。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《路史》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，鯀納有莘氏曰志，是為修己，年壯不字，獲若后于石紐，服媚之而遂孕。歲有二月，以六月六日屠疈而生禹于僰道之石紐鄉，所謂刳兒坪者。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《今本竹書紀年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>帝禹夏后氏，母曰修己，出行，見流星貫昴，夢接，意感。既而吞神珠，修己背剖。而生禹於石紐，虎鼻、大口、兩耳參鏤，首戴鉤鈴，胸有玉斗，足文履。已故名文命。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《遁甲開山圖》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>榮氏解曰：女狄暮汲于石紐山下大祠前，水中得月精如雞子，愛而含之，不覺而吞，遂有身，十四月而生夏禹。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：關於禹母懷娠時間，《遁甲開山圖》榮氏解說「十四月生夏禹」，《路史》則載「歲有二月」，餘皆無說；今〈子羔〉說「娠三年」，自是為突顯其所生於非凡人也」。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《淮南子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>禹生於石。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>高誘注：禹母修己，感石而生禹，坼胸而出。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《春秋繁露．三代改制質文》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>祖錫姓為姒氏，至禹生發於背。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>苗江磊：伊尹母觀伊水而有孕已頗具神異色彩，簡文更有孕三年劃背而生之說。破背之說曾見於漢代文獻中，且有破胸（腹）、破脅、破背諸種。</p>
+    <h3 class="hb-topic" id="zg-9">⑨生而能言</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《孔子家語．五帝德》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>昔在黃帝，生而神靈，弱而能言，幼而徇齊，長而敦敏，成而登天。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>苗江磊：簡文所載，禹「生而能言」，此事跡唯見於黃帝，如《孔子家語》記黃帝「生而神靈，弱而能言」。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈季氏〉第九章：孔子曰：「生而知之者，上也；學而知之者，次也；困而學之，又其次也；困而不學，民斯為下矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：一方面，孔子對聖人「生而能言」「生而能呼」的「生而知之」特殊性的認同，即聖人擁有先天之性，也就是天命，天命之謂性。這種聖人之性天賦，是常人難以達到的，「學而知之者次也；困而學之又其次也」。</p>
+    <h3 class="hb-topic" id="zg-10">⑩契之母，有娀氏之女也</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《楚辭》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈離騷〉：望瑤臺之偃蹇兮，見有娀之佚女。 </p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：有娀氏之佚女為簡狄即契之母。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈天問〉：簡狄在臺，嚳何宜？玄鳥致貽，女何喜？</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>王逸注：簡狄，帝嚳之妃也。玄鳥，燕也。貽，遺也。言簡狄侍帝嚳於臺上，有飛燕墮遺其卵，喜而吞之，因生契也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《詩經．商頌．玄鳥》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>天命玄鳥，降而生商，宅殷土芒芒。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>毛傳：春分玄鳥降，湯之先祖有娀氏簡狄，配高辛氏帝，帝率與之祈於郊禖而生契，故本其為天所命以玄鳥至而生焉。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄箋：降，下也。天使燕下而生商者，謂燕遺卵，娀氏之女簡狄吞之而生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《呂氏春秋．音初》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>有娀氏有二佚女，為之九成之臺，飲食必以鼓。帝令燕往視之，鳴若謚隘。二女愛而爭搏之，覆以玉筐，少選，發而視之，燕遺二卵，北飛，遂不反，二女作歌一終，曰「燕燕往飛」，實始作為北音。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《今本竹書紀年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，高辛氏之世妃曰簡狄，以春分玄鳥至之日，從帝祀郊禖，與其妹浴於玄丘之水。有玄鳥銜卵而墜之，五色甚好，二人競取，覆以玉筐。簡狄先得而吞之，遂孕。胸剖而生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《史記．殷本紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>殷契，母曰簡狄，有娀氏之女，為帝嚳次妃。三人行浴，見玄鳥墮其卵，簡狄取吞之，因孕生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《史記．三代世表》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>褚先生曰：「不然。詩言契生於卵，后稷人迹者，欲見其有天命精誠之意耳。……詩傳曰：『湯之先為契，無父而生。契母與姊妹浴於玄丘水，有燕銜卵墮之，契母得，故含之，誤吞之，即生契……</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《列女傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>契母簡狄者，有娀氏之長女也。當堯之時，與其妹娣浴於玄丘之水。有玄鳥銜卵，過而墜之。五色甚好，簡狄與其妹娣競往取之。簡狄得而含之，誤而吞之，遂生契焉。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《帝王世紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．珍寶部四．玉下》引：有燕飛而遺卵，簡翟與妹競取，覆以玉筐。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．人事部十二．背》引：簡翟浴玄丘之水，燕遺卵吞之，剖背生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">9.</span>《拾遺記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>殷湯商之始也，有神女簡狄，遊於桑野，見黑鳥遺卵於地，有五色文，作「八百」字，簡狄拾之，貯以玉筐，覆以朱紱。夜夢神母，謂之曰：「爾懷此卵，即生聖子，以繼金德。」狄乃懷卵，一年而有娠，經十四月而生契。祚以八百，葉卵之文也。雖遭旱厄，後嗣興焉。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>羅新慧：楚竹書記載后稷之母為有娀氏女， 曾經遊於瑤台。而在文獻中，人們講述瑤台時，多將其與逸（佚）女相聯繫。例如，《楚辭．離騷》、《漢書．揚雄傳》兩處所說佚女皆應指簡狄。《呂氏春秋．音初》所說的「佚女」， 即契母簡狄。「九成之台」應當就是楚竹書所說的「瑤台」。但簡狄為什麼又稱為佚（逸）女？王逸注曰：「佚，美也。」以佚女為美女，事實當非如此。〈子羔〉的記載有助於理解這一問題，由〈子羔〉來看，之所以稱簡狄為佚（逸）女，是由於有娀氏女遊於瑤台之故，遊、逸、佚雙聲，音可通。因此， 所謂佚（逸）女，就是遊女，因契母簡狄遊於瑤台， 所以後人多將瑤台與遊（佚、逸）女相聯繫。而從遊女這方面考察，更可知瑤台為上古時期男女會合之處。</p>
+    <h3 class="hb-topic" id="zg-11">⑪遊於瑶臺之上</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《楚辭》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈離騷〉：望瑤臺之偃蹇兮，見有娀之佚女。 </p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈天問〉：璜臺十成，誰所極焉。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈天問〉：簡狄在臺，嚳何宜？玄鳥致貽，女何喜？</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《漢書．揚雄傳上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初纍棄彼虙妃兮，更思瑤臺之逸女。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《今本竹書紀年》（《宋書．符瑞志上》同）</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，高辛氏之世妃曰簡狄，以春分玄鳥至之日，從帝祀郊禖，與其妹浴於玄丘之水。有玄鳥銜卵而墜之，五色甚好，二人競取，覆以玉筐。簡狄先得而吞之，遂孕。胸剖而生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《呂氏春秋．音初》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>有娀氏有二佚女，為之九成之臺，飲食必以鼓。帝令燕往視之，鳴若謚隘。二女愛而爭搏之，覆以玉筐，少選，發而視之，燕遺二卵，北飛，遂不反，二女作歌一終，曰「燕燕往飛」，實始作為北音。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《史記．三代世表》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>褚先生曰：「不然。詩言契生於卵，后稷人迹者，欲見其有天命精誠之意耳。……詩傳曰：『湯之先為契，無父而生。契母與姊妹浴於玄丘水，有燕銜卵墮之，契母得，故含之，誤吞之，即生契……</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《列女傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>契母簡狄者，有娀氏之長女也。當堯之時，與其妹娣浴於玄丘之水。有玄鳥銜卵，過而墜之。五色甚好，簡狄與其妹娣競往取之。簡狄得而含之，誤而吞之，遂生契焉。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《帝王世紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．人事部十二．背》引：簡翟浴玄丘之水，燕遺卵吞之，剖背生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《拾遺記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>殷湯商之始也，有神女簡狄，遊於桑野，見黑鳥遺卵於地，有五色文，作「八百」字，簡狄拾之，貯以玉筐，覆以朱紱。夜夢神母，謂之曰：「爾懷此卵，即生聖子，以繼金德。」狄乃懷卵，一年而有娠，經十四月而生契。祚以八百，葉卵之文也。雖遭旱厄，後嗣興焉。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳劍：「央臺」疑即《楚辭．天問》「璜臺十成，誰所極焉」之「璜臺」。王逸以璜臺為紂之臺，研究楚辭的學者或以為璜臺為有娀氏之臺。「璜」「瑤」皆美玉之名，「璜臺」和「瑤臺」的命名方式相同，皆非某特之臺的專名，所以既可指有娀氏之臺，亦可指紂之臺，而不必將其分別坐實為專指某某之臺。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>白於藍、丁四新：通過文獻分析支持「瑤臺」說。首先，與簡狄受孕有關的地名，或稱「玄丘」，或稱「瑤臺」（或九成之臺），或稱「桑野」，但每次僅只提到一地，從未見兩地或三地並提者。其次，說簡狄在「瑤臺（或稱九成之臺）」受孕者在戰國時期就已經出現了，這與簡文云：「契之母，有娀氏之女也，遊於央臺之上，有燕銜卵而措諸其前，取而吞之」是相吻合的。而有關「玄丘受孕」的傳說是在西漢以後才出現，在時間上要晚得多。至於「桑野」，則晚至晉代。因此，就時間上來講，在戰國時期人們的思想觀念中，簡狄之「瑤臺（或稱九成之臺）受孕」的傳說恐怕要比其他兩種傳說要更符合當時的實際一些，尤其是這一傳說在《楚辭》當中出現兩次，而本簡則亦是戰國楚簡，可見，這一傳說在當時的楚地當中是廣泛流行的。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：當從《拾遺記》讀「央臺」為「桑野」，桑野即湯禱於桑林以求雨之桑林，亦為宋人男女幽會之所，「桑林」又為殷天子樂名。進而以為桑林是殷人的發祥地，這是殷人對其始祖契感生於桑林之野的紀念。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉書惠：契的感生地點究竟是其中的哪一處呢？我們認為契的感生地不必局限於一處，實際上「央台」、「郊禖」、「桑野」、「玄丘（之水）」這幾個地點可以共存。「天命玄鳥，降而生商」的殷契感生神話，一方面表現了商人對鳥圖騰的崇拜和信仰，另一方面，則為殷先祖祈子祭祀的反映。感生地的差異正是商人不斷變換地點進行求子儀式中不同階段活動的寫照。「台」、「玄丘之水」、「桑野」及「郊禖」諸說分別出現，很有可能是由於人們在記述商先人求子祭祀活動時，最先描述的是與儀式密切相關的「台」，即最初最直接的祭祀地，隨著時代推移，人們追溯性地記述了與此相關的其他活動，包括祭前的準備和密林中的交合，這就可以解釋為什麼「台」的記述較早，而「玄丘之水」、「桑野」的記述較晚。〈子羔〉篇中的「遊於央台之上」，正是反映了較早的簡狄瑤台受孕傳說，更符合戰國時期殷契感生神話的實際。</p>
+    <h3 class="hb-topic" id="zg-12">⑫有燕銜卵而措/錯諸其前，取而吞之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《楚辭．天問》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡狄在臺，嚳何宜？玄鳥致貽，女何喜？</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《詩經．商頌．玄鳥》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>天命玄鳥，降而生商，宅殷土芒芒。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>毛傳：春分玄鳥降，湯之先祖有娀氏簡狄，配高辛氏帝，帝率與之祈於郊禖而生契，故本其為天所命以玄鳥至而生焉。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄箋：降，下也。天使燕下而生商者，謂燕遺卵，娀氏之女簡狄吞之而生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《呂氏春秋．音初》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>有娀氏有二佚女，為之九成之臺，飲食必以鼓。帝令燕往視之，鳴若謚隘。二女愛而爭搏之，覆以玉筐，少選，發而視之，燕遺二卵，北飛，遂不反，二女作歌一終，曰「燕燕往飛」，實始作為北音。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《今本竹書紀年》（《宋書．符瑞志上》同）</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，高辛氏之世妃曰簡狄，以春分玄鳥至之日，從帝祀郊禖，與其妹浴於玄丘之水。有玄鳥銜卵而墜之，五色甚好，二人競取，覆以玉筐。簡狄先得而吞之，遂孕。胸剖而生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《史記．殷本紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>殷契，母曰簡狄，有娀氏之女，為帝嚳次妃。三人行浴，見玄鳥墮其卵，簡狄取吞之，因孕生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《史記．三代世表》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>褚先生曰：「不然。詩言契生於卵，后稷人迹者，欲見其有天命精誠之意耳。……詩傳曰：『湯之先為契，無父而生。契母與姊妹浴於玄丘水，有燕銜卵墮之，契母得，故含之，誤吞之，即生契……</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《列女傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>契母簡狄者，有娀氏之長女也。當堯之時，與其妹娣浴於玄丘之水。有玄鳥銜卵，過而墜之。五色甚好，簡狄與其妹娣競往取之。簡狄得而含之，誤而吞之，遂生契焉。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《帝王世紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．珍寶部四．玉下》引：有燕飛而遺卵，簡翟與妹競取，覆以玉筐。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．人事部十二．背》引：簡翟浴玄丘之水，燕遺卵吞之，剖背生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">9.</span>《拾遺記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>殷湯商之始也，有神女簡狄，遊於桑野，見黑鳥遺卵於地，有五色文，作「八百」字，簡狄拾之，貯以玉筐，覆以朱紱。夜夢神母，謂之曰：「爾懷此卵，即生聖子，以繼金德。」狄乃懷卵，一年而有娠，經十四月而生契。祚以八百，葉卵之文也。雖遭旱厄，後嗣興焉。</p>
+    <h4 class="hb-source"><span class="num-pfx">10.</span>《春秋繁露．三代改制質文》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>契母吞玄鳥卵生契，契先發於胸。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：〈子羔〉說「有燕銜卵而錯諸其前」則與傳世文獻小異。「遺（或墮）卵」或事出偶然，而「錯諸其前」更顯有意為之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉書惠：〈子羔〉言契的感生物為燕卵，這在傳世文獻中多有記載。此外，《楚辭．離騷》、《呂氏春秋．音初篇》雖未直接敘述「吞卵」這一細節，但是提到了有燕遺卵，這也從側面暗示簡狄的懷孕與燕卵有十分密切的關係。《拾遺記》則記載簡狄懷孕的方式為「懷卵一年，而有娠」，此「懷」字疑為「懷擁」之意，應是「吞卵」有孕原始神話形態的變異。</p>
+    <h3 class="hb-topic" id="zg-13">⑬娠/懷三年而劃於膺</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《拾遺記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>殷湯商之始也，有神女簡狄，遊於桑野，見黑鳥遺卵於地，有五色文，作「八百」字，簡狄拾之，貯以玉筐，覆以朱紱。夜夢神母，謂之曰：「爾懷此卵，即生聖子，以繼金德。」狄乃懷卵，一年而有娠，經十四月而生契。祚以八百，葉卵之文也。雖遭旱厄，後嗣興焉。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《春秋繁露．三代改制質文》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>契母吞玄鳥卵生契，契先發於胸。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《帝王世紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．人事部十二．背》引：簡翟浴玄丘之水，燕遺卵吞之，剖背生契。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《今本竹書紀年》（《宋書．符瑞志上》同）</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，高辛氏之世妃曰簡狄，以春分玄鳥至之日，從帝祀郊禖，與其妹浴於玄丘之水。有玄鳥銜卵而墜之，五色甚好，二人競取，覆以玉筐。簡狄先得而吞之，遂孕。胸剖而生契。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：關於契母懷娠時間，諸傳世文獻除晚出之《拾遺記》載「狄乃懷卵一年而有振，經十四月而生契」餘皆無說；今〈子羔〉說「娠三年」，較《拾遺記》「經十四月」更顯神異。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：「劃於膺」與《今本竹書紀年》、《宋書．符瑞志上》「胸剖而生」、董仲舒《春秋繁露．三代改制質文》「契生發於胸」說同，與《帝王世紀》「剖背」說則不同：一是前胸，一是後背。</p>
+    <h3 class="hb-topic" id="zg-14">⑭后稷之母，有邰氏之女也</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩經．大雅．生民》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>厥初生民、時維姜嫄。生民如何、克禋克祀、以弗無子。履帝武敏歆、攸介攸止、載震載夙、載生載育、時維后稷。誕彌厥月、先生如達、不坼不副、無菑無害。以赫厥靈、上帝不寧、不康禋祀、居然生子。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>毛傳：后稷之母配高辛氏帝焉。玄鳥至之日，以大牢祠於郊禖，天子親往，后妃率九嬪禦。乃禮天子所禦，帶以弓韣，授以弓矢，於郊禖之前。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>鄭玄箋：姜嫄之生后稷，如何乎？乃禋祀上帝於郊禖，以祓除其無子之疾，而得其福也。（……）祀郊禖之時，時則有大神之迹，姜嫄履之，足不能滿。履其拇指之處，心體歆歆然。其左右所止住，如有人道感己者也。於是遂有身，而肅戒不復御。後則生子而養長之，名曰棄。舜臣堯而舉之，是為后稷。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>苗江磊：《詩經．大雅．生民》《史記．周本紀》《列女傳》《春秋繁露．三代改制質文》《吳越春秋．吳太伯傳》皆載后稷無父。《史記》同於三家詩所謂感天而生說，「史遷所載皆本魯詩」，「齊韓蓋同」。《毛傳》異此，言高辛氏帝與其母同行，郊禖祀上帝，以祓除無子之疾而生子，明言其有父。鄭《箋》執無父而生子之說。治經者對此存有爭論，孔穎達以為契與后稷為帝嚳之子，身份存疑，「然則堯為聖君，契為賢弟，在位七十載而不能用，必待舜乃舉之者」，「若稷、契，堯之親弟，當生在堯立之前，比至堯崩，百餘歲矣」，並不認同帝嚳為其父。《史記．三代世表》有褚先生對契、后稷無父而生之說的評論，曰：「《詩》言契生於卵，后稷人跡者，欲見其有天命精誠之意耳。鬼神不能自成，須人而生，奈何無父而生乎! 一言有父，一言無父，信以傳信，疑以傳疑，故兩言之」。意對無父感生之說存疑。王先謙肯定姜嫄有夫，后稷為帝嚳子，而其生「實感神跡，不由其父」，即三家詩所言「聖人無父」，「不為過也」。馬瑞辰《毛詩傳箋通釋》亦認同后稷無父而生，姜嫄並非帝嚳妃，「實相傳為無夫而生子，以姜嫄為帝嚳妃者誤也」。陳奐《詩毛氏傳疏．卷二十四》力主《毛傳》之說，視姜嫄為周人高禖，「周人以帝高辛妃姜嫄立其廟，以為禖宮，故又謂高禖」，認為此詩是高辛帝率姜嫄祈子于禖宮而生后稷之事。可見，對於后稷是否有父之說，經學家亦未有定論。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《今本竹書紀年》（《宋書．符瑞志》同）</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，高辛氏之世妃曰姜嫄，助祭郊禖，見大人迹履之，當時歆如有人道感己，遂有身而生男。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《史記．周本紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>周后稷，名棄。其母有邰氏女，曰姜原。姜原為帝嚳元妃。姜原出野，見巨人迹，心忻然說，欲踐之，踐之而身動如孕者。居期而生子，以為不祥。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《史記．三代世表》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>后稷母為姜嫄，出見大人迹而履踐之，知於身，則生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《論衡．吉驗篇》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>后稷之母，履大人迹，或言衣帝嚳之服，坐息帝嚳之處，妊身。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《春秋元命苞》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．皇親部一．帝嚳四妃》引：周本姜嫄，遊閉宫，其地扶桑，履大迹，生后稷。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．木部四．桑》引：姜嫄遊閟宫，其地扶桑，履大人迹，生稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《列女傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>棄母姜嫄者，邰侯之女也。當堯之時，行見巨人迹，好而履之，歸而有娠，浸以益大，心怪惡之，卜筮禋祀，以求無子，終生子。以為不祥而棄之隘巷，牛羊避而不踐。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《爾雅．釋訓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>「敏，拇也」條：（引舍人説）古者姜嫄履天帝之迹於畎畝之中，而生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">9.</span>《吳越春秋．吳太伯傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>后稷其母台氏之女姜嫄，為帝嚳元妃。年少未孕，出游於野，見大人迹而觀之，中心歡然，喜其形像，因履而踐之。身動，意若為人所感。後妊娠。恐被淫泆之禍，遂祭祀以求，謂無子履上帝之迹，天猶令有之。</p>
+    <h3 class="hb-topic" id="zg-15">⑮遊於玄丘之汭</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩經．魯頌．閟宫》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>閟宮有侐、實實枚枚。赫赫姜嫄、其德不回。上帝是依、無災無害。彌月不遲、是生后稷、降之百福。黍稷重穋、稙稺菽麥。奄有下國、俾民稼穡、有稷有黍、有稻有秬。奄有下土、纘禹之緒。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《史記．周本紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>周后稷，名棄。其母有邰氏女，曰姜原。姜原為帝嚳元妃。姜原出野，見巨人迹，心忻然說，欲踐之，踐之而身動如孕者。居期而生子，以為不祥。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《春秋元命苞》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．皇親部一．帝嚳四妃》引：周本姜嫄，遊閉宫，其地扶桑，履大迹，生后稷。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽．木部四．桑》引：姜嫄遊閟宫，其地扶桑，履大人迹，生稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《爾雅．釋訓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>「敏，拇也」條：（引舍人説）古者姜嫄履天帝之迹於畎畝之中，而生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《春秋繁露．三代改制質文》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>謂后稷母姜原履天之迹而生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《吳越春秋．吳太伯傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>后稷其母台氏之女姜嫄，為帝嚳元妃。年少未孕，出游於野，見大人跡而觀之，中心歡然，喜其形像，因履而踐之。身動，意若為人所感。後妊娠。恐被淫泆之禍，遂祭祀以求，謂無子履上帝之迹，天猶令有之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>張富海：關於姜原於何處見帝武，《史記．周本紀》、《爾雅．釋訓》皆謂姜原見帝武於野外。但《春秋元命苞》是以姜嫄見帝武於閟宫。簡文説姜原「遊於玄咎之内」，既然是「内」，則不大可能是野外。我們認爲，簡文之「玄咎」可能與上引緯書《春秋元命苞》中姜原所遊的「閟宫」有關。「閟宫」之稱見於《詩經》，〈魯頌．閟宫〉「閟宫有侐，實實枚枚」，傳、箋皆謂閟宫是周之先妣姜原之廟，毛傳又引孟仲子曰：「是禖宫也。」……緯書所記姜嫄遊閟宫，也就是遊禖宫。當然，遊禖宫和祭於禖宫也不是一回事，這只能説是傳聞之異，正如契母簡狄吞燕卵，〈商頌．玄鳥〉毛傳説是在祈於郊禖時，而簡文卻説是在簡狄遊於央臺時。「玄」「閟」意義相通，都有幽深、神秘的意思。「咎」所表示的詞是一種建築名稱，與「宮」意義相近。「玄咎」之「咎」所表示的詞是一種建築名稱，與「宫」意義相近。……由於緯書中有姜嫄遊閟宫之説，簡文之「玄咎」和「閟宫」相關恐怕可能性更大一些。簡文言姜原「遊於玄咎之内」，大概是因爲玄咎這種建築規模較大，不止是一室一殿，所以可稱「遊」；因爲是一種建築，所以言「内」（如果玄咎是地名，則不大可能稱「内」）；因爲玄咎可能是祭郊禖之宫，所以姜原得履帝之足迹而娠后稷。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉書惠：正如我們講契的感生神話時提到文獻記載的多個感生地點可以並存，其實在后稷的感生神話中「玄咎（丘）」、「野」、「畎畝」、「郊禖」和「閟宮」這幾處感生地點也同樣可以緊密聯繫在一起。「野」和「畎畝」均指野外，這是較為原始的感生神話共有的條件或環境因素，它是早期人類生活與自然直接相關，物我交融的現實反映。簡文中的感生地「玄咎」，白于藍將之釋為「玄丘」。我們認為它是指幽深靜謐的崇山環繞之處，從本質上講與「野」、「畎畝」意思相同，指的都是進行祭祀和交合活動的大的地域範圍。「玄丘」內括溪流用以清潔（「玄丘之水」），在崇山中間有茂密的林木，這是最理想不過的地理環境。《生民》、《今本竹書紀年》又言姜嫄「助祭郊禖」。這一情節就又與上文提到的簡狄「祈於郊禖」相類了。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>羅新慧：「串咎」讀為「媒高」，或即典籍「高禖」異寫，「高禖」為上古神靈名稱，亦指祭祀該神之場所，與郊禖、閟宮為一事，兼具祭祀、男女聚會和求子生育等功能。而后稷之母遊於串咎之內而得之反映了上古婚俗。</p>
+    <h3 class="hb-topic" id="zg-16">⑯冬見芺，搴而薦之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩經》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈邶風．靜女〉：自牧歸荑，洵美且異。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄箋：自牧田歸荑，其信美而翼者，可以供祭祀。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：「芙」為「荑」之訛寫。荑生長於初春，「冬見荑」是一種異象：荑是古人用以表示男女情愛的意象，姜嫄遊於郊野、感應而孕，與之正合。《詩．邶風．靜女》：「自牧歸荑，洵美且異。」鄭箋：「自牧田歸荑，其信美而翼者，可以供祭祀。」此與「攼（搴）而薦之」亦可對讀。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈大雅．生民〉：厥初生民、時維姜嫄。生民如何、克禋克祀、以弗無子。履帝武敏歆、攸介攸止、載震載夙、載生載育、時維后稷。誕彌厥月、先生如達、不坼不副、無菑無害。以赫厥靈、上帝不寧、不康禋祀、居然生子。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：從〈大雅．生民〉可知〈子羔〉篇稷母「冬見芙，搴而薦之」乃描寫祓除無子之疾的禋祀程式，及稷母禱詞，皆深以祈求賜子為念；唯此禋祀程式及禱詞，不僅《詩經．大雅．生民》無敘，亦諸家傳世文獻所失載。</p>
+    <h3 class="hb-topic" id="zg-17">⑰乃見人武</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩經．大雅．生民》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>厥初生民、時維姜嫄。生民如何、克禋克祀、以弗無子。履帝武敏歆、攸介攸止、載震載夙、載生載育、時維后稷。誕彌厥月、先生如達、不坼不副、無菑無害。以赫厥靈、上帝不寧、不康禋祀、居然生子。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《今本竹書紀年》（《宋書．符瑞志》同）</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，高辛氏之世妃曰姜嫄，助祭郊禖，見大人迹履之，當時歆如有人道感己，遂有身而生男。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《史記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈周本紀〉：周后稷，名棄。其母有邰氏女，曰姜原。姜原為帝嚳元妃。姜原出野，見巨人迹，心忻然說，欲踐之，踐之而身動如孕者。居期而生子，以為不祥。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈三代世表〉：后稷母為姜嫄，出見大人迹而履踐之，知於身，則生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《論衡．吉驗篇》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>后稷之母，履大人迹，或言衣帝嚳之服，坐息帝嚳之處，妊身。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《春秋元命苞》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽》卷一三五〈皇親部一〉引：周本姜嫄，遊閉宫，其地扶桑，履大迹，生后稷。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽》卷九五五〈木部四〉引：姜嫄遊閟宫，其地扶桑，履大人迹，生稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《列女傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>棄母姜嫄者，邰侯之女也。當堯之時，行見巨人迹，好而履之，歸而有娠，浸以益大，心怪惡之，卜筮禋祀，以求無子，終生子。以為不祥而棄之隘巷，牛羊避而不踐。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《爾雅．釋訓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>「敏，拇也」條：（引舍人説）古者姜嫄履天帝之迹於畎畝之中，而生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《春秋繁露．三代改制質文》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>謂后稷母姜原履天之迹而生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">9.</span>《吳越春秋．吳太伯傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>后稷其母台氏之女姜嫄，為帝嚳元妃。年少未孕，出游於野，見大人迹而觀之，中心歡然，喜其形像，因履而踐之。身動，意若為人所感。後妊娠。恐被淫泆之禍，遂祭祀以求，謂無子履上帝之迹，天猶令有之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉書惠：</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>后稷的感生物為「人武」，並出現了相應的輔助物「芺」。而傳世文獻的記載則與簡文有異，皆云姜嫄所履為「帝武」或「大人迹」（巨人迹），而非「人武」。又，「履帝迹」這一說法僅在《生民》、《爾雅．釋訓》、《春秋繁露．三代改制質文》中出現，而在其他的文獻記載中均為「大人迹」或「巨人迹」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>于省吾也指出：「后稷屬於三代以前的堯舜時代，自然還沒有出現帝或上帝這樣觀念，那麼《生民》『履帝武敏歆』的『帝』，〈閟宮〉『赫赫姜嫄，其德不回，上帝是依』的『上帝』，以及《生民》『生民如何，克禋克祀』之說，都是周人所加上的時代烙印。……據此，可以知道起初姜嫄只是『履大迹』而懷孕，並非『履天神之迹』。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>既然「帝迹」這個概念為後起，那麼姜嫄所踐似乎就不應是代表上帝的「神尸之迹」。據簡文，「人武」才是姜嫄真正的所踐之物，實為參加祭祀的其他青年男女的足跡。祭祀之舞與履跡未必同時進行，在舞蹈祭祀之後，青年男女紛紛進入密林，「姜嫄見到男子的足跡隨之而去，野合而有孕然後生下后稷，由此可以推想當時男女雜杳的情況。」由於眾人紛踏，使得在很大一片地區內出現了層累的足印，因為整體面積比較大，又確為足印，因此在這一儀式的神話性記述中就將「人武」變為「帝武」或「大人跡」，增添了周始祖降生的神異性。</p>
+    <h3 class="hb-topic" id="zg-18">⑱履以忻</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩經．大雅．生民》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>厥初生民、時維姜嫄。生民如何、克禋克祀、以弗無子。履帝武敏歆、攸介攸止、載震載夙、載生載育、時維后稷。誕彌厥月、先生如達、不坼不副、無菑無害。以赫厥靈、上帝不寧、不康禋祀、居然生子。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>鄭玄箋：姜嫄之生后稷，如何乎？乃禋祀上帝於郊禖，以祓除其無子之疾，而得其福也。（……）祀郊禖之時，時則有大神之迹，姜嫄履之，足不能滿。履其拇指之處，心體歆歆然。其左右所止住，如有人道感己者也。於是遂有身，而肅戒不復御。後則生子而養長之，名曰棄。舜臣堯而舉之，是為后稷。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>馬瑞辰、林志鵬：歆之言忻也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：「履以忻」，知其有子矣，當下即知上使其有子。讀為祈禱則缺少帝武與受孕之間的徵兆和禱告的理由，故以讀「忻」為是。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《今本竹書紀年》（《宋書．符瑞志》同）</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>初，高辛氏之世妃曰姜嫄，助祭郊禖，見大人迹履之，當時歆如有人道感己，遂有身而生男。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《史記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈周本紀〉：周后稷，名棄。其母有邰氏女，曰姜原。姜原為帝嚳元妃。姜原出野，見巨人迹，心忻然說，欲踐之，踐之而身動如孕者。居期而生子，以為不祥。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈三代世表〉：后稷母為姜嫄，出見大人迹而履踐之，知於身，則生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《論衡．吉驗篇》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>后稷之母，履大人迹，或言衣帝嚳之服，坐息帝嚳之處，妊身。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《春秋元命苞》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽》卷一三五〈皇親部一〉引：周本姜嫄，遊閉宫，其地扶桑，履大迹，生后稷。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《太平御覽》卷九五五〈木部四〉引：姜嫄遊閟宫，其地扶桑，履大人迹，生稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《列女傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>棄母姜嫄者，邰侯之女也。當堯之時，行見巨人迹，好而履之，歸而有娠，浸以益大，心怪惡之，卜筮禋祀，以求無子，終生子。以為不祥而棄之隘巷，牛羊避而不踐。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《爾雅．釋訓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>「敏，拇也」條：（引舍人説）古者姜嫄履天帝之迹於畎畝之中，而生后稷。</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《吳越春秋．吳太伯傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>后稷其母台氏之女姜嫄，為帝嚳元妃。年少未孕，出游於野，見大人迹而觀之，中心歡然，喜其形像，因履而踐之。身動，意若為人所感。後妊娠。恐被淫泆之禍，遂祭祀以求，謂無子履上帝之迹，天猶令有之。</p>
+    <h3 class="hb-topic" id="zg-19">⑲懷三年，劃□而生</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩經．大雅．生民》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>厥初生民、時維姜嫄。生民如何、克禋克祀、以弗無子。履帝武敏歆、攸介攸止、載震載夙、載生載育、時維后稷。誕彌厥月、先生如達、不坼不副、無菑無害。以赫厥靈、上帝不寧、不康禋祀、居然生子。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《史記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈周本紀〉：周后稷，名棄。其母有邰氏女，曰姜原。姜原為帝嚳元妃。姜原出野，見巨人迹，心忻然說，欲踐之，踐之而身動如孕者。居期而生子，以為不祥。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：關於稷母懷娠時間，簡文有缺，《詩經．大雅．生民》說「誕彌厥月」；《史記．周本紀》說「居期而生子」，張守節《史記正義》注「期滿十月」。故〈子羔〉當有「娠彌厥月」或「娠期生子」云云，若此則不若禹母、契母「娠三年」之怪誕神異也。</p>
+    <h2 class="hb-section"><span class="num-pfx">二、</span>孔子與子羔論二帝禪讓之事</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈子羔〉相應内容：</h3>
+      <p class="hb-text">子羔曰：「然則三王者孰為？…」[孔=（孔子）曰：「帝舜。子羔曰：其亦天子也歟，抑亦人子也歟？」]【13】[孔子] 曰：「有虞氏<a href="#zg2-1">①</a>之樂正瞽瞍<a href="#zg2-2">②</a>之子也。」子羔曰：「何故以得爲帝？」孔子曰：「昔者乃弗世<a href="#zg2-3">③</a>也，善與善相受/授<a href="#zg2-4">④</a>也，故能治天下，平萬邦，使無有小大、 肥磽/瘠<a href="#zg2-5">⑤</a>，遍/辨皆【1】得其社稷百姓而奉守之。堯見舜之德賢，故讓之。」子羔曰：「堯之得舜也，舜之德則誠善【6】與？抑堯之德則甚明與/歟？」孔子曰：「均也。舜穡於童土之田<a href="#zg2-7">⑦</a>，則【2】[天下之民歸之如流。子羔曰：「舜之德若何，而可以得] 之童土之黎民也<a href="#zg2-8">⑧</a>。」孔子曰：「【3】吾聞夫舜其幼也，敏以好/孝詩/侍（，）其言/親<a href="#zg2-9">⑨</a> [之弗惑，寬裕溫良，知時] 【4】[用中，畏天愛民，擧賢而治<a href="#zg2-10">⑩</a>，] 或以文而遠。堯之取舜也，從諸草茅之中，與之言禮，說/悅博/溥 [而順；與之言樂，悅和而長；與]【5】[之言政，悅簡而行；與之言道，悅] 繟而和。故夫舜之德其誠賢矣，由諸畎畝之中而[使]君天下而稱。子羔曰：「如舜在今之世則何若？」孔子曰：【8】「亦紀/己/記/其先王之遊/由道，不奉/逢明，王則亦不大[變]/使。」孔子曰：「舜其可謂受命之民矣。舜，人子也，【7】[而]三天子事之。」▄【14】</p>
+    </div>
+    <h3 class="hb-topic" id="zg2-1">①有虞氏</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈王制〉：凡養老：有虞氏以燕禮，夏后氏以饗禮，殷人以食禮，周人修而兼用之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈明堂位〉：鸞車，有虞氏之路也。鉤車，夏后氏之路也。大路，殷路也。乘路，周路也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈祭義〉：昔者，有虞氏貴德而尚齒，夏后氏貴爵而尚齒，殷人貴富而尚齒，周人貴親而尚齒。虞夏殷周，天下之盛王也，未有遺年者。年之貴乎天下，久矣；次乎事親也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《孔子家語．正論解》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孔子曰：「昔者，有虞氏貴德而尚齒，夏后氏貴爵而尚齒，殷人貴富而尚齒，周人貴親而尚齒。虞、夏、殷、周，天下之上王也，未有遺年者焉，年者貴於天下久矣。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《莊子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈應帝王〉：蒲衣子曰：「而乃今知之乎？有虞氏不及泰氏。有虞氏，其猶藏仁以要人，亦得人矣，而未始出於非人。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈田子方〉：百里奚爵祿不入於心，故飯牛而牛肥，使秦穆公忘其賤，與之政也。有虞氏死生不入於心，故足以動人。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《慎子．逸文》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孔子云：有虞氏不賞不罰，夏后氏賞而不罰，殷人罰而不賞，周人賞且罰。罰，禁也；賞，使也。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《國語．周語下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>其在有虞，有崇伯鮌，播其淫心，稱遂共工之過，幸用殛之於羽山。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳偉：古人所謂「有虞氏」一類表述，大致有兩層含義。一是指某方國，一是指該方國成為王國後所代表的王朝。〈子羔〉所說的「有虞氏」，當是指舜即位之前的虞國。相應地，「有虞氏之樂正」，也當是虞國之職，而不是王朝之官。用夔、質等古帝手下的樂正作解，其前提就不可靠。又指出先秦古書「有虞氏」的帝王還包括堯，如〈周語下〉「其在有虞，有崇伯鮌，播其淫心，稱遂共工之過，幸用殛之於羽山」。</p>
+    <h3 class="hb-topic" id="zg2-2">②樂正瞽瞍</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《儀禮．鄉射禮》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>樂正先升，北面立於其西。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄注：正，長也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：樂正即古樂官之長。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《大戴禮記．五帝德》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>宰我曰：「請問帝舜。」孔子曰：「蟜牛之孫，瞽叟之子也，曰重華。好學孝友，聞于四海；陶家事親，寬裕溫良。敦敏而知時，畏天而愛民，恤遠而親親。承受大命，依于倪皇；叡明通知，為天下工。使禹敷土，主名山川，以利於民；使后稷播種，務勤嘉穀，以作飲食；羲、和掌厤，敬授民時；使益行火，以辟山萊；伯夷主禮，以節天下；夔作樂，以歌籥舞，和以鐘鼓……</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《荀子．成相》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夔為樂正，鳥獸服。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《史記．五帝本紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>伯夷讓夔、龍。舜曰：「然。以夔為典樂，教稚子，直而溫，寬而栗，剛而毋虐，簡而毋傲；詩言意，歌長言，聲依永，律和聲，八音能諧，毋相奪倫，神人以和。」夔曰：「於！予擊石拊石，百獸率舞。」</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《呂氏春秋．古樂》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>樂帝堯立，乃命質為樂。質乃效山林谿谷之音以歌，乃以麋𩊚冒缶而鼓之，乃拊石擊石，以象上帝玉磬之音，以致舞百獸。瞽叟乃拌五弦之瑟，作以為十五弦之瑟。命之曰大章，以祭上帝。舜立，仰延乃拌瞽叟之所為瑟，益之八弦，以為二十三弦之瑟。帝舜乃令質修九招、六列、六英，以明帝德。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>高誘注：質當作夔。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李若楠：《呂氏春秋》則以為葛天氏、陶唐氏、黃帝、帝顓頊、帝嚳等古帝皆設有樂官，至「帝堯立，乃命質為樂。」……至舜立，「帝舜乃令質修《九招》《六列》《六英》，以明帝德」。按辭意，質在堯時已為樂正，至舜時沿襲。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《國語．鄭語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫成天下之大功者，其子孫未嘗不章，虞、夏、商、周是也。虞幕能聽協風，以成樂物生者也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳偉：據《呂氏春秋．古樂》瞽叟司樂的內容直接否定瞽叟和質同為堯之王朝樂正的可能，但作為虞國樂正則無障礙，又通過《國語．魯語》「虞幕能聽協風」，慕為舜之先祖，可能也是樂師，依古代世官之制，有助於説明瞽叟為樂正的問題。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：簡文可作三解：一是「有虞氏」可指族屬，即樂正瞽叟出身於有虞族；簡文大意為，（舜）為出身於有虞氏的樂正瞽叟的兒子。二是「之」訓「是」，「有虞氏」指舜，簡文句意為，有虞氏是樂正聲叟的兒子。三是這裡「有虞氏」指堯，簡文大意為，（舜）是堯的樂正瞽叟的兒子。</p>
+    <h3 class="hb-topic" id="zg2-3">③弗世</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記．禮運》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>今大道既隱，天下為家：各親其親，各子其子，貨力為己，大人世及以為禮，城郭溝池以為固，禮義以為紀……</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔疏：世及，諸侯傳位自與家也。父子曰世，兄弟曰及。謂父傳與子；無子，則兄傳與弟也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉信芳：殜（世），世襲、繼承。「弗世」謂不行父子相繼之禮。</p>
+    <h3 class="hb-topic" id="zg2-4">④善與善相受/授</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《尚書．堯典》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>昔在帝堯，聰明文思，光宅天下。將遜于位，讓于虞舜，作《堯典》。……帝曰：「咨！四岳，湯湯洪水方割，蕩蕩懷山襄陵，浩浩滔天。下民其咨，有能俾乂？」僉曰：「於！鯀哉。」帝曰：「吁！咈哉，方命圮族。」岳曰：「异哉！試可乃已。」帝曰：「咨！四岳。朕在位七十載，汝能庸命，巽朕位？」岳曰：「否德忝帝位。」曰：「明明揚側陋。」……</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>魯瑞菁：至於君天下的第二要件與步驟（注：第一為「德其誠賢矣」）乃在於「善與善相授也」。其中細節，以堯禪舜為例，即包括堯見舜於草茅之中，與之言禮，而《尚書．堯典》所敘述之「側陋」「試可」「生讓」等禪讓三步驟最為詳細，可為戰國諸儒言禪讓的代表。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>郭店楚簡〈唐虞之道〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡20、21：上德則天下有君而世明；授賢則民興/遷教而化乎道。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>胡杰、馮和一：〈唐虞之道〉亦指出，至善之德，在於聖者爲王，在於生逢其時，賢舆賢相讓，善與善相受，則天下化乎道。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記．禮運》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孔子曰：「大道之行也，與三代之英，丘未之逮也，而有志焉。」大道之行也，天下為公。選賢與能，講信修睦，故人不獨親其親，不獨子其子，使老有所終，壯有所用，幼有所長，矜寡孤獨廢疾者，皆有所養。男有分，女有歸。貨惡其棄於地也，不必藏於己；力惡其不出於身也，不必為己。是故謀閉而不興，盜竊亂賊而不作，故外戶而不閉，是謂大同。</p>
+    <h3 class="hb-topic" id="zg2-5">⑤無有小大、 肥磽/瘠</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．堯曰》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第一章：謹權量，審法度，修廢官，四方之政行焉。興滅國，繼絕世，舉逸民，天下之民歸心焉。所重：民、食、喪、祭。寬則得眾，信則民任焉，敏則有功，公則說。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《尚書大傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>古者諸侯始受封則有埰地。百里諸侯以三十里，七十里諸侯以二十里，五十里諸侯以十五里，其後子孫雖有臯罪黜，其埰地不黜，使其子孫賢者守其地，世世以祠其始受封之人，此之謂興滅國、繼絶世，《書》曰：茲予享于先王，爾祖其從享之。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《韓詩外傳》卷八</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>古者、天子為諸侯受封，謂之采地，百里諸侯以三十里，七十里諸侯以二十里，五十里諸侯以十里。其後子孫雖有罪而絀，使子孫賢者守其地，世世以祠其始受封之君，此之謂興滅國，繼絕世也。《書》曰：「茲予享于先王，爾祖其從享之。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：依《論語．堯曰》篇「興滅國，繼絕世」解「無有」二字。任啓運曰：「滅國是人無土，興謂續封之也。絕世謂有土無人，繼謂俾其支庶進承大宗也。」依此，「無」謂有爵土而無子孫者，「有」謂有子孫而無爵土者。「小、大」謂諸侯及其埰地之小大，「肥、瘠」謂諸侯所封及其埰地之肥瘠。此六字概言奉守社稷百姓之各種前提條件，「無」者繼之，「有」者興之，「小」者保之，「大」者抑之，不使大陵小，「瘠」者助祭之，「肥」者助人祭之，斯可以「皆得其社稷百姓而奉守之」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳斯鵬：「無有」解為「無論」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>裘錫圭：疑這裏「無有」解為「沒有」。簡文意為使天下萬邦的疆土沒有大小、肥磽相顯著的情況。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：「無有」，無論；「沒有」可備一說。</p>
+    <h3 class="hb-topic">堯見舜之德賢，故讓之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈容成氏〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡11、13、14、8a、8b、12：堯爲善興賢，而卒立之。昔舜耕於鬲丘，陶於河濱，漁於雷澤，孝養父母， 以善其親，乃及邦子。堯聞之【11】而美其行。堯於是乎爲車十又五乘， 以三從舜於畎畝之中，舜於是乎始免刈鋤耨鍤，介而坐之子。堯南面，舜北面， 舜【13】於是乎始語堯天地人民之道。與之言政，悦簡以行；與之言樂，【14】悦和以長；與之言禮，悦故以不逆。堯乃悦。堯【8a】…［堯乃老，視不明］，聽不聰。堯有子九人，不以其子爲后，見舜之賢也，而欲以爲後。【8b】［舜乃五讓以天下之賢者，不得已，然後敢受之。］舜聽政三年，山陵不處，水潦不縠，乃立禹以爲司空。【12】</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>胡杰、馮和一：〈容成氏〉這一段文字是説：堯舜時期，是明君善臣時期， 也是聖與王比較完美結合的時期，〈唐虞之道〉云：「禪而不傳，聖之盛也。」堯舜禪讓，代表着儒家内聖外王的政治理想狀態。堯因爲「善」「賢」而王天下，舜北面事堯，與堯共同探討大道，「語堯天地人民之道」， 堯對舜言政、樂、禮進行考察， 也非常滿意， 所以「見舜之賢也，而欲以爲後」，即禪讓。禪讓的標準在於「賢」， 目的在於「治」，所以「山陵不處，水潦不穀」，遂有「立禹以爲司空」。</p>
+    <h3 class="hb-topic" id="zg2-7">⑦舜穡於童土之田</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《莊子．徐無鬼》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>堯聞舜之賢，舉之童土之地，曰：冀得其來之澤。舜舉乎童土之地，年齒長矣，聦明衰矣，而不得休歸，所謂卷婁者也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陸德明《釋文》引向：童土，地無草木也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《管子．侈靡》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>山不童而用贍，澤不弊而養足。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《荀子．王制》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>斬伐養長不失其時，故山林不童，而百姓有餘材也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>楊倞注：山無草木曰童。故無草木曰童。童山童土者，或以其地之民耕作無度，亦或爭端頻繁，亦或其民好逸，要之為無善政之地也。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《管子．國准》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>童山竭澤者，君智不足也。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《淮南子．原道訓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>昔舜耕於歷山，朞年而田者爭處墝埆，以封壤肥饒相讓；釣於河濵，朞年而漁者爭處湍瀬，以曲隈深潭相予。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：童土一詞，唯見〈徐無鬼〉篇，而典籍多有童山之說。諸子書多有類似説法，〈子羔〉此篇孔子答語，惜其簡端殘斷，而推之以上下文義，亦與耕者讓畔相類也。孔子欲明舜能興讓化民，其德誠善，故擧是說。</p>
+    <h3 class="hb-topic" id="zg2-8">⑧則天下之民歸之如流。子羔曰：「舜之德若何，而可以得舜之德若何，而可以得之童土之黎民也</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《尸子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>舜兼愛百姓，務利天下。其田也，荷彼耒耜，耕彼南畝，與四海俱有其利。其漁雷澤也，旱則為耕者鑿瀆，儉則為獵者表虎。故有光若日月，天下歸之若父母。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《史記．五帝本紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>堯知子丹朱之不肖，不足授天下，於是乃權授舜。授舜，則天下得其利而丹朱病；授丹朱，則天下病而丹朱得其利。堯曰：「終不以天下之病而利一人」，而卒授舜以天下。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：參考《尸子》和《史記．五帝本紀》「堯知子丹朱之不肖，不足授天下……而交接舜以天下」說，孔子之答可補作：「均也。舜稽于童土之田則天下歸心，堯不傳丹朱而舉舜。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《莊子．徐無鬼》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>堯聞舜之賢，舉之童土之地，曰：冀得其來之澤。舜舉乎童土之地，年齒長矣，聦明衰矣，而不得休歸，所謂卷婁者也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：「之童土之黎民也」當為子羔之問，而問的是舜為什麼會從「童土之黎民」而被堯選中。具體文義可參考《莊子．徐無鬼》。因此子羔此問可補作：子羔曰：「舜何故舉之童土之黎民也？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：依廖名春試補闕文「天下之民歸之如流。子羔曰：「舜之德若何，而可以得」。</p>
+    <h3 class="hb-topic" id="zg2-9">⑨舜其幼也，敏以好/孝詩/侍（，）其言/親 </h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>人道敏政，地道敏樹。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄注：敏，猶勉也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《孟子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈盡心上〉：雞鳴而起，孳孳為善者，舜之徒也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈萬章上〉：大孝終身慕父母。五十而慕者，予於大舜見之矣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈告子下〉：曰：「《凱風》，親之過小者也；《小弁》，親之過大者也。親之過大而不怨，是愈疏也；親之過小而怨，是不可磯也。愈疏，不孝也；不可磯，亦不孝也。孔子曰：『舜其至孝矣，五十而慕。』」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《史記．五帝本紀》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>舜年二十以孝聞。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《大戴禮記．五帝德》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>宰我曰：「請問帝舜。」孔子曰：「蟜牛之孫，瞽叟之子也，曰重華。好學孝友，聞于四海；陶家事親，寬裕溫良。敦敏而知時，畏天而愛民，恤遠而親親。……舜之少也，惡悴勞苦，二十以孝聞乎天下，三十在位，嗣帝所，五十乃死，葬於蒼梧之野。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：舜母早死，瞽瞍更娶生象，父頑母嚚象傲而常欲殺舜。舜之幼年，其生存環境極為惡劣，非聰敏明達、勤勉孳孳，不足以求其生也。〈子羔〉與〈五帝德〉為論舜幼少之事僅有之文獻，或可互相印證。敏字當從上讀，孔子此處言舜「其幼也敏」，一「敏」字兼上數義，孔子之論，甚簡而的矣。〈五帝德〉言「舜之少也，惡顇勞苦」後，緊接「二十以孝聞乎天下」，與子羔緊接「以孝侍親」，語脈若合符節，此未必為偶合。衡以〈子羔〉所討論之問題與語言體例，其與〈五帝德〉多有相似之處。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：舜以孝聞，文獻多有記載。〈子羔〉中孔子言舜事跡，先說「每以孝事其親」，再說「堯之取舜也」，邏輯完全一致。</p>
+    <h3 class="hb-topic" id="zg2-10">⑩寬裕溫良，知時用中，畏天愛民，擧賢而治</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《大戴禮記．五帝德》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>宰我曰：「請問帝舜。」孔子曰：「蟜牛之孫，瞽叟之子也，曰重華。好學孝友，聞于四海；陶家事親，寬裕溫良。敦敏而知時，畏天而愛民，恤遠而親親。承受大命，依于倪皇；叡明通知，為天下工。使禹敷土，主名山川，以利於民；使后稷播種，務勤嘉穀，以作飲食；羲、和掌厤，敬授民時；使益行火，以辟山萊；伯夷主禮，以節天下；夔作樂，以歌籥舞，和以鐘鼓；皋陶作士，忠信疏通，知民之情；契作司徒，教民孝友，敬政率經。其言不惑，其德不慝，舉賢而天下平。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華2008：簡5首補闕文「用中，畏天愛民，擧賢而治」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華2010：簡5首據《大戴禮記．五帝德》補「知時，允執厥中，畏天愛民，叡民通智，舉賢以治，而」十九字。</p>
+    <h3 class="hb-topic">或以文而遠</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈季氏〉第一章：孔子曰：「求！君子疾夫舍曰欲之，而必為之辭。丘也聞有國有家者，不患寡而患不均，不患貧而患不安。蓋均無貧，和無寡，安無傾。夫如是，故遠人不服，則修文德以來之。……</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>何琳儀：讀作「敏以學，持其言；其言……或以文而遠」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>黃德寬：如按何琳儀這種讀法，則「以文而遠」，相當於《論語》「故遠人不服，故修文德以來之」，此亦備一說。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈季氏〉第十三章：陳亢問於伯魚曰：「子亦有異聞乎？」對曰：「未也。嘗獨立，鯉趨而過庭。曰：『學詩乎？』對曰：『未也。』『不學詩，無以言。』……</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子罕〉第五章：子畏於匡。曰：「文王既沒，文不在茲乎？天之將喪斯文也，後死者不得與於斯文也；天之未喪斯文也，匡人其如予何？」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《左傳．襄公二十五年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>仲尼曰：志有之：言以足志，文以足言。不言，誰知其志？言之無文，行而不遠。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>黃德寬：「文」字與前讀「寺」為「詩」相關聯，《論語．季氏》：「不學詩無以言也」；又《左傳．襄公二十五年》：「仲尼曰：志有之：言以足志，文以足言。不言，誰知其志？言之無文，行而不遠」。正可作「敏以學詩，其言……或以文而遠」之注腳。雖然《左傳》載仲尼引《志》之說，表明古人對言語技巧的重視，但此簡所說舜之幼年學詩而言「文而遠」，顯然是受當時語言觀的影響而附會其說。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：「文」當指禮樂制度及其所蘊含之文德。《論語．子罕》：「文王既沒，文不在茲乎？」朱熹集注：「道之顯者謂之文，蓋禮樂制度之謂。」章炳麟《文學總略》：「孔子稱堯舜煥乎其有文章，蓋君臣朝廷尊卑貴賤之序，車輿衣服宮室飲食嫁取喪祭之分，謂之文；八風從律，百度得數，謂之章。」「遠」蓋指文德彰顯，禮樂文章，聲名洋溢乎中國，遍及四海。經典多載堯舜聖德與偉業，〈容成氏〉亦廣言之，所謂舜時天下大和均，鳳凰來儀之類皆是也。〈子羔〉此文論舜德，自其幼而至此「以文而遠」而終，轉而論堯取舜之所在，反復説明舜德誠賢，故「以文而遠」當就舜最終功業而下之論斷，衡之以傳世文獻及出土文獻，皆有印證。而黃說從語言觀角度推其為「附會」之說，吾等未可遽斷〈子羔〉與諸多傳世文獻所見之「孔子曰」為孔子本人所說，亦不可遽斷為非孔子所說，思想關聯，多有所合，而經典未見有遠古聖王學詩之說，蓋其與詩之所起，相去太遠，即便為諸子所構，亦未必造缺陷如此明白之說，竊以為「附會」之說，未可信也。</p>
+    <h3 class="hb-topic">堯之取舜也，從諸草茅之中，與之言禮，說/悅博/溥而順；與之言樂，悅和而長；與之言政，悅簡而行；與之言道，悅繟而和。</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《戰國策．趙策四．馮忌請見趙王》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>昔者堯見舜於草茅之中，席隆畝而蔭庇桑，陰移而授天下傳。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《尸子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>舜一徙成邑，再徙成都，三徙成國，其致四方之士。堯聞其賢，徵之草茅之中。與之語禮，樂而不逆；與之語政，至𥳑而易行；與之語道，廣大而不窮。於是妻之以媓，媵之以娥，九子事之，而託天下焉。〈</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>郭店楚簡〈唐虞之道〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡15、16：夫古者舜居於草茅之中而不憂，身為天子而不驕。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《路史》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>語禮樂，詳而不孛；語政治，簡而易行；論道，廣大而亡窮；論天下事，貫暱條達，咸叶於帝，而咸可底績。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>上博簡〈容成氏〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡14、8：子堯南面，（舜）北面，（舜）【14】於是?（乎）（始）語堯天地人民之道。與之言正（政），（悅）柬（簡）（以）行；與之言樂，（悅）和（以）長；與之言豊（禮），（悅）敀（以）不逆。……【8】。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：關於堯入卉茅之中與舜談禮教化之事見於〈容成氏〉簡8。此簡之「言禮」當與〈容成氏〉簡8舜與堯「言禮」同為先秦堯舜禪讓傳說的內容之一。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華2008：簡5末補闕文「而順；與之言樂，悅和而長；與」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華2010：簡8首補闕失文字「之言政，說簡而行：與之言道，說」。</p>
+    <h3 class="hb-topic">由諸畎畝之中</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《孟子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈萬章上〉：帝使其子九男二女，百官牛羊倉廩備，以事舜於畎畝之中。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈萬章下〉：曰：「以君命將之，再拜稽首而受。其後廩人繼粟，庖人繼肉，不以君命將之。子思以為鼎肉，使己僕僕爾亟拜也，非養君子之道也。堯之於舜也，使其子九男事之，二女女焉，百官牛羊倉廩備，以養舜於畎畝之中，後舉而加諸上位。故曰：王公之尊賢者也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈告子下〉：孟子曰：「舜發於畎畝之中……」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>趙建偉：「由」釋「播」，讀為《孟子．告子下》以「舜發於畎畝之中」的「發」，義猶「拔」。簡文言舜被拔擢於畎畝之中。釋「由」「秀」亦通，讀「抽」，拔、擢。</p>
+    <h3 class="hb-topic">稱</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩經．曹風．候人》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>維鵜在梁、不濡其翼。彼其之子，不稱其服。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄箋：不稱者，言德薄而服尊。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：就德與位相稱而言，在〈子羔〉中可指舜之盛德與天子之位相稱。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語．衛靈公》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第二十章：子曰：「君子疾沒世而名不稱焉。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子曰：「舜其大孝也與！德為聖人，尊為天子，富有四海之內。宗廟饗之，子孫保之。故大德必得其位，必得其祿，必得其名，必得其壽。故天之生物，必因其材而篤焉。故栽者培之，傾者覆之。《詩》曰：『嘉樂君子，憲憲令德！宜民宜人，受祿于天。保佑命之，自天申之！』故大德者必受命。」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《荀子．解蔽》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>曷謂至足？曰：聖王。聖也者，盡倫者也；王也者，盡制者也；兩盡者，足以為天下極矣。故學者以聖王為師，案以聖王之制為法，法其法以求其統類，以務象效其人。嚮是而務，士也；類是而幾，君子也；知之，聖人也。故有知非以慮是，則謂之懼；有勇非以持是，則謂之賊；察孰非以分是，則謂之篡；多能非以脩蕩是，則謂之知；辯利非以言是，則謂之詍。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>胡杰、馮和一：關於聖人之德、位與稱的問題。德與位，本屬於兩種不同的領域範疇，一個關涉到修身内聖，關於内在的素養，一個關涉到外王之政， 關乎社會的權力，「德」的至高體現在於「聖人」，「位」的至高體現在於「王」，二者相「稱」，體現爲「内聖外王」，見《中庸》、《荀子．解蔽》中的闡釋。</p>
+    <h3 class="hb-topic">紀/己/記/其先王之遊/由道</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記．禮運》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孔子曰：「大道之行也，與三代之英，丘未之逮也，而有志焉。」大道之行也，天下為公。選賢與能，講信修睦，故人不獨親其親，不獨子其子，使老有所終，壯有所用，幼有所長，矜寡孤獨廢疾者，皆有所養。男有分，女有歸。貨惡其棄於地也，不必藏於己；力惡其不出於身也，不必為己。是故謀閉而不興，盜竊亂賊而不作，故外戶而不閉，是謂大同。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭注：公猶共也，禪位授聖，不家之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>夏世華：「遊」讀「由」，則此句猶曰：「亦其先王之由道也。」由，行也，從也；道仍是名詞，即《禮記．禮運》孔子答宰我之「大道之行也，天下為公，選賢與能」之大道，亦即前文所謂「昔者而弗世也，善與善相受也」之聖聖相禪之道。子羔之所以問「如舜在今之世則何若？」是因為孔子上面的答語重在論舜之誠善，對其所問堯德是否甚明的問題尚僅置「均也」一判斷，而未加任何申述，欲詳其義，故復問之，猶曰：若無堯之世，則舜何如。孔子答語正就此而答，舜之興，首因其至賢之德，亦因堯之甚明，能由道而行也，後接「不逢明王，則亦不大使也」，則直接肯定堯乃明王，兩問兩答，其意完整無間。</p>
+    <h3 class="hb-topic">王則亦不大[變]/使</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《大戴禮記．衛將軍文子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>在貧如客，使其臣如藉；不遷怒，不探怨，不錄舊罪，是冉雍之行也。孔子曰：『有土君子，有眾使也，有刑用也，然後怒；匹夫之怒，惟以亡其身。』《詩》云：『靡不有初，鮮克有終。』以告之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>盧辯注：使，舉也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳偉、林志鵬、夏世華：疑當讀為「使」。《大戴禮記．衛將軍文子》記孔子語云：「有士君子，有眾使也，有刑用也，然後怒。」簡文大概是說不遇明王，也就不能得到重用。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語．公治長》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第十九章：子張問曰：「令尹子文三仕為令尹，無喜色；三已之，無慍色。舊令尹之政，必以告新令尹。何如？」子曰：「忠矣。」曰：「仁矣乎？」曰：「未知，焉得仁？」「崔子弒齊君，陳文子有馬十乘，棄而違之。至於他邦，則曰：『猶吾大夫崔子也。』違之。之一邦，則又曰：『猶吾大夫崔子也。』違之。何如？」子曰：「清矣。」曰：「仁矣乎？」曰：「未知。焉得仁？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>裘錫圭：疑「大㳏」讀「大仕」。《論語．公治長》：「令尹子文三仕為令尹，無喜色。」仕為令尹之類大概就可以算作「大仕」了。</p>
+    <h3 class="hb-topic">舜其可謂受命之民</h3>
+    <p class="hb-text hb-listed"><span class="num-pfx">1.</span>《禮記．中庸》</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子曰：「舜其大孝也與！德為聖人，尊為天子，富有四海之內。宗廟饗之，子孫保之。故大德必得其位，必得其祿，必得其名，必得其壽。故天之生物，必因其材而篤焉。故栽者培之，傾者覆之。《詩》曰：『嘉樂君子，憲憲令德！宜民宜人，受祿于天。保佑命之，自天申之！』故大德者必受命。」</p>
+    <h2 class="hb-section">三、〈子羔〉作者及寫成時代之探討</h2>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>裘錫圭：〈子羔〉篇應該是作者借孔子之口鼓吹尚賢和禪讓的一篇作品。它的寫作時代當屬戰國早期或中期，應該是在燕王噲禪讓失敗事件之前寫成的，其作者大概早於孟子，最晚也應與孟子同時，屬於儒家作品。……即使把〈子羔〉篇當作子羔跟孔子問答的實錄，也可以得出在春秋晚期這些說法尚未興起的結論。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>艾蘭：〈子羔〉是由其弟子結集成的，其寫作年代下限應在公元前300年左右，最晚應在公元前278年，很可能編撰於孟子時代，或更早一些。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>李銳：和〈子羔〉篇時代接近的文獻中，也有「孔子」之言，論商周始祖有父，父皆同祖，主要見於《大戴禮記．五帝德》。裘錫圭曾指出：顧頡剛把〈五帝德〉、〈帝繫姓〉的年代定在漢代是不對的，因為二者「為《史記》所採信，很可能是戰國晚期作品。」《五帝德》所述，屬於所謂古文經學。比較〈子羔〉和〈五帝德〉，同在先秦時期，同為稱述「孔子」之語，而對於商周始祖有父無父的問題，所說卻截然不同，確實值得思索其原因到底是孔子前後之說不同（或弟子所聞不同），還是有文本出自後學編述，抑或有其它原因。但是在〈子羔〉和〈五帝德〉之間，我們似乎不能簡單地贊同一個，否定另一個。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>苗江磊：〈子羔〉極可能是帶有部分虛構性託名孔子的作品。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>首先，三王感生之說歷來有爭議，對《玄鳥》《生民》的解讀已可見經學家見解不一。或以聖人有父，如《詩毛氏傳疏》指《玄鳥》「帝高辛率后妃簡狄祈禖生契」，《生民》「言率妃姜嫄祈禖生后稷」，「自是一時之事」。或主聖人無父，感天而生。如《毛詩傳箋通釋》道：「古言履跡生者三，一為宓羲，一為帝嚳，合后稷而為三。言吞卵生者二，一為契，一為大業。」若孔子有此感生之說，自當為治經者推重。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>再有，參照孔子對傳說的解釋。《呂氏春秋．慎行》: 魯哀公問孔子「夔一足」是否可信，孔子道，昔者舜曰：「夔能和之以平天下，若夔者一而足矣」。「夔一足」，並非「一足」。《大戴禮記．五帝德》: 宰我詢問孔子「昔者予聞諸榮伊，言黃帝三百年」，孔子言黃帝之功，「生而民得其利百年，死而民畏其神百年，亡而民用其教百年，故曰三百年」，將黃帝三百年的傳說以邏輯釋之，歸為黃帝之治三百年。《太平御覽》卷七十九引《尸子》曰：「子貢曰：『古者黃帝四面，信乎？』孔子曰：『黃帝取合己者四人，使治四方，不計而耦，不約而成，此之謂四面。』」將黃帝四面的傳說常理化。而〈子羔〉中孔子極言禹、契及后稷神異之事，與前述以邏輯、倫常解釋傳說之方式有不同之處。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>簡文所涉三王感生的爭議以及與孔子對傳說闡釋的抵牾，種種可存疑慮之處提示我們，〈子羔〉篇中對孔子與子羔言談的記述存在並非實錄孔子言論的可能性。簡文內容本於孔子師徒對話展開，這種依託於真實歷史人物之上、存在虛構成分的創作，正符合擬托文的判斷特徵，故此文極可能是對孔子事蹟想像、虛構的擬托文。</p>
+    <h2 class="hb-section">四、《子羔》中心思想之探討</h2>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>裘錫圭：〈子羔〉的主旨是說一個人是否有資格「君天下」，應決定於他的德是否「誠賢」（真的賢），而不應決定放他的出身是否高貴。本篇講述禹、契、后稷三王的內容為前部分，講述堯、舜的部分為後半部分。應該是作者借孔子之口鼓吹尚賢和禪讓的一篇作品。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>李學勤：這篇文前部雖是敘述三王始祖的感生說，實際只是下文堯、舜禪讓事蹟的陪襯。全篇的中心，是以舜為例，說明黎民有德也可以受命為帝，而且超越三王之上，這在列國紛爭的當時形勢中，無疑是有針對性的學說見解，不能僅作為古史看。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>魯瑞菁：以感生說與禪讓說二者相較，〈子羔〉篇中孔子宣揚以德而有天下之堯舜禪授，不言可諭也。是以〈子羔〉篇雖論三代感生神話，開漢代今文學家敷衍此一問題的先聲，但因〈子羔〉篇強調的是君天下者具有德性之一面，故其對三代感生故事未必有最高的評價，其立場或更接近兩漢古文學家一派也。</p>
+  </main>
+  <footer>
+    <p>本頁內容整理自《子羔》相關文獻彙編</p>
+  </footer>
+</body>
+</html>

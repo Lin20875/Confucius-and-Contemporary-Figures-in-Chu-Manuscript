@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>窮達以時 — 相關文獻彙編</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --fg: #1a1a1a;
+      --accent: #2e6b4f;
+      --accent2: #8c6d1f;
+      --muted: #666;
+      --border: #d5cdb8;
+      --section-bg: #f0ece0;
+      --bamboo-bg: #e8f0e8;
+      --table-header-bg: #e8e2d0;
+      --table-stripe: #f5f2ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Noto Serif CJK TC","PingFang TC","Microsoft JhengHei",serif;
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header, main, footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(1.2rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(46,107,79,.08), transparent);
+    }
+    header h1 {
+      font-size: clamp(1.6rem,3vw,2.4rem);
+      margin: 0 0 .3em;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    header .subtitle {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    /* ── 大段标题：带背景条 ── */
+    .hb-section {
+      font-size: clamp(1.25rem,2.2vw,1.7rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding: .4em .7em;
+      background: var(--section-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 .5rem .5rem 0;
+    }
+
+    /* ── 中级标题：无背景 ── */
+    .hb-topic {
+      font-size: clamp(1.1rem,1.8vw,1.35rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 2rem 0 .6rem;
+      padding: .2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── 篇名引导 ── */
+    .hb-intro {
+      font-size: clamp(1.05rem,1.6vw,1.2rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 1.8rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 小标题 / 来源标题 ── */
+    .hb-source {
+      font-size: clamp(1rem,1.5vw,1.1rem);
+      font-weight: bold;
+      color: #444;
+      margin: 1.5rem 0 .4rem;
+      padding-left: .5em;
+      border-left: 3px solid var(--accent2);
+    }
+    .hb-subsource {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      margin: 1.2rem 0 .3rem;
+      padding-left: 1em;
+    }
+    .hb-subhead {
+      font-size: clamp(1.02rem,1.5vw,1.12rem);
+      font-weight: bold;
+      color: var(--fg);
+      margin: 1.5rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 正文段落：无背景框 ── */
+    .hb-text {
+      margin: .6em 0;
+      font-size: .95rem;
+      text-indent: 2em;
+    }
+
+    /* ── 简文区块：保留背景框 ── */
+    .hb-bamboo {
+      margin: 1em 0;
+      padding: .8em 1.2em;
+      background: var(--bamboo-bg);
+      border: 1px solid #b5cfb5;
+      border-radius: .5rem;
+      font-size: .95rem;
+      line-height: 1.9;
+    }
+    .hb-bamboo p { margin: 0; }
+
+    /* ── 真实表格 ── */
+    .hb-table-wrap {
+      margin: 1.2em 0;
+      overflow-x: auto;
+    }
+    .hb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .hb-table th,
+    .hb-table td {
+      border: 1px solid var(--border);
+      padding: .5em .7em;
+      vertical-align: top;
+      text-align: left;
+    }
+    .hb-table th {
+      background: var(--table-header-bg);
+      font-weight: bold;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hb-table tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    /* ── 注释/解说框 ── */
+    .hb-note {
+      margin: 1em 0;
+      padding: .7em 1.2em;
+      background: #fefcf3;
+      border: 1px dashed var(--accent2);
+      border-radius: .4rem;
+      font-size: .9rem;
+      color: #555;
+    }
+    /* ── bullet 段落 ── */
+    .hb-bullet {
+      margin: .8em 0;
+      padding-left: 1.5em;
+      position: relative;
+      font-size: .95rem;
+      font-weight: bold;
+      color: var(--accent2);
+    }
+    .hb-bullet::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    /* ── 简文方框内 bullet ── */
+    .hb-bamboo .bul::before { content: '·'; font-weight: bold; margin-right: .3em; }
+    .hb-bamboo p + p { margin-top: .3em; }
+    /* ── 链接 ── */
+    a { color: var(--accent); text-decoration-style: dashed; }
+    a:hover { text-decoration-style: solid; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    footer p { margin: .3em 0; }
+
+    @media(max-width:768px) {
+      .hb-section { font-size: 1.15rem; }
+      header, main, footer {
+        padding: clamp(1rem,5vw,1.5rem) clamp(.8rem,4vw,1.2rem);
+      }
+      .hb-table { font-size: .82rem; }
+      .hb-table th, .hb-table td { padding: .35em .5em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>窮達以時 — 相關文獻彙編</h1>
+    <p class="subtitle">與讀本對照之相關傳世文獻及學者研究匯集</p>
+  </header>
+  <main>
+    <div class="hb-bamboo">
+    <h3 class="hb-intro">《窮達以時》相應内容：</h3>
+    <p class="hb-text">有天有人，天人有分。察天人之分，而知所行矣。<a href="#sec-ming">有其人，無其【1】世，雖</a><a href="#sec-xian">賢</a><a href="#sec-ming">弗行矣。茍有其世，何難之有哉？</a>舜耕於厲山，陶埏【2】於河滸，立而為天子，遇堯也。邵繇衣胎蓋，帽絰塚巾，【3】釋板築而佐天子，遇武丁也。<a href="#sec-lvwang">呂望為臧棘津，戰監門【4】棘地，行年七十而屠牛於朝歌，尊而為天子師，遇周文也。</a>【5】管夷吾拘囚棄縛，釋桎梏而為諸侯相，遇齊桓也。【6】百里奚饋五羊，為伯牧牛，釋板而為朝卿，遇秦穆。【7】叔［敖］三斥恆思少司馬，出而為令尹，遇楚莊也。【8】善負己也。<a href="#sec-ming">窮達以時</a>，德行一也。譽毀在旁，聽之弋母，<a href="#sec-baili">緇白【14】初韜晦，後名揚，非其德加。子胥前多功，後戮死，非其智【9】衰也。</a>驥厄張山，駿穴於邵棘，非亡體壯也。窮四海，至千【10】里，遇造［父］故也。<a href="#sec-ming">遇不遇，天也。</a>動非為達也，故窮而不【11】怨，隱非為名也，故莫之智而不吝。<a href="#sec-zhilan">芷蘭生於林中，【12】以不為人莫嗅而不芳。</a>無茖蓳（瑾），愈寶山石不為開，非以其【13】不釐。窮達以時，幽明不再。故君子敦於反己。【15】</p>
+    </div>
+    <div class="hb-note">* 記載孔子「厄於陳蔡」的先秦和秦漢文獻，主要有《孔子家語．在厄》、《莊子．讓王》、《荀子．宥坐》、《呂氏春秋．慎人》、《韓詩外傳》卷七、《說苑．雜言》和《風俗通義．窮通》。</div>
+    <h2 class="hb-section" id="sec-xuejiezhengyi">學界爭議：《窮達以時》是否為孔子所作？</h2>
+    <p class="hb-text">劉祖信、塗宗流在《郭店楚簡〈窮達以時〉通釋》一文指出：「《荀子．宥坐》載：孔子南適楚，孔子曰：⋯⋯知禍福終始而心不惑也，夫賢不肖者材也。難之有！」此為孔子弟子所記述的孔子言論，與《窮達以時》此段相一致。《窮達以時》可能為孔子自述。」</p>
+    <p class="hb-text">陳來在《荊門竹簡之〈性自命出〉 篇初探》中談道：「如果墓主是太子太傅，而竹簡是他用來教育太子的教材，為什麼其中有《老子》而沒有孔子的文字呢？所收的這麼多儒家的材料中，為什麼有七十子及其後學的著作，而沒有最具權威的孔子本人的著作呢？我以為，《緇衣》雖為子思所傳，但其中都是「子曰」，在竹簡中就是被作為孔子的思想來教授的。《窮達以時》所述也是孔子的言論。」</p>
+    <p class="hb-text">李松儒：崔述在《洙泗考信錄》中指出，孔子生活的時間與《韓詩外傳》、《說苑》中記載的事件時間線存在明顯的不符，顯示孔子不可能預知如子胥抉目、句践霸心等未來事件，這些描述很可能是後人附會。此外，古代文獻經常經歷多次編纂和增補，原始內容與作者的直接關聯可能因此變得模糊。儘管《穷达以时》中的具體文獻可能並非孔子所作，但其核心思想——關於「窮」與「達」的哲學思考，可能與孔子的教導相符，其思想可能在孔子的生活和教學過程中被其弟子們口頭傳播，後由他人整理記錄。</p>
+    <h2 class="hb-section" id="sec-eyuchencai">關於孔子「厄於陳蔡」的文獻記載：</h2>
+    <p class="hb-text">*簡文中未見相關論述</p>
+    <h4 class="hb-source">1. 《荀子．宥坐》</h4>
+    <p class="hb-text">- 孔子南適楚，厄於陳蔡之間，七日不火食，藜羹不糝，弟子皆有飢色。子路進而問之曰：「由聞之：為善者天報之以福，為不善者天報之以禍。今夫子累德積義懷美，行之日久矣，奚居之隱也？」</p>
+    <h4 class="hb-source">2. 《說苑．雜言》</h4>
+    <p class="hb-text">- 孔子困於陳、蔡之間，居環堵之內，席三經之席，七日不食，藜羹不糝，弟子皆有饑色，讀詩書治禮不休。子路進諫曰：「凡人為善者天報以福，為不善者天報以禍。今先生積德行，為善久矣。意者尚有遺行乎？奚居隱也！」</p>
+    <h4 class="hb-source">3. 《韓詩外傳．卷七》</h4>
+    <p class="hb-text">- 孔子困於陳蔡之間，即三經之席，七日不食，藜羹不糝，弟子有飢色，讀書習禮樂不休。子路進諫曰：「為善者天報之以福，為不善者天報之以賊。今夫子積德累仁，為善久矣，意者、當遣行乎？奚居之隱也？」</p>
+    <h2 class="hb-section" id="sec-xian">一、「賢」的相關文獻記載</h2>
+    <div class="hb-bamboo"><p>簡文：有天有人，天人有分。察天人之分，而知所行矣。有其人，無其世，雖<strong>賢</strong>弗行矣。茍有其世，何難之有哉？</p></div>
+    <h4 class="hb-source">1. 《論語．里仁》</h4>
+    <p class="hb-text">- 子曰：「見賢思齊焉，見不賢而內自省也。」</p>
+    <h4 class="hb-source">2. 《論語．雍也》</h4>
+    <p class="hb-text">- 子曰：「賢哉回也！一簞食，一瓢飲，在陋巷。人不堪其憂，回也不改其樂。賢哉回也！」</p>
+    <h4 class="hb-source">3. 《論語．述而》</h4>
+    <p class="hb-text">- 冉有曰：「夫子為衛君乎？」子貢曰：「諾。吾將問之。」入，曰：「伯夷、叔齊何人也？」曰：「古之賢人也。」曰：「怨乎？」曰：「求仁而得仁，又何怨。」出，曰：「夫子不為也。」</p>
+    <p class="hb-text">李雷東：「賢」在這幾個例子中指德行高尚或德行高尚之人。</p>
+    <h4 class="hb-source">4. 《論語．憲問》</h4>
+    <p class="hb-text">- 子曰：「不逆詐，不億不信。抑亦先覺者，是賢乎！」</p>
+    <p class="hb-text">- 子曰：「賢者辟世，其次辟地，其次辟色，其次辟言。」子曰：「作者七人矣。」</p>
+    <h4 class="hb-source">5. 《論語．衛靈公》</h4>
+    <p class="hb-text">- 子貢問為仁。子曰：「工欲善其事，必先利其器。居是邦也，事其大夫之賢者，友其士之仁者。」</p>
+    <p class="hb-text">李雷東：《窮達以時》篇在「有其人，無其世，雖賢弗行」之下，也提到了善、德、智等，在德之外還注重智。其所謂「賢」不僅指德行，也應包括文中所列歷史人物所擁有的才能。</p>
+    <h4 class="hb-source">6. 《荀子．宥坐》</h4>
+    <p class="hb-text">- 夫賢不肖者，材也；為不為者，人也；遇不遇者，時也；死生者，命也。今有其人，不遇其時，雖賢，其能行乎？苟遇其時，何難之有！</p>
+    <h4 class="hb-source">7. 《說苑．雜言》</h4>
+    <p class="hb-text">- 賢不肖者才也，為不為者人也，遇不遇者時也，死生者命也；有其才不遇其時，雖才不用，苟遇其時，何難之有！</p>
+    <h2 class="hb-section" id="sec-ming">二、「命」的相關文獻記載</h2>
+    <h4 class="hb-subhead">①「<strong>時</strong>」、「<strong>世</strong>」、「<strong>遇</strong>」</h4>
+    <div class="hb-bamboo">
+      <p>簡文：<span class="bul"></span><strong>窮達以時</strong>，幽明不再。</p>
+      <p><span class="bul"></span>有其人，無其<strong>世</strong>，雖賢弗行矣。茍有其世，何難之有哉？</p>
+      <p><span class="bul"></span><strong>遇不遇</strong>，天也。</p>
+    </div>
+    <h4 class="hb-source">1. 《論語．顏淵》</h4>
+    <p class="hb-text">- 司馬牛憂曰：「人皆有兄弟，我獨亡。」子夏曰：「商聞之矣：死生有命，富貴在天。君子敬而無失，與人恭而有禮。四海之內，皆兄弟也。君子何患乎無兄弟也？」</p>
+    <h4 class="hb-source">2. 《論語．述而》</h4>
+    <p class="hb-text">- 子曰：「富而可求也，雖執鞭之士，吾亦為之。如不可求，從吾所好。」</p>
+    <p class="hb-text">宋翔鳳解釋：「『富而可求』，謂其時可仕，則出而求祿。⋯⋯『不可求』，為時不可仕。」</p>
+    <h4 class="hb-source">3. 《論語．里仁》</h4>
+    <p class="hb-text">- 子曰：「富與貴是人之所欲也，不以其道得之，不處也；貧與賤是人之所惡也，不以其道得之，不去也。君子去仁，惡乎成名？君子無終食之間違仁，造次必於是，顛沛必於是。」</p>
+    <p class="hb-text">劉寶楠：「君子履道，當得富貴而反貧賤，是不以其道得之，於當此義命自安，不可違而去之，輒妄冀得富貴也。」</p>
+    <p class="hb-text">李雷東：孔子以理想主義為準則，將對待仕祿富貴的態度分為兩種：一種以求仕祿富貴為目的，另一種以履道為目的，逢時世不可履道，則安於義命，義命即德命，即天命。前一種與個人命運有關，後一種則與道的實現和承擔有關。</p>
+    <h4 class="hb-source">4. 《荀子．宥坐》</h4>
+    <p class="hb-text">- 孔子南適楚，厄於陳蔡之間，七日不火食，藜羹不糝，弟子皆有飢色。子路進而問之曰：「由聞之：為善者天報之以福，為不善者天報之以禍。今夫子累德積義懷美，行之日久矣，奚居之隱也？」孔子曰：「⋯⋯知禍福終始而心不惑也。夫賢不肖者，材也；為不為者，人也；遇不遇者，時也；死生者，命也。今有其人，不遇其時，雖賢，其能行乎？苟遇其時，何難之有！⋯⋯」</p>
+    <p class="hb-text">- 君子博學深謀，不遇時者多矣！由是觀之，不遇世者眾矣，何獨丘也哉！</p>
+    <p class="hb-text">《郭店楚簡的人道思想》：張立文先生認為「窮達以時」的「時」若理解為「遇不遇﹐時也」（《荀子‧宥坐》），並配合原文所云「遇不遇﹐天也」，則「遇不遇」作為「天時」與商周「君權天授說」合而觀之，窮困和顯達取決於「天時」即天人相合的思想，然就忠臣遇暴君之感嘆，亦為一種對主體人格的尊重，表示了天人相分的蘊涵。</p>
+    <h4 class="hb-source">5. 《說苑．雜言》</h4>
+    <p class="hb-text">- 故夫君子博學深謀不遇時者眾矣，豈獨丘哉！</p>
+    <h4 class="hb-source">6. 《韓詩外傳．卷七》</h4>
+    <p class="hb-text">- 故君子博學深謀，不遇時者眾矣，豈獨丘哉！</p>
+    <h4 class="hb-source">7. 《孔子家語．在厄》</h4>
+    <p class="hb-text">- 君子博學深謀，而不遇時者，眾矣。何獨丘哉！</p>
+    <h4 class="hb-subhead">②天人之分</h4>
+    <div class="hb-bamboo"><p>簡文：<strong>有天有人，天人有分。察天人之分，而知所行矣。有其人，無其</strong><strong>世，雖賢弗行矣。茍有其世，何難之有哉？</strong></p></div>
+    <h4 class="hb-source">1. 《荀子．天論》</h4>
+    <p class="hb-text">- 天行有常，不為堯存，不為桀亡。⋯⋯故明於天人之分，則可謂至人矣。</p>
+    <h4 class="hb-subhead">③恆常修德的重要性</h4>
+    <p class="hb-text">簡文：窮達以時，幽明不再。故<strong>君子敦於反己</strong>。</p>
+    <h4 class="hb-source">1.《中庸》</h4>
+    <p class="hb-text">子曰：「射有似乎君子，失諸正鵠，反求諸其身。</p>
+    <p class="hb-text">2. 《孟子．離婁上》孟子曰：「愛人不親反其仁，治人不治反其智，禮人不答反其敬。行有不得者，皆反求諸己，其身正而天下歸之。」</p>
+    <p class="hb-text">曰：「尊德樂義，則可以囂囂矣。故士窮不失義，達不離道。窮不失義，故士得己焉；達不離道，故民不失望焉。古之人，得志，澤加於民；不得志，脩身見於世。」</p>
+    <h4 class="hb-source">3.《荀子．宥坐》</h4>
+    <p class="hb-text">- 孔子曰：「⋯⋯故君子博學深謀，修身端行，以俟其時。」</p>
+    <h4 class="hb-source">4. 《說苑．雜言》</h4>
+    <p class="hb-text">- 孔子曰：「⋯⋯故君子疾學修身端行，以須其時也。」</p>
+    <h4 class="hb-source">5. 《韓詩外傳．卷七》</h4>
+    <p class="hb-text">- 孔子曰：「⋯⋯故君子務學脩身端行而須其時者也，子無惑焉。」</p>
+    <h2 class="hb-section">三、歷史人物事蹟相關文獻記載</h2>
+    <h4 class="hb-subhead">歷史人物與時運的比較</h4>
+    <p class="hb-text">（1）《窮達以時》及《說苑．雜言》</p>
+    <div class="hb-table-wrap"><table class="hb-table">
+  <tr>
+    <th>&mdash;</th>
+    <th>《窮達以時》</th>
+    <th>《說苑．雜言》</th>
+  </tr>
+  <tr>
+    <td>舜</td>
+    <td>舜耕於厲山，陶埏於河滸，立而為天子，遇堯也。</td>
+    <td>舜耕歷山而逃於河畔，立為天子則其遇堯也。</td>
+  </tr>
+  <tr>
+    <td>邵繇/ 傅說</td>
+    <td>邵繇衣胎蓋，帽絰塚巾，釋板築而佐天子，遇武丁也。</td>
+    <td>傅說負壤土、釋板築，而立佐天子，則其遇武丁也。</td>
+  </tr>
+  <tr>
+    <td>呂望</td>
+    <td>呂望為臧棘津，戰監門棘地，行年七十而屠牛於朝歌，尊而為天子師，遇周文也。</td>
+    <td>呂望行年五十賣食於棘津，行年七十屠牛朝歌，行年九十為天子師，則其遇文王也。</td>
+  </tr>
+  <tr>
+    <td>管夷吾</td>
+    <td>管夷吾拘囚棄縛，釋桎梏而為諸侯相，遇齊桓也。</td>
+    <td>管夷吾束縛膠目，居檻車中，自車中起為仲父，則其遇齊桓公也。</td>
+  </tr>
+  <tr>
+    <td>百里奚</td>
+    <td>百里奚饋五羊，為伯牧牛，釋板而為朝卿，遇秦穆。</td>
+    <td>百里奚自賣取五羊皮，伯氏牧羊以為卿大夫，則其遇秦穆公也。</td>
+  </tr>
+  <tr>
+    <td>孫叔敖 /沈尹</td>
+    <td>叔［敖］三斥恆思少司馬，出而為令尹，遇楚莊也。</td>
+    <td>沈尹名聞天下，以為令尹，而讓孫叔敖，則其遇楚莊王也。</td>
+  </tr>
+  <tr>
+    <td>伍子胥</td>
+    <td>子胥前多功，後戮死，非其智衰也。</td>
+    <td>伍子胥前多功，後戮死，非其智益衰也，前遇闔廬，後遇夫差也。</td>
+  </tr>
+  <tr>
+    <td>驥</td>
+    <td>驥厄張山，駿穴於邵棘，非亡體壯也。窮四海，至千里，遇造［父］故也。</td>
+    <td>夫驥厄罷鹽車，非無驥狀也，夫世莫能知也；使驥得王良、造父，驥無千里之足乎？</td>
+  </tr>
+</table></div>
+    <p class="hb-text">（2）《窮達以時》及《韓詩外傳．卷七》</p>
+    <div class="hb-table-wrap"><table class="hb-table">
+  <tr>
+    <th>&mdash;</th>
+    <th>《窮達以時》</th>
+    <th>《說苑．雜言》</th>
+  </tr>
+  <tr>
+    <td>舜</td>
+    <td>舜耕於厲山，陶埏於河滸，立而為天子，遇堯也。</td>
+    <td>虞舜耕於歷山之陽，立為天子，其遇堯也。</td>
+  </tr>
+  <tr>
+    <td>邵繇/ 傅說</td>
+    <td>邵繇衣胎蓋，帽絰塚巾，釋板築而佐天子，遇武丁也。</td>
+    <td>傅說負土而版築，以為大夫，其遇武丁也。</td>
+  </tr>
+  <tr>
+    <td>呂望</td>
+    <td>呂望為臧棘津，戰監門棘地，行年七十而屠牛於朝歌，尊而為天子師，遇周文也。</td>
+    <td>呂望行年五十，賣食棘津，年七十，屠於朝歌，九十乃為天子師，則遇文王也。</td>
+  </tr>
+  <tr>
+    <td>管夷吾</td>
+    <td>管夷吾拘囚棄縛，釋桎梏而為諸侯相，遇齊桓也。</td>
+    <td>管夷吾束縛自檻車，以為仲父，則遇齊桓公也。</td>
+  </tr>
+  <tr>
+    <td>百里奚</td>
+    <td>百里奚饋五羊，為伯牧牛，釋板而為朝卿，遇秦穆。</td>
+    <td>百里奚自賣五羊之皮，為秦伯牧牛，舉為大夫，則遇秦繆公也。</td>
+  </tr>
+  <tr>
+    <td>孫叔敖 /沈尹</td>
+    <td>叔［敖］三斥恆思少司馬，出而為令尹，遇楚莊也。</td>
+    <td>虞丘於天下以為令尹，讓於孫叔敖，則遇楚莊王也。</td>
+  </tr>
+  <tr>
+    <td>伍子胥</td>
+    <td>子胥前多功，後戮死，非其智衰也。</td>
+    <td>伍子胥前功多，後戮死，非知有盛衰也，前遇闔閭，後遇夫差也。</td>
+  </tr>
+  <tr>
+    <td>驥</td>
+    <td>驥厄張山，駿穴於邵棘，非亡體壯也。窮四海，至千里，遇造［父］故也。</td>
+    <td>夫驥罷鹽車，此非無形容也，莫知之也，使驥不得伯樂，安得千里之足，造父亦無千里之手矣。</td>
+  </tr>
+</table></div>
+    <h4 class="hb-subhead" id="sec-defu">① 「德福未必一致」（甚至「有德無福」）的敘述</h4>
+    <div class="hb-bamboo"><p>簡文：<strong>緇白初韜晦，後名揚，非其德加。子胥前多功，後戮死，非其智</strong><strong>衰也。</strong></p></div>
+    <h4 class="hb-source">1. 《說苑．雜言》</h4>
+    <p class="hb-text">- 孔子曰：「⋯⋯昔者湯困於呂，文王困於羑里，秦穆公困於殽，齊桓困於長勺，句踐困於會稽，晉文困於驪氏。夫困之為道，從寒之及煖，煖之及寒也，唯賢者獨知而難言之也。《易》曰：『困亨貞，大人吉，無咎。有言不信。』聖人所與人難言信也。</p>
+    <h4 class="hb-subhead" id="sec-baili">② 百里奚身世考證</h4>
+    <div class="hb-bamboo"><p>簡文：<strong>百里奚饋五羊，為伯牧牛，釋板而為朝卿，遇秦穆。</strong></p></div>
+    <h4 class="hb-source">1. 《韓詩外傳．卷七》</h4>
+    <p class="hb-text">- 百里奚自賣五羊之皮，為秦伯牧牛，舉為大夫，則遇秦繆公也。</p>
+    <h4 class="hb-source">2. 《說苑．雜言》</h4>
+    <p class="hb-text">- 百里奚自賣取五羊皮，伯氏牧羊以為卿大夫，則其遇秦穆公也。</p>
+    <p class="hb-text">《說苑．尊賢》</p>
+    <p class="hb-text">- 百里奚乞食於路，轉賣五羊之皮。</p>
+    <h4 class="hb-source">3. 《呂氏春秋．慎人》</h4>
+    <p class="hb-text">百里奚之未遇時也，亡虢而虜晉，飯牛於秦，傳鬻以五羊之皮。公孫枝得而說之，獻諸繆公，三日，請屬事焉。繆公曰：「買之五羊之皮而屬事焉，無乃天下笑乎？」</p>
+    <h4 class="hb-source">4.《史記．秦本紀》</h4>
+    <p class="hb-text">- 晉獻公滅虞、虢，虜虞君及其大夫百里奚，⋯⋯既虜白里奚，以為秦穆公夫人媵於秦。百里奚亡秦走宛，楚鄙人執之。穆公聞百里奚賢，欲重贖之，恐楚人不與，乃使人謂楚曰：「吾媵臣百里奚在焉，請以五羖羊皮贖之。」楚人遂許與之。當是時，百里奚年已七十餘。繆公釋其囚，與語國事。⋯⋯大說，授之國政，號曰五羖大夫。」</p>
+    <p class="hb-text">（百里奚被晉軍俘去，並被迫使作為晉獻公的女兒即秦穆公的夫人穆姬的隨嫁奴隸入秦，他從秦國逃回楚國宛地，因外出過久，人地都已經生疏，被當地人抓住，秦穆公知道他有賢才，使人用五張羊皮把他贖回秦國。）</p>
+    <p class="hb-text">《史記．孟子列傳》</p>
+    <p class="hb-text">- 百里奚飯牛車下而繆公用霸。</p>
+    <h4 class="hb-source">5. 《孟子．萬章上》</h4>
+    <p class="hb-text">- 萬章問曰：「或曰：『百里奚自鬻於秦養牲者，五羊之皮食牛，以要秦穆公。』信乎？」 孟子曰：「否，不然，好事者為之也。百里奚，虞人也。晉人以垂棘之璧，與屈產之承，假道於虞以伐虢；宮之奇諫，百里奚不諫。知虞公之不可諫而去之秦，年已七十矣，曾不知以食牛干秦穆公之為汙也： 可謂智乎？不可諫而不諫，可謂不智乎？知虞公之將亡而先去之，不可謂不智也。 時舉於秦，知穆公之可與有行也而相之：可謂不智乎？相秦而顯其君於天下，可傳於後世：不賢而能之乎？自鬻以成其君，鄉黨自好者不為，而謂賢者為之乎？」</p>
+    <p class="hb-text">（萬章問孟子，關於百里奚通過賣牛肉來吸引秦穆公的注意是否真有其事。孟子否認了這個故事，認為是後人杜撰。他進一步解釋百里奚的行為，表明百里奚因認識到虞公不會接受勸告而未諫，並在預見虞國將亡時離開，選擇前往秦國。百里奚最終成為秦國的相國，幫助秦穆公及其國家提升地位。孟子認為百里奚的行動是基於智慧和對國家的忠誠，並非出於私利，是真正賢者的典範。）</p>
+    <h4 class="hb-source">6.《漢書．王褒列傳》</h4>
+    <p class="hb-text">- 人臣亦然。昔賢者之未遭遇也，圖事揆策則君不用其謀，陳見悃誠則上不然其信，進仕不得施效，斥逐又非其衍。是故伊尹勤於鼎俎，太公困於鼓刀，百里自鬻，寧子飯牛，離此患也。及其遇明君遭聖主也，運籌合上意，諫諍即見聽。師古曰：「鬻，賣也。」《呂氏春秋》云百里奚之未遇時也，虞亡而虜縛，鬻以五羊之皮。公孫枝得而悅之，獻諸穆公。飯牛，解在《鄒陽傳》。</p>
+    <p class="hb-text">《漢書‧杜鄴傳》</p>
+    <p class="hb-text">- 注引應劭曰：臣聞禽息憂國，碎首不恨；應劭曰：「禽息，秦大夫，薦百里奚而不見納。繆公出，當車以頭擊闑，腦乃播出，曰『臣生無補於國而不如死也！』繆公感寤而用百里奚，秦以大治。」</p>
+    <p class="hb-text">《漢書．鄒陽列傳》</p>
+    <p class="hb-text">- 百里奚乞食於道路，穆公委之以政。</p>
+    <h4 class="hb-source">7. 《莊子．田子方》</h4>
+    <p class="hb-text">- 百里奚爵祿不入於心，故飯牛而牛肥，使秦穆公忘其賤，與之政也。</p>
+    <h4 class="hb-source">8.《藝文類聚》</h4>
+    <p class="hb-text">- 張溫自理云：「百里奚賢秦穆公，欲干之，穆公好牛，奚因賃養牛肥。」</p>
+    <p class="hb-bullet">李松儒：根據文獻記載，百里奚的來歷有四種不同的說法：</p>
+    <p class="hb-text">（1）百里奚原本是一位飼養牛的人，後來被晉國的穆公得到。</p>
+    <p class="hb-text">（2）百里奚是被人推薦給穆公的，推薦人包括公孫枝和禽息。</p>
+    <p class="hb-text">（3）百里奚曾在路上乞食，之後被穆公發現。</p>
+    <p class="hb-text">（4）百里奚主動求職於穆公，通過養牛的方式來吸引穆公的注意。</p>
+    <p class="hb-text">此外，有關百里奚的職位轉變，文獻中提到他從牧牛時被穆公發現，並有可能在拉車過程中被舉用。關於具體的歷史事實，古人記載各異，真實情況仍有待進一步研究。不過可以確定的是，百里奚在遇見秦穆公之前的社會地位非常低下，這反映了他從貧困到富有的轉變。</p>
+    <h4 class="hb-subhead" id="sec-lvwang">③ 呂望事蹟考</h4>
+    <div class="hb-bamboo"><p>簡文：<strong>呂望為臧棘津，戰監門棘地，行年七十而屠牛於朝歌，尊而為天子師，遇周文也。</strong></p></div>
+    <h4 class="hb-source">1. 《說苑．雜言》</h4>
+    <p class="hb-text">- 呂望行年五十賣食於棘津，行年七十屠牛朝歌，行年九十為天子師，則其遇文王也。</p>
+    <p class="hb-text">《說苑．尊賢》</p>
+    <p class="hb-text">- 太公望故老婦之出夫也，朝歌之屠佐也，棘津迎客之舍人也，年七十而相周，九十而封齊。</p>
+    <h4 class="hb-source">2. 《韓詩外傳．卷七》</h4>
+    <p class="hb-text">- 呂望行年五十，賣食棘津，年七十，屠於朝歌，九十乃為天子師，則遇文王也。</p>
+    <h4 class="hb-source">3. 《博物記》</h4>
+    <p class="hb-text">- 太公吕望所出，今有東吕鄉。又釣於棘津，其浦今存。</p>
+    <h4 class="hb-source">4.《戰國策．范睡至秦》</h4>
+    <p class="hb-text">- 范睢謝曰：「非敢然也。臣聞始時吕尚之遇文王也，身為漁父而釣於渭陽之濱耳。若是者，交疏也。」鮑本渭水出隴西首陽，此渭水之陽。詩注，在咸陽之地。補曰：正義引吕氏春秋云，太公釣於茲泉。酈道元云，磻溪中有茲泉水，源出岐州岐山縣西南凡谷，北流十二里，注於渭。</p>
+    <h4 class="hb-source">5. 《莊子．田子方》</h4>
+    <p class="hb-text">- 文王觀於臧，見一丈夫釣，而其釣莫釣；非持其釣有釣者也，常釣也。注：臧，地名，近渭水，即西安附近。</p>
+    <h4 class="hb-source">6. 《戰國策．四年為一將以攻秦》</h4>
+    <p class="hb-text">- 王曰：「子監門子，梁之大盗，趙之逐臣。」姚賈曰：「太公望，齊之逐夫，朝歌之廢屠，子良之逐臣，棘津之讎不庸，文王用之而王。管仲，其鄙人之賈人也，南陽之弊幽，魯之免囚，桓公用之而伯。百里奚，虞之乞人，傳賣以五羊之皮，穆公相之而朝西戎。」鮑本朝歌屬河內。賈肉不售，故曰「廢」。補曰：楚辭，「師望在肆昌何識，鼓刀揚聲後何喜」。集注云，「吕望鼓刀在列肆，文王親往問之，望曰，『下屠屠牛，上屠屠國』。文王喜，載與俱歸」。此與獵渭濱而得之說不同，蓋當時好事者之言，猶伊尹、百里奚自鬻之比。惜乎孟子時無問者，不得並掊擊之也。姚本釣魚於棘津，魚不食餌；賣庸作，又不能自售也。鮑本後志，琅琊西海，太公所出，又釣於棘津，今存。讎，售同。蓋嘗求售與人為庸，不見用也。」</p>
+    <p class="hb-text">《戰國策．范椎至秦》</p>
+    <p class="hb-text">- 身為漁父而釣於渭陽之濱耳。鮑本渭水出隴西首陽，此渭水之陽。</p>
+    <h4 class="hb-source">7. 《釋氏稽古略》</h4>
+    <p class="hb-text">- 呂望年八十餘釣渭水。西伯獵載之歸。</p>
+    <p class="hb-text">李松儒：認為吕望在戰國時代的社會地位極低，類似於奴隸。根據文獻記載，吕望曾被稱為「牂」，這是奴婢的貶稱。又，裘錫圭先生的研究指出，當時的貧民因無法生活，有時會通過將妻子或兒子作為借債的抵押形式，使其成為贅婿，然而贅婿的地位與奴隸無異。雖然傳統觀點認為奴隸無法自由從事如迎客或垂釣等活動，但吕望的情況略有不同：文獻中提及他可能擔任過迎客舍人和從事過釣魚，這表明儘管他的社會地位低下，他在某種程度上仍有一定的行動自由，反映出戰國時期社會和法律對於贅婿及類似身份的特殊處理方式。</p>
+    <div class="hb-bamboo" id="sec-zhilan"><p>簡文：芷蘭生於林中，以不為人莫嗅而不芳。</p></div>
+    <h4 class="hb-source">1. 《荀子．宥坐》</h4>
+    <p class="hb-text">- 且夫芷蘭生於深林，非以無人而不芳。君子之學，非為通也，為窮而不困，憂而意不衰也，知禍福終始而心不惑也。 </p>
+    <h4 class="hb-source">2. 《說苑．雜言》</h4>
+    <p class="hb-text">- 芝蘭生深林，非為無人而不香。故學者非為通也，為窮而不困也，憂而不衰也，此知禍福之始而心不惑也， 聖人之深念獨知獨見。</p>
+    <h4 class="hb-source">3. 《韓詩外傳．卷七》</h4>
+    <p class="hb-text">- 夫學者非為通也，為窮而不困，憂而志不衰，先知禍福之始，而心無惑焉，</p>
+  </main>
+  <footer>
+    <p>本頁內容整理自《窮達以時》相關文獻彙編</p>
+  </footer>
+</body>
+</html>

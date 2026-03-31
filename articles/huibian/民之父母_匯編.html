@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>民之父母 — 相關文獻彙編</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --fg: #1a1a1a;
+      --accent: #2e6b4f;
+      --accent2: #8c6d1f;
+      --muted: #666;
+      --border: #d5cdb8;
+      --section-bg: #f0ece0;
+      --bamboo-bg: #e8f0e8;
+      --table-header-bg: #e8e2d0;
+      --table-stripe: #f5f2ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Noto Serif CJK TC","PingFang TC","Microsoft JhengHei",serif;
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header, main, footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(1.2rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(46,107,79,.08), transparent);
+    }
+    header h1 {
+      font-size: clamp(1.6rem,3vw,2.4rem);
+      margin: 0 0 .3em;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    header .subtitle {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    /* ── 大段标题：带背景条 ── */
+    .hb-section {
+      font-size: clamp(1.25rem,2.2vw,1.7rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding: .4em .7em;
+      background: var(--section-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 .5rem .5rem 0;
+    }
+
+    /* ── 中级标题：无背景 ── */
+    .hb-topic {
+      font-size: clamp(1.1rem,1.8vw,1.35rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 2rem 0 .6rem;
+      padding: .2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── 篇名引导 ── */
+    .hb-intro {
+      font-size: clamp(1.05rem,1.6vw,1.2rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 1.8rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 小标题 / 来源标题 ── */
+    .hb-source {
+      font-size: clamp(1rem,1.5vw,1.1rem);
+      font-weight: bold;
+      color: #444;
+      margin: 1.5rem 0 .4rem;
+      padding-left: .5em;
+      border-left: 3px solid var(--accent2);
+    }
+    .hb-subsource {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      margin: 1.2rem 0 .3rem;
+      padding-left: 1em;
+    }
+    .hb-subhead {
+      font-size: clamp(1.02rem,1.5vw,1.12rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 1.5rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 正文段落：无背景框 ── */
+    .hb-text {
+      margin: .6em 0;
+      font-size: .95rem;
+      text-indent: 2em;
+    }
+
+    /* ── 简文区块：保留背景框 ── */
+    .hb-bamboo {
+      margin: 1em 0;
+      padding: .8em 1.2em;
+      background: var(--bamboo-bg);
+      border: 1px solid #b5cfb5;
+      border-radius: .5rem;
+      font-size: .95rem;
+      line-height: 1.9;
+    }
+    .hb-bamboo p { margin: 0; }
+
+    /* ── 真实表格 ── */
+    .hb-table-wrap {
+      margin: 1.2em 0;
+      overflow-x: auto;
+    }
+    .hb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .hb-table th,
+    .hb-table td {
+      border: 1px solid var(--border);
+      padding: .5em .7em;
+      vertical-align: top;
+      text-align: left;
+    }
+    .hb-table th {
+      background: var(--table-header-bg);
+      font-weight: bold;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hb-table tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    .hb-bullet {
+      margin: .8em 0;
+      padding-left: 1.5em;
+      position: relative;
+      font-size: .95rem;
+      font-weight: bold;
+      color: var(--accent2);
+    }
+    .hb-bullet::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    a { color: var(--accent); text-decoration-style: dashed; }
+    a:hover { text-decoration-style: solid; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    footer p { margin: .3em 0; }
+
+    @media(max-width:768px) {
+      .hb-section { font-size: 1.15rem; }
+      header, main, footer {
+        padding: clamp(1rem,5vw,1.5rem) clamp(.8rem,4vw,1.2rem);
+      }
+      .hb-table { font-size: .82rem; }
+      .hb-table th, .hb-table td { padding: .35em .5em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>民之父母 — 相關文獻彙編</h1>
+    <p class="subtitle">與讀本對照之相關傳世文獻及學者研究匯集</p>
+  </header>
+  <main>
+    <div class="hb-bamboo">
+    <h3 class="hb-intro">- 《民之父母》相應内容:</h3>
+    <p class="hb-text">[子]夏問於孔子:「《詩（？）》曰：『凱弟君子，民之父母。』敢問何如而可謂民之父母?」</p>
+    <p class="hb-text">孔子答曰：「民【1】[之]父母乎？必達於禮樂之源，以至『<a href="#sec-wuzhi">五至</a>』，以行 『<a href="#sec-sanwu">三無</a>』，以横于天下。四方有敗，必先知之。其【2】[可]謂民之父母矣。」</p>
+    <p class="hb-text">子夏曰：「敢問何謂『五至』？」</p>
+    <p class="hb-text">孔子曰：「『五至』乎？物之所至者，志亦至焉；志之【3】[所]至者，禮 亦至焉；禮之所至者，樂亦至焉；樂之所至者，哀亦至焉。哀樂相生，君子【4】以正。此之謂『五至』。」</p>
+    <p class="hb-text">子夏曰：「『五至』既聞之矣，敢問何謂『三無』？」</p>
+    <p class="hb-text">孔子曰：「『三無』乎？無聲之樂，無體【5】[之]禮，無服之喪。君子以 此横於天下。傾耳而聽之，不可得而聞也；明目而視之，不可【6】得而見也；而志（？）氣塞於四海矣。此之謂『三無』。」</p>
+    <p class="hb-text">子夏曰：「『無聲之樂，無體之禮，無服之喪，何詩【7】是迡？』</p>
+    <p class="hb-text">孔子曰：「善哉，商也！將可教詩矣。『成王不敢康，夙夜基命宥密』,，無聲之樂；『威儀遲遲，【8】[不可選也』無體之禮；『凡民有喪，匍匐救之』，無服]之喪也。」</p>
+    <p class="hb-text">子夏曰：「其在語也，則（？）美（？）矣！宏矣！大矣！盡【9】[於此而已乎？」</p>
+    <p class="hb-text">孔子曰：「何為其然？猶有『<a href="#sec-wuqi">五起</a>』焉。」</p>
+    <p class="hb-text">子夏曰]：「可得而聞歟？」</p>
+    <p class="hb-text">孔子曰：「無聲之樂，氣志不違；【10】[無]體之禮，威儀遲遲；無服之 喪，内恕（？）洵（？）悲。無聲之樂，塞於四方；無體之禮，日就月將；無服之【11】[喪]，純德孔（？）明。無聲之樂，施及孫子；無體之禮，塞於四海；無服之喪，為民父母。無聲之樂，氣【12】[志]既得；無體之禮，威儀翼翼；無服[之]喪，施及四國。無聲之樂，氣志既從；無體之禮，上下和同；無服【13】[之]喪，以畜萬邦。」【14】</p>
+    </div>
+    <h2 class="hb-section" id="sec-wuzhi">本篇的思想源流及成書時代</h2>
+    <p class="hb-text">見俞紹宏、張青松編著，《上海博物館藏戰國楚簡集釋》第二冊）：</p>
+    <p class="hb-text">龐樸2003-01-12 ：本篇係《孟子》以前遺物，其談「五至」、「三無」、「五起」時所蕴含的志氣說正是《孟子》浩然之氣說的先聲。</p>
+    <p class="hb-text">徐少華 2005.04 ：《民之父母》反映的主體思想，與《論語》所體現的孔 子學說有較大的差異，而與子思、孟子學說有更多的聯繫和相近之處。《民之父母》的成篇當在與《孟子》和竹書《五行》等差相同時的戰國中期。</p>
+    <p class="hb-text">林素英2007-06 ：《民之父母》、《禮記．孔子閒居》及《孔子家語。 論禮》均傳自七十二子之徒。《民之父母》與《孔子閒居》成篇時間接近；《孔子家語》成篇雖晚，其材料來源多屬於早期資料。</p>
+    <p class="hb-text">李松儒 2012.04 ：李零曾指出《民之父母》與另外三種合抄，一種與今本《大戴禮記．武王踐阼》有關，另外兩種與顏淵、子路有關。前兩者即上博七《武王踐阼》、上博八《顏淵問於孔子》，與「子路有關」的竹簡尚未發表。滬簡《民之父母》、《武王踐阼》、《顏淵問於孔子》三篇竹簡形制相同，兩端平齊，契口居右側。書寫文字布局疏朗，每字間隔約有半字，除《武王踐阼》部分文字外，這三篇字迹特徵基本一致（《武王踐 阼》中存在三種字迹。詳參本章第二節。编按，可參《武王踐阼》篇說 明），為同一抄手所寫。</p>
+    <p class="hb-text">徐少華 2015.05a ：《民之父母》是儒家學說子夏流派的一篇經典文獻在 不同時期的傳承，該篇至少在戰國中晚期已經存在，並獨立成篇。</p>
+    <p class="hb-text">西山尚志 2019.01 ：《民之父母》成書於《孟子》之後，基本上是儒家吸收了道家否定禮樂的邏輯等，把由道家思想構成的「五至」與「三無」收 在儒家的「志氣論」而撰成的文獻。</p>
+    <p class="hb-text">按：關於本篇與《孔子閒居》之關係，多位學者進行過探討，可參看王天然2016.10.</p>
+    <p class="hb-text">侯乃峰《上博楚簡儒學文獻校理》：本篇共14簡，保存狀况良好，内容基本完整。⋯⋯簡文内容見於傳世典籍《禮記．孔子閒居》和《孔子家語．論禮》。</p>
+    <h2 class="hb-section" id="sec-wuzhi">一、關於「五至」的文獻記載</h2>
+    <div class="hb-bamboo"><p>簡文：子夏曰：「敢問何謂『五至』？」孔子曰：「『五至』乎？物之所至者，志亦至焉；志之【3】[所]至者，禮亦至焉；禮之所至者，樂亦至焉；樂之所至者，哀亦至焉。哀樂相生，君子【4】以正。此之謂『五至』。」</p></div>
+    <h4 class="hb-source">1. 《禮記．孔子閒居》</h4>
+    <p class="hb-text">子夏曰：「民之父母，既得而聞之矣；敢問何謂『五至』？」孔子曰：「志之所至，詩亦至焉。詩之所至，禮亦至焉。禮之所至，樂亦至焉。樂之所至，哀亦至焉。哀樂相生。是故，正明目而視之，不可得而見也；傾耳而聽之，不可得而聞也；志氣塞乎天地，此之謂五至。」</p>
+    <h4 class="hb-source">2. 《孔子家語．論禮》</h4>
+    <p class="hb-text">子夏曰：「敢問何謂五至？」孔子曰：「志之所至，《詩》亦至焉；《詩》之所至，禮亦至焉；禮之所至，樂亦至焉；樂之所至，哀亦至焉。《詩》、禮相成，哀樂相生，是以正明目而視之，不可得而見；傾耳而聽之，不可得而聞。志氣塞于天地，行之充于四海。此之謂五至矣。」</p>
+    <p class="hb-bullet">比較《民之父母》、《禮記．孔子閒居》和《孔子家語．論禮》所列五項，三者内容較相似的有其中四項：</p>
+    <div class="hb-table-wrap"><table class="hb-table">
+  <tr>
+    <th>《民之父母》</th>
+    <th>《禮記．孔子閒居》</th>
+    <th>《孔子家語．論禮》</th>
+  </tr>
+  <tr>
+    <td>物之所至者，志亦至焉</td>
+    <td>n/a</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>志之所至者，禮亦至焉</td>
+    <td>志之所至，詩亦至焉</td>
+    <td>志之所至，《詩》亦至焉</td>
+  </tr>
+  <tr>
+    <td>禮之所至者，樂亦至焉</td>
+    <td>詩之所至，禮亦至焉。禮之所至，樂亦至焉</td>
+    <td>《詩》之所至，禮亦至焉。禮之所至，樂亦至焉</td>
+  </tr>
+  <tr>
+    <td>樂之所至者，哀亦至焉</td>
+    <td>樂之所至，哀亦至焉</td>
+    <td>樂之所至，哀亦至焉</td>
+  </tr>
+  <tr>
+    <td>哀樂相生，君子以正</td>
+    <td>哀樂相生。是故，正明目而視之，不可得而見也；傾耳而聽之，不可得而聞也；志氣塞乎天地</td>
+    <td>《詩》、禮相成，哀樂相生，是以正明目而視之，不可得而見</td>
+  </tr>
+</table></div>
+    <h4 class="hb-subhead">- 內容異同</h4>
+    <p class="hb-text">《民之父母》的「五至」包括「物」、「志」、「禮」、「樂」、「哀」，這裏的「物」可能指的是物質或物的層面，呈現出從物質到情感的過渡；《孔子閒居》與《論禮》的「五至」統一為「志」、「詩」、「禮」、「樂」、「哀」，此處強調了從內心到外在表達的連續性，特別是「詩」作為情感與思想表達的重要形式。</p>
+    <h4 class="hb-subhead">- 「五至」的關聯和順序</h4>
+    <p class="hb-text"> 《孔子閒居》與《論禮》以「志」作為核心，引發「詩」的創作，而「詩」通過「禮」與「樂」進行規範和表達，最終達到情感的宣泄「哀」；《民之父母》則呈現出從物質（「物」）到心志（「志」），再到社交和情感表達（「禮」、「樂」、「哀」）的過程，可能更貼近生活經驗和人的自然反應。 </p>
+    <h4 class="hb-subhead">- 教化與情感的表達 </h4>
+    <p class="hb-text">《孔子閒居》與《論禮》強調詩歌與禮樂在情感教化中的作用，通過這些文化形式來引導和表達情感；《民之父母》則可能更側重於人對物質環境的反應，以及這些反應如何通過禮樂文化得到社會化和情感化的表達。</p>
+    <h2 class="hb-section" id="sec-sanwu">二、關於「三無」的文獻記載</h2>
+    <div class="hb-bamboo"><p>簡文：子夏曰：「『五至』既聞之矣，敢問何謂『三無』？」孔子曰：「『三無』乎？無聲之樂，無體【5】[之]禮，無服之喪。君子以此横於天下。傾耳而聽之，不可得而聞也；明目而視之，不可【6】得而見也；而志（？）氣塞於四海矣。此之謂『三無』。」</p></div>
+    <h4 class="hb-source">1. 《禮記．孔子閒居》</h4>
+    <p class="hb-text">子夏曰：「『五至』既得而聞之矣，敢問何謂『三無』？」孔子曰：「無聲之樂，無體之禮，無服之喪，此之謂『三無』。」</p>
+    <h4 class="hb-source">2. 《孔子家語．論禮》</h4>
+    <p class="hb-text">子夏曰：「敢問何謂三無？」孔子曰：「無聲之樂，無體之禮，無服之喪，此之謂三無。」</p>
+    <p class="hb-text">比較《民之父母》、《禮記．孔子閒居》和《孔子家語．論禮》所列五項，三者内容較相似的有其中三項：</p>
+    <div class="hb-table-wrap"><table class="hb-table">
+  <tr>
+    <th>《民之父母》</th>
+    <th>《禮記．孔子閒居》</th>
+    <th>《孔子家語．論禮》</th>
+  </tr>
+  <tr>
+    <td>子夏曰：「『五至』既聞之矣，敢問何謂『三無』？」</td>
+    <td>子夏曰：「『五至』既得而聞之矣，敢問何謂『三無』？」</td>
+    <td>子夏曰：「敢問何謂三無？」</td>
+  </tr>
+  <tr>
+    <td>孔子曰：「『三無』乎？無聲之樂，無體[之]禮，無服之喪。」</td>
+    <td>孔子曰：「無聲之樂，無體之禮，無服之喪，⋯⋯」</td>
+    <td>孔子曰：「無聲之樂，無體之禮，無服之喪，此之謂三無。」</td>
+  </tr>
+  <tr>
+    <td>「君子以此横於天下。」</td>
+    <td>n/a</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>「傾耳而聽之，不可得而聞也；明目而視之，不可得而見也；而志（？）氣塞於四海矣。」</td>
+    <td>n/a</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>「此之謂『三無』。」</td>
+    <td>「此之謂『三無』。</td>
+    <td>「此之謂三無。」</td>
+  </tr>
+</table></div>
+    <h4 class="hb-subhead">-內容異同</h4>
+    <p class="hb-text">1. 三部文獻均提及「三無」，即「無聲之樂、無體之禮、無服之喪」，這一點在三者中是一致的，這些描述指向了一種超越物質和形式的境界，涉及道德和精神層面的理想狀態。</p>
+    <p class="hb-text">2. 《民之父母》中的描述不僅涉及到「三無」的內容，還精細到如何透過《詩經》的學習達到這一理想狀態，並具體引用詩句來闡釋「無聲之樂」等概念，使得其在理解上更為豐富和完整；《孔子閒居》和《論禮》則可能更偏重於理論的提綱挈領，少有具體的實例或深入的說明，這可能與文獻的撰寫目的或受眾有關。</p>
+    <h4 class="hb-subhead">-「三無」的描述</h4>
+    <p class="hb-text">《民之父母》提供了相對詳細的「三無」描述，並附加了孔子對子夏的讚美及對《詩經》的引用，這顯示出孔子對於達到「三無」境界的重視及其在道德教化中的角色。又，孔子的言論「君子以此橫於天下，傾耳而聽之，不可得而聞也；明目而視之，不可得而見也。而得既塞於四海矣」進一步強調了「三無」的無形和普遍性，表明其深遠的哲學和道德意涵；《孔子閒居》與《論禮》則較少涉及「三無」的具體描述或擴展，主要是簡單提及這一概念，未有孔子對子夏的讚美或對《詩經》的具體引用，顯示出這些文獻在記載方式上更為簡潔或抽象。</p>
+    <h2 class="hb-section" id="sec-wuqi">三、關於「五起」的文獻記載</h2>
+    <div class="hb-bamboo"><p>簡文：子夏曰：「其在語也，則（？）美（？）矣！宏矣！大矣！盡【9】[於此而已乎？」孔子曰：「何為其然？猶有『五起』焉。」子夏曰]：「可得而聞歟？」孔子曰：「無聲之樂，氣志不違；【10】[無]體之禮，威儀遲遲；無服之 喪，内恕（？）洵（？）悲。無聲之樂，塞於四方；無體之禮，日就月將；無服之【11】[喪]，純德孔（？）明。無聲之樂，施及孫子；無體之禮，塞於四海；無服之喪，為民父母。無聲之樂，氣【12】[志]既得；無體之禮，威儀翼翼；無服[之]喪，施及四國。無聲之樂，氣志既從；無體之禮，上下和同；無服【13】[之]喪，以畜萬邦。」【14】</p></div>
+    <h4 class="hb-source">1. 《禮記．孔子閒居》</h4>
+    <p class="hb-text">子夏曰：「言則大矣！美矣！盛矣！言盡於此而已乎？」孔子曰：「何為其然也！君子之服之也，猶有『五起』焉。」子夏曰：「何如？」子曰：「無聲之樂，氣志不違；無體之禮，威儀遲遲；無服之喪，內恕孔悲。無聲之樂，氣志既得；無體之禮，威儀翼翼；無服之喪，施及四國。無聲之樂，氣志既從；無體之禮，上下和同；無服之喪，以畜萬邦。無聲之樂，日聞四方；無體之禮，日就月將；無服之喪，純德孔明。無聲之樂，氣志既起；無體之禮，施及四海；無服之喪，施于孫子。」</p>
+    <h4 class="hb-source">2. 《孔子家語．論禮》</h4>
+    <p class="hb-text">子夏曰：「言則美矣、大矣！言盡於此而已乎？」孔子曰：「何謂其然！吾語汝，其義猶有五起焉。」子夏曰：「何如？」孔子曰：「無聲之樂，氣至不違；無體之禮，威儀遲遲；無服之喪，內恕孔哀；無聲之樂，所願必從；無體之禮，上下和同；無服之喪，施及萬邦。既然，而又奉之以三無私而勞天下，此之謂五起。」</p>
+    <p class="hb-bullet">比較《民之父母》、《禮記．孔子閒居》和《孔子家語．論禮》所列七項，三者内容較相似的有其中四項：</p>
+    <div class="hb-table-wrap"><table class="hb-table">
+  <tr>
+    <th>《民之父母》</th>
+    <th>《禮記．孔子閒居》</th>
+    <th>《孔子家語．論禮》</th>
+  </tr>
+  <tr>
+    <td>子夏曰：「其在語也，則（？）美（？）矣！宏矣！大矣！盡[於此而已乎？」</td>
+    <td>子夏曰：「言則大矣！美矣！盛矣！言盡於此而已乎？」</td>
+    <td>子夏曰：「言則美矣、大矣！言盡於此而已乎？」</td>
+  </tr>
+  <tr>
+    <td>孔子曰：「何為其然？猶有『五起』焉。」</td>
+    <td>孔子曰：「何為其然也！君子之服之也，猶有『五起』焉。」</td>
+    <td>孔子曰：「何謂其然！吾語汝，其義猶有五起焉。」</td>
+  </tr>
+  <tr>
+    <td>「無聲之樂，氣志不違；[無]體之禮，威儀遲遲；無服之喪，内恕（？）洵（？）悲。」</td>
+    <td>「無聲之樂，氣志不違；無體之禮，威儀遲遲；無服之喪，內恕孔悲。」</td>
+    <td>「無聲之樂，氣至不違；無體之禮，威儀遲遲；無服之喪，內恕孔哀。」</td>
+  </tr>
+  <tr>
+    <td>「無聲之樂，塞於四方；無體之禮，日就月將；無服之[喪]，純德孔（？）明。」</td>
+    <td>「無聲之樂，日聞四方；無體之禮，日就月將；無服之喪，純德孔明。」</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>「無聲之樂，施及孫子；無體之禮，塞於四海；無服之喪，為民父母。」</td>
+    <td>n/a</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>「無聲之樂，氣[志]既得；無體之禮，威儀翼翼；無服[之]喪，施及四國。」</td>
+    <td>「無聲之樂，氣志既得；無體之禮，威儀翼翼；無服之喪，施及四國。」</td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>「無聲之樂，氣志既從；無體之禮，上下和同；無服[之]喪，以畜萬邦。」</td>
+    <td>「無聲之樂，氣志既從；無體之禮，上下和同；無服之喪，以畜萬邦。」</td>
+    <td>「無聲之樂，所願必從；無體之禮，上下和同；無服之喪，施及萬邦。」</td>
+  </tr>
+</table></div>
+    <h4 class="hb-subhead">-「五起」的概念對應</h4>
+    <p class="hb-text">《民之父母》</p>
+    <p class="hb-text">無聲之樂：氣志不違、塞於四方、施及孫子、氣志既得、氣志既從</p>
+    <p class="hb-text">無體之禮：威儀遲遲、日就月將、塞於四海、威儀翼、上下和同</p>
+    <p class="hb-text">無服之喪：內恕洵悲、純德孔明、為民父母、施及四國、施於孫子、以畜萬邦</p>
+    <p class="hb-text">《孔子閒居》</p>
+    <p class="hb-text">無聲之樂：氣志不違、氣志既得、氣志既從、日聞四方、氣志既起</p>
+    <p class="hb-text">無體之禮：威儀遲遲、威儀翼翼、上下和同、日就月將、施及四海</p>
+    <p class="hb-text">無服之喪：內恕孔悲、施及四國、以酬萬邦、純德孔明、施於孫子</p>
+    <p class="hb-text">《論禮》</p>
+    <p class="hb-text">未詳細記載完整的「五起」，僅提及部分內容。</p>
+    <h4 class="hb-subhead">-內容異同</h4>
+    <p class="hb-text">同：三部文獻中均提及「五起」與「三無」的關係，說明「五起」是對「三無」特徵的實現和擴展。「無聲之樂」、「無體之禮」和「無服之喪」在《民之父母》和《孔子閒居》中對應的具體行為或特徵基本一致，顯示了儒家文獻在傳達禮樂教化功能上的一致性。</p>
+    <p class="hb-text">異：《民之父母》和《孔子閒居》在「五起」的具體表述和排序上有所不同，這可能反映了不同文獻的編撰背景或著重點的差異。《論禮》對「五起」的記載不全，可能由於文獻傳承過程中的缺失或損毀，使得其在「五起」的完整記載上不如其他兩部文獻詳細。</p>
+    <h4 class="hb-subhead">-文化和哲學意義</h4>
+    <p class="hb-text">「五起」在儒家文化中是理解禮樂教化和社會調和功能的重要概念，它強調通過內在的修養（氣志）和外在的行為（威儀、恕悲）來達到社會和諧與個人修養的統一。孔子在《論語》中提到的「起予者商也」反映了他對主動學習和引發變革的重視，這與「五起」中提倡的主動實踐和社會影響是一致的。</p>
+  </main>
+  <footer>
+    <p>本頁內容整理自《民之父母》相關文獻彙編</p>
+  </footer>
+</body>
+</html>

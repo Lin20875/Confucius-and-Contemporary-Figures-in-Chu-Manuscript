@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>季庚子問於孔子 — 相關文獻彙編</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --fg: #1a1a1a;
+      --accent: #2e6b4f;
+      --accent2: #8c6d1f;
+      --muted: #666;
+      --border: #d5cdb8;
+      --section-bg: #f0ece0;
+      --bamboo-bg: #e8f0e8;
+      --table-header-bg: #e8e2d0;
+      --table-stripe: #f5f2ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Noto Serif CJK TC","PingFang TC","Microsoft JhengHei",serif;
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header, main, footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(1.2rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(46,107,79,.08), transparent);
+    }
+    header h1 {
+      font-size: clamp(1.6rem,3vw,2.4rem);
+      margin: 0 0 .3em;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    header .subtitle {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    /* ── 大段标题：带背景条 ── */
+    .hb-section {
+      font-size: clamp(1.25rem,2.2vw,1.7rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding: .4em .7em;
+      background: var(--section-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 .5rem .5rem 0;
+    }
+
+    /* ── 中级标题：无背景 ── */
+    .hb-topic {
+      font-size: clamp(1.1rem,1.8vw,1.35rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 2rem 0 .6rem;
+      padding: .2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    /* ── 篇名引导 ── */
+    .hb-intro {
+      font-size: clamp(1.05rem,1.6vw,1.2rem);
+      font-weight: bold;
+      color: var(--accent);
+      margin: 1.8rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 小标题 / 来源标题 ── */
+    .hb-source {
+      font-size: clamp(1rem,1.5vw,1.1rem);
+      font-weight: bold;
+      color: #444;
+      margin: 1.5rem 0 .4rem;
+      padding-left: .5em;
+      border-left: 3px solid var(--accent2);
+    }
+    .hb-subsource {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      margin: 1.2rem 0 .3rem;
+      padding-left: 1em;
+    }
+    .hb-subhead {
+      font-size: clamp(1.02rem,1.5vw,1.12rem);
+      font-weight: bold;
+      color: var(--accent2);
+      margin: 1.5rem 0 .5rem;
+      padding: 0;
+    }
+
+    /* ── 正文段落：无背景框 ── */
+    .hb-text {
+      margin: .6em 0;
+      font-size: .95rem;
+      text-indent: 2em;
+    }
+
+    /* ── 带编号前缀的段落 ── */
+    .hb-listed {
+      text-indent: 0;
+      padding-left: 2.8em;
+      position: relative;
+    }
+    .num-pfx {
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      min-width: 2.5em;
+      text-align: right;
+      padding-right: .3em;
+      color: var(--accent2);
+      font-weight: bold;
+    }
+    h2 .num-pfx, h3 .num-pfx, h4 .num-pfx {
+      position: static;
+      min-width: auto;
+      text-align: left;
+      padding-right: .2em;
+    }
+
+    /* ── 简文区块：保留背景框 ── */
+    .hb-bamboo {
+      margin: 1em 0;
+      padding: .8em 1.2em;
+      background: var(--bamboo-bg);
+      border: 1px solid #b5cfb5;
+      border-radius: .5rem;
+      font-size: .95rem;
+      line-height: 1.9;
+    }
+    .hb-bamboo p { margin: 0; }
+
+    /* ── 真实表格 ── */
+    .hb-table-wrap {
+      margin: 1.2em 0;
+      overflow-x: auto;
+    }
+    .hb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .hb-table th,
+    .hb-table td {
+      border: 1px solid var(--border);
+      padding: .5em .7em;
+      vertical-align: top;
+      text-align: left;
+    }
+    .hb-table th {
+      background: var(--table-header-bg);
+      font-weight: bold;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hb-table tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      padding-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    footer p { margin: .3em 0; }
+
+    @media(max-width:768px) {
+      .hb-section { font-size: 1.15rem; }
+      header, main, footer {
+        padding: clamp(1rem,5vw,1.5rem) clamp(.8rem,4vw,1.2rem);
+      }
+      .hb-table { font-size: .82rem; }
+      .hb-table th, .hb-table td { padding: .35em .5em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>季庚子問於孔子 — 相關文獻彙編</h1>
+    <p class="subtitle">與讀本對照之相關傳世文獻及學者研究匯集</p>
+  </header>
+  <main>
+    <h2 class="hb-section">一、「任之以德」章</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈季庚子問於孔子〉相應内容：</h3>
+      <p class="hb-text">季康子問於孔子曰：「肥<a href="#jgz-1">①</a>從有司之後<a href="#jgz-2">②</a>，一不知民務之焉在<a href="#jgz-3">③</a>，唯子之貽羞/謨<a href="#jgz-4">④</a>。請問：君子之從事者，於民之【1】[上，君子之大務何？」孔子曰：「仁之以] …德，此君子之大務也。」康子曰：「請問何謂仁/任之以德<a href="#jgz-5">⑤</a>？」孔子曰：「君子在民【2】之上，執民之中<a href="#jgz-6">⑥</a>，施教於百姓<a href="#jgz-7">⑦</a>，而民不服焉，是君子之恥也。是故君子玉其言而展其行<a href="#jgz-8">⑧</a>，敬成其【3】德以臨民<a href="#jgz-9">⑨</a>，民望其道而服焉，此之謂仁/任之以德<a href="#jgz-10">⑩</a>。 且管仲有言曰：『君子恭遂，驕則繆/侮<a href="#jgz-11">⑪</a>，備言多難<a href="#jgz-12">⑫</a>。』【4】 </p>
+    </div>
+    <h3 class="hb-topic" id="jgz-1">①季康子……肥</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《左傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公三年〉：秋，季孫有疾，命正常曰：「無死。南孺子之子男也，則以告而立之。女也，則肥也可。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公二十三年〉：季康子使冉有弔，且送葬，曰：「敝邑有社稷之事，使肥與有職競焉。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>杜注：肥，康子名。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：季康子名「肥」，即季桓子的兒子，公元前492年繼其父而成爲秉持魯國政權的上卿。季康子「以幣迎孔子歸魯」事在魯哀公十一年（前484年），當時孔子已六十八歲左右，而魯國正處於軍事頻繁之際，據《史記》《孔子家語》的有關歷史記載，孔子與季康子亦正因此而曾在收軍賦多寡的問題上有較大的分歧。季康子死於前477年，届時孔子已過世兩年，因而本篇所記該視作前484年與479年之間的對話。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第二十章：季康子問：「使民敬、忠以勸，如之何？」子曰：「臨之以莊則敬，孝慈則忠，舉善而教不能，則勸。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈雍也〉第八章：季康子問：「仲由可使從政也與？」子曰：「由也果，於從政乎何有？」曰：「賜也，可使從政也與？」曰：「賜也達，於從政乎何有？」曰：「求也，可使從政也與？」曰：「求也藝，於從政乎何有？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈先進〉第七章：季康子問：「弟子孰為好學？」孔子對曰：「有顏回者好學，不幸短命死矣！今也則亡。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏淵〉第十七章：季康子問政於孔子。孔子對曰：「政者，正也。子帥以正，孰敢不正？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏淵〉第十九章：季康子問政於孔子曰：「如殺無道，以就有道，何如？」孔子對曰：「子為政，焉用殺？子欲善，而民善矣。君子之德風，小人之德草。草上之風，必偃。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《說苑》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈政理〉：孔子見季康子，康子未說，孔子又見之，宰予曰：「吾聞之夫子曰：『王公不聘不動。』今吾子之見司寇也少數矣。」孔子曰：「魯國以眾相陵，以兵相暴之日久矣，而有司不治，聘我者孰大乎？」於是魯人聞之曰：「聖人將治，何以不先自為刑罰乎？」自是之後，國無爭者。孔子謂弟子曰：「違山十里，蟪蛄之聲猶尚存耳，政事無如膺之矣。」古之魯俗，塗里之間，羅門之羅，收門之魚，獨得於禮，是以孔子善之夫塗里之間，富家為貧者出；羅門之羅，有親者取多，無親者取少；收門之漁，有親者取巨，無親者取小。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《孔子家語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈辯物〉：季康子問於孔子曰：「今周十二月，夏之十月，而猶有螽，何也？」孔子對曰：「丘聞之，火伏而後蟄者畢，今火猶西流，司歷過也。」季康子曰：「所失者幾月也？」孔子曰：「於夏十月，火既沒矣，今火見，再失閏也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈子路初見〉：孔子為魯司寇，見季康子，康子不悅，孔子又見之。宰予進曰：「昔予也常聞諸夫子曰：『王公不我聘，則弗動。』今夫子之於司寇也，日少而屈節數矣。不可以已乎？」孔子曰：「然。魯國以眾相陵，以兵相㬥之日久矣。而有司不治，則將亂也。其聘我者，孰大於是哉！」魯人聞之，曰：「聖人將治，何不先自遠刑罰。」自此之後，國無爭者。孔子謂宰予曰：「違山十里，蟪蛄之聲，猶在於耳，故政事莫如應之。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈五帝〉：季康子問於孔子曰：「舊聞五帝之名，而不知其實，請問何謂五帝？」孔子曰：「昔丘也聞諸老聃曰：『天有五行，木、火、金、水、土，分時化育，以成萬物，其神謂之五帝。』古之王者，易代而改號，取法五行，五行更王，終始相生，亦象其義。故其為明王者，而死配五行。是以太皞配木，炎帝配火，黃帝配土，少皞配金，顓頊配水。」康子曰：「太皞氏其始之木何如？」孔子曰：「五行用事，先起於木。木、東方。萬物之初皆出焉。是故王者則之，而首以木德王天下。其次則以所生之行、轉相承也。」康子曰：「吾聞勾芒為木正，祝融為火正，蓐收為金正，玄冥為水正，后土為土正。此則五行之主而不亂。稱曰帝者何也？」夫子曰：「凡五正者，五行之官名。五行佐成上帝，而稱五帝，太皞之屬配焉。亦云帝，從其號。昔少皞氏之子有四叔，曰重，曰該，曰修，曰熙。實能金木及水，使重為勾芒，該為蓐收，修及熙為玄冥。顓頊氏之子曰黎，為祝融。龔工氏之子曰勾龍，為后土。此五者各以其所能業為官職，生為上公，死為貴神，別稱五祀，不得同帝。」康子曰：「如此之言，帝王改號，於五行之德，各所統。則其所以相變者，皆主何事？」孔子曰：「所尚則各從其所王之德次焉。夏后氏以金德王而尚黑，大事斂用昏，戎事乘驪，牲用玄。殷人以水德，尚白，大事斂用日中，戎事乘翰，牲用白。周人以木德王，尚赤，大事斂用日出，戎事乘騵，牲用騂。此三代之所以不同。」康子曰：「唐、虞二帝，其所尚者何色？」孔子曰：「堯以火德王，色尚黃。舜以土德王，色尚青。」康子曰：「陶唐、有虞、夏后、殷、周獨不得配五帝，意者德不及上古耶？將有限乎？」孔子曰：「古之平治水土及播殖百穀者眾矣，唯勾龍兼食於社，而棄為稷神，易代奉之，無敢益者，明不可與等。故自太皞以降，逮于顓頊，其應五行而王，數非徒五，而配五帝，是其德不可以多也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈正論解〉：季康子欲以一井田出法賦焉，使訪孔子。子曰：「丘弗識也。」冉有三發，卒曰：「子為國老，待子而行，若之何子之不言？」孔子不對，而私於冉有曰：「求！汝來，汝弗聞乎？先王制土，籍田以力，而底其遠近；賦里以入，而量其有無；任力以夫，而議其老幼。於是鰥、寡、孤、疾、老者，有軍旅之出則徵之，無則已。其歲，收田一井，出獲秉缶米芻槀，不是過，先王以為之足，君子之行，必度於禮。施取其厚，事舉其中，歛從其薄。若是其已丘亦足矣。不度於禮，而貪冒無厭，則雖賦田，將有不足。且子孫若以行之而取法，則有周公之典在；若欲犯法，則苟行之，又何訪焉？」</p>
+    <h4 class="hb-source">5. 《史記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈孔子世家〉：其明年，冉有為季氏將師，與齊戰於郎，克之。季康子曰：「子之於軍旅，學之乎？性之乎？」冉有曰：「學之於孔子。」季康子曰：「孔子何如人哉？」對曰：「用之有名；播之百姓，質諸鬼神而無憾。求之至於此道，雖累千社，夫子不利也。」康子曰：「我欲召之，可乎？」對曰：「欲召之，則毋以小人固之，則可矣。」而衛孔文子將攻太叔，問策於仲尼。仲尼辭不知，退而命載而行，曰：「鳥能擇木，木豈能擇鳥乎！」文子固止。會季康子逐公華、公賓、公林，以幣迎孔子，孔子歸魯。孔子之去魯凡十四歲而反乎魯。魯哀公問政，對曰：「政在選臣。」季康子問政，曰：「舉直錯諸枉，則枉者直。」康子患盜，孔子曰：「苟子之不欲，雖賞之不竊。」然魯終不能用孔子，孔子亦不求仕。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈仲尼弟子列傳〉：季康子問孔子曰：「冉求仁乎？」曰：「千室之邑，百乘之家，求也可使治其賦。仁則吾不知也。」復問：「子路仁乎？」孔子對曰：「如求。」……季康子問：「仲由仁乎？」孔子曰：「千乘之國可使治其賦，不知其仁。」</p>
+    <h3 class="hb-topic" id="jgz-2">②從有司之後</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈仲弓〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡4、26：使雍也從宰夫之後，雍也憃愚，恐貽吾子羞，願因吾子而治/辭。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>季旭昇：有司，原考釋指出即官吏，可從。這是季康子的謙虛用語，「從於有司之後」與上博三〈仲弓〉「從於宰夫之後（任職宰夫）」同例，就是指西元前四九二年繼季桓子職位的意思。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈先進〉第七章：顏淵死，顏路請子之車以爲之槨。子曰：「才不才，亦各言其子也。鯉也死，有棺而無槨。吾不徒行以爲之槨，以吾從大夫之後，不可徒行也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈憲問〉第二十一章：陳成子弒簡公，孔子沐浴而朝告魯哀公曰：「陳桓弒其君，請討之！」公曰：「告夫三子！」孔子曰：「以吾從大夫之後，不敢不告也」。君曰：「告夫三子者！」之三子告；不可。孔子曰：「以吾從大夫之後，不敢不告也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>林素清：「從於某某之後」當為一種表明自己身份、官職稱呼的含蓄用法，為當時有身份者常用，或屬於文雅語言，常見於正式場合。例如：《論語．先進》篇記載顏淵死，顏路請以孔子車爲槨，為孔子所拒的一段對話，孔子拒絕的理由是：「以吾從大夫之後，不可徒行也」。又如，《論語．憲問》孔子曰：「以吾從大夫之後，不敢不告也。」「以吾從大夫之後」就是「我忝爲大夫」的意思，是自謙詞。本簡季康子一見到孔子，在問題尚未提出前，也照例須先客氣表明自己僅是「從有司之後」，說自己「忝為有司之職」，也應是謙虛用詞。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《左傳．哀公十四年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孔子辭，退而告人曰：「吾以從大夫之後也，故不敢不言。」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《漢書．蓋諸葛劉鄭孫毌將何傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>上書陳國事，有司劾以大辟，臣幸得從大夫之後，官以諫為名，不敢不言。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《周禮》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈天官．宰夫〉：與職喪帥官有司而治之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孫詒讓（引胡匡衷）：司，主也。凡事有專主者謂之有司。有司有二義：一是有常職者謂之有司；一是事本無常職者，行禮時特使人主其事者，亦目為有司也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈夏官．諸子〉：若有甲兵之事，則授之以車甲，合其卒伍，置其有司，以軍法治之，司馬弗正。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孫詒讓：凡事有專職者謂之有司。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《儀禮．少牢饋食禮》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>有司贊者取爵于篚以升。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>胡培翬正義引《儀禮》釋官云：凡事有專主者，謂之有司。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：季康子的當時地位為執政大夫，「有司」是有專職的官吏，如劉樂賢治說「有司」為專職的官吏的泛稱。「從有司之後」即「受命為有司」，是季康子的謙詞。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳偉：「有司」習見於傳世古書和竹書，季康子地位高於有司，「從有司之後」及上博三〈仲弓〉簡4「使雍也從於宰夫之後」不好理解。這種表述的確切解釋尚待探討。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>白海燕：「肥從有司之後」意為「在有司行列之後隨行的意思」，是季康子謙虛的說法。古代表居官的其他謙辭，有如「備位」「備具」「備數」「忝列」「補……之數」等。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：謙語說或可備一說。林素清「從於某某之後」事例分別來源於《論語．先進》與《論語．憲問》，事發時間一為顏淵死後，一為陳成子弒簡公之後，這兩件事情均發生於公元前481年，兩處文例均為「以吾從大夫之後」。孔子在魯定公十年（前500年）被任命為大司寇，到了十四年（前496年）「由大司寇行攝相事」，其地位高於一般的大夫，因此「從大夫之後」地位應當是高於一般的大夫。因此「從於有司之後」陳偉說也有可能是正確的，言下之意即各有司在前面處理各自所管轄事項，自己在後面負總責。季庚子掌秉魯國國政，成為朝廷眾有司事實上的總負責人，故有此言。</p>
+    <h3 class="hb-topic" id="jgz-3">③一不知民務之焉在</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記．檀弓下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>有子與子游立，見孺子慕者，有子謂子游曰：「予壹不知夫喪之踊也，予欲去之久矣。情在於斯，其是也夫﹖」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔穎達疏：有子謂子游曰：「予壹不知夫喪之踊也。」言我專壹不知夫喪之踊也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>王引之《經傳釋詞》曰：一、語助也。⋯⋯字或作壹，《禮記．檀弓》曰：「予壹不知夫喪之踊也」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「予壹不知夫喪之踊也」和「一不知民務之焉在」的句型相同，但將「一」解釋作「專一」或語助詞，文意上似乎不合適。本簡的「從有司之後」和「唯子之貽羞」皆是謙詞，將「一」訓為「全」更為合適。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《晏子春秋．內篇．景公愛嬖妾隨其所欲晏子諫》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>淫於耳目，不當民務，此聖玉之所禁也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：民務本從農，務農重穀；在此作引申，泛指民事。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>上博簡〈仲弓〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡27、15、20下、6、23下、23上、24：仲弓曰：「敢問民務。」孔子曰：「善哉問乎！足以教矣。君子所竭其情、盡其質/慎者三，害/蓋近務矣。……雍，汝知者諸？」仲弓答曰：「雍也弗聞也。」孔子曰：「夫祭，致敬之本也，所以立生也，不可不慎也。夫喪，至愛之卒也，所以成死也，不可不慎也。夫行，旬年學之，一日以善立，所學皆終；一日以不善立，所學皆崩，可不慎乎？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>王化平：所謂「民務」即四民之務。在上博三〈仲弓〉中，仲弓向孔子請教了民務，從綴連後的情況看，孔子從喪、祭、行三個方面閘述了這個問題。喪、祭都與禮相關。</p>
+    <h3 class="hb-topic" id="jgz-4">④唯子之貽羞/謨</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈仲弓〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡4、26：使雍也從宰夫之後，雍也憃愚，恐貽吾子羞，願因吾子而治/辭。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳偉：〈仲弓〉26 號簡有「恐貽吾子羞」，有所不同的是，本句使用「之」字將賓語前置，而〈仲弓〉屬於正常句式。楊澤生讀為「治優」猶如政優、仕優。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>林素清：從陳偉之說，而以為「唯子之貽羞」與「恐貽吾子羞」語意相同，是極客氣的請教語，這也是當時士大夫間常用文雅詞語。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>高榮鴻：「司擾」、「治擾」、「治優」皆可讀通簡文，但比較傾向前二說，原因在於孔子終身關注教育問題，對於民務非常熟稔，所以季康子才向孔子請教。又質疑「貽羞」之說，因〈仲弓〉簡文所述情境與本簡不同，仲弓為孔門弟子，若無法勝任工作，就會打壞孔子聲名，而季康子並非孔門弟子，不存在讓孔子蒙羞的問題，二者難以互為佐證。</p>
+    <h3 class="hb-topic" id="jgz-5">⑤仁/任之以德</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《六韜．文韜．守土》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>文王曰：「何謂仁義？」太公曰：「敬其眾，合其親。敬其眾則和，合其親則喜，是謂仁義之紀。無使人奪汝威。因其明，順其常。順者任之以德，逆者絕之以力。敬之勿疑，天下和服。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《晏子春秋．內篇諫上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>足走千里，手裂兕虎，任之以力，凌轢天下，威戮無罪。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《春秋繁露．竹林》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>考意而觀指，則春秋之所惡者，不任德而任力，驅民而殘賊之；其所好者，設而勿用，仁義以服之也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《鹽鐵論．世務》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>故任德，則強楚告服，遠國不召則強楚告服，遠國不而至；任力，則近者不親，小國不附。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《論衡．非韓》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>治國猶治身也。治一身，省恩德之行，多傷害之操，則交党疏絕，恥辱至身。推治身以況治國，治國之道當任德也。韓子任刑獨以治世，是則治身之人任傷害也。韓子豈不知任德之為善哉？以為世衰事變，民心靡薄，故作法術，專意於刑也。夫世不乏於德，猶歲不絕於春也。謂世衰難以德治，可謂歲亂不可以春生乎？人君治一國，猶天地生萬物。天地不為亂歲去春，人君不以衰世屏德。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：「仁之以德」即「以德仁之」，在文意上是說不通的，所以儘管整理者濮茅左用了很大的篇幅進行解釋發揮，始終也沒有說清楚。文獻中沒有「仁之以德」說，卻有「任之以德」、「任之以力」、「任德」、「任力」說。無論從字形，還是從文義，還是從文獻看，所謂「仁之以德」都當作「任之以德」。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第一章：為政以德，譬如北辰居其所而眾星共之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第三章：道之以政，齊之以刑，民免而無恥；道之以德，齊之以禮，有恥且格。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏淵〉第十九章：君子之德，風，小人之德，草；草上之風，必偃。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《孟子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈離婁〉：為政不難，不得罪於巨室。巨室之所慕，一國慕之；一國之所慕，天下慕之。故沛然德教，溢乎四海。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：在傳世文獻中，「以德教化人民」的例子亦所在多有，如《論語．為政》《孟子．離婁》皆是強調為政者須提升本身修為，方能達到風行草偃之效。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈公孫丑上〉：以力假仁者霸，霸必有大國，以德行仁者王，王不待大。湯以七十里，文王以百里。以力服人者，非心服也，力不贍也；以德服人者，中心悅而誠服也，如七十子之服孔子也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>白海燕：《孟子．公孫丑上》「以德行仁者王」，「以德行仁」同「仁之以德」，「仁」為動詞，「之」指代民。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈盡心上〉：君子之於物也，愛之而弗仁；於民也，仁之而弗親。親親而仁民，仁民而愛物。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：本篇首段敘述季康子以較爲謙虚的方式問孔子有關君子對於人民之大務安在，何以才能達到民順而國平的理想。孔子乃以「仁之以德」的概念回答，亦即《論語》所言「君子之德風，小人之德草，草上之風，必偃」的身教理論（因此「仁之以德」其實也可以考慮讀爲「身之以德」）。「仁之以德」儘管稍嫌不詞，然而《孟子．盡心上》載孟子之語曰：「君子之於物也，愛之而弗仁；於民也，仁之而弗親。親親而仁民，仁民而愛物」，雖與本文似無關聯，然至少可以證明「仁民」及其指代詞「仁之」確爲當時所用的動賓結構。</p>
+    <h3 class="hb-topic" id="jgz-6">⑥君子在民之上，執民之中</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．堯曰》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第一章：堯曰：「咨！爾舜！天之曆數在爾躬。允執其中。四海困窮，天祿永終。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉寶楠正義：執中者，謂執中道用之。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>（舜）隱惡而揚善，執其兩端，用其中於民。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄注：兩端，過與不及也。用其中於民，賢與不肖皆能行之也。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《大戴禮記．千乘》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>司寇司秋，以聽獄訟，治民之煩亂，執權變民中。凡民之不刑，崩本以要間，作起不敬以欺惑憧愚。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：「執」，執持、掌握。「中」，這裏可指正確的標準。《大戴禮記．千乘》「執權變民中」之「民中」與「執民之中」之「民之中」同，為民之行事、處世準則。簡文意或為，君子執持着民眾正確的行事標準，也即中正之道。意思是說君子為民之表率，對民眾施教而民眾不服，這是君子之恥辱。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>郭店楚簡〈緇衣〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡16、17：子曰：「君子道人以言，而極以行。故言則應其所終，行則稽其所敝，則民慎於言而謹於行。」《詩》：「穆穆文王，於緝熙敬止。」。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>上博簡〈顏淵問於孔子〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡5-7、9：顔淵曰：「君子之教也有道乎？」孔子日：「有。」顏淵：「敢問何如？」孔子日：「修身以先，則莫不從矣；前以博愛，則民莫遺親矣；導之以儉，則民知足矣；前之以讓，則民不爭矣。或迪而教以能，能賤不肖而遠之，則民知禁矣。如進者勸行，退者知禁，則其於教也不遠矣。</p>
+    <h3 class="hb-topic" id="jgz-7">⑦施教於百姓</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《史記．循吏列傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>三月為楚相，施教導民，上下和合，世俗盛美，政緩禁止，吏無姦邪，盜賊不起。</p>
+    <h3 class="hb-topic" id="jgz-8">⑧君子玉其言而展其行</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈憲問〉第二十七章：子曰：「君子恥其言而過其行。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈里仁〉第二十四章：子曰：「君子欲訥於言，而敏於行。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉國勝：「展其行」是申信於行的意思。簡文「君子玉其言而展其行」是記孔子的講話，其與《論語．憲問》「君子恥其言而過其行」及《論語．里仁》「君子欲訥於言而敏於行」的語意相當，是表達君子的慎言貴行，言行相副。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈衛靈公〉第六章：言忠信，行篤敬，雖蠻貊之邦行矣；言不忠信，行不篤敬，雖州里行乎哉﹖立，則見其參於前也；在輿，則見其倚於衡也。夫然後行！</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《周易．繫辭上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>君子居其室，出其言善，則千里之外應之，況其邇者乎﹖居其室，出其言不善則千里之外違之，況其邇者乎﹖言出乎身，加乎民；行發乎邇，見乎遠。言行，君子之樞機，樞機之發，榮辱之主也。言行，君子之所以動天地也，可不慎乎﹖</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：孔子有強調言行的修養，見《周易．繫辭上》《論語．衛靈公》。從孔子對言行修養的看法來看，「展」解釋作「省視、省察」較恰當。「玉其言而展其行」，即不輕言而省察其行。</p>
+    <h3 class="hb-topic" id="jgz-9">⑨敬成其德以臨民</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《文選．補亡詩六首．白華》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>竭誠盡敬，亹亹忘劬。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《子夏易傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《周易．大過》卦：君子之於大過也，必本於誠敬，然後濟之也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：「成」當讀為「誠」。「敬誠」複辭同義，也可作「誠敬」。「敬誠其德」即敬重其德，崇信其德。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孟子．盡心上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>君子之所以教者五：有如時雨化之者，有成德者，有達財者，有答問者，有私淑艾者。此五者，君子之所以教也。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《荀子．勸學》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>積土成山，風雨興焉；積水成淵，蛟龍生焉；積善成德，而神明自得，聖心備焉。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《論衡．量知》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>故夫學者所以反情治性，盡材成德也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「城」，讀為「成」，「成德」，即成就品德。「任之以德」有三步驟，「玉其言而展其行」、「敬成其德以臨民」、「民望其道而服焉」，又以「敬成其德以臨民」為施政關鍵。此句提醒為政者須以端肅之態度要求自己「成德」方能影響百姓。「成德」即是成就品德之義，在傳世文獻中，如《孟子．盡心上》《荀子．勸學》《論衡．量知》等等，皆是肯定德性可以成就之義。而在〈季庚子問於孔子〉中，在肯定此義的前提下，又強調必須以「敬」的態度實行之，才得將此德澤施加於民。</p>
+    <h3 class="hb-topic" id="jgz-10">⑩是故君子玉其言而展其行，敬成其德以臨民，民望其道而服焉，此之謂仁/任之以德。</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記．大學》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>物格而后知至，知至而后意誠，意誠而后心正，心正而后身修，身修而后家齊，家齊而后國治，國治而后天下平。自天子以至於庶人，壹是皆以修身為本。其本亂而末治者否矣，其所厚者薄，而其所薄者厚，未之有也！此謂知本，此謂知之至也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：孔子以「任之以徳」為君子之大務，指示君子應先從自身做起，再以經過滌煉後的德行與民互動，給予人民在處事上的方針與原則，最末則可達到民順之。其義正與《禮記．大學》相合。</p>
+    <h3 class="hb-topic" id="jgz-11">⑪驕則繆/侮</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《管子．重令》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>天道之數，至則反，盛則衰。人心之變，有餘則驕。驕則緩怠。夫驕者驕諸侯，驕諸侯者，諸侯失於外。緩怠者，民亂於內。諸侯失於外，民亂於內，天道也，此危亡之時也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《左傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈襄公二十七年〉：無威則驕，驕則亂生，亂生必滅，所以亡也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>楊澤生：「驕」意為驕傲、驕縱，也可以當怠慢、輕視講。因此「驕」和「侮」的意思相差不大。上文說「恭」導致的結果是諸事順遂，而本句「驕」導致的後果呢？我們將它讀作「穆」或「繆」，似乎也很合適，「繆」有亂的意思。《管子．重令》《左傳．襄公二十七年》都是說「驕」和「亂」的關係。而簡文「驕」導致繆亂的後果和上文說「恭則遂」正好是相應的。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈定公十五年〉：以禮觀之，二君者，皆有死亡焉。夫禮，死生存亡之體也，將左右、周旋，進退、俯仰，於是乎取之；朝、祀、喪、戎，於是乎觀之。今正月相朝，而皆不度，心已亡矣。嘉事不體，何以能久﹖高、仰，驕也；卑、俯，替也。驕近亂，替近疾，君為主，其先亡乎！</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>是故居上不驕，為下不倍；國有道，其言足以興，國無道，其默足以容。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《史記．齊太公世家》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>懿公之立，驕，民不附。齊人廢其子而迎公子元於衛，立之，是為惠公。惠公，桓公子也。其母衛女，曰少衛姬，避齊亂，故在衛。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「繆」，訓為「亂」。傳世文獻中有「驕則亂」的記載，如《禮記．中庸》《左傳．定公十五年》《史記．齊太公世家》。</p>
+    <h3 class="hb-topic" id="jgz-12">⑫備言多難</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《漢書》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈五行志〉：立于淫亂之國，而好盡言以招人過，怨之本也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈杜欽傳〉：「此則衆庶咸説，繼嗣日廣，而海內長安。萬事之是非，何足備言。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李天虹：「備言」猶古籍中的「盡言」。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>庸德之行，庸言之謹，有所不足，不敢不勉，有餘不敢盡；言顧行，行顧言，君子胡不慥慥爾！</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《論語．憲問》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第二十七章：子曰：「君子恥其言而過其行。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：傳世文獻中有言行的相關關係的記載，如《禮記．中庸》《論語．憲問》。「備言」，即竭盡其言。「備言多難」，是說得太滿，很難做到。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《管子．宙合》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>「怨而無言」，言不可不慎也；言不周密，反傷其身。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>林清源：語出孔子引用管仲之言，其中「備言多難」一句，意謂「多言招禍」。高榮鴻《疏證》已指出，簡4 所引管仲「備言多難」句，可與《管子》「『怨而無言』，言不可不慎也；言不周密，反傷其身。」之思想相互呼應。</p>
+    <h2 class="hb-section"><span class="num-pfx">一、</span>「修養德性」章</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈季庚子問於孔子〉相應内容：</h3>
+      <p class="hb-text">……寧𥞒肥也。」孔子曰：「丘聞之孟之/者側<a href="#jgz2-1">①</a>曰：『夫書者，以書君子之德也；【6】夫詩也者，以誌君子之志[也]；夫儀者，以謹/言君子之行也<a href="#jgz2-2">②</a>。（』）君子涉 之，小人觀/勸之<a href="#jgz2-3">③</a>；君子敬成其德，小人晦昧<a href="#jgz2-4">④</a>【7】……。」</p>
+    </div>
+    <h3 class="hb-topic" id="jgz2-1">①孟之/者側</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．雍也》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第十五章：子曰：「孟之反不伐，奔而殿。將入門，策其馬，曰：『非敢後也，馬不進也。』」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李銳：「孟子側」，即孟子反，為孔子所敬者。簡文「丘聞之，孟子側曰」與「丘聞之，臧文仲有言曰」，或有聼聞與傳聞之別。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《左傳．哀公十一年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>十一年，春，齊為鄎故，國書、高無丕帥師伐我，及清。⋯⋯孟孺子洩帥右師，顏羽御，邴洩為右。冉求帥左師，管周父御，樊遲為右。季孫曰：「須也弱。」有子曰：「就用命焉。」季氏之甲七千，冉有以武城人三百為己徒卒，老幼守宮，次于雩門之外。五日，右師從之。公叔務人見保者而泣，曰：「事充，政重，上不能謀，士不能死，何以治民﹖吾既言之矣，敢不勉乎！」師及齊師戰于郊。齊師自稷曲，師不踰溝。樊遲曰：「非不能也，不信子也，請三刻而踰之。」如之，眾從之。師入齊軍。右師奔，齊人從之。陳瓘、陳莊涉泗。孟之側後入以為殿，抽矢策其馬，曰：「馬不進也。」林不狃之伍曰：「走乎﹖」不狃曰：「誰不如﹖」曰：「然則止乎﹖」不狃曰：「惡賢﹖」徐步而死。師獲甲首八十，齊人不能師。宵諜曰：「齊人遁。」冉有請從之三，季孫弗許。孟孺子語人曰：「我不如顏羽，而賢於邴洩。子羽銳敏，我不欲戰而能默，洩曰：『驅之』。」公為與其嬖僮汪錡乘，皆死，皆殯。孔子曰：「能執干戈以衛社稷，可無殤也。」冉有用矛於齊師，故能入其軍。孔子曰：「義也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>杜注：之側，孟氏族也，字反。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《冊府元龜．將帥部．不伐》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孟子側，字反，魯孟氏族也。齊伐魯，孟孺子洩帥右師，冉求帥左，師及戰齊師于郊。齊師自稷曲，師不踰溝。樊遲曰：「非不能也，不信子也，請三刻而踰之。」如之，眾從之。師入齊師。右師奔，齊人從之。陳瓘、陳莊涉泗。之側後入以為殿，抽矢策其馬，曰：「馬不進也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：《論語》《左傳》《冊府元龜》三篇敘述同一件事。「孟之側」、「孟之反」、「孟子側」皆同一人，而「孟之側」與孔子是同時代的人。「丘聞之孟者昃」中的「孟者昃」可能是以上三篇中的「孟之側」。</p>
+    <h3 class="hb-topic" id="jgz2-2">②夫書者，以書君子之德也；夫詩也者，以誌君子之志也；夫儀者，以謹/言君子之行也</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>禮儀三百，威儀三千。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔穎達疏：其道「禮儀三百」，《周禮》有三百六十官，言「三百」者，舉其成數耳。「威儀三千」者，行事之威儀，《儀禮》雖十七篇，其中事有三千。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>朱熹章句：禮儀，經禮也。威儀，曲禮也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>廖名春：〈季庚子問於孔子〉讀「儀」，指《儀禮》。《儀禮》為士禮，其「容禮」部分，《論語．鄉黨》篇多載。依孔穎達疏，「威儀」即《儀禮》。依朱熹章句，則「禮儀」、「威儀」皆指《儀禮》，只不過一是「經禮」，一是「曲禮」而已。「儀」義為禮，為表。王引之《經義述聞．左傳上．表儀》：「立木以示人謂之表，又謂之儀。」所以，《儀》當是《儀禮》的別稱。《史記．儒林列傳》稱孔子「論次詩書，修起禮樂。」簡文孔子稱引趙衰說《書》、《詩》、《儀禮》之語，完全有可能。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《莊子．天運》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>丘治《詩》《書》《禮》《樂》《易》《春秋》六經，自以為久矣。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>郭店楚簡《六德》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡24-25：觀諸《詩》《書》則亦在矣，觀諸《禮》《樂》則亦在矣，觀諸《易》《春秋》則亦在矣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>范常喜：「儀」，認為「儀」可能是當時「禮」之異名。結合現今出土材料來看，先秦已有較為固定的「六經」之說，如：《莊子．天運》《郭．六德》。由此可見，簡文中的「書、詩、義（儀）」可能即孔子常談及的「詩、書、禮」，「儀」可能即當時「禮」之異名。如果這種推測可以成立，那麼魏晉時《儀禮》之名的產生可能就有了更早的依據。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《荀子．儒效》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《詩》言是其志也，《書》言是其事也，《禮》言是其行也，《樂》言是其和也，《春秋》言是其微也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「義」讀為「儀」。傳世文獻中尚未以「儀」為《儀禮》的異名。前文的「夫《書》者以著君子之德也」、「夫《詩》也者，以誌君子之志」和「以斤君子之行也」與《荀子．儒效》可對應。從前文和《荀子．儒效》的對照來看，以「儀」為《儀禮》之異名並無不可能，但尚未見確實的證據，姑且解釋作「禮儀」。</p>
+    <h3 class="hb-topic" id="jgz2-3">③君子涉之，小人觀/勸之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《詩．小雅．大東》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>有饛簋飧，有捄棘匕。周道如砥，其直如矢。君子所履，小人所視。睠言顧之，潸焉出涕。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李銳：簡文或與《詩經》文句相關。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏淵〉第十九章：季康子問政於孔子曰：「如殺無道，以就有道，何如？」孔子對曰：「子為政，焉用殺？子欲善，而民善矣！君子之德，風；小人之德，草；草上之風，必偃。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：〈季庚子問於孔子〉內容為季康子問孔子為政，突然出現君子和小人的對比似乎有點突兀。本篇簡中的「小人」，非指人格卑鄙的人，而指百姓。簡文中的君子和小人指在位者和百姓。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈為政〉第二十章：季康子問：「使民敬、忠以勸，如之何？」子曰：「臨之以莊則敬，孝慈則忠，舉善而教不能則勸。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記．中庸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>修身則道立，尊賢則不惑，親親則諸父昆弟不怨，敬大臣則不眩，體群臣則士之報禮重，子庶民則百姓勸，來百工則財用足，柔遠人則四方歸之，懷諸侯則天下畏之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「勸」，有勉勵之義。「之」指前述的《詩》、《書》、禮儀，「小人勸之」，即百姓勉勵自己做到《詩》、《書》、禮儀的德性。</p>
+    <h3 class="hb-topic" id="jgz2-4">④小人晦/毋昧</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《尹文子》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈意林〉卷二引：專用聰明，則功不成；專用晦昧，則事必悖。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳偉：這裏疑讀爲「晦」，下字讀爲「昧」，晦昧，猶愚昧。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏淵〉第十九章：季康子問政於孔子曰：「如殺無道，以就有道，何如？」孔子對曰：「子為政，焉用殺？子欲善，而民善矣！君子之德，風；小人之德，草；草上之風，必偃。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈泰伯〉第八章：子曰：「民可使由之；不可使知之。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記．大學》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>一家仁，一國興仁；一家讓，一國興讓；一人貪戾，一國作亂。其機如此。此謂一言僨事，一人定國。堯、舜率天下以仁，而民從之；桀、紂率天下以暴，而民從之。其所令反其所好，而民不從。是故君子有諸己而后求諸人，無諸己而后非諸人。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「毋」，甲金文借用「母」字為否定詞之「毋」。「君子涉之，小人勸之；君子敬成其德，小人毋昧」，是在位者修身，百姓跟隨。傳世文獻中也有類似的記載，如《論語．顏淵》《禮記．大學》。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：孟之側言論所能説明的，亦正是典型的儒家身教理論，與《論語》中的孔子所謂「民可使由之，而不可使知之」義近，即是説上位的君子祇要作好榜樣，則人民將完全不自覺地模仿他，以爲自己本來便是要如此作人。</p>
+    <h2 class="hb-section"><span class="num-pfx">二、</span>「強權統治」章</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈季庚子問於孔子〉相應内容：</h3>
+      <p class="hb-text">[庚子曰：「] …也。葛/艾今語肥也，以處邦家之術<a href="#jgz3-1">①</a>，曰：『君子不可以不強，不強則不立。【8】 …不威，不威則民狎/赧之。毋信玄/眩繒/譖<a href="#jgz3-2">②</a>，因邦之所/許賢而興之。大罪殺【21】之，臧/中罪刑之<a href="#jgz3-3">③</a>，小罪罰之。苟能固守【22上】  而行之，民必服矣。』故子以此言為奚如？」孔子曰：「由丘觀之，則美【13】言<a href="#jgz3-4">④</a>也已。且夫含/今之先人，世三代之傳 [史]<a href="#jgz3-5">⑤</a> ，豈敢不以其先人之傳志告 ■？」康子曰：「然其/宗人<a href="#jgz3-6">⑥</a>亦曰：『古之為【14】邦者必以此。』」</p>
+    </div>
+    <h3 class="hb-topic" id="jgz3-1">①處邦家之術</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《荀子．王制》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>明王始立，而處國有制。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：《荀子．王制》中有「處國」，即「處邦家」。「凥邦家之述」讀為「處邦家之術」，「處邦家之術」即治理國家的方法。</p>
+    <h3 class="hb-topic" id="jgz3-2">②毋信玄/眩/奸繒/譖/讒</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．雍也》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第二十一章：子曰：「務民之義，敬鬼神而遠之，可謂知矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>范常喜：讀「玄繒」。「繒」古代絲織品的總稱，但亦用作祭祀時的「幣帛」，古代祭祀用品多用「玄」色，因此「玄繒」可能也是指祭品而言，簡文大意似為：「不要相信玄繒這些祭品，要找到國家中的賢人而推舉之。」這是孔子告誡季庚子要興賢而不要一味地相信祭祀，這也同孔子「敬鬼神而遠之」的思想相一致。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《漢書．五行志上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>天戒若曰，邪臣往來，為姦讒於漢，絕亡之道也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：傳世文獻中無「玄繒」或「眩層」一辭，疑「玄曾」讀為「姦讒」，義為讒言。「毋信姦讒」即「不要相信讒言」。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《荀子．非相》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>聽其言則辭辯而無統，用其身則多詐而無功，上不足以順明王，下不足以和齊百姓……夫是之謂姦人之雄。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>高榮鴻：讀作「姦雄」，認為簡文「毋信姦雄，因邦之所賢而興之」，正可與《荀子．非相》「聽其言則辭辯而無統，用其身則多詐而無功，上不足以順明王，下不足以和齊百姓……夫是之謂姦人之雄」互相對照。</p>
+    <h3 class="hb-topic" id="jgz3-3">③臧/中罪刑之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《周禮》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈秋官司寇〉：司圜：掌收教罷民。凡害人者弗使冠飾，而加明刑焉，任之以事而收教之。能改者，上罪三年而舍，中罪二年而舍，下罪一年而舍。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈秋官司寇〉：掌囚：掌守盜賊，凡囚者；上罪梏拲而桎，中罪桎梏，下罪梏，王之同族拲，有爵者桎；以待弊罪。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《新書》卷二</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>其中罪者，聞命而自弛，上不使人頸盭而加也。其有大罪者，聞命則北面再拜，跪而自裁，上不使人捽抑而刑也。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《漢書．賈誼傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>其有中罪者，聞命而自弛。其有大罪者，聞命則北面再拜，跪而自裁，上不使捽抑而刑之也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顏師古注：中罪，非大非小也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>楊澤生：讀為「中」。古書罕見「常罪」的說法而常見「大罪」、「中罪」、「小罪」並列而舉，我們不能排除「辠」可讀作「中罪」的可能。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：從前後的「大罪」和「小罪」來看，讀「臧罪」或「贓罪」並不適合，而讀為「中罪」似乎最合理。「中罪」見於傳世文獻中，但傳世文獻中的「中罪」皆與「上罪」和「小罪」一起用，尚未見與「大罪」和「小罪」連用，而且「臧」與「中」聲韻不近。雖「常罪」不見於傳世文獻，但「常」與「臧」聲韻相近，而且其意與「中罪」相近，姑且讀為「常罪」。</p>
+    <h3 class="hb-topic" id="jgz3-4">④美言</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《漢書．藝文志》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>昔仲尼沒而微言絕，七十子喪而大義乖。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顔師古注：精微要妙之言耳。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《逸周書．大戒》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>微言入心，夙喻動眾。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈少儀〉：言語之美，穆穆皇皇；朝廷之美，濟濟翔翔；祭祀之美，齊齊皇皇；車馬之美，匪匪翼翼；鸞和之美，肅肅雍雍。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈孔子閒居〉：子夏曰：「言則大矣！美矣！盛矣！言盡於此而已乎？」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《曾子．本孝》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>孝子惡言死焉，流言止焉，美言興焉。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《國語．周語下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫耳內和聲，而口出美言，以為憲令，而布諸民。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《史記．滑稽列傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>美言可以市，尊行可以加人。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：從以上的傳世文獻資料來看，讀為「微言」或「美言」似乎皆可。但是本簡中的「則言也已」之外，第15 簡中又見「言則（美）矣」。「言則（美）矣」句與《禮記．孔子閒居》的例子相同。本篇簡中的「則𢼸言也已」、「言則矣」這些話皆是孔子聽到季康子所引的葛烈今的治理國家的方法之後講出來，而先說「說得好」，但孔子並不同意這些說法，所以說「言則矣，然異於丘之所聞」。「美」，訓為「善」。「美言」即「善言」。</p>
+    <h3 class="hb-topic" id="jgz3-5">⑤世三代之傳史</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．衛靈公》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第二十五章：子曰：「吾之於人也，誰毀誰譽？如有所譽者，其有所試矣。斯民也，斯民也，三代之所以直道而行也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>邢昺疏：三代，夏、殷、周也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈檀弓下〉：葬於北方北首，三代之達禮也，之幽之故也。既封，主人贈，而祝宿虞尸。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈禮運〉：大道之行也，與三代之英，丘未之逮也，而有志焉。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孟子．離婁上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>三代之得天下也以仁，其失天下也以不仁。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《左傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公六年〉：三代命祀，祭不越望。江、漢、雎、漳，楚之望也。禍福之至，不是過也。不穀雖不德，河非所獲罪也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈宣公二年〉：乙丑，趙穿攻靈公於桃園。宣子未出山而復。大史書曰：「趙盾弒其君」，以示於朝。宣子曰：「不然。」對曰：「子為正卿，亡不越竟，反不討賊，非子而誰？」宣子曰：「烏呼！我之懷矣，自詒伊慼，其我之謂矣。」孔子曰：「董狐，古之良史也，書法不隱。趙宣子，古之良大夫也，為法受惡。惜也，越竟乃免。」宣子使趙穿逆公子黑臀于周而立之。壬申，朝于武宮。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈襄公二五年〉：盧蒲癸奔晉，王何奔莒。叔孫宣伯之在齊也，叔孫還納其女於靈公，嬖，生景公。丁丑，崔杼立而相之，慶封為左相，盟國人於大宮，曰：「所不與崔、慶者。」晏子仰天歎曰：「嬰所不唯忠於君、利社稷者是與，有如上帝！」乃歃。辛巳，公與大夫及莒子盟。大史書曰：「崔杼弒其君。」崔子殺之。其弟嗣書，而死者二人。其弟又書，乃舍之。南史氏聞大史盡死，執簡以往。聞既書矣，乃還。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：三代指夏、商、周。雖然侯乃峰認為「三代之傳史」這麼重大的事情與孔子的話無關，但讀為「三代之傳史」並無不可能。「世三代之傳史」有兩種意義：一、三代做史官，二、繼承三代傳下來的歷史。前者的三代指曾祖、祖父、父，後者的三代指夏、商、周。傳世文獻中有關於史官的紀錄，如《左傳．宣公二年》《襄公二五年》，可見史官不受任何權利的威脅，堅持自己的意念，而褒貶歷史的事件。史官是隨身在側紀錄歷史，尤其針對國君施政的紀錄。所以若葛烈今的先人是史官，他的先人會知曉國君施政的情形，這樣與後文的「豈敢不以其先人之傳志告」可以相應。還有將「世三代之傳史」解釋作繼承夏、商、周三代傳下來的歷史亦可。「三代之轉變」只指更革的精神，讀為「三代之傳史」似乎更合適。文意上，將「三代之傳史」解釋作三代做史官，或繼承夏、商、周三代傳下來的歷史皆可。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《荀子．議兵》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>傳曰：「威厲而不試，刑錯而不用。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顧史考：特别值得留意的，則是此篇以古代先王所留下的《詩》《書》等古典，與所謂「傳史」所傳下的「傳志」作一個明顯的對比：前者爲明王所必效法而沿襲，而後者則是「異於所聞」。「傳史」及「傳志（/誌）」此兩種詞語並不見於其他先秦文獻，然而諸子書籍經常見到引「傳」語以爲重者，包括儒家文獻在内。如《荀子．議兵》所引「傳曰：威厲而不試，刑錯而不用」，即是其例。儘管戰國中晚期的儒家顯然會與儒外諸子一樣而如此引用古經以外的「傳」語，然〈季庚子問於孔子〉對此種文體確是加以某種程度的貶抑，所反應的也許即是當時儒外諸子已開始引用或發明與儒傳經典異類的「古語」以壓倒儒家，因而某些儒者乃不得不非之以維護自己的傳統。隨著〈季庚子問於孔子〉的出現，此一問題似乎確實值得重新展開。</p>
+    <h3 class="hb-topic" id="jgz3-6">⑥宔/宗人</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《史記．田敬仲完世家》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>襄子使其兄弟宗人盡為齊都邑大夫，與三晉通使，且以有齊國。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《白虎通．宗族》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>宗者，何謂也？宗尊也，為先祖主也，宗人之所尊也。《禮》曰：「宗人將有事，族人皆侍。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>林清源：筆者懷疑本篇竹書「宔人」原本應作「宗人」，只因「宗」、「宔」二字形近，書手一時失察，遂將「宗」字誤書為「宔」。又由「主」與「示」二字同源分化的關係來看，本篇竹書「宔」字也有可能是早期抄本「宗」字的孓遺。「宗人」一詞，見於歷代典籍，指同宗族之人。在季康子與孔子這段對話中，「宔人」與「先人」前後搭配，二者之詞義必有相當程度的內在聯繫。簡文「宔人」一詞，若為「宗人」之誤書或孓遺，則「宗人」與「先人」正好可以前後呼應。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：「宔」若讀「主」，「其」與「主人」相對，即為僕人。先秦文獻中的「主人」一語有多種含義，或指接待賓客的人，與「客人」相對，如《儀禮．士相見禮》「主人請見，賓反見，退，主人送於門外，再拜」，再如《荀子．樂論》「賓出，主人拜送」；或指主事、掌權之人，如《易．明夷》「君子於行，三日不食，有攸往，主人有言」；或指事物的所有者，如《公羊傳》「地從主人」、《穀梁傳》「名從主人」：或指戰爭中抵禦入侵的防守方，如《左傳．定公八年》「公侵齊，攻廩丘之郛，主人焚衝，或濡馬褐以救之，遂毀之，主人出，師奔」，等等。不知先秦文獻有沒有與「僕人」含義相對的「主人」一語。「宔人」或可解為供奉於祏中的人，也即先人，與上文「豈敢以其先人之傳志告」相應。</p>
+    <h2 class="hb-section"><span class="num-pfx">三、</span>「寬政」章</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈季庚子問於孔子〉相應内容：</h3>
+      <p class="hb-text">孔子曰：「言則美矣。然【15上】異於丘之所聞。丘聞之，臧 [文] 仲<a href="#jgz4-1">①</a>有言曰：『君子強則遺，威則民不【9】道<a href="#jgz4-2">②</a>，鹵/嚴則失眾<a href="#jgz4-3">③</a>，猛則無親<a href="#jgz4-4">④</a>，好刑【10上】則不祥，好殺則作亂<a href="#jgz4-5">⑤</a>。』是故賢人之居邦家也，夙興夜寐【10】降/隆瑞/制以比/庀，民之播美<a href="#jgz4-6">⑥</a>，棄惡毋/女歸/悔<a href="#jgz4-7">⑦</a>。慎小以合大，疏言而密守之。毋禁/歆遠，毋稽/指邇/𨔵。惡人勿陷，好【19】人勿貴<a href="#jgz4-8">⑧</a>。救民以辟<a href="#jgz4-9">⑨</a>，大罪則赦之以刑，臧/中罪則赦之 以罰，小則訿/訾/貲之<a href="#jgz4-10">⑩</a>。凡欲勿掌/長/當<a href="#jgz4-11">⑪</a>，凡失勿/危坐/委<a href="#jgz4-12">⑫</a>，各【20】當其曲以成之<a href="#jgz4-13">⑬</a>。然則邦平而民擾/履矣。此君子從事者之所啇/啻/陶也。【23】</p>
+      <p class="hb-text">… /罙/深佝/怐/劬。是故夫迫邦甚（，）難（，）民乃多（，）一<a href="#jgz4-14">⑭</a>，【11上】田肥，民則安；瘠，民不著/屬/樹<a href="#jgz4-15">⑮</a>。是故賢人大於邦<a href="#jgz4-16">⑯</a>，而有劬心，能為鬼【18下】</p>
+    </div>
+    <h3 class="hb-topic" id="jgz4-1">①臧文仲</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈公冶長〉第十八章：子曰：「臧文仲居蔡，山節藻梲，何如其知也？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈衛靈公〉第十四章：子曰：「臧文仲其竊位者與？知柳下惠之賢，而不與立也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《禮記．禮器》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>君子曰：祭祀不祈，不麾蚤，不樂葆大，不善嘉事，牲不及肥大，薦不美多品。孔子曰：「臧文仲安知禮！夏父弗綦逆祀，而弗止也。燔柴於奧，夫奧者，老婦之祭也，盛於盆，尊於瓶。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《孔子家語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈顏回〉：顏回問於孔子曰：「臧文仲、武仲孰賢？」孔子曰：「武仲賢哉！」顏回曰：「武仲世稱聖人，而身不免於罪，是智不足稱也；好言兵討，而挫銳於邾，是智不足名也。夫文仲、其身雖歿，而言不朽，惡有未賢？」孔子曰：「身歿言立，所以為文仲也。然猶有不仁者三，不智者三，是則不及武仲也。」回曰：「可得聞乎？」孔子曰：「下展禽，置六關，妾織蒲，三不仁。設虛器，縱逆祀，祠海鳥，三不智。武仲在齊，齊將有禍，不受其田，以避其難，是智之難也。夫臧武仲之智，而不容於魯，抑有由焉，作而不順，施而不恕也夫。《夏書》曰：『念玆在玆，順事恕施。』」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈好生〉：孔子問漆雕憑曰：「子事臧文仲、武仲，及孺子容，此三大夫孰賢？」對曰：「臧氏家有守龜焉，名曰蔡。文仲三年而為一兆，武仲三年而為二兆，孺子容三年而為三兆，憑從此之見。若問三人之賢與不賢，所未敢識也。」孔子曰：「君子哉，漆雕氏之子！其言人之美也，隱而顯；言人之過也，微而著；智而不能及，明而不能見。孰克如此？」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈曲禮子貢問〉：冉求曰：「臧文仲知魯國之政，立言垂法，于今不可亡，可謂知禮者矣。」孔子曰：「昔臧文仲安知禮？夏父弗忌逆祀，而不止，燔柴於竈以祀焉。夫竈者，老婦之所祭。盛於甕，尊於瓶，非所祭也。故曰：禮也者，猶體也。體不備，謂之不成人。設之不當，猶不備也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：臧文仲（？-前617年），又稱「臧孫辰」，魯公子彄之曾孫。春秋時魯國大夫，姓臧，名辰，「文」為諡號。孔子說「身歿立言，所以為文仲也」。歷仕魯莊公、閔公、僖公、文公四君。曾廢除關卡，以利經商。</p>
+    <h3 class="hb-topic" id="jgz4-2">②威則民不道</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈從政甲〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>從政有七幾：獄則興，威則民不導，鹵則失眾，猛則亡親，罰則民逃，好〔刑〕⋯⋯則民作亂，凡此七者，政之所怠也。</p>
+    <h3 class="hb-topic" id="jgz4-3">③鹵/嚴則失眾</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈從政甲〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>從政有七幾：獄則興，威則民不導，鹵則失眾，猛則亡親，罰則民逃，好〔刑〕⋯⋯則民作亂，凡此七者，政之所怠也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《莊子．則陽》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>長梧封人問子牢曰：「君為政焉勿鹵莽，治民焉勿滅裂。昔予為禾，耕而鹵莽之，則其實亦鹵莽而報予；芸而滅裂之，其實亦滅裂而報予。予來年變齊，深其耕而熟耰之，其禾蘩以滋，予終年厭飧。」莊子聞之曰：「今人之治其形，理其心，多有似封人之所謂，遁其天，離其性，滅其情，亡其神，以眾為。故鹵莽其性者，欲惡之孽，為性萑葦蒹葭，始萌以扶吾形，尋擢吾性；並潰漏發，不擇所出，漂疽疥癰，內熱溲膏是也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>成玄英疏：鹵莽，不用心也。滅裂，輕薄也。夫民為邦本，本固則邦寧，唯當用意養人，亦不可輕爾搔擾。封人有道，故戒子牢。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳美蘭、黃錫全：文例作「鹵則失眾」，意指「在上者魯莽蠻橫，就會失去民心」。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《晏子春秋．內篇諫下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>晏子對曰：「朝居嚴則下無言，下無言則上無聞矣。下無言則吾謂之喑，上無聞則吾謂之聾。聾喑，非害國家而如何也！且合升斗之微以滿倉廩，合疏縷之綈以成幃幕，大山之高，非一石也，累卑然後高，天下者，非用一士之言也，固有受而不用，惡有拒而不受者哉！」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《說苑》卷七</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>公叔文子為楚令尹三年，民無敢入朝，公叔子見曰：「嚴矣。」文子曰：「朝廷之嚴也，寧云妨國家之治哉？」公叔子曰：「嚴則下喑，下喑則上聾，聾喑不能相通，何國之治也？順針縷者成帷幕，合升斗者實倉廩，並小流而成江海；明主者有所受命而不行，未嘗有所不受也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《鹽鐵論．周秦》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>故政寬則下親其上，政嚴則民謀其主，晉厲以幽，二世見殺，惡在峻法之不犯，嚴家之無悍虜也？聖人知之，是以務和而不務威。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>楊澤生：「嚴則失眾」似乎比較好理解。《晏子春秋．內篇諫下》《說苑》卷七《鹽鐵論．周秦》的引文大概能說明「嚴則失眾」的情形。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《左傳．襄公十八年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>晉人欲逐歸者，魯、衛請攻險。己卯，荀偃、士丐以中軍克京茲。乙酉，魏絳、欒盈以下軍克邿；趙武、韓起以上軍圍盧，弗克。十二月戊戌，及秦周，伐雍門之萩。范鞅門于雍門，其御追喜以戈殺犬于門中；孟莊子斬其橁以為公琴。己亥，焚雍門及西郭、南郭。劉難、士弱率諸侯之師焚申池之竹木。壬寅，焚東郭、北郭，范鞅門于揚門。州綽門于東閶，左驂迫，還于東門中，以枚數闔。齊侯駕，將走郵棠。太子與郭榮扣馬，曰：「師速而疾，略也。將退矣，君何懼焉？且社稷之主不可以輕，輕則失眾。君必待之！」將犯之。太子抽劍斷鞅，乃止。甲辰，東侵及濰，南及沂。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《禮記．大學》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《詩》云：「樂只君子，民之父母。」民之所好好之，民之所惡惡之，此之謂民之父母。《詩》云：「節彼南山，維石巖巖。赫赫師尹，民具爾瞻。」有國者不可以不慎，辟則為天下僇矣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：先秦文獻中直接提到「失眾」的例子不多，其中「□則失眾」的例僅見於一處《左傳．襄公十八年》「輕則失眾」，當中的「輕」指輕率、草率。《禮記．大學》也強調君子不可輕率。「鹵」字本身也有魯莽、粗魯的意思。「鹵則失眾」意謂「鹵莽則失眾」，與《左傳》「輕則失眾」近似。</p>
+    <h3 class="hb-topic" id="jgz4-4">④猛則無親</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈從政甲〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>從政有七幾：獄則興，威則民不導，鹵則失眾，猛則亡親，罰則民逃，好〔刑〕⋯⋯則民作亂，凡此七者，政之所怠也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《左傳．昭公二十年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>大叔為政，不忍猛而寬。⋯⋯仲尼曰：「善哉！政寬則民慢，慢則糾之以猛。猛則民殘，殘則施之以寬。寬以濟猛，猛以濟寬，政是以和。」</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《史記．仲尼弟子列傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>吳王為人猛暴，群臣不堪；國家敝以數戰，士卒弗忍；百姓怨上，大臣內變；子胥以諫死，太宰嚭用事，順君之過以安其私：是殘國之治也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「猛則無親」的「無親」與前文中的「失眾」其義相近，除陳劍所舉的《左傳．昭公二十年》的例之外，《史記．仲尼弟子列傳》也有類似的記載。</p>
+    <h3 class="hb-topic" id="jgz4-5">⑤好刑則不祥，好殺則作亂</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈從政甲〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>從政有七幾：獄則興，威則民不導，鹵則失眾，猛則亡親，罰則民逃，好〔刑〕⋯⋯則民作亂，凡此七者，政之所怠也。</p>
+    <h3 class="hb-topic" id="jgz4-6">⑥民之播美</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《孟子．離婁上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>不仁而在高位，是播其惡於眾也。</p>
+    <h3 class="hb-topic" id="jgz4-7">⑦棄惡毋/女/如歸/悔</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《左傳．昭公十三年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>民患王之無厭也，故從亂如歸。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>單育辰：在典籍中，常有「如歸」之說，比如《左傳．昭公十三年》「故從亂如歸」，而戰國文字資料中「女」和「如」通用之例甚多，這樣看來，把「母歸」釋爲「如歸」還是比較恰當的。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：傳世文獻中多見「如歸」一詞，義為如同歸家，把「棄惡如歸」解釋作厭棄惡如同歸家似乎不通順。楚系文字中「毋」字或作與「母」同形，本簡字形與「母」同形，可釋為「毋」或「母」，這裡釋為「毋」。「歸」疑讀為「悔」，「棄惡毋悔」，即厭棄惡而無後悔。</p>
+    <h3 class="hb-topic" id="jgz4-8">⑧惡人勿陷，好人勿貴</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．里仁》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第三章：子曰：「唯仁者能好人，能惡人。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>朱熹集注：好、惡，皆去聲。唯之為言獨也。蓋無私心，然後好惡當于理，程子所謂「得其公正」是也。遊氏曰：「好善而惡惡，天下之同情，然人每失其正者，心有所系而不能自克也。惟仁者無私心，所以能好惡也。」</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《管子．侈糜》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>不擇人而予之，謂之好人；不擇人而取之，謂之好利。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《國語．晉語二》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>驪姬見申生而哭之，曰：「有父忍之，況國人乎？忍父而求好人，人孰好之？殺父以求利人，人孰利之？皆民之所惡也，難以長生！」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>冀小軍：此例中「好人」為使動用法。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《戰國策．齊策四》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>公孫弘對曰：「孟嘗君好人，大王不好人。」</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《呂氏春秋．孝行》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>故愛其親，不敢惡人；敬其親，不敢慢人。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《管子．任法》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫愛人不私賞也，惡人不私罰也，置儀設法以度量斷者，上主也。愛人而私賞之，惡人而私罰之，倍大臣，離左右，專以其心斷者，中主也。臣有所愛而為私賞之，有所惡而為私罰之，倍其公法，損其正心，專聽其大臣者，危主也。故為人主者，不重愛人，不重惡人，重愛曰失德，重惡曰失威，威德皆失，則主危也。</p>
+    <h4 class="hb-source"><span class="num-pfx">7.</span>《晏子春秋．內篇》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈諫上〉：公謂晏子曰：「寡人聞君國者，愛人則能利之，惡人則能疏之。今寡人愛人不能利，惡人不能疏，失君道矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈問上〉：晏子曰：「縵密不能，蔍苴學者詘。身無以用人，而又不為人用者卑。善人不能戚，惡人不能疏者危。交遊朋友從，無以說於人，又不能說人者窮。事君要利，大者不得，小者不為者餧。修道立義，大不能專，小不能附者滅。此足以觀存亡矣。」</p>
+    <h4 class="hb-source"><span class="num-pfx">8.</span>《韓非子．八說》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>今生殺之柄在大臣，而主令得行者，未嘗有也。虎豹必不用其爪牙而與鼷鼠同威，萬金之家必不用其富厚而與監門同資。有土之君，說人不能利，惡人不能害，索人欲畏重己，不可得也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>冀小軍：「惡人」、「好人」均為動賓結構。在先秦古書中，這種用法的「好人」、「惡人」是比較常見的。此外，又有以「愛人」、「善人」或「說人」與「惡人」對舉者。讀「陷」的說法是可取的。不過，應改訓為「埋沒」之「沒」。此「陷」字之義，即今人所謂埋沒。簡文「惡人勿陷，好人勿貴」，是說不要因討厭某人而使他埋沒，也不要因喜歡某人而使他尊貴。</p>
+    <h4 class="hb-source"><span class="num-pfx">9.</span>《公羊傳．隱公七年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>《春秋》貴賤不嫌同號，美惡不嫌同辭。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：冀小軍之說可從，「惡人」和「好人」為動賓結構。讀「嫌」，解釋作避忌。「惡人勿嫌，好人勿貴」，即不要因為討厭而避忌他，不要因為喜歡而崇尚他。</p>
+    <h3 class="hb-topic" id="jgz4-9">⑨救民以辟</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《左傳．昭公六年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夏有亂政而作《禹刑》， 商有亂政而作《湯刑》， 周有亂政而作《九刑》。三辟之興，皆叔世也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>杜預注：言刑書不起於始盛之世。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《尚書．周書．君陳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>寬而有制從容以和：殷民在辟，予曰辟，爾惟勿辟；予曰宥，爾惟勿宥惟厥中。有弗若于汝政，弗化于汝訓，辟以止辟，乃辟。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記．學記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>教也者，長善而救其失者也。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《周禮．地官．司救》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>司救掌萬民之邪惡過失，而誅讓之，以禮防禁而救之。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「辟」為刑法。「救」字，有挽救之義。「救民以辟」即「以刑法挽救百姓」。</p>
+    <h3 class="hb-topic" id="jgz4-10">⑩大罪則赦之以刑，臧/中罪則赦之以罰，小則訿/訾/貲之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《逸周書．大聚解》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>先誘之以四郊，王親在之，賓大夫免列以選，赦刑以寬，復亡解辱，削赦輕重，皆有數，此謂行風。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《二年律令．告律》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡127-131：告不審及有罪先自告，各減其罪一等，死罪黥為城旦舂，黥為城旦舂罪完為城旦舂，完為城旦舂罪〼鬼薪白粲及府（腐）罪耐為隸臣妾，耐為隸臣妾罪耐為司寇，司寇、䙴（遷）及黥（顏）頯罪贖耐，贖耐罪罰金四兩，贖死罪贖城旦舂，贖城旦舂罪贖斬，贖斬罪贖黥，贖黥罪贖耐，耐罪〼金四兩罪罰金二兩，罰金二兩罪罰金一兩。令、丞、令史或偏（徧）先自得之，相除。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>何有祖：「赦」在簡文顯然不是指對犯罪盲目的全部免除，而是有度的寬刑。「大辠（罪）」、「贓罪」、「小罪」當是三種不同程度的罪行。同篇21－22簡謂「大罪殺之」，可知「大辠（罪）」顯爲死罪，此僅處以肉刑；「贓罪」在先秦則會處以肉刑以至「罰」不等，此僅按「罰」處理；小罪乾脆就交錢了事，亦可見之。是「赦」明也。此條簡文與《二年律令．告律》127-131 簡精神或有相似，後者或歸入《具律》。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《晏子春秋．內篇雜下．景公祿晏子平陰與槀邑晏子願行三言以辭第十六》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>公曰：「然則曷以祿夫子？」晏子對曰：「君商漁鹽，關市譏而不征；耕者十取一焉；弛刑罰──若死者刑，若刑者罰，若罰者免。若此三言者，嬰之祿，君之利也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李天虹：《晏子春秋．內篇雜下．景公祿晏子平陰與槀邑晏子願行三言以辭第十六》載晏子亦主張「弛刑罰」，其具體措施是「若死者刑，若刑者罰，若罰者免」，由「刑」、「罰」及「免」，等級十分分明。對比可知，簡文的「大罪則赦之以刑，臧罪則赦之以罰」，相當於《晏子》的「若死者刑，若刑者罰」，但從二者「訿」、「免」的用字看，「小則訿之」卻不能與「若罰者免」完全相應。從二者文意看，簡文「訿」應該是處於「罰」和「免」之間的一種處理方式，其程度比「罰」輕，但重於「免」。</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>睡虎地秦墓竹簡〈秦律十八種．徭律〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>徭律：御中發征，乏弗行，貲二甲。失期三日到五日，誶；六日到旬，貲一盾；過旬，貲一甲。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>效律：數而贏、不備，值百一十錢以到二百廿錢，誶官嗇夫；過二百廿錢以到千一百錢，貲嗇夫一盾。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>效律：倉漏朽禾粟，及積禾粟而敗之，其不可食者不盈百石以下，誶官嗇夫；百石以到千石，貲官嗇夫一甲；過千石以上，貲官嗇夫二甲。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>法律答問：倉鼠穴幾何而當論及誶？廷行事鼠穴三以上貲一盾，二以下誶。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>李天虹：在睡虎地秦律裏，可以看到在「貲」之下，還有名之曰「誶」的處罰，「誶」罪輕於「貲」。結合秦律，我懷疑簡文「訿」可能應如整理者所釋，讀為本字。「訾」有詆毀、指責義。「訾」的這種用義，與秦律「誶」正好相應。如果以上釋讀不誤，說明至遲春秋末期，魯國已有關於「訿」的相關法律條文。睡虎地秦律中的「誶」，應有淵源。</p>
+    <h4 class="hb-source"><span class="num-pfx">5.</span>《禮記》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈曲禮上〉：為人子者，居不主奧，坐不中席，行不中道，立不中門。食饗不為概，祭祀不為尸。聽於無聲，視於無形。不登高，不臨深。不苟訾，不苟笑。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄注：訾，音紫，毀也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔穎達疏：相毀曰訾。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈喪服四制〉：凡禮之大體，體天地，法四時，則陰陽，順人情，故謂之禮。訾之者，是不知禮之所由生也</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>鄭玄注：口毀曰訾。</p>
+    <h4 class="hb-source"><span class="num-pfx">6.</span>《漢書．地理志下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>俗儉嗇愛財，趨商賈，好訾毀，多巧偽，喪祭之禮文備實寡，然其好學猶愈於它俗。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>顏師古注：以言相毀曰訾。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：李天虹之說可從，「訿」輕於「罰」，而重於「免」。「訿」，義為詆毀、指責。</p>
+    <h3 class="hb-topic" id="jgz4-11">⑪凡欲勿掌/長/當</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《尚書．商書．太甲》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>予小子不明于德，自底不類。欲敗度，縱敗禮，以速戾于厥躬。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《孟子．盡心下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>養心莫善於寡欲。其為人也寡欲，雖有不存焉者，寡矣。其為人也多欲，雖有存焉者，寡矣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：傳世文獻中有關於「欲望」的記載，貪欲敗壞法度，養心之道在於寡欲，指出不該貪欲。從以上文獻來看，「凡欲勿」中的「」似乎讀為「長」，「凡欲勿長」，是不要讓欲望增長。</p>
+    <h3 class="hb-topic" id="jgz4-12">⑫凡失勿危/坐/委</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《周易．繫辭下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>君子安而不忘危，存而不忘亡，治而不忘亂。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：「凡失勿危」，不要讓失誤成為危害。</p>
+    <h3 class="hb-topic" id="jgz4-13">⑬曲以成之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《周易．繫辭上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>曲成萬物而不遺。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>韓康伯注：曲成者，乘變以應物，不係一方者也，則物宜得矣。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>孔穎達疏：言聖人隨愛而應，屈曲委細，成就萬物。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：「曲以成之」同「曲成」。養民之政，宜合而受之，布而用之，有德事其事，在官展其才，平易近民，曲成而不遺。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳劍：「曲」即「委曲」之「曲」，舊注訓為「事」「小事」「小小之事」等，在此指各種詳細具體的情況。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>俞紹宏、張青松：「曲」陳劍說可參。簡文是說，對想得到的與失去的事物，不要抓着不放，而要根據情況成全之。</p>
+    <h3 class="hb-topic" id="jgz4-14">⑭夫迫邦甚（，）難（，）民乃多（，）一</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《孟子．告子下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>入則無法家拂士，出則無敵國外患者，國恆亡，然後知生於憂患而死於安樂也。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《左傳．昭公四年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>鄰國之難，不可虞也，或多難以固其國，啟其疆土；或無難以喪其國，失其守宇。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>季旭昇：從句法來看，「夫迫邦甚」、「難民能多」，應該是相類似的句子，所以後面緊接著說「一矣」。《說文》：「甚，尤安樂也。」用此義，這兩句似乎可以說：人民窘迫，國家反而能安樂；人民受災難，則能力會更好，這道理是一樣的。這就像《孟子．告子下》所說的「入則無法家拂士，出則無敵國外患者，國恆亡．然後知生於憂患而死於安樂也」，也和古語「殷憂啟聖，多難興邦」的意思相近。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：讀為「迫」，義為逼迫、窘迫。「夫迫邦甚」，國家被逼得厲害。「能」讀為「乃」，「夫迫邦甚，難民乃多」，是國家被逼得厲害，難民乃多。</p>
+    <h3 class="hb-topic" id="jgz4-15">⑮田肥，民則安；瘠，民不著/屬/樹。</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《國語．楚語上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>夫君國者，將民之與處。民實瘠矣，君安得肥？</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《荀子．富國》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>足國之道：節用裕民，而善臧其餘。節用以禮，裕民以政。彼裕民，故多餘。裕民則民富，民富則田肥以易，田肥以易則出實百倍。上以法取焉，而下以禮節用之，餘若丘山，不時焚燒，無所臧之。夫君子奚患乎無餘？故知節用裕民，則必有仁聖賢良之名，而且有富厚丘山之積矣。此無他故焉，生於節用裕民也。不知節用裕民則民貧，民貧則田瘠以穢，田瘠以穢則出實不半；上雖好取侵奪，猶將寡獲也。而或以無禮節用之，則必有貪利糾譑之名，而且有空虛窮乏之實矣。此無他故焉，不知節用裕民也。《康誥》曰：「弘覆乎天，若德裕乃身。」此之謂也。</p>
+    <h3 class="hb-topic" id="jgz4-16">⑯賢人大於邦</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《說苑》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈政理〉：孔子曰：「欲其大者，乃於此在矣。昔者堯、舜清微其身，以聽觀天下，務來賢人，夫舉賢者，百福之宗也，而神明之主也，不齊之所治者小也，不齊所治者大，其與堯、舜繼矣。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈尊賢〉：人君之欲平治天下而垂榮名者，必尊賢而下士。《易》曰：「自上下下，其道大光。」又曰：「以貴下賤，大得民也。」夫明王之施德而下下也，將懷遠而致近也。夫朝無賢人，猶鴻鵠之無羽翼也，雖有千里之望，猶不能致其意之所欲至矣。是故游江海者託於船，致遠道者託於乘，欲霸王者託於賢。伊尹、呂尚、管夷吾、百里奚，此霸王之船乘也。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>整理者：「賢人」，「人」原脫漏，後補。賢人治邦，故賢人為重。尊賢是治國大事。</p>
+    <h2 class="hb-section">五、「為君之道」章</h2>
+    <div class="hb-bamboo">
+      <h3 class="hb-intro"><span class="num-pfx">- </span>〈季庚子問於孔子〉相應内容：</h3>
+      <p class="hb-text">…矣。」康子曰：「毋乃肥之聞/問也是左/差乎？故/胡如吾子之疏肥也。」孔子 【11下】辭曰：「子之言也已重<a href="#jgz5-1">①</a>。丘也聞君子【18上】面/勉，事皆得其勸而強之，則邦有檊/榦/安童/重<a href="#jgz5-2">②</a>，百姓送/尊之以… 【5】</p>
+      <p class="hb-text">…安焉。作而乘之，則邦有穫。先人之所善，亦善之；先人之所使/事/變 【12】[亦使/變之；先人之所] 惡勿使，先人之所廢勿起<a href="#jgz5-3">③</a>，然則民坐/格/懲/徵不善<a href="#jgz5-4">④</a>，敉父兄子弟而稱讎<a href="#jgz5-5">⑤</a>。【15下】</p>
+      <p class="hb-text">…之必敬，如 [賓] 客之事。君曰：「薦禮【16】…</p>
+      <p class="hb-text">…者，因故典/冊禮而彰之，毋逆百事，皆請行之<a href="#jgz5-6">⑥</a>。【17】</p>
+      <p class="hb-text">…滅速毋恆/亟，災/在厚/後。後世比亂，邦相壞/虧毀，眾必惡善，賢人【22下】</p>
+    </div>
+    <h3 class="hb-topic" id="jgz5-1">①子之言也已重</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《左傳．宣公十一年》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>牽牛以蹊者，信有罪矣。而奪之牛，罰已重矣。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《國語．吳語》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>子爲我禮已重矣。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《禮記．檀弓上》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈檀弓上〉：於野，則已疏；於寢，則已重。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈檀弓上〉：於門人之喪，未有所說驂，說驂於舊館，無乃已重乎？</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公問〉：公曰：「寡人願有言。然冕而親迎，不已重乎﹖」孔子愀然作色而對曰：「合二姓之好，以繼先聖之後，以為天地宗廟社稷之主，君何謂已重乎？」公曰：「寡人固！不固，焉得聞此言也。寡人欲問，不得其辭，請少進！」孔子曰：「天地不合，萬物不生。大昏，萬世之嗣也，君何謂已重焉！」</p>
+    <h4 class="hb-source"><span class="num-pfx">4.</span>《公羊傳．昭公》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>今招之罪已重矣，曷為復貶乎此？</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>季旭昇：「子之言也已重」，是說你的話說得嚴重了。在現存簡文中，孔子這句話較有可能是針對1 號簡所記季康子之語而言的。其記云：「季康子問于孔子曰：『肥從有司之後，一不知民務之安在。唯子之貽羞。⋯⋯』」康子過於客氣，所以孔子有此言。如果這一猜測不誤，則18A 的位置應前移，與1 號簡相近。由于二者不能直接連讀。其間可能還有一簡。</p>
+    <h3 class="hb-topic" id="jgz5-2">②檊/榦/安童/重</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《荀子．王霸》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>故人之情，口好味而臭味莫美焉，耳好聲而聲樂莫大焉，目好色而文章致繁、婦女莫眾焉，形體好佚而安重閒靜莫愉焉，心好利而穀祿莫厚焉。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：從上下文義來看，「榦童」應是正面的，讀為「姦動」不合理。筆者疑讀為「安重」，解釋為安適。</p>
+    <h3 class="hb-topic" id="jgz5-3">③先人之所廢/灋勿起</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>上博簡〈三德〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡19：埤牆勿增，法（廢）人勿興。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>季旭昇：疑當讀「廢」。「惡勿變，先人之所廢勿起」，應釋為：國家有缺失卻不肯改變，先人所荒廢的事情不肯復興，那麼人民就會為不善而犯罪，迷失了父子兄弟的倫常，而去行賄收賂。犯罪叫「坐」。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>陳偉：廢，本作「法」，原釋文如字讀，訓爲「刑」。季旭升先生讀爲「廢」，以爲此句是說「先人所荒廢的事情不肯復興」。此說應是。《三德》19 號簡說「法（廢）人勿興」，爲類似表述，可參看。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>郭店楚簡〈老子甲〉</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>簡31：奇物滋起，灋物滋彰。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>何有祖：簡文讀「灋勿起」，郭店〈老子甲〉31號簡有「奇物滋起，灋物滋彰」，與之近似。</p>
+    <h3 class="hb-topic" id="jgz5-4">④民坐/格/懲/徵不善</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《論語．述而》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第三章：子曰：「德之不脩，學之不講，聞義不能徙，不善不能改，是吾憂也。」</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：根據《論語．述而》，孔子認為「不善」是需要改的，故讀為「格」較合適。「民格不善」即民糾正不善。</p>
+    <h3 class="hb-topic" id="jgz5-5">⑤敉父兄子弟而稱讎</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《左傳》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈襄公三年〉：祁奚請老，晉侯問嗣焉。稱解狐，其讎也，將立之而卒。又問焉。對曰：「午也可。」於是羊舌職死矣，晉侯曰：「孰可以代之﹖」對曰：「赤也可。」於是使祁午為中軍尉，羊舌赤佐之。君子謂祁奚於是能舉善矣。稱其讎，不為諂；立其子，不為比；舉其偏，不為黨。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈哀公五年〉：私讎不及公，好不廢過，惡不去善，義之經也，臣敢違之﹖</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>〈襄公二十一年〉：祁大夫外舉不棄讎，內舉不失親，其獨遺我乎﹖</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《韓非子．說疑》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>聖王明君則不然，內舉不避親，外舉不避讎。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>劉國勝：讀為「迷」。簡文「迷父兄子弟而稱讎」意思大概是說能夠疑惑於父兄子弟而舉薦讎人。因民能審知不善，故能舉賢不惟親，不辟怨。</p>
+    <p class="hb-text hb-listed"><span class="num-pfx">· </span>許慜慧：讀為「敉」，義為安撫、安定，「敉父兄子弟而稱讎」即安撫父兄子弟，而舉薦仇人。</p>
+    <h3 class="hb-topic" id="jgz5-6">⑥皆請行之</h3>
+    <h4 class="hb-source"><span class="num-pfx">1.</span>《老子》四十一章</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>上士聞道，勤而行之。</p>
+    <h4 class="hb-source"><span class="num-pfx">2.</span>《論語．公冶長》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>第十四章：子路有聞，未之能行，唯恐有聞。</p>
+    <h4 class="hb-source"><span class="num-pfx">3.</span>《新書．脩政語下》</h4>
+    <p class="hb-text hb-listed"><span class="num-pfx">- </span>興國之道，君思善則行之，君聞善則行之，君知善則行之。</p>
+  </main>
+  <footer>
+    <p>本頁內容整理自《季庚子問於孔子》相關文獻彙編</p>
+  </footer>
+</body>
+</html>
